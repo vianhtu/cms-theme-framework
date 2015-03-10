@@ -37,6 +37,9 @@ if(!class_exists('ReduxFramework')){
 /* Add theme options. */
 require( get_template_directory() . '/inc/options/functions.php' );
 
+/* Add SCSS */
+require( get_template_directory() . '/inc/libs/scss.inc.php' );
+
 /* Add base functions */
 require( get_template_directory() . '/inc/base.class.php' );
 
