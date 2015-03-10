@@ -8,9 +8,18 @@
 class CMSSuperHeroes_StaticCss
 {
 
+    public $scss;
+    
     function __construct()
     {
         global $smof_data;
+        
+        /* scss */
+        $this->scss = new scssc();
+        
+        /* set paths scss */
+        $this->scss->setImportPaths(get_template_directory() . '/scss/');
+             
         /* generate css over time */
         if ($smof_data['dev_mode']) {
             $this->generate_file();
@@ -34,15 +43,34 @@ class CMSSuperHeroes_StaticCss
         if (! empty($smof_data)) {
             /* get css string */
             $css = $this->css_render();
+            
             /* minimize CSS styles */
             if (!$smof_data['dev_mode']) {
                 $css = CMSSuperHeroes_Base::compressCss($css);
+                
+                /* set compressed css */
+                $this->scss->setFormatter('scss_formatter_compressed');
             }
+            
+            /* compile scss to css */
+            $css .= $this->scss_render();
+            
             /* write static.css file */
             file_put_contents(get_template_directory() . '/css/' . 'static.css', $css, LOCK_EX); // Save it
         }
     }
-
+    
+    /**
+     * scss compile
+     * 
+     * @since 1.0.0
+     * @return string
+     */
+    public function scss_render(){
+        /* compile scss to css */
+        return $this->scss->compile('@import "buttons.scss"; @import "comments.scss"; @import "content.scss"; @import "elements.scss"; @import "footer.scss"; @import "forms.scss"; @import "header.scss"; @import "main.scss"; @import "media.scss"; @import "mixins.scss"; @import "navigation.scss"; @import "sidebar.scss"; @import "typography.scss"; @import "widgets.scss"');
+    }
+    
     /**
      * main css
      *
