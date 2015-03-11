@@ -328,7 +328,6 @@ $this->sections[] = array(
     'icon' => 'el-icon-adjust',
     'fields' => array(
         array(
-            'subtitle' => __('Controls several items, ex: link hovers, highlights, and more.', THEMENAME),
             'id' => 'primary_color',
             'type' => 'color',
             'title' => __('Primary Color', THEMENAME),
@@ -338,6 +337,13 @@ $this->sections[] = array(
             'id' => 'secondary_color',
             'type' => 'color',
             'title' => __('Secondary Color', THEMENAME),
+            'default' => ''
+        ),
+        array(
+            'id' => 'link_color',
+            'type' => 'color',
+            'title' => __('Link Color', THEMENAME),
+            'output'  => array('a'),
             'default' => ''
         )
     )
