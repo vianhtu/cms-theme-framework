@@ -1,14 +1,15 @@
 <?php
-/*
- * Author : Fox
- * Name : Options control
- * Ver : 1.0.0
+/**
+ * Meta Options Core
+ * 
+ * @author Fox
+ * @version 1.0.1
  */
 global $core_options;
 
 $core_options = new CsCoreControl();
 
-function cs_options($params = array())
+function cms_options($params = array())
 {
     global $pagenow, $core_options;
 
