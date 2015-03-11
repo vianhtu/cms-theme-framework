@@ -50,4 +50,4 @@
 		<?php endif; ?>
 	</header><!-- #masthead -->
     <?php do_action('cmssuperheroes-page-title'); ?>
-	<div id="main" class="wrapper">
+	<div id="main" class="container">
