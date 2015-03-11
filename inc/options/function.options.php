@@ -316,6 +316,117 @@ $this->sections[] = array(
         ),
     )
 );
+
+/**
+ * Styling
+ * 
+ * css color.
+ * @author Fox
+ */
+$this->sections[] = array(
+    'title' => __('Styling', THEMENAME),
+    'icon' => 'el-icon-adjust',
+    'fields' => array(
+        array(
+            'subtitle' => __('Controls several items, ex: link hovers, highlights, and more.', THEMENAME),
+            'id' => 'primary_color',
+            'type' => 'color',
+            'title' => __('Primary Color', THEMENAME),
+            'default' => ''
+        ),
+        array(
+            'id' => 'secondary_color',
+            'type' => 'color',
+            'title' => __('Secondary Color', THEMENAME),
+            'default' => ''
+        )
+    )
+);
+
+/**
+ * Typography
+ * 
+ * @author Fox
+ */
+$this->sections[] = array(
+    'title' => __('Typography', THEMENAME),
+    'icon' => 'el-icon-text-width',
+    'subsection' => true,
+    'fields' => array(
+        array(
+            'id' => 'font_body',
+            'type' => 'typography',
+            'title' => __('Body Font', THEMENAME),
+            'google' => true,
+            'font-backup' => true,
+            'all_styles' => true,
+            'output'  => array('body'),
+            'units' => 'px',
+            'subtitle' => __('Typography option with each property can be called individually.', THEMENAME),
+        ),
+        array(
+            'id' => 'font_h1',
+            'type' => 'typography',
+            'title' => __('H1', THEMENAME),
+            'google' => true,
+            'font-backup' => true,
+            'all_styles' => true,
+            'output'  => array('h1'),
+            'units' => 'px',
+        ),
+        array(
+            'id' => 'font_h2',
+            'type' => 'typography',
+            'title' => __('H2', THEMENAME),
+            'google' => true,
+            'font-backup' => true,
+            'all_styles' => true,
+            'output'  => array('h2'),
+            'units' => 'px',
+        ),
+        array(
+            'id' => 'font_h3',
+            'type' => 'typography',
+            'title' => __('H3', THEMENAME),
+            'google' => true,
+            'font-backup' => true,
+            'all_styles' => true,
+            'output'  => array('h3'),
+            'units' => 'px',
+        ),
+        array(
+            'id' => 'font_h4',
+            'type' => 'typography',
+            'title' => __('H4', THEMENAME),
+            'google' => true,
+            'font-backup' => true,
+            'all_styles' => true,
+            'output'  => array('h4'),
+            'units' => 'px',
+        ),
+        array(
+            'id' => 'font_h5',
+            'type' => 'typography',
+            'title' => __('H5', THEMENAME),
+            'google' => true,
+            'font-backup' => true,
+            'all_styles' => true,
+            'output'  => array('h5'),
+            'units' => 'px',
+        ),
+        array(
+            'id' => 'font_h6',
+            'type' => 'typography',
+            'title' => __('H6', THEMENAME),
+            'google' => true,
+            'font-backup' => true,
+            'all_styles' => true,
+            'output'  => array('h6'),
+            'units' => 'px',
+        )
+    )
+);
+
 /**
  * Custom CSS
  * 
