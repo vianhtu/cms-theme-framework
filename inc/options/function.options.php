@@ -64,13 +64,13 @@ $this->sections[] = array(
             'default' => '1',
             'type' => 'image_select',
             'options' => array(
-                '' => '',
-                '1' => get_template_directory_uri().'/inc/options/images/pagetitle/pt-s-1.jpg',
-                '2' => get_template_directory_uri().'/inc/options/images/pagetitle/pt-s-2.jpg',
-                '3' => get_template_directory_uri().'/inc/options/images/pagetitle/pt-s-3.jpg',
-                '4' => get_template_directory_uri().'/inc/options/images/pagetitle/pt-s-4.jpg',
-                '5' => get_template_directory_uri().'/inc/options/images/pagetitle/pt-s-5.jpg',
-                '6' => get_template_directory_uri().'/inc/options/images/pagetitle/pt-s-6.jpg',
+                '' => get_template_directory_uri().'/inc/options/images/pagetitle/pt-s-0.png',
+                '1' => get_template_directory_uri().'/inc/options/images/pagetitle/pt-s-1.png',
+                '2' => get_template_directory_uri().'/inc/options/images/pagetitle/pt-s-2.png',
+                '3' => get_template_directory_uri().'/inc/options/images/pagetitle/pt-s-3.png',
+                '4' => get_template_directory_uri().'/inc/options/images/pagetitle/pt-s-4.png',
+                '5' => get_template_directory_uri().'/inc/options/images/pagetitle/pt-s-5.png',
+                '6' => get_template_directory_uri().'/inc/options/images/pagetitle/pt-s-6.png',
             )
         ),
         array(
