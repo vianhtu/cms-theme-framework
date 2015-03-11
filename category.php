@@ -13,7 +13,7 @@
 
 get_header(); ?>
 
-	<section id="primary" class="site-content">
+	<section id="primary" class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
 		<div id="content" role="main">
 
 		<?php if ( have_posts() ) : ?>
@@ -46,6 +46,7 @@ get_header(); ?>
 
 		</div><!-- #content -->
 	</section><!-- #primary -->
-
-<?php get_sidebar(); ?>
+    <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+    <?php get_sidebar(); ?>
+    </div>
 <?php get_footer(); ?>
