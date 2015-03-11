@@ -42,6 +42,11 @@ if(!class_exists('scssc')){
     require( get_template_directory() . '/inc/libs/scss.inc.php' );
 }
 
+/* Add Meta Core Options */
+if(is_admin() && !class_exists('CsCoreControl')){
+    require( get_template_directory() . '/inc/metacore/core.options.php' );
+}
+
 /* Add base functions */
 require( get_template_directory() . '/inc/base.class.php' );
 
