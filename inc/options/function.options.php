@@ -189,11 +189,15 @@ $this->sections[] = array(
     )
 );
 
-/* Container */
+/**
+ * Content
+ * 
+ * Archive, Pages, Single, 404, Search, Category, Tags .... 
+ * @author Fox
+ */
 $this->sections[] = array(
-    'title' => __('Container', THEMENAME),
-    'icon' => 'el-icon-pencil',
-    'subsection' => true,
+    'title' => __('Content', THEMENAME),
+    'icon' => 'el-icon-compass',
     'fields' => array(
         array(
             'id'       => 'container_background',
@@ -216,20 +220,6 @@ $this->sections[] = array(
             'title' => 'Padding',
             'default' => ''
         )
-    )
-);
-
-/**
- * Content
- * 
- * Archive, Pages, Single, 404, Search, Category, Tags .... 
- * @author Fox
- */
-$this->sections[] = array(
-    'title' => __('Content', THEMENAME),
-    'icon' => 'el-icon-compass',
-    'fields' => array(
-        
     )
 );
 
