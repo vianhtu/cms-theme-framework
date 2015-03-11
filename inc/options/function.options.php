@@ -48,6 +48,25 @@ $this->sections[] = array(
     )
 );
 
+/* Logo */
+$this->sections[] = array(
+    'title' => __('Logo', THEMENAME),
+    'icon' => 'el-icon-picture',
+    'subsection' => true,
+    'fields' => array(
+        array(
+            'title' => __('Logo', THEMENAME),
+            'subtitle' => __('Select an image file for your logo.', THEMENAME),
+            'id' => 'main_logo',
+            'type' => 'media',
+            'url' => true,
+            'default' => array(
+                'url'=>get_template_directory_uri().'/images/cmssuperheroes.png'
+            )
+        ),
+    )
+);
+
 /**
  * Page Title
  *

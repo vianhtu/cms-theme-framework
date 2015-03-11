@@ -247,7 +247,165 @@ footer.entry-meta {
 
 .mu_register h2 {
   color: #757575;
+  font-weight: normal;
+  /* =Comments
+-------------------------------------------------------------- */ }
+
+.comments-title {
+  margin-bottom: 48px;
+  margin-bottom: 3.42857rem;
+  font-size: 16px;
+  font-size: 1.14286rem;
+  line-height: 1.5;
   font-weight: normal; }
+
+.comments-area article {
+  margin: 24px 0;
+  margin: 1.71429rem 0; }
+
+.comments-area article header {
+  margin: 0 0 48px;
+  margin: 0 0 3.42857rem;
+  overflow: hidden;
+  position: relative; }
+
+.comments-area article header img {
+  float: left;
+  padding: 0;
+  line-height: 0; }
+
+.comments-area article header cite, .comments-area article header time {
+  display: block;
+  margin-left: 85px;
+  margin-left: 6.07143rem; }
+
+.comments-area article header cite {
+  font-style: normal;
+  font-size: 15px;
+  font-size: 1.07143rem;
+  line-height: 1.42857; }
+
+.comments-area cite b {
+  font-weight: normal; }
+
+.comments-area article header time {
+  line-height: 1.71429;
+  text-decoration: none;
+  font-size: 12px;
+  font-size: 0.85714rem;
+  color: #5e5e5e; }
+
+.comments-area article header a {
+  text-decoration: none;
+  color: #5e5e5e; }
+
+.comments-area article header a:hover {
+  color: #21759b; }
+
+.comments-area article header cite a {
+  color: #444; }
+
+.comments-area article header cite a:hover {
+  text-decoration: underline; }
+
+.comments-area article header h4 {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 6px 12px;
+  padding: 0.42857rem 0.85714rem;
+  font-size: 12px;
+  font-size: 0.85714rem;
+  font-weight: normal;
+  color: #fff;
+  background-color: #0088d0;
+  background-repeat: repeat-x;
+  background-image: -moz-linear-gradient(top, #009cee, #0088d0);
+  background-image: -ms-linear-gradient(top, #009cee, #0088d0);
+  background-image: -webkit-linear-gradient(top, #009cee, #0088d0);
+  background-image: -o-linear-gradient(top, #009cee, #0088d0);
+  background-image: linear-gradient(top, #009cee, #0088d0);
+  border-radius: 3px;
+  border: 1px solid #007cbd; }
+
+.comments-area .bypostauthor cite span {
+  position: absolute;
+  margin-left: 5px;
+  margin-left: 0.35714rem;
+  padding: 2px 5px;
+  padding: 0.14286rem 0.35714rem;
+  font-size: 10px;
+  font-size: 0.71429rem; }
+
+.comments-area .bypostauthor cite b {
+  font-weight: bold; }
+
+a.comment-reply-link, a.comment-edit-link {
+  color: #686868;
+  font-size: 13px;
+  font-size: 0.92857rem;
+  line-height: 1.84615; }
+
+a.comment-reply-link:hover, a.comment-edit-link:hover {
+  color: #21759b; }
+
+.commentlist .pingback {
+  line-height: 1.71429;
+  margin-bottom: 24px;
+  margin-bottom: 1.71429rem;
+  /* Comment form */ }
+
+#respond {
+  margin-top: 48px;
+  margin-top: 3.42857rem; }
+
+#respond h3#reply-title {
+  font-size: 16px;
+  font-size: 1.14286rem;
+  line-height: 1.5; }
+
+#respond h3#reply-title #cancel-comment-reply-link {
+  margin-left: 10px;
+  margin-left: 0.71429rem;
+  font-weight: normal;
+  font-size: 12px;
+  font-size: 0.85714rem; }
+
+#respond form {
+  margin: 24px 0;
+  margin: 1.71429rem 0; }
+
+#respond form p {
+  margin: 11px 0;
+  margin: 0.78571rem 0; }
+
+#respond form p.logged-in-as {
+  margin-bottom: 24px;
+  margin-bottom: 1.71429rem; }
+
+#respond form label {
+  display: block;
+  line-height: 1.71429; }
+
+#respond form input[type="text"], #respond form textarea {
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  font-size: 12px;
+  font-size: 0.85714rem;
+  line-height: 1.71429;
+  padding: 10px;
+  padding: 0.71429rem;
+  width: 100%; }
+
+#respond form p.form-allowed-tags {
+  margin: 0;
+  font-size: 12px;
+  font-size: 0.85714rem;
+  line-height: 2;
+  color: #5e5e5e; }
+
+.required {
+  color: red; }
 
 .entry-page-image {
   margin-bottom: 14px;
@@ -337,6 +495,9 @@ img#wpstats {
   display: block;
   margin: 0 auto 24px;
   margin: 0 auto 1.71429rem; }
+
+img {
+  max-width: 100%; }
 
 .alignleft {
   float: left; }
