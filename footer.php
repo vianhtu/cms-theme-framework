@@ -10,17 +10,11 @@
  */
 global $smof_data;
 ?>
-	</div><!-- #main .wrapper -->
-	<div class="<?php if(!$smof_data['footer_full_width']){ echo 'container'; }?>">
-	    <div class="row">
-        	<footer>
-        	   <div class="<?php if($smof_data['footer_layout_full_width']){ echo 'container'; }?>">
-        	   </div>
-        	</footer><!-- #colophon -->
-    	</div>
-	</div>
+<footer>
+	<!-- #main .wrapper -->
+</footer>
 </div><!-- #page -->
-
+<!-- #colophon -->
 <?php wp_footer(); ?>
 </body>
 </html>

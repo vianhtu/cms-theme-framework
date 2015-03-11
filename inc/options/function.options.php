@@ -268,13 +268,6 @@ $this->sections[] = array(
             'default'   => array()
         ),
         array(
-            'subtitle' => 'Remove class .container.',
-            'id' => 'footer_full_width',
-            'type' => 'switch',
-            'title' => 'Full Width',
-            'default' => true
-        ),
-        array(
             'subtitle' => __('in pixels, top right bottom left, ex: 10px 10px 10px 10px', THEMENAME),
             'id' => 'footer_margin',
             'type' => 'text',
@@ -288,22 +281,6 @@ $this->sections[] = array(
             'title' => 'Padding',
             'default' => ''
         )
-    )
-);
-
-/* Footer layout */
-$this->sections[] = array(
-    'icon' => 'el-icon-th-large',
-    'title' => __('Layout', THEMENAME),
-    'subsection' => true,
-    'fields' => array(
-        array(
-            'subtitle' => 'Remove class .container.',
-            'id' => 'footer_layout_full_width',
-            'type' => 'switch',
-            'title' => 'Full Width',
-            'default' => false
-        ),
     )
 );
 
