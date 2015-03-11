@@ -11,7 +11,7 @@
 global $smof_data;
 ?>
         </div><!-- #main -->
-		<footer id="cms-footer" class="site-footer" role="contentinfo">
+		<footer id="site-footer" class="site-footer" role="contentinfo">
 			<div class="site-info">
 				<a href="<?php echo esc_url( __( 'http://wordpress.org/', 'twentythirteen' ) ); ?>" title="<?php esc_attr_e( 'Semantic Personal Publishing Platform', 'twentythirteen' ); ?>"><?php printf( __( 'Proudly powered by %s', 'twentythirteen' ), 'WordPress' ); ?></a>
 			</div><!-- .site-info -->

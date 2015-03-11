@@ -283,7 +283,7 @@ $this->sections[] = array(
             'type'     => 'background',
             'title'    => __( 'Background', THEMENAME ),
             'subtitle' => __( 'footer background with image, color, etc.', THEMENAME ),
-            'output'   => array('#cms-footer'),
+            'output'   => array('.site-footer'),
             'default'   => array()
         ),
         array(

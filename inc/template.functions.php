@@ -6,7 +6,7 @@ function cmssuperheroes_page_title(){
     
     if($smof_data['page_title_layout']){
         ?>
-        <div class="page-title">
+        <div id="page-title" class="page-title">
             <div class="container">
             <div class="row">
             <?php switch ($smof_data['page_title_layout']){
