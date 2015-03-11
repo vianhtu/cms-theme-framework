@@ -1,0 +1,101 @@
+/* =Front page template
+-------------------------------------------------------------- */
+
+.entry-page-image {
+  margin-bottom: 14px;
+  margin-bottom: 1rem;
+}
+.template-front-page .site-content article {
+  border: 0;
+  margin-bottom: 0;
+}
+.template-front-page .widget-area {
+  clear: both;
+  float: none;
+  width: auto;
+  padding-top: 24px;
+  padding-top: 1.714285714rem;
+  border-top: 1px solid #ededed;
+}
+.template-front-page .widget-area .widget li {
+  margin: 8px 0 0;
+  margin: 0.571428571rem 0 0;
+  font-size: 13px;
+  font-size: 0.928571429rem;
+  line-height: 1.714285714;
+  list-style-type: square;
+  list-style-position: inside;
+}
+.template-front-page .widget-area .widget li a {
+  color: #757575;
+}
+.template-front-page .widget-area .widget li a:hover {
+  color: #21759b;
+}
+.template-front-page .widget-area .widget_text img {
+  float: left;
+  margin: 8px 24px 8px 0;
+  margin: 0.571428571rem 1.714285714rem 0.571428571rem 0;
+}
+
+
+/* =Widgets
+-------------------------------------------------------------- */
+
+.widget-area .widget ul ul {
+  margin-left: 12px;
+  margin-left: 0.857142857rem;
+}
+.widget_rss li {
+  margin: 12px 0;
+  margin: 0.857142857rem 0;
+}
+.widget_recent_entries .post-date,
+.widget_rss .rss-date {
+  color: #aaa;
+  font-size: 11px;
+  font-size: 0.785714286rem;
+  margin-left: 12px;
+  margin-left: 0.857142857rem;
+}
+#wp-calendar {
+  margin: 0;
+  width: 100%;
+  font-size: 13px;
+  font-size: 0.928571429rem;
+  line-height: 1.846153846;
+  color: #686868;
+}
+#wp-calendar th,
+#wp-calendar td,
+#wp-calendar caption {
+  text-align: left;
+}
+#wp-calendar #next {
+  padding-right: 24px;
+  padding-right: 1.714285714rem;
+  text-align: right;
+}
+.widget_search label {
+  display: block;
+  font-size: 13px;
+  font-size: 0.928571429rem;
+  line-height: 1.846153846;
+}
+.widget_twitter li {
+  list-style-type: none;
+}
+.widget_twitter .timesince {
+  display: block;
+  text-align: right;
+}
+
+
+/* =Plugins
+----------------------------------------------- */
+
+img#wpstats {
+  display: block;
+  margin: 0 auto 24px;
+  margin: 0 auto 1.714285714rem;
+}
