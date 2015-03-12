@@ -61,7 +61,7 @@ $this->sections[] = array(
             'type' => 'media',
             'url' => true,
             'default' => array(
-                'url'=>get_template_directory_uri().'/images/cmssuperheroes.png'
+                'url'=>get_template_directory_uri().'/assets/images/cmssuperheroes.png'
             )
         ),
     )

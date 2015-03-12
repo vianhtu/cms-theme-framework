@@ -65,7 +65,7 @@ if (! class_exists('ReduxFramework_intro_product')) {
             echo '</td></tr></table>';
             ?>
             <div class="intro-product">
-                <div class="cms-logo"><img alt="CMSSuperHeroes" src="<?php echo get_template_directory_uri() . '/images/cmssuperheroes.png'; ?>"></div>
+                <div class="cms-logo"><img alt="CMSSuperHeroes" src="<?php echo get_template_directory_uri() . '/assets/images/cmssuperheroes.png'; ?>"></div>
                 <div class="cms-tools">
                     <ul>
                         <li><a href="#"><i class="dashicons dashicons-album"></i><span>V<?php echo esc_attr($theme->get('Version')); ?></span></a></li>
