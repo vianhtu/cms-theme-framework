@@ -132,7 +132,6 @@ add_action( 'after_setup_theme', 'cms_setup' );
  */
 function cms_meta_data(){
     global $post, $cms_meta;
-    
     if(isset($post->ID)){
         $cms_meta = json_decode(get_post_meta($post->ID, '_cms_meta_data', true));
     } else {

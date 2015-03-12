@@ -151,8 +151,8 @@ jQuery(document).ready(function($) {
 	/* image select */
 	$(document.body).on('click', '.image-field ul li', function(e) {
 		var value = $(this).attr('data-value');
+		$(this).parent().find('li.active').removeClass('active');
 		$(this).addClass('active');
-		
 		$(this).parents('.image-field').find('input').val(value);
 	});
 	/* show or hide elements */

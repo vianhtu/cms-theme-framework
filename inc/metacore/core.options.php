@@ -39,6 +39,7 @@ function cms_options($params = array())
             global $post;
             /* Get cms meta data opject */
             $cms_meta = json_decode(get_post_meta($post->ID, '_cms_meta_data', true));
+            
             // Render params id
             $params['id'] = "_cms_".$params['id'];
             // Get value
@@ -530,7 +531,6 @@ class CsCoreControl
 			    $cms_meta[$key] = $value;
 			}
 		}
-		
 		/* update _cms_meta_data. */
 		if(!empty($cms_meta)){
 		  update_post_meta($post_id, '_cms_meta_data', json_encode($cms_meta));
