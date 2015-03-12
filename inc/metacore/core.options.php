@@ -122,6 +122,9 @@ class CsCoreControl
                 case 'select':
                     return $this->select($params);
                     break;
+                case 'imegesselect':
+                    return $this->imegesselect($params);
+                    break;
                 case 'multiple':
                     return $this->multiple($params);
                     break;
@@ -194,6 +197,20 @@ class CsCoreControl
         		<option value="<?php echo $key; ?>" <?php if(isset($params['value']) && ($params['value'] == $key)){ echo "selected"; } ?>><?php echo esc_attr($option); ?></option>
         	<?php endforeach; ?>
         </select>
+        </div>
+	    <?php
+        return ob_get_clean();
+    }
+    private function imegesselect($params){
+        ob_start();
+        ?>
+        <div class="image-field csfield">
+            <ul>
+                <?php foreach ($params['options'] as $key => $image): ?>
+                <li data-value="<?php echo esc_attr($key); ?>"><img alt="" src="<?php echo esc_url($image) ?>"></li>
+                <?php endforeach; ?>
+            </ul>
+            <input type="hidden" name="<?php echo esc_attr($params['id']); ?>" id="<?php echo esc_attr($params['id']); ?>" class="xvalue" value="<?php echo $params['value']; ?>"/>
         </div>
 	    <?php
         return ob_get_clean();
