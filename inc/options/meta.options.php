@@ -34,7 +34,7 @@ class CMSMetaOptions
         <div id="cs-blog-metabox" class='cs_metabox'>
         <?php
         cms_options(array(
-            'id' => 'page_full_width',
+            'id' => 'full_width',
             'label' => __('Full Width',THEMENAME),
             'type' => 'switch',
             'options' => array('on'=>'1','off'=>''),

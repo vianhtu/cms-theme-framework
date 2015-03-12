@@ -1,7 +1,10 @@
 <?php
-
-add_action('cmssuperheroes-page-title', 'cmssuperheroes_page_title');
-function cmssuperheroes_page_title(){
+/**
+ * Page title template
+ * @since 1.0.0
+ * @author Fox
+ */
+function cms_page_title(){
     global $smof_data;
     
     if($smof_data['page_title_layout']){
@@ -50,4 +53,25 @@ function cmssuperheroes_page_title(){
         </div>
         <?php
     }
+}
+/**
+ * Main class
+ * 
+ * @author Fox
+ * @since 1.0.0
+ */
+function cms_main_class(){
+    global $cms_meta;
+    
+    $main_class = '';
+    /* chect content full width */
+    if(isset($cms_meta->_cms_full_width) && $cms_meta->_cms_full_width){
+        /* full width */
+        $main_class = "no-container";
+    } else {
+        /* boxed */
+        $main_class = "container";
+    }
+    
+    echo apply_filters('cms_main_class', $main_class);
 }

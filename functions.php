@@ -25,10 +25,15 @@
 /**
  * Add global values.
  */
+global $cms_meta;
+
 $theme = wp_get_theme();
 
 define('THEMENAME', $theme->get('Name'));
- 
+
+/* Add base functions */
+require( get_template_directory() . '/inc/base.class.php' );
+
 /* Add ReduxFramework. */
 if(!class_exists('ReduxFramework')){
     require( get_template_directory() . '/inc/ReduxCore/framework.php' );
@@ -49,9 +54,6 @@ if(is_admin() && !class_exists('CsCoreControl')){
     /* add meta options */
     require( get_template_directory() . '/inc/options/meta.options.php' );
 }
-
-/* Add base functions */
-require( get_template_directory() . '/inc/base.class.php' );
 
 /* Add Template functions */
 require( get_template_directory() . '/inc/template.functions.php' );
@@ -81,7 +83,7 @@ if ( ! isset( $content_width ) )
  *
  * @since Twenty Twelve 1.0
  */
-function cmssuperheroes_setup() {
+function cms_setup() {
 	/*
 	 * Makes Twenty Twelve available for translation.
 	 *
@@ -121,14 +123,30 @@ function cmssuperheroes_setup() {
 	add_theme_support( 'post-thumbnails' );
 	set_post_thumbnail_size( 624, 9999 ); // Unlimited height, soft crop
 }
-add_action( 'after_setup_theme', 'cmssuperheroes_setup' );
+add_action( 'after_setup_theme', 'cms_setup' );
+
+/**
+ * Get meta data.
+ * @author Fox
+ * @return mixed|NULL
+ */
+function cms_meta_data(){
+    global $post, $cms_meta;
+    
+    if(isset($post->ID)){
+        $cms_meta = json_decode(get_post_meta($post->ID, '_cms_meta_data', true));
+    } else {
+        $cms_meta = null;
+    }
+}
+add_action('wp', 'cms_meta_data');
 
 /**
  * Enqueue scripts and styles for front-end.
  * @author Fox
  * @since CMS SuperHeroes 1.0
  */
-function cmssuperheroes_scripts_styles() {
+function cms_scripts_styles() {
 	global $wp_styles;
 
 	/*------------------------------------- JavaScript ---------------------------------------*/
@@ -158,7 +176,7 @@ function cmssuperheroes_scripts_styles() {
 	/* Load static css*/
 	wp_enqueue_style('cmssuperheroes-static', get_template_directory_uri() . '/assets/css/static.css', array( 'cmssuperheroes-style' ), '1.0.0');
 }
-add_action( 'wp_enqueue_scripts', 'cmssuperheroes_scripts_styles' );
+add_action( 'wp_enqueue_scripts', 'cms_scripts_styles' );
 
 /**
  * Register sidebars.
@@ -167,7 +185,7 @@ add_action( 'wp_enqueue_scripts', 'cmssuperheroes_scripts_styles' );
  *
  * @since Fox
  */
-function cmssuperheroes_widgets_init() {
+function cms_widgets_init() {
 	register_sidebar( array(
 		'name' => __( 'Main Sidebar', 'twentytwelve' ),
 		'id' => 'sidebar-1',
@@ -198,4 +216,4 @@ function cmssuperheroes_widgets_init() {
 		'after_title' => '</h3>',
 	) );
 }
-add_action( 'widgets_init', 'cmssuperheroes_widgets_init' );
+add_action( 'widgets_init', 'cms_widgets_init' );

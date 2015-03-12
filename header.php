@@ -9,15 +9,7 @@
  * @since Twenty Twelve 1.0
  */
 ?><!DOCTYPE html>
-<!--[if IE 7]>
-<html class="ie ie7" <?php language_attributes(); ?>>
-<![endif]-->
-<!--[if IE 8]>
-<html class="ie ie8" <?php language_attributes(); ?>>
-<![endif]-->
-<!--[if !(IE 7) & !(IE 8)]><!-->
 <html <?php language_attributes(); ?>>
-<!--<![endif]-->
 <head>
 <meta charset="<?php bloginfo( 'charset' ); ?>" />
 <meta name="viewport" content="width=device-width" />
@@ -29,11 +21,10 @@
 <![endif]-->
 <?php wp_head(); ?>
 </head>
-
 <body <?php body_class(); ?>>
 <div id="page" class="">
 	<header id="masthead" class="site-header" role="banner">
 		<?php get_template_part('inc/header/default'); ?>
 	</header><!-- #masthead -->
-    <?php do_action('cmssuperheroes-page-title'); ?>
-	<div id="main" class="container">
+    <?php cms_page_title(); ?>
+	<div id="main" class="<?php cms_main_class(); ?>">

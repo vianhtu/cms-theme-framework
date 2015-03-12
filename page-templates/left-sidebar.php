@@ -1,11 +1,6 @@
 <?php
 /**
- * The template for displaying all pages
- *
- * This is the template that displays all pages by default.
- * Please note that this is the WordPress construct of pages
- * and that other 'pages' on your WordPress site will use a
- * different template.
+ * Template Name: Left Sidebar
  *
  * @package CMSSuperHeroes
  * @subpackage CMS Theme
@@ -14,8 +9,11 @@
  */
 
 get_header(); ?>
-<div id="page-default">
-	<div id="primary">
+<div id="page-left-sidebar">
+    <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+    <?php get_sidebar(); ?>
+    </div>
+	<div id="primary" class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
 		<div id="content" role="main">
 
 			<?php while ( have_posts() ) : the_post(); ?>
@@ -25,4 +23,5 @@ get_header(); ?>
 
 		</div><!-- #content -->
 	</div><!-- #primary -->
+</div>
 <?php get_footer(); ?>
