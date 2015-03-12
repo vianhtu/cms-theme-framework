@@ -38,7 +38,7 @@ function cms_options($params = array())
         elseif ($pagenow=='post-new.php' || $pagenow=='post.php'){
             global $post;
             // render id
-            $params['id'] = "cs_".$params['id'];
+            $params['id'] = "_cms_".$params['id'];
             // get value
             if(get_post_meta($post->ID, $params['id'], true) != ''){
                 $params['value'] = get_post_meta($post->ID, $params['id'], true);
@@ -47,17 +47,6 @@ function cms_options($params = array())
             }
 
             $core_options->metabox($params);
-        }
-        /* Admin */
-        elseif ($pagenow == 'admin.php'){
-            if(get_option($params['id']) != ''){
-                $params['value'] = get_option($params['id']);
-            }
-            $core_options->admin($params);
-        }
-        /* Template */
-        elseif ($pagenow == 'themes.php'){
-            $core_options->widget($params);
         }
     } else {
         _e('Error', CSCORE_NAME);
@@ -501,29 +490,6 @@ class CsCoreControl
         <?php
         echo ob_get_clean();
     }
-    public function admin($params){
-        ob_start();
-        $title_layout = '';
-        $content_layout = 'col-lg-12 col-md-12 col-sm-12 col-xs-12';
-        if(!empty($params['label'])){
-            $title_layout = 'col-lg-6 col-md-6 col-sm-6 col-xs-12';
-            $content_layout = 'col-lg-6 col-md-6 col-sm-6 col-xs-12';
-        }
-        ?>
-        <div id="xfield_<?php echo $params['id']; ?>" class="clearfix">
-            <?php if($title_layout != ''): ?>
-            <div class="<?php echo $title_layout; ?>">
-                <label class="field-title" for="<?php echo $params['id']; ?>"><?php if(isset($params['label'])){ echo $params['label'];} ?></label>
-            </div>
-            <?php endif; ?>
-            <div class="<?php echo $content_layout; ?>">
-                <?php echo $this->renderType($params); ?>
-                <span class="description"><?php if(isset($params['desc'])){ echo esc_attr($params['desc']);} ?></span>
-            </div>
-        </div>
-        <?php
-        echo ob_get_clean();
-    }
     /**
      * Save post update CMS data.
      * 
@@ -541,7 +507,7 @@ class CsCoreControl
         
         /* find cms meta key. */
 		foreach($_POST as $key => $value) {
-			if(strstr($key, 'cs_')) {
+			if(strstr($key, '_cms_')) {
 			    $cms_meta[$key] = $value;
 			}
 		}

@@ -44,7 +44,10 @@ if(!class_exists('scssc')){
 
 /* Add Meta Core Options */
 if(is_admin() && !class_exists('CsCoreControl')){
+    /* add mete core */
     require( get_template_directory() . '/inc/metacore/core.options.php' );
+    /* add meta options */
+    require( get_template_directory() . '/inc/options/meta.options.php' );
 }
 
 /* Add base functions */
