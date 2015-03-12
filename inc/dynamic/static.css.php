@@ -18,7 +18,7 @@ class CMSSuperHeroes_StaticCss
         $this->scss = new scssc();
         
         /* set paths scss */
-        $this->scss->setImportPaths(get_template_directory() . '/scss/');
+        $this->scss->setImportPaths(get_template_directory() . '/assets/scss/');
              
         /* generate css over time */
         if ($smof_data['dev_mode']) {
@@ -56,7 +56,7 @@ class CMSSuperHeroes_StaticCss
             $css .= $this->scss_render();
             
             /* write static.css file */
-            file_put_contents(get_template_directory() . '/css/' . 'static.css', $css, LOCK_EX); // Save it
+            file_put_contents(get_template_directory() . '/assets/css/' . 'static.css', $css, LOCK_EX); // Save it
         }
     }
     

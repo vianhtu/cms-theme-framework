@@ -134,7 +134,7 @@ function cmssuperheroes_scripts_styles() {
 	/*------------------------------------- JavaScript ---------------------------------------*/
 	
 	/* Adds JavaScript Bootstrap. */
-	wp_enqueue_script('cmssuperheroes-bootstrap', get_template_directory_uri() . '/js/bootstrap.min.js', array( 'jquery' ), '3.3.2');
+	wp_enqueue_script('cmssuperheroes-bootstrap', get_template_directory_uri() . '/assets/js/bootstrap.min.js', array( 'jquery' ), '3.3.2');
 	
 	/*
 	 * Adds JavaScript to pages with the comment form to support
@@ -146,17 +146,17 @@ function cmssuperheroes_scripts_styles() {
     /*------------------------------------- Stylesheet ---------------------------------------*/
 	
 	/* Loads Bootstrap stylesheet. */
-	wp_enqueue_style('cmssuperheroes-bootstrap', get_template_directory_uri() . '/css/bootstrap.min.css', array(), '3.3.2');
+	wp_enqueue_style('cmssuperheroes-bootstrap', get_template_directory_uri() . '/assets/css/bootstrap.min.css', array(), '3.3.2');
 	
 	/* Loads our main stylesheet. */
 	wp_enqueue_style( 'cmssuperheroes-style', get_stylesheet_uri(), array( 'cmssuperheroes-bootstrap' ));
 
 	/* Loads the Internet Explorer specific stylesheet. */
-	wp_enqueue_style( 'twentytwelve-ie', get_template_directory_uri() . '/css/ie.css', array( 'cmssuperheroes-style' ), '20121010' );
+	wp_enqueue_style( 'twentytwelve-ie', get_template_directory_uri() . '/assets/css/ie.css', array( 'cmssuperheroes-style' ), '20121010' );
 	$wp_styles->add_data( 'twentytwelve-ie', 'conditional', 'lt IE 9' );
 	
 	/* Load static css*/
-	wp_enqueue_style('cmssuperheroes-static', get_template_directory_uri() . '/css/static.css', array( 'cmssuperheroes-style' ), '1.0.0');
+	wp_enqueue_style('cmssuperheroes-static', get_template_directory_uri() . '/assets/css/static.css', array( 'cmssuperheroes-style' ), '1.0.0');
 }
 add_action( 'wp_enqueue_scripts', 'cmssuperheroes_scripts_styles' );
 
