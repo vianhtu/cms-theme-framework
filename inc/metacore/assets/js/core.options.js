@@ -148,6 +148,13 @@ jQuery(document).ready(function($) {
 			$(this).val(value);
 		}
 	});
+	/* image select */
+	$(document.body).on('click', '.image-field ul li', function(e) {
+		var value = $(this).attr('data-value');
+		$(this).addClass('active');
+		
+		$(this).parents('.image-field').find('input').val(value);
+	});
 	/* show or hide elements */
 	function XOptionsFollow(element, data) {
 		"use strict";

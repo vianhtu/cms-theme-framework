@@ -207,7 +207,7 @@ class CsCoreControl
         <div class="image-field csfield">
             <ul>
                 <?php foreach ($params['options'] as $key => $image): ?>
-                <li data-value="<?php echo esc_attr($key); ?>"><img alt="" src="<?php echo esc_url($image) ?>"></li>
+                <li data-value="<?php echo esc_attr($key); ?>" class="<?php if($params['value'] == $key) { echo 'active'; } ?>"><img alt="" src="<?php echo esc_url($image) ?>"></li>
                 <?php endforeach; ?>
             </ul>
             <input type="hidden" name="<?php echo esc_attr($params['id']); ?>" id="<?php echo esc_attr($params['id']); ?>" class="xvalue" value="<?php echo $params['value']; ?>"/>
