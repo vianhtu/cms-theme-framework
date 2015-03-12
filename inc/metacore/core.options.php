@@ -37,11 +37,13 @@ function cms_options($params = array())
         /* Post or Page */
         elseif ($pagenow=='post-new.php' || $pagenow=='post.php'){
             global $post;
-            // render id
+            /* Get cms meta data opject */
+            $cms_meta = json_decode(get_post_meta($post->ID, '_cms_meta_data', true));
+            // Render params id
             $params['id'] = "_cms_".$params['id'];
-            // get value
-            if(get_post_meta($post->ID, $params['id'], true) != ''){
-                $params['value'] = get_post_meta($post->ID, $params['id'], true);
+            // Get value
+            if(!empty($cms_meta->$params['id'])){
+                $params['value'] = $cms_meta->$params['id'];
             } else {
                 $params['value'] = null;
             }
@@ -75,19 +77,19 @@ class CsCoreControl
 
         wp_register_style('font-awesome', get_template_directory_uri().'/css/font-awesome.min.css', array(), '4.1.0');
         wp_register_style('font-ionicons', get_template_directory_uri().'/css/ionicons.min.css', array(), '1.5.2');
-        wp_register_style('jquery-datetimepicker', get_template_directory_uri().'metacore/assets/css/jquery.datetimepicker.css');
-        wp_register_style('jquery-minicolors', get_template_directory_uri() . 'metacore/assets/css/jquery.minicolors.css');
-        wp_register_style('core-options', get_template_directory_uri() . 'metacore/assets/css/core.options.css');
-        wp_register_style('jquery.nouislider', get_template_directory_uri() . 'metacore/assets/css/jquery.nouislider.css');
-        wp_register_style('jquery.nouislider.pips', get_template_directory_uri() . 'metacore/assets/css/jquery.nouislider.pips.css');
+        wp_register_style('jquery-datetimepicker', get_template_directory_uri().'/inc/metacore/assets/css/jquery.datetimepicker.css');
+        wp_register_style('jquery-minicolors', get_template_directory_uri() . '/inc/metacore/assets/css/jquery.minicolors.css');
+        wp_register_style('core-options', get_template_directory_uri() . '/inc/metacore/assets/css/core.options.css');
+        wp_register_style('jquery.nouislider', get_template_directory_uri() . '/inc/metacore/assets/css/jquery.nouislider.css');
+        wp_register_style('jquery.nouislider.pips', get_template_directory_uri() . '/inc/metacore/assets/css/jquery.nouislider.pips.css');
 
-        wp_register_script('jquery-datetimepicker', get_template_directory_uri() . 'metacore/assets/js/jquery.datetimepicker.js');
-        wp_register_script('jquery-minicolors', get_template_directory_uri() . 'metacore/assets/js/jquery.minicolors.js');
-        wp_register_script('media-selector', get_template_directory_uri() . 'metacore/assets/js/media.selector.js');
-        wp_register_script('jquery.nouislider', get_template_directory_uri() . 'metacore/assets/js/jquery.nouislider.all.js');
-        wp_register_script('icons-class', get_template_directory_uri() . 'metacore/assets/js/icons.class.js');
-        wp_register_script('upload', get_template_directory_uri().'metacore/assets/js/upload.js');
-        wp_register_script('core-options', get_template_directory_uri() . 'metacore/assets/js/core.options.js');
+        wp_register_script('jquery-datetimepicker', get_template_directory_uri() . '/inc/metacore/assets/js/jquery.datetimepicker.js');
+        wp_register_script('jquery-minicolors', get_template_directory_uri() . '/inc/metacore/assets/js/jquery.minicolors.js');
+        wp_register_script('media-selector', get_template_directory_uri() . '/inc/metacore/assets/js/media.selector.js');
+        wp_register_script('jquery.nouislider', get_template_directory_uri() . '/inc/metacore/assets/js/jquery.nouislider.all.js');
+        wp_register_script('icons-class', get_template_directory_uri() . '/inc/metacore/assets/js/icons.class.js');
+        wp_register_script('upload', get_template_directory_uri().'/inc/metacore/assets/js/upload.js');
+        wp_register_script('core-options', get_template_directory_uri() . '/inc/metacore/assets/js/core.options.js');
     }
     private function renderType($params){
         if(isset($params['type'])){
