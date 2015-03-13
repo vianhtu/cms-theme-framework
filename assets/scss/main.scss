@@ -105,9 +105,14 @@ img#wpstats {
 #breadcrumb-text{
   ul.breadcrumbs{
     margin: 0;
+    padding: 0;
     list-style: none;
     li{
       display: inline-block;
+      margin: 0 10px;
+      &:first-child{
+        margin-left: 0;
+      }
     }
   }
 }
