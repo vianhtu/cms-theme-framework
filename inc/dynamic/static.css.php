@@ -98,27 +98,27 @@ class CMSSuperHeroes_StaticCss
         }
         /* header margin & padding */
         if($smof_data['header_padding'] || $smof_data['header_margin']){
-            echo "#masthead{margin:".esc_attr($smof_data['header_margin']).";padding:".esc_attr($smof_data['header_padding']).";}";
+            echo "body #masthead{margin:".esc_attr($smof_data['header_margin']).";padding:".esc_attr($smof_data['header_padding']).";}";
         }
         
         /* page title margin & padding */
         if($smof_data['page_title_padding'] || $smof_data['page_title_margin']){
-            echo ".page-title{margin:".esc_attr($smof_data['page_title_margin']).";padding:".esc_attr($smof_data['page_title_padding']).";}";
+            echo "body .page-title{margin:".esc_attr($smof_data['page_title_margin']).";padding:".esc_attr($smof_data['page_title_padding']).";}";
         }
         
         /* main margin & padding */
         if($smof_data['container_padding'] || $smof_data['container_margin']){
-            echo "#main{margin:".esc_attr($smof_data['container_padding']).";padding:".esc_attr($smof_data['container_margin']).";}";
+            echo "body #main{margin:".esc_attr($smof_data['container_padding']).";padding:".esc_attr($smof_data['container_margin']).";}";
         }
         
         /* footer top margin & padding. */
         if($smof_data['footer_margin'] || $smof_data['footer_padding']){
-            echo ".site-footer #footer-top{margin:".esc_attr($smof_data['footer_margin']).";padding:".esc_attr($smof_data['footer_padding']).";}";
+            echo "footer #footer-top{margin:".esc_attr($smof_data['footer_margin']).";padding:".esc_attr($smof_data['footer_padding']).";}";
         }
         
         /* footer botton margin & padding. */
         if($smof_data['footer_botton_margin'] || $smof_data['footer_botton_padding']){
-            echo ".site-footer #footer-bottom{margin:".esc_attr($smof_data['footer_botton_margin']).";padding:".esc_attr($smof_data['footer_botton_padding']).";}";
+            echo "footer #footer-bottom{margin:".esc_attr($smof_data['footer_botton_margin']).";padding:".esc_attr($smof_data['footer_botton_padding']).";}";
         }
         return ob_get_clean();
     }
