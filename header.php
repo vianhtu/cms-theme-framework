@@ -27,4 +27,4 @@
 		<?php get_template_part('inc/header/default'); ?>
 	</header><!-- #masthead -->
     <?php cms_page_title(); ?>
-	<div id="main" class="<?php cms_main_class(); ?>">
+	<div id="main">
