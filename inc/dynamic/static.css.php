@@ -86,14 +86,35 @@ class CMSSuperHeroes_StaticCss
         <?php
         /* custom css. */ 
         echo esc_attr($smof_data['custom_css']); 
-        ?>
-        <?php
-        /* boxed layout active. */
+        
+        /* boxed layout enable. */
         if($smof_data['body_layout']){
-            echo "body .cs-boxed{width:".$smof_data['body_width']."}";
+            echo "body .cs-boxed{width:".esc_attr($smof_data['body_width'])."}";
         }
-        ?>
-        <?php
+        
+        /* body margin & padding. */
+        if($smof_data['body_padding'] || $smof_data['body_margin']){
+            echo "body #page{margin:".esc_attr($smof_data['body_margin']).";padding:".esc_attr($smof_data['body_padding']).";}";
+        }
+        /* header margin & padding */
+        if($smof_data['header_padding'] || $smof_data['header_margin']){
+            echo "#masthead{margin:".esc_attr($smof_data['header_margin']).";padding:".esc_attr($smof_data['header_padding']).";}";
+        }
+        
+        /* page title margin & padding */
+        if($smof_data['page_title_padding'] || $smof_data['page_title_margin']){
+            echo ".page-title{margin:".esc_attr($smof_data['page_title_margin']).";padding:".esc_attr($smof_data['page_title_padding']).";}";
+        }
+        
+        /* footer top margin & padding. */
+        if($smof_data['footer_margin'] || $smof_data['footer_padding']){
+            echo ".site-footer #footer-top{margin:".esc_attr($smof_data['footer_margin']).";padding:".esc_attr($smof_data['footer_padding']).";}";
+        }
+        
+        /* footer botton margin & padding. */
+        if($smof_data['footer_botton_margin'] || $smof_data['footer_botton_padding']){
+            echo ".site-footer #footer-bottom{margin:".esc_attr($smof_data['footer_botton_margin']).";padding:".esc_attr($smof_data['footer_botton_padding']).";}";
+        }
         return ob_get_clean();
     }
 }
