@@ -14,7 +14,7 @@
  */
 
 get_header(); ?>
-<div id="page-default">
+<div id="page-default" class="<?php cms_main_class(); ?>">
 	<div id="primary">
 		<div id="content" role="main">
 
@@ -25,4 +25,5 @@ get_header(); ?>
 
 		</div><!-- #content -->
 	</div><!-- #primary -->
+</div>
 <?php get_footer(); ?>
