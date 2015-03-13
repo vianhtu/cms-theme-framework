@@ -85,7 +85,7 @@ class CMSSuperHeroes_StaticCss
         @CHARSET "ISO-8859-1";
         <?php
         /* custom css. */ 
-        echo esc_attr($smof_data['custom_css']); 
+        echo esc_attr($smof_data['custom_css']);
         
         /* body margin & padding. */
         if($smof_data['body_padding'] || $smof_data['body_margin']){

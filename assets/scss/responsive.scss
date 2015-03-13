@@ -4,3 +4,8 @@
     width: 1200px;
   }
 }
+@media screen and (max-width: 1200px) {
+  body .cs-boxed {
+    padding: 0 15px;
+  }
+}
