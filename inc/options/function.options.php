@@ -295,14 +295,21 @@ $this->sections[] = array(
  */
 $this->sections[] = array(
     'title' => __('Footer', THEMENAME),
+    'icon' => 'el-icon-credit-card',
+);
+
+/* Footer top */
+$this->sections[] = array(
+    'title' => __('Top', THEMENAME),
     'icon' => 'el-icon-fork',
+    'subsection' => true,
     'fields' => array(
         array(
             'id'       => 'footer_background',
             'type'     => 'background',
             'title'    => __( 'Background', THEMENAME ),
             'subtitle' => __( 'footer background with image, color, etc.', THEMENAME ),
-            'output'   => array('.site-footer'),
+            'output'   => array('.site-footer #footer-top'),
             'default'   => array()
         ),
         array(
@@ -322,6 +329,37 @@ $this->sections[] = array(
     )
 );
 
+/* footer botton */
+$this->sections[] = array(
+    'title' => __('Botton', THEMENAME),
+    'icon' => 'el-icon-bookmark',
+    'subsection' => true,
+    'fields' => array(
+        array(
+            'id'       => 'footer_botton_background',
+            'type'     => 'background',
+            'title'    => __( 'Background', THEMENAME ),
+            'subtitle' => __( 'background with image, color, etc.', THEMENAME ),
+            'output'   => array('.site-footer #footer-bottom'),
+            'default'   => array()
+        ),
+        array(
+            'subtitle' => __('in pixels, top right bottom left, ex: 10px 10px 10px 10px', THEMENAME),
+            'id' => 'footer_botton_margin',
+            'type' => 'text',
+            'title' => 'Margin',
+            'default' => ''
+        ),
+        array(
+            'subtitle' => __('in pixels, top right bottom left, ex: 10px 10px 10px 10px', THEMENAME),
+            'id' => 'footer_botton_padding',
+            'type' => 'text',
+            'title' => 'Padding',
+            'default' => ''
+        )
+    )
+);
+
 /**
  * Styling
  * 
@@ -333,6 +371,7 @@ $this->sections[] = array(
     'icon' => 'el-icon-adjust',
     'fields' => array(
         array(
+            'subtitle' => __('set color main color.', THEMENAME),
             'id' => 'primary_color',
             'type' => 'color',
             'title' => __('Primary Color', THEMENAME),
@@ -345,6 +384,7 @@ $this->sections[] = array(
             'default' => ''
         ),
         array(
+            'subtitle' => __('set color for tags <a></a>.', THEMENAME),
             'id' => 'link_color',
             'type' => 'color',
             'title' => __('Link Color', THEMENAME),
