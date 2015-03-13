@@ -11,29 +11,27 @@ class CMSSuperHeroes_Base
         global $cms_meta;
         
         if (!is_archive()){
-            /* search */
-            if(is_search()){
-                printf( __( 'Search Results for: %s', THEMENAME ), '<span>' . get_search_query() . '</span>' );
-            }
-            /* 404 */ 
-            elseif (is_404()){
-                _e( '404', THEMENAME);
-            }
-            /* other */
-            else {
-                the_title();
-            }
-        } else {
             /* page. */
-            if(is_page()):
+            if(is_page()) :
                 /* custom title. */
                 if(!empty($cms_meta->_cms_page_title_text) && $cms_meta->_cms_page_title_text):
                     echo esc_attr($cms_meta->_cms_page_title_text);
                 else :
                     the_title();
-                endif;    
+                endif;
+            /* search */
+            elseif (is_search()):
+                printf( __( 'Search Results for: %s', THEMENAME ), '<span>' . get_search_query() . '</span>' );
+            /* 404 */ 
+            elseif (is_404()):
+                _e( '404', THEMENAME);
+            /* other */
+            else :
+                the_title();
+            endif;
+        } else { 
             /* category. */
-            elseif ( is_category() ) :
+            if ( is_category() ) :
                 single_cat_title();
             elseif ( is_tag() ) :
             /* tag. */
