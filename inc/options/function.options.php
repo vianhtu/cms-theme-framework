@@ -192,18 +192,6 @@ $this->sections[] = array(
             'default' => false,
         ),
         array(
-            'subtitle' => __('Set content width.', THEMENAME),
-            'id' => 'body_width',
-            'type' => 'text',
-            'title' => __('Boxed Width', THEMENAME),
-            'default' => '1170px',
-            'required' => array(
-                0 => 'body_layout',
-                1 => '=',
-                2 => 1
-            )
-        ),
-        array(
             'id'       => 'body_background',
             'type'     => 'background',
             'title'    => __( 'Background', THEMENAME ),

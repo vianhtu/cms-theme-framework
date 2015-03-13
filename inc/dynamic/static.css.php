@@ -89,7 +89,7 @@ class CMSSuperHeroes_StaticCss
         
         /* boxed layout enable. */
         if($smof_data['body_layout']){
-            echo "body .cs-boxed{width:".esc_attr($smof_data['body_width']).";margin: auto;}";
+            echo "body .cs-boxed{width:1200px;margin: auto;}";
         }
         
         /* body margin & padding. */
