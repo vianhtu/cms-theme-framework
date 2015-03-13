@@ -8,6 +8,7 @@
  */
 
 get_header(); ?>
+<div class="<?php cms_main_class(); ?>">
 	<div id="primary" class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
 		<div id="content" role="main">
 
@@ -28,6 +29,7 @@ get_header(); ?>
 		</div><!-- #content -->
 	</div><!-- #primary -->
     <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
-    <?php get_sidebar(); ?>
+        <?php get_sidebar(); ?>
     </div>
+</div>
 <?php get_footer(); ?>
