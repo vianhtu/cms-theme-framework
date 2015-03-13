@@ -106,6 +106,11 @@ class CMSSuperHeroes_StaticCss
             echo ".page-title{margin:".esc_attr($smof_data['page_title_margin']).";padding:".esc_attr($smof_data['page_title_padding']).";}";
         }
         
+        /* main margin & padding */
+        if($smof_data['container_padding'] || $smof_data['container_margin']){
+            echo "#main{margin:".esc_attr($smof_data['container_padding']).";padding:".esc_attr($smof_data['container_margin']).";}";
+        }
+        
         /* footer top margin & padding. */
         if($smof_data['footer_margin'] || $smof_data['footer_padding']){
             echo ".site-footer #footer-top{margin:".esc_attr($smof_data['footer_margin']).";padding:".esc_attr($smof_data['footer_padding']).";}";

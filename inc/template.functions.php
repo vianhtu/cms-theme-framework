@@ -57,7 +57,7 @@ function cms_page_title(){
             } ?>
             </div>
             </div>
-        </div>
+        </div><!-- #page-title -->
         <?php
     }
 }
