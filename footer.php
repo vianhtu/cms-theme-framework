@@ -42,7 +42,7 @@ global $smof_data;
     			     </div>
 			     </div>
 			</div>
-		</footer>
+		</footer><!-- #site-footer -->
 	</div><!-- #page -->
 
 	<?php wp_footer(); ?>
