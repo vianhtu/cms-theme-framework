@@ -9,12 +9,8 @@
 <div class="header-top">
     <div class="container">
         <div class="row">
-             <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-             header-top-1
-             </div>
-             <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-             header-top-2
-             </div>
+             <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6"><?php dynamic_sidebar('sidebar-2'); ?></div>
+             <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6"><?php dynamic_sidebar('sidebar-3'); ?></div>
         </div>
     </div>
 </div>
@@ -29,7 +25,7 @@
                     <?php wp_nav_menu( array( 'theme_location' => 'primary', 'menu_class' => 'nav-menu' ) ); ?>
                 </nav>
             </div>
-            <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">sidebar-menu</div>
+            <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2"><?php dynamic_sidebar('sidebar-4'); ?></div>
         </div>
     </div>
 </div>

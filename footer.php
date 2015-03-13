@@ -15,30 +15,18 @@ global $smof_data;
                 <div id="footer-top">
                     <div class="container">
                         <div class="row">
-                            <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
-                            footer-top-1
-                            </div>
-                            <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
-                            footer-top-2
-                            </div>
-                            <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
-                            footer-top-3
-                            </div>
-                            <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
-                            footer-top-4
-                            </div>
+                            <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3"><?php dynamic_sidebar('sidebar-5'); ?></div>
+                            <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3"><?php dynamic_sidebar('sidebar-6'); ?></div>
+                            <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3"><?php dynamic_sidebar('sidebar-7'); ?></div>
+                            <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3"><?php dynamic_sidebar('sidebar-8'); ?></div>
                         </div>
                     </div>
                 </div>
                 <div id="footer-bottom">
                      <div class="container">
                          <div class="row">
-                             <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                                 footer-bottom-1
-                             </div>
-                             <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                                 footer-bottom-2
-                             </div>
+                             <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6"><?php dynamic_sidebar('sidebar-9'); ?></div>
+                             <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6"><?php dynamic_sidebar('sidebar-10'); ?></div>
                          </div>
                      </div>
                 </div>
