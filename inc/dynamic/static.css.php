@@ -87,11 +87,6 @@ class CMSSuperHeroes_StaticCss
         /* custom css. */ 
         echo esc_attr($smof_data['custom_css']); 
         
-        /* boxed layout enable. */
-        if($smof_data['body_layout']){
-            echo "body .cs-boxed{width:1200px;margin: auto;}";
-        }
-        
         /* body margin & padding. */
         if($smof_data['body_padding'] || $smof_data['body_margin']){
             echo "body #page{margin:".esc_attr($smof_data['body_margin']).";padding:".esc_attr($smof_data['body_padding']).";}";
