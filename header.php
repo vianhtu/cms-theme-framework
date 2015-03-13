@@ -22,9 +22,10 @@
 <?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?>>
+<?php global $smof_data; ?>
 <div id="page" class="<?php cms_page_class(); ?>">
 	<header id="masthead" class="site-header" role="banner">
-		<?php get_template_part('inc/header/default'); ?>
+		<?php get_template_part('inc/header/header', $smof_data['header_layout']); ?>
 	</header><!-- #masthead -->
     <?php cms_page_title(); ?>
 	<div id="main">

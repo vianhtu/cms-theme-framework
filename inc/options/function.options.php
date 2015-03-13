@@ -25,6 +25,18 @@ $this->sections[] = array(
     'icon' => 'el-icon-credit-card',
     'fields' => array(
         array(
+            'id' => 'header_layout',
+            'title' => __('Layouts', THEMENAME),
+            'subtitle' => __('select a layout for header', THEMENAME),
+            'default' => '',
+            'type' => 'image_select',
+            'options' => array(
+                '' => get_template_directory_uri().'/inc/options/images/header/h-default.png',
+                '1' => get_template_directory_uri().'/inc/options/images/header/h-default.png',
+                '2' => get_template_directory_uri().'/inc/options/images/header/h-default.png',
+            )
+        ),
+        array(
             'id'       => 'header_background',
             'type'     => 'background',
             'title'    => __( 'Background', THEMENAME ),
