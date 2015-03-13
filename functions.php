@@ -186,9 +186,9 @@ add_action( 'wp_enqueue_scripts', 'cms_scripts_styles' );
  */
 function cms_widgets_init() {
 	register_sidebar( array(
-		'name' => __( 'Main Sidebar', 'twentytwelve' ),
+		'name' => __( 'Main Sidebar', THEMENAME ),
 		'id' => 'sidebar-1',
-		'description' => __( 'Appears on posts and pages except the optional Front Page template, which has its own widgets', 'twentytwelve' ),
+		'description' => __( 'Appears on posts and pages except the optional Front Page template, which has its own widgets', THEMENAME ),
 		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 		'after_widget' => '</aside>',
 		'before_title' => '<h3 class="widget-title">',
@@ -196,9 +196,9 @@ function cms_widgets_init() {
 	) );
 
 	register_sidebar( array(
-		'name' => __( 'First Front Page Widget Area', 'twentytwelve' ),
+		'name' => __( 'Header Top Left', THEMENAME ),
 		'id' => 'sidebar-2',
-		'description' => __( 'Appears when using the optional Front Page template with a page set as Static Front Page', 'twentytwelve' ),
+		'description' => __( 'Appears when using the optional Header with a page set as Header top left', THEMENAME ),
 		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 		'after_widget' => '</aside>',
 		'before_title' => '<h3 class="widget-title">',
@@ -206,13 +206,83 @@ function cms_widgets_init() {
 	) );
 
 	register_sidebar( array(
-		'name' => __( 'Second Front Page Widget Area', 'twentytwelve' ),
+		'name' => __( 'Header Top Right', THEMENAME ),
 		'id' => 'sidebar-3',
-		'description' => __( 'Appears when using the optional Front Page template with a page set as Static Front Page', 'twentytwelve' ),
+		'description' => __( 'Appears when using the optional Header with a page set as Header top right', THEMENAME ),
 		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 		'after_widget' => '</aside>',
 		'before_title' => '<h3 class="widget-title">',
 		'after_title' => '</h3>',
+	) );
+	
+	register_sidebar( array(
+    	'name' => __( 'Menu Right', THEMENAME ),
+    	'id' => 'sidebar-4',
+    	'description' => __( 'Appears when using the optional Menu with a page set as Menu right', THEMENAME ),
+    	'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+    	'after_widget' => '</aside>',
+    	'before_title' => '<h3 class="widget-title">',
+    	'after_title' => '</h3>',
+	) );
+	
+	register_sidebar( array(
+    	'name' => __( 'Footer Top 1', THEMENAME ),
+    	'id' => 'sidebar-5',
+    	'description' => __( 'Appears when using the optional Footer with a page set as Footer Top 1', THEMENAME ),
+    	'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+    	'after_widget' => '</aside>',
+    	'before_title' => '<h3 class="widget-title">',
+    	'after_title' => '</h3>',
+	) );
+	
+	register_sidebar( array(
+    	'name' => __( 'Footer Top 2', THEMENAME ),
+    	'id' => 'sidebar-6',
+    	'description' => __( 'Appears when using the optional Footer with a page set as Footer Top 2', THEMENAME ),
+    	'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+    	'after_widget' => '</aside>',
+    	'before_title' => '<h3 class="widget-title">',
+    	'after_title' => '</h3>',
+	) );
+	
+	register_sidebar( array(
+    	'name' => __( 'Footer Top 3', THEMENAME ),
+    	'id' => 'sidebar-7',
+    	'description' => __( 'Appears when using the optional Footer with a page set as Footer Top 3', THEMENAME ),
+    	'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+    	'after_widget' => '</aside>',
+    	'before_title' => '<h3 class="widget-title">',
+    	'after_title' => '</h3>',
+	) );
+	
+	register_sidebar( array(
+    	'name' => __( 'Footer Top 4', THEMENAME ),
+    	'id' => 'sidebar-8',
+    	'description' => __( 'Appears when using the optional Footer with a page set as Footer Top 4', THEMENAME ),
+    	'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+    	'after_widget' => '</aside>',
+    	'before_title' => '<h3 class="widget-title">',
+    	'after_title' => '</h3>',
+	) );
+	
+	register_sidebar( array(
+    	'name' => __( 'Footer Boton Left', THEMENAME ),
+    	'id' => 'sidebar-10',
+    	'description' => __( 'Appears when using the optional Footer Boton with a page set as Footer Boton left', THEMENAME ),
+    	'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+    	'after_widget' => '</aside>',
+    	'before_title' => '<h3 class="widget-title">',
+    	'after_title' => '</h3>',
+	) );
+	
+	register_sidebar( array(
+    	'name' => __( 'Footer Boton Right', THEMENAME ),
+    	'id' => 'sidebar-11',
+    	'description' => __( 'Appears when using the optional Footer Boton with a page set as Footer Boton right', THEMENAME ),
+    	'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+    	'after_widget' => '</aside>',
+    	'before_title' => '<h3 class="widget-title">',
+    	'after_title' => '</h3>',
 	) );
 }
 add_action( 'widgets_init', 'cms_widgets_init' );
