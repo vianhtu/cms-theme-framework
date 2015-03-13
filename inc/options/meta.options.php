@@ -20,7 +20,6 @@ class CMSMetaOptions
             wp_enqueue_style('metabox', get_template_directory_uri() . '/inc/options/css/metabox.css');
             wp_enqueue_style('easytabs', get_template_directory_uri() . '/inc/options/css/tabs.css');
             wp_enqueue_script('easytabs', get_template_directory_uri() . '/inc/options/js/jquery.easytabs.min.js');
-            wp_enqueue_script('meta.box', get_template_directory_uri() . '/inc/options/js/meta.box.js');
         }
     }
     /* add meta boxs */
