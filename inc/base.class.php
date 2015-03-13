@@ -8,6 +8,7 @@ class CMSSuperHeroes_Base
      * @since 1.0.0
      */
     public static function getPageTitle(){
+        global $cms_meta;
         
         if (!is_archive()){
             /* search */
@@ -26,8 +27,8 @@ class CMSSuperHeroes_Base
             /* page. */
             if(is_page()):
                 /* custom title. */
-                if(get_post_meta($post_id, 'page_title_text', true)):
-                    echo esc_attr(get_post_meta($post_id, 'page_title_text', true));
+                if(!empty($cms_meta->_cms_page_title_text) && $cms_meta->_cms_page_title_text):
+                    echo esc_attr($cms_meta->_cms_page_title_text);
                 else :
                     the_title();
                 endif;    
