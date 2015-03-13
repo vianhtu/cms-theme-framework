@@ -58,7 +58,7 @@ class CMSMetaOptions
                     <?php
                     /* header. */
                     cms_options(array(
-                        'id' => 'page_title',
+                        'id' => 'header',
                         'label' => __('Header',THEMENAME),
                         'type' => 'switch',
                         'options' => array('on'=>'1','off'=>''),
