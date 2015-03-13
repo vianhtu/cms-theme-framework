@@ -23,47 +23,55 @@ class CMSSuperHeroes_Base
                 the_title();
             }
         } else {
-            /* category */
-            if ( is_category() ) :
-            single_cat_title();
+            /* page. */
+            if(is_page()):
+                /* custom title. */
+                if(get_post_meta($post_id, 'page_title_text', true)):
+                    echo esc_attr(get_post_meta($post_id, 'page_title_text', true));
+                else :
+                    the_title();
+                endif;    
+            /* category. */
+            elseif ( is_category() ) :
+                single_cat_title();
             elseif ( is_tag() ) :
-            /* tag */
-            single_tag_title();
-            /* author */
+            /* tag. */
+                single_tag_title();
+            /* author. */
             elseif ( is_author() ) :
-            printf( __( 'Author: %s', THEMENAME ), '<span class="vcard">' . get_the_author() . '</span>' );
+                printf( __( 'Author: %s', THEMENAME ), '<span class="vcard">' . get_the_author() . '</span>' );
             /* date */
             elseif ( is_day() ) :
-            printf( __( 'Day: %s', THEMENAME ), '<span>' . get_the_date() . '</span>' );
+                printf( __( 'Day: %s', THEMENAME ), '<span>' . get_the_date() . '</span>' );
             elseif ( is_month() ) :
-            printf( __( 'Month: %s', THEMENAME ), '<span>' . get_the_date( _x( 'F Y', 'monthly archives date format', THEMENAME ) ) . '</span>' );
+                printf( __( 'Month: %s', THEMENAME ), '<span>' . get_the_date( _x( 'F Y', 'monthly archives date format', THEMENAME ) ) . '</span>' );
             elseif ( is_year() ) :
-            printf( __( 'Year: %s', THEMENAME ), '<span>' . get_the_date( _x( 'Y', 'yearly archives date format', THEMENAME ) ) . '</span>' );
+                printf( __( 'Year: %s', THEMENAME ), '<span>' . get_the_date( _x( 'Y', 'yearly archives date format', THEMENAME ) ) . '</span>' );
             /* post format */
             elseif ( is_tax( 'post_format', 'post-format-aside' ) ) :
-            _e( 'Asides', THEMENAME );
+                _e( 'Asides', THEMENAME );
             elseif ( is_tax( 'post_format', 'post-format-gallery' ) ) :
-            _e( 'Galleries', THEMENAME);
+                _e( 'Galleries', THEMENAME);
             elseif ( is_tax( 'post_format', 'post-format-image' ) ) :
-            _e( 'Images', THEMENAME);
+                _e( 'Images', THEMENAME);
             elseif ( is_tax( 'post_format', 'post-format-video' ) ) :
-            _e( 'Videos', THEMENAME );
+                _e( 'Videos', THEMENAME );
             elseif ( is_tax( 'post_format', 'post-format-quote' ) ) :
-            _e( 'Quotes', THEMENAME );
+                _e( 'Quotes', THEMENAME );
             elseif ( is_tax( 'post_format', 'post-format-link' ) ) :
-            _e( 'Links', THEMENAME );
+                _e( 'Links', THEMENAME );
             elseif ( is_tax( 'post_format', 'post-format-status' ) ) :
-            _e( 'Statuses', THEMENAME );
+                _e( 'Statuses', THEMENAME );
             elseif ( is_tax( 'post_format', 'post-format-audio' ) ) :
-            _e( 'Audios', THEMENAME );
+                _e( 'Audios', THEMENAME );
             elseif ( is_tax( 'post_format', 'post-format-chat' ) ) :
-            _e( 'Chats', THEMENAME );
+                _e( 'Chats', THEMENAME );
             /* woocommerce */
             elseif (class_exists('Woocommerce') && is_woocommerce()):
-            woocommerce_page_title();
+                woocommerce_page_title();
             else :
             /* other */
-            the_title();
+                the_title();
             endif;
         }
     }

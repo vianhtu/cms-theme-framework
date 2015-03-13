@@ -46,6 +46,11 @@ class CMSMetaOptions
             'options' => array('on'=>'1','off'=>''),
         ));
         cms_options(array(
+            'id' => 'page_title_text',
+            'label' => __('Title',THEMENAME),
+            'type' => 'text',
+        ));
+        cms_options(array(
             'id' => 'page_title_type',
             'label' => __('Layout',THEMENAME),
             'type' => 'imegesselect',
