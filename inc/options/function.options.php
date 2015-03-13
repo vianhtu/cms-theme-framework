@@ -309,7 +309,7 @@ $this->sections[] = array(
             'type'     => 'background',
             'title'    => __( 'Background', THEMENAME ),
             'subtitle' => __( 'footer background with image, color, etc.', THEMENAME ),
-            'output'   => array('.site-footer #footer-top'),
+            'output'   => array('footer #footer-top'),
             'default'   => array()
         ),
         array(
@@ -340,7 +340,7 @@ $this->sections[] = array(
             'type'     => 'background',
             'title'    => __( 'Background', THEMENAME ),
             'subtitle' => __( 'background with image, color, etc.', THEMENAME ),
-            'output'   => array('.site-footer #footer-bottom'),
+            'output'   => array('footer #footer-bottom'),
             'default'   => array()
         ),
         array(
