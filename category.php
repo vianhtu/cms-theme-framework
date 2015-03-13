@@ -13,41 +13,43 @@
 
 get_header(); ?>
 <div class="<?php cms_main_class(); ?>">
-	<section id="primary" class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-		<div id="content" role="main">
+    <div class="row">
+        <section id="primary" class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
+            <div id="content" role="main">
 
-		<?php if ( have_posts() ) : ?>
-			<header class="archive-header">
-				<h1 class="archive-title"><?php printf( __( 'Category Archives: %s', 'twentytwelve' ), '<span>' . single_cat_title( '', false ) . '</span>' ); ?></h1>
+            <?php if ( have_posts() ) : ?>
+                <header class="archive-header">
+                    <h1 class="archive-title"><?php printf( __( 'Category Archives: %s', 'twentytwelve' ), '<span>' . single_cat_title( '', false ) . '</span>' ); ?></h1>
 
-			<?php if ( category_description() ) : // Show an optional category description ?>
-				<div class="archive-meta"><?php echo category_description(); ?></div>
-			<?php endif; ?>
-			</header><!-- .archive-header -->
+                <?php if ( category_description() ) : // Show an optional category description ?>
+                    <div class="archive-meta"><?php echo category_description(); ?></div>
+                <?php endif; ?>
+                </header><!-- .archive-header -->
 
-			<?php
-			/* Start the Loop */
-			while ( have_posts() ) : the_post();
+                <?php
+                /* Start the Loop */
+                while ( have_posts() ) : the_post();
 
-				/* Include the post format-specific template for the content. If you want to
-				 * this in a child theme then include a file called called content-___.php
-				 * (where ___ is the post format) and that will be used instead.
-				 */
-				get_template_part( 'content', get_post_format() );
+                    /* Include the post format-specific template for the content. If you want to
+                     * this in a child theme then include a file called called content-___.php
+                     * (where ___ is the post format) and that will be used instead.
+                     */
+                    get_template_part( 'content', get_post_format() );
 
-			endwhile;
+                endwhile;
 
-			twentytwelve_content_nav( 'nav-below' );
-			?>
+                twentytwelve_content_nav( 'nav-below' );
+                ?>
 
-		<?php else : ?>
-			<?php get_template_part( 'content', 'none' ); ?>
-		<?php endif; ?>
+            <?php else : ?>
+                <?php get_template_part( 'content', 'none' ); ?>
+            <?php endif; ?>
 
-		</div><!-- #content -->
-	</section><!-- #primary -->
-    <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
-        <?php get_sidebar(); ?>
+            </div><!-- #content -->
+        </section><!-- #primary -->
+        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+            <?php get_sidebar(); ?>
+        </div>
     </div>
 </div>
 <?php get_footer(); ?>
