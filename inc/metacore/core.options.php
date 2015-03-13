@@ -205,7 +205,7 @@ class CsCoreControl
     private function imegesselect($params){
         ob_start();
         ?>
-        <div class="image-field csfield">
+        <div class="image-field csfield clearfix">
             <ul>
                 <?php foreach ($params['options'] as $key => $image): ?>
                 <li data-value="<?php echo esc_attr($key); ?>" class="<?php if($params['value'] == $key) { echo 'active'; } ?>"><img alt="" src="<?php echo esc_url($image) ?>"></li>
