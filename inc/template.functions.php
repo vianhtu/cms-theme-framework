@@ -61,6 +61,19 @@ function cms_page_title(){
         <?php
     }
 }
+
+function cms_header(){
+    global $smof_data, $cms_meta;
+    /* header for page */
+    if(isset($cms_meta->_cms_header) && $cms_meta->_cms_header){
+        if(isset($cms_meta->_cms_header_layout)){
+            $smof_data['header_layout'] = $cms_meta->_cms_header_layout;
+        }
+    }
+    /* load template. */
+    get_template_part('inc/header/header', $smof_data['header_layout']);
+}
+
 /**
  * Add page class
  * 
