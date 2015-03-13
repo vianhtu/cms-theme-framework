@@ -99,3 +99,15 @@ img#wpstats {
   margin: 0 auto 24px;
   margin: 0 auto 1.714285714rem;
 }
+
+/* =Plugins
+----------------------------------------------- */
+.breadcrumb-text{
+  ul.breadcrumbs{
+    margin: 0;
+    list-style: none;
+    li{
+      display: inline-block;
+    }
+  }
+}
