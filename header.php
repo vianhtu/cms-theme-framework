@@ -22,7 +22,7 @@
 <?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?>>
-<div id="page" class="">
+<div id="page" class="<?php cms_page_class(); ?>">
 	<header id="masthead" class="site-header" role="banner">
 		<?php get_template_part('inc/header/default'); ?>
 	</header><!-- #masthead -->

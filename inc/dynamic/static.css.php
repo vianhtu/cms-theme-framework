@@ -83,10 +83,16 @@ class CMSSuperHeroes_StaticCss
         ob_start();
         ?>
         @CHARSET "ISO-8859-1";
-        <?php echo esc_attr($smof_data['custom_css']); ?>
-        body{}
-        header{}
-        footer{}
+        <?php
+        /* custom css. */ 
+        echo esc_attr($smof_data['custom_css']); 
+        ?>
+        <?php
+        /* boxed layout active. */
+        if($smof_data['body_layout']){
+            echo "body .cs-boxed{width:".$smof_data['body_width']."}";
+        }
+        ?>
         <?php
         return ob_get_clean();
     }

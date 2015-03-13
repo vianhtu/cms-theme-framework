@@ -62,7 +62,27 @@ function cms_page_title(){
     }
 }
 /**
- * Main class
+ * Add page class
+ * 
+ * @author Fox
+ * @since 1.0.0
+ */
+function cms_page_class(){
+    global $smof_data;
+    
+    $page_class = '';
+    /* check boxed layout */
+    if($smof_data['body_layout']){
+        $page_class = 'cs-boxed';
+    } else {
+        $page_class = 'cs-wide';
+    }
+    
+    echo apply_filters('cms_page_class', $page_class);
+}
+
+/**
+ * Add main class
  * 
  * @author Fox
  * @since 1.0.0
