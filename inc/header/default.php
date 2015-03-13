@@ -7,13 +7,15 @@
 ?>
 <?php global $smof_data; ?>
 <div class="header-top">
-    <div class="row">
-         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-         header-top-1
-         </div>
-         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-         header-top-2
-         </div>
+    <div class="container">
+        <div class="row">
+             <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+             header-top-1
+             </div>
+             <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+             header-top-2
+             </div>
+        </div>
     </div>
 </div>
 <div class="header">
