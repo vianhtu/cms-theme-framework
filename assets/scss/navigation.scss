@@ -54,8 +54,10 @@
   }
   .main-navigation li {
     margin: 0 40px 0 0;
-    margin: 0 2.857142857rem 0 0;
     position: relative;
+  }
+  .main-navigation li li {
+    margin: 0;
   }
   .main-navigation li ul {
     margin: 0;
@@ -87,7 +89,7 @@
     display: block;
     font-size: 13px;
     padding: 8px 10px;
-    padding: 0.571428571rem 0.714285714rem;
+    line-height: 1.2;
     width: 240px;
     white-space: normal;
   }
