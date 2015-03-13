@@ -267,7 +267,7 @@ function cms_widgets_init() {
 	
 	register_sidebar( array(
     	'name' => __( 'Footer Boton Left', THEMENAME ),
-    	'id' => 'sidebar-10',
+    	'id' => 'sidebar-9',
     	'description' => __( 'Appears when using the optional Footer Boton with a page set as Footer Boton left', THEMENAME ),
     	'before_widget' => '<aside id="%1$s" class="widget %2$s">',
     	'after_widget' => '</aside>',
@@ -277,7 +277,7 @@ function cms_widgets_init() {
 	
 	register_sidebar( array(
     	'name' => __( 'Footer Boton Right', THEMENAME ),
-    	'id' => 'sidebar-11',
+    	'id' => 'sidebar-10',
     	'description' => __( 'Appears when using the optional Footer Boton with a page set as Footer Boton right', THEMENAME ),
     	'before_widget' => '<aside id="%1$s" class="widget %2$s">',
     	'after_widget' => '</aside>',
