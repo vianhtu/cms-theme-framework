@@ -67,13 +67,13 @@ get_header(); ?>
 
 			<?php /* Start the Loop */ ?>
 			<?php while ( have_posts() ) : the_post(); ?>
-				<?php get_template_part( 'content', get_post_format() ); ?>
+				<?php get_template_part( 'single-templates/content', get_post_format() ); ?>
 			<?php endwhile; ?>
 
 			<?php twentytwelve_content_nav( 'nav-below' ); ?>
 
 		<?php else : ?>
-			<?php get_template_part( 'content', 'none' ); ?>
+			<?php get_template_part( 'single-templates/content', 'none' ); ?>
 		<?php endif; ?>
 
 		</div><!-- #content -->

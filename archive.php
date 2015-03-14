@@ -33,7 +33,7 @@ get_header(); ?>
                      * this in a child theme then include a file called called content-___.php
                      * (where ___ is the post format) and that will be used instead.
                      */
-                    get_template_part( 'content', get_post_format() );
+                    get_template_part( 'single-templates/content', get_post_format() );
 
                 endwhile;
 
@@ -41,7 +41,7 @@ get_header(); ?>
                 ?>
 
             <?php else : ?>
-                <?php get_template_part( 'content', 'none' ); ?>
+                <?php get_template_part( 'single-templates/content', 'none' ); ?>
             <?php endif; ?>
 
             </div><!-- #content -->
