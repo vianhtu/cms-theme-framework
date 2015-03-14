@@ -50,7 +50,7 @@ get_header(); ?>
 
                 endwhile;
 
-                twentytwelve_content_nav( 'nav-below' );
+                cms_paging_nav();
                 ?>
 
             <?php else : ?>

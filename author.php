@@ -39,7 +39,7 @@ get_header(); ?>
 				rewind_posts();
 			?>
 
-			<?php twentytwelve_content_nav( 'nav-above' ); ?>
+			<?php cms_paging_nav(); ?>
 
 			<?php
 			// If a user has filled out their description, show a bio on their entries.
