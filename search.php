@@ -2,22 +2,18 @@
 /**
  * The template for displaying Search Results pages
  *
- * @package WordPress
- * @subpackage Twenty_Twelve
- * @since Twenty Twelve 1.0
+ * @package CMSSuperHeroes
+ * @subpackage CMS Theme
+ * @since 1.0.0
  */
 
 get_header(); ?>
-<div class="<?php cms_main_class(); ?>">
+<div class="container">
     <div class="row">
         <section id="primary" class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
             <div id="content" role="main">
 
             <?php if ( have_posts() ) : ?>
-
-                <header class="page-header">
-                    <h1 class="page-title"><?php printf( __( 'Search Results for: %s', 'twentytwelve' ), '<span>' . get_search_query() . '</span>' ); ?></h1>
-                </header>
 
                 <?php /* Start the Loop */ ?>
                 <?php while ( have_posts() ) : the_post(); ?>
@@ -30,11 +26,11 @@ get_header(); ?>
 
                 <article id="post-0" class="post no-results not-found">
                     <header class="entry-header">
-                        <h1 class="entry-title"><?php _e( 'Nothing Found', 'twentytwelve' ); ?></h1>
+                        <h1 class="entry-title"><?php _e( 'Nothing Found', THEMENAME ); ?></h1>
                     </header>
 
                     <div class="entry-content">
-                        <p><?php _e( 'Sorry, but nothing matched your search criteria. Please try again with some different keywords.', 'twentytwelve' ); ?></p>
+                        <p><?php _e( 'Sorry, but nothing matched your search criteria. Please try again with some different keywords.', THEMENAME ); ?></p>
                         <?php get_search_form(); ?>
                     </div><!-- .entry-content -->
                 </article><!-- #post-0 -->
