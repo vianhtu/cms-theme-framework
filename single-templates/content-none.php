@@ -16,5 +16,5 @@
 	<div class="entry-content">
 		<p><?php _e( 'Apologies, but no results were found. Perhaps searching will help find a related post.', THEMENAME ); ?></p>
 			<?php get_search_form(); ?>
-		</div><!-- .entry-content -->
+	</div><!-- .entry-content -->
 </article><!-- #post-0 -->
