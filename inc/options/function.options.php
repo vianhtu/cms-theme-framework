@@ -56,6 +56,13 @@ $this->sections[] = array(
             'type' => 'text',
             'title' => 'Padding',
             'default' => ''
+        ),
+        array(
+            'subtitle' => __('Enable menu sticky.', THEMENAME),
+            'id' => 'menu_sticky',
+            'type' => 'switch',
+            'title' => __('Menu Sticky', THEMENAME),
+            'default' => false,
         )
     )
 );
