@@ -22,7 +22,7 @@
             </div>
             <div id="header-navigation" class="col-xs-12 col-sm-10 col-md-10 col-lg-10">
                 <nav id="site-navigation" class="main-navigation" role="navigation">
-                    <?php wp_nav_menu( array( 'theme_location' => 'primary', 'menu_class' => 'nav-menu' ) ); ?>
+                    <?php wp_nav_menu( array( 'theme_location' => cms_theme_location(), 'menu_class' => 'nav-menu' ) ); ?>
                 </nav>
             </div>
         </div>

@@ -105,6 +105,12 @@ function cms_header(){
     get_template_part('inc/header/header', $smof_data['header_layout']);
 }
 
+function cms_theme_location($option = '_cms_primary'){
+    global $cms_meta;
+    
+    return (isset($cms_meta->$location) && $cms_meta->$location) ? $cms_meta->$location : 'primary' ;
+}
+
 /**
  * Add page class
  * 
