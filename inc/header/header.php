@@ -25,6 +25,7 @@
                     <?php wp_nav_menu( array( 'theme_location' => 'primary', 'menu' =>cms_menu_location(), 'menu_class' => 'nav-menu' ) ); ?>
                 </nav>
             </div>
+            <div id="menu-mobile" class="collapse navbar-collapse">Mobile</div>
         </div>
     </div>
 </div>
