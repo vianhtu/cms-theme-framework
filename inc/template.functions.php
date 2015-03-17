@@ -105,10 +105,16 @@ function cms_header(){
     get_template_part('inc/header/header', $smof_data['header_layout']);
 }
 
-function cms_theme_location($option = '_cms_primary'){
+/**
+ * Get menu location ID.
+ * 
+ * @param string $option
+ * @return NULL
+ */
+function cms_menu_location($option = '_cms_primary'){
     global $cms_meta;
-    
-    return (isset($cms_meta->$location) && $cms_meta->$location) ? $cms_meta->$location : 'primary' ;
+    /* get menu id from page setting */
+    return (isset($cms_meta->$option) && $cms_meta->$option) ? $cms_meta->$option : null ;
 }
 
 /**
