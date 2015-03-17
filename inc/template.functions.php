@@ -62,30 +62,11 @@ function cms_page_title(){
     }
 }
 
-function cms_post_detall($before = '', $after = '', $attrs = array('date'=>array('icon'=>''), 'author', 'category', 'tag', 'comments')){
+function cms_post_detall(){
     global $smof_data, $cms_meta;
     
-    echo $before."<ul>";
-    foreach ($attrs as $key => $attr ){
-        switch ($attr){
-            case 'date':
-                echo '<li><a href="'.get_day_link(get_the_time('Y'),get_the_time('m'),get_the_time('d')).'" title="'.__( "View all posts date ", THEMENAME).get_the_date('').'">'.get_the_date('').'</a></li>';
-                break;
-            case 'author':
-                
-                break;
-            case 'category':
-                
-                break;
-            case 'tag':
-                
-                break;
-            case 'comments':
-                
-                break;
-        }
-    }
-    echo "</ul>".$after;
+    echo "<ul>";
+    echo "</ul>";
 }
 
 /**
