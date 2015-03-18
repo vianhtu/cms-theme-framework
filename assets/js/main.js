@@ -1,6 +1,9 @@
 jQuery(document).ready(function($) {
 	"use strict";
 	
+	/* window */
+	var window_width, window_height;
+	
 	/* admin bar */
 	var adminbar = $('#wpadminbar');
 	var adminbar_height = 0;
@@ -21,7 +24,10 @@ jQuery(document).ready(function($) {
 		var top = $(window).scrollTop();
 		
 		/* current window width */
-		var window_width = $(window).width();
+		window_width = $(window).width();
+		
+		/* current window height */
+		window_height = $(window).height();
 		
 		/* get admin bar height */
 		adminbar_height = adminbar.length > 0 ? adminbar.height() : 0 ;
@@ -34,6 +40,9 @@ jQuery(document).ready(function($) {
 		
 		/* check mobile menu */
 		cms_mobile_menu(window_width);
+		
+		/* check back to top */
+		cms_back_to_top(top);
 	});
 
 	/**
@@ -44,7 +53,10 @@ jQuery(document).ready(function($) {
 	 */
 	$(window).resize(function(event, ui) {
 		/* current window width */
-		var window_width = $(event.target).width();
+		window_width = $(event.target).width();
+		
+		/* current window height */
+		window_height = $(window).height();
 		
 		/* check mobile menu */
 		cms_mobile_menu(window_width);
@@ -62,6 +74,9 @@ jQuery(document).ready(function($) {
 		
 		/* check sticky menu. */
 		cms_stiky_menu(top);
+		
+		/* check back to top */
+		cms_back_to_top(top);
 	});
 
 	/**
@@ -124,5 +139,23 @@ jQuery(document).ready(function($) {
 				}
 			});
 		});
+	}
+	/**
+	 * Back To Top
+	 */
+	$('#back_to_top').click(function () {
+        $("html, body").animate({
+            scrollTop: 0
+        }, 1500);
+    });
+	
+	/* */
+	function cms_back_to_top(top){
+		/* back to top */
+        if (top < window_height) {
+        	$('#back_to_top').addClass('off').removeClass('on');
+        } else {
+        	$('#back_to_top').removeClass('off').addClass('on');
+        }
 	}
 });
