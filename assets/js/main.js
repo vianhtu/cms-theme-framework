@@ -59,7 +59,7 @@ jQuery(document).ready(function($) {
 		window_height = $(window).height();
 		
 		/* check mobile menu */
-		cms_mobile_menu(window_width);
+		cms_mobile_menu();
 	});
 	
 	/**
@@ -111,17 +111,17 @@ jQuery(document).ready(function($) {
 		}
 	});
 	/* check mobile screen. */
-	function cms_mobile_menu(width) {
+	function cms_mobile_menu() {
 		var menu = $('#header-navigation');
 		
 		/* active mobile menu. */
 		switch (true) {
-		case (width <= 992 && width >= 768):
+		case (window_width <= 992 && window_width >= 768):
 			menu.removeClass('phones-nav').addClass('tablets-nav');
 			/* */
 			cms_mobile_menu_group(menu);
 			break;
-		case (width <= 768):
+		case (window_width <= 768):
 			menu.removeClass('tablets-nav').addClass('phones-nav');
 			break;
 		default:
