@@ -84,7 +84,7 @@ $this->sections[] = array(
             )
         ),
         array(
-            'subtitle' => __('in pixels, default 50px', THEMENAME),
+            'subtitle' => __('in pixels.', THEMENAME),
             'id' => 'main_logo_height',
             'type' => 'text',
             'title' => 'Height',

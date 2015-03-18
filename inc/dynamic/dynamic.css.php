@@ -39,6 +39,11 @@ class CMSSuperHeroes_DynamicCss
     {
         global $smof_data;
         ob_start();
+        ?>
+        #header-logo a img{
+            height:<?php echo esc_attr($smof_data['main_logo_height']); ?>;
+        }
+        <?php
         /*-------------------------- shortcodes-custom-css -------------------------*/
         CMSSuperHeroes_Base::addShortcodesCustomCss();
         return ob_get_clean();
