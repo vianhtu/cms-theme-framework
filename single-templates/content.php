@@ -18,12 +18,13 @@
 	<!-- .entry-header -->
 
 	<div class="entry-content">
-			<?php the_content(); ?>
-		</div>
+        <?php the_post_thumbnail(); ?>
+		<?php the_content(); ?>
+	</div>
 	<!-- .entry-content -->
 
 	<footer class="entry-meta">
-			<?php edit_post_link( __( 'Edit', THEMENAME ), '<span class="edit-link">', '</span>' ); ?>
+		<?php edit_post_link( __( 'Edit', THEMENAME ), '<span class="edit-link">', '</span>' ); ?>
 	</footer>
 	<!-- .entry-meta -->
 </article>
