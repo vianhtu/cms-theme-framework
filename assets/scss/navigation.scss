@@ -1,12 +1,10 @@
 /* Navigation Menu */
-.main-navigation div.nav-menu > ul {
-  max-height: 0;
-  overflow: hidden;
-  transition: all 500ms ease;
-}
 
 /* Minimum width of 992 pixels. */
 @media screen and (min-width: 992px) {
+  #menu-mobile{
+    display: none;
+  }
   .main-navigation div.nav-menu > ul {
     border-bottom: 1px solid #ededed;
     border-top: 1px solid #ededed;
@@ -91,6 +89,12 @@
 
 /* Minimum width of 992 pixels. */
 @media screen and (max-width: 991px) {
+  .main-navigation div.nav-menu > ul {
+    max-height: 0;
+    overflow: hidden;
+    transition: all 500ms ease;
+  }
+
   #header-navigation{
     background: #ccc;
     position: absolute;
