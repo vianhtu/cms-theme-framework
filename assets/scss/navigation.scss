@@ -16,9 +16,7 @@
 .main-navigation div.nav-menu > ul {
   display: none;
 }
-.collapse .main-navigation div.nav-menu > ul{
-  display: inline-block;
-}
+
 /* Minimum width of 992 pixels. */
 @media screen and (min-width: 992px) {
   .main-navigation div.nav-menu > ul {
@@ -100,5 +98,20 @@
   .main-navigation .current_page_ancestor > a {
     color: #636363;
     font-weight: bold;
+  }
+}
+
+/* Minimum width of 992 pixels. */
+@media screen and (max-width: 991px) {
+  .collapse .main-navigation div.nav-menu > ul{
+    display: block;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    li{
+      a{
+        display: block;
+      }
+    }
   }
 }
