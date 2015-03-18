@@ -5,7 +5,8 @@
   }
 }
 @media screen and (max-width: 992px) {
-  body > div > div .container {
+  body > div > div > .container,
+  #cs-header > .container{
     width: 100%!important;
   }
 }
