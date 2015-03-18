@@ -83,6 +83,13 @@ $this->sections[] = array(
                 'url'=>get_template_directory_uri().'/assets/images/cmssuperheroes.png'
             )
         ),
+        array(
+            'subtitle' => __('in pixels, default 50px', THEMENAME),
+            'id' => 'main_logo_height',
+            'type' => 'text',
+            'title' => 'Height',
+            'default' => '50px'
+        ),
     )
 );
 
