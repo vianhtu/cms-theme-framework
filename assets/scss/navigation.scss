@@ -97,9 +97,7 @@
     right: 30px;
     margin-top: -5px;
   }
-  .collapse .main-navigation div.nav-menu > ul{
-    display: block;
-    max-height: 2000px;
+  .main-navigation div.nav-menu > ul{
     margin: 0;
     padding: 0;
     list-style: none;
@@ -113,5 +111,9 @@
         }
       }
     }
+  }
+  .collapse .main-navigation div.nav-menu > ul{
+    display: block;
+    max-height: 2000px;
   }
 }
