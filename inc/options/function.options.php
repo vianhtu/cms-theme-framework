@@ -159,7 +159,7 @@ $this->sections[] = array(
             'units' => 'px',
             'subtitle' => __('Typography option with title text.', THEMENAME),
             'default' => array(
-                'color' => '#ffffff',
+                'color' => '',
             )
         ),
     )
@@ -188,7 +188,7 @@ $this->sections[] = array(
             'units' => 'px',
             'subtitle' => __('Typography option with title text.', THEMENAME),
             'default' => array(
-                'color' => '#ffffff',
+                'color' => '',
             )
         ),
     )
