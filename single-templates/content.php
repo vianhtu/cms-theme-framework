@@ -12,13 +12,13 @@
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 	<header class="entry-header">
+	    <div><?php the_post_thumbnail(); ?></div>
 		<h1 class="entry-title"><?php the_title(); ?></h1>
 		<div><?php cms_post_detail(); ?></div>
 	</header>
 	<!-- .entry-header -->
 
 	<div class="entry-content">
-        <?php the_post_thumbnail(); ?>
 		<?php the_content(); ?>
 	</div>
 	<!-- .entry-content -->
