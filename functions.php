@@ -168,6 +168,9 @@ function cms_scripts_styles() {
 	/* Loads Bootstrap stylesheet. */
 	wp_enqueue_style('cmssuperheroes-bootstrap', get_template_directory_uri() . '/assets/css/bootstrap.min.css', array(), '3.3.2');
 	
+	/* Loads Bootstrap stylesheet. */
+	wp_enqueue_style('cmssuperheroes-font-awesome', get_template_directory_uri() . '/assets/css/font-awesome.min.css', array(), '4.3.0');
+	
 	/* Loads our main stylesheet. */
 	wp_enqueue_style( 'cmssuperheroes-style', get_stylesheet_uri(), array( 'cmssuperheroes-bootstrap' ));
 
