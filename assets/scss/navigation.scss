@@ -13,17 +13,15 @@
 .main-navigation a:focus {
   color: #21759b;
 }
-.main-navigation ul.nav-menu,
-.main-navigation div.nav-menu > ul {
+.collapse .main-navigation div.nav-menu > ul {
   display: none;
 }
-.main-navigation ul.nav-menu.toggled-on,
+.main-navigation .collapse ul,
 .menu-toggle {
   display: inline-block;
 }
 /* Minimum width of 992 pixels. */
 @media screen and (min-width: 992px) {
-  .main-navigation ul.nav-menu,
   .main-navigation div.nav-menu > ul {
     border-bottom: 1px solid #ededed;
     border-top: 1px solid #ededed;
