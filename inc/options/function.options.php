@@ -88,7 +88,7 @@ $this->sections[] = array(
             'id' => 'main_logo_height',
             'type' => 'text',
             'title' => 'Height',
-            'default' => '50px'
+            'default' => '80px'
         ),
     )
 );
