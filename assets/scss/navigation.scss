@@ -13,10 +13,10 @@
 .main-navigation a:focus {
   color: #21759b;
 }
-.collapse .main-navigation div.nav-menu > ul {
+.main-navigation div.nav-menu > ul {
   display: none;
 }
-.main-navigation .collapse ul,
+.collapse .main-navigation div.nav-menu > ul,
 .menu-toggle {
   display: inline-block;
 }
