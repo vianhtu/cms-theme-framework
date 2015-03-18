@@ -14,7 +14,7 @@
         </div>
     </div>
 </div>
-<div class="header">
+<div id="cs-header" class="header">
     <div class="container">
         <div class="row">
             <div id="header-logo" class="col-xs-12 col-sm-2 col-md-2 col-lg-2">
