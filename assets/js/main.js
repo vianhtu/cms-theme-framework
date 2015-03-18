@@ -86,6 +86,16 @@ jQuery(document).ready(function($) {
 	 * @author Fox
 	 * @since 1.0.0
 	 */
+	
+	$('#menu-mobile').click(function(){
+		var navigation = $(this).parent().find('#header-navigation');
+		if(!navigation.hasClass('collapse')){
+			navigation.addClass('collapse');
+		} else {
+			navigation.removeClass('collapse');
+		}
+	});
+	/* check mobile screen. */
 	function cms_mobile_menu(width) {
 		var menu = $('#header-navigation');
 		
@@ -101,21 +111,11 @@ jQuery(document).ready(function($) {
 			break;
 		default:
 			menu.removeClass('mobile-nav tablets-nav');
-		
 			menu.find('li').removeClass('mobile-group');
 			break;
 		}	
-		/* show or hide mobile menu. */
-		$('#menu-mobile').click(function(){
-			var navigation = $(this).parent().find('#header-navigation');
-			if(!navigation.hasClass('collapse')){
-				navigation.addClass('collapse');
-			} else {
-				navigation.removeClass('collapse');
-			}
-		});
 	}
-	
+	/* group sub menu. */
 	function cms_mobile_menu_group(nav) {
 		nav.each(function(){
 			$(this).find('li').each(function(){
