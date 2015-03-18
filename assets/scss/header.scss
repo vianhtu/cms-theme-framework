@@ -1,6 +1,7 @@
 #cs-header{
   position: relative;
   &.header-fixed{
+    width: 100%;
     position: fixed;
     top: 0;
     @include transition (all 2s ease-in-out);
