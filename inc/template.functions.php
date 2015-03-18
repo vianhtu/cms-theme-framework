@@ -63,7 +63,6 @@ function cms_page_title(){
 }
 
 function cms_post_detail(){
-    global $smof_data, $cms_meta;
     ?>
     <ul>
         <li class="detail-date"><i class="fa fa-calendar-o"></i> <a href="<?php echo get_day_link(get_the_time('Y'),get_the_time('m'),get_the_time('d'));?>"><?php the_date(get_option('date_format', 'Y/m/d'));?></a></li>
