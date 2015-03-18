@@ -7,11 +7,4 @@
     top: 0;
     @include transition (all 2s ease-in-out);
   }
-
-  #header-navigation{
-    background: #ccc;
-    position: absolute;
-    top: 100px;
-    z-index: 9;
-  }
 }

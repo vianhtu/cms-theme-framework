@@ -91,6 +91,12 @@
 
 /* Minimum width of 992 pixels. */
 @media screen and (max-width: 991px) {
+  #header-navigation{
+    background: #ccc;
+    position: absolute;
+    top: 100px;
+    z-index: 9;
+  }
   #menu-mobile{
     position: absolute;
     top: 15px;
