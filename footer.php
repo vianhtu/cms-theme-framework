@@ -32,7 +32,9 @@ global $smof_data;
                 </div>
 		</footer><!-- #site-footer -->
 	</div><!-- #page -->
-
+    <div id="back_to_top" class="back_to_top">
+	   <span class="go_up"><i style="" class="fa fa-arrow-up"></i></span>
+	</div><!-- #back-to-top -->
 	<?php wp_footer(); ?>
 </body>
 </html>
