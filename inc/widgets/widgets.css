@@ -2,6 +2,11 @@
 	position: relative;
 	z-index: 9999;
 }
+.widget_cart_search_wrap ul{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
 .widget_searchform_content input[type='text']{
     width: 185px;
 	vertical-align: top;
@@ -13,6 +18,9 @@
     width: 310px;
     padding: 10px;
     background-color: #fff;
+    border:1px solid #eee;
+    color: #666;
+    text-align: left;
     -webkit-transition: all 1s linear 0s;
        -moz-transition: all 1s linear 0s;
          -o-transition: all 1s linear 0s;
@@ -23,15 +31,28 @@
 .widget_searchform_content.active{
 	display: block;
 }
+.widget_searchform_content form input[type="submit"]{
+    padding: 7px 20px 8px;
+}
+/* fix position of cart-search */
+#header-top2 .shopping_cart_dropdown,
+#header-top2 .widget_searchform_content{
+    top: 38px;
+}
+
+.cshero-header-content-widget .shopping_cart_dropdown,
+.cshero-header-content-widget .widget_searchform_content{
+    top: 72px;
+}
 
 .tagcloud {
     overflow: hidden;
 }
 .tagcloud a {
     background: #fff;
-    border: 1px solid #222;
-    color: #222;
-    font-size: 13px !important;
+    border: 1px solid #ccc;
+    color: #444;
+    font-size: 14px !important;
     display: inline-block;
     padding: 11px 16px;
     position: relative;
@@ -46,8 +67,9 @@
             transition: all 300ms linear 0ms;
 }
 .tagcloud a:hover {
-    color: #fff;
-    border-color: #222;
+    color: #333;
+    background: #ebebeb;
+    border-color: #adadad;
 }
 .post-details-footer {
     padding: 0 0 18px;
@@ -119,8 +141,17 @@
     border: none !important;
     text-indent: -99999px;
     opacity: 0;
-    padding: 0;
 }
+
+.search-transition .searchform input[type="text"]{ width: 0; -webkit-transition:all 0.3s linear 0s;transition:all 0.3s linear 0s;height: 44px; line-height: 44px; padding: 0 10px !important;}
+.search-transition .searchform:hover input,
+.search-transition .searchform:active input,
+.search-transition .searchform:focus input[type="text"],
+.search-transition .searchform input[type="text"]:active,
+.search-transition .searchform input[type="text"]:hover,
+.search-transition .searchform input[type="text"]:focus{ width: 200px; }
+.search-transition .searchform:before{ top:0; right:0; width: 42px; height: 44px; line-height: 44px; display: inline-block; background-color: #333; color: #fff; text-align: center;}
+.search-transition .searchform input[type="submit"]{top:0; right:0; width: 42px; height: 44px; line-height: 44px; display: inline-block; padding: 0;}
 /***** Tabs Sidebar *****/
 .primary-sidebar .widget_ww_news_tabs {
     border: none !important;
@@ -231,6 +262,8 @@
     display: inline-block;
 	 margin-right: 5px;
 }
+.cs-social.default li { margin-right: 15px;}
+.cs-social li:last-child{ margin-right: 0;}
 .cs-social li a {
     display: block;
     text-align: center;
@@ -248,13 +281,18 @@
     width: 40px;
     height: 40px;
     line-height: 44px;
-    background-color: #fff;
+    background-color: #888888;
     padding: 0;
     -webkit-transition:all 0.3s linear 0s;
        -moz-transition:all 0.3s linear 0s;
         -ms-transition:all 0.3s linear 0s;
          -o-transition:all 0.3s linear 0s;
             transition:all 0.3s linear 0s;
+}
+.cs-social.style-1 > li > a:hover,
+.cs-social.style-2 > li > a:hover,
+.cs-social.style-3 > li > a:hover{
+    background-color: #fff;;
 }
 .cs-social.style-6 > li > a{
     width: 40px;
@@ -340,20 +378,19 @@
     font-size: 18px;
 }
 
-/**** Recent Post V1 ***/
-.cs-recent-post-v1 .post-date {
-    display: block;
-    font-size: 12px;
+/* Widget Login */
+.widget-login{list-style: none;}
+.widget-login li{ list-style: none;display: inline-block; vertical-align: top;}
+.widget-login li:after{
+    content: "|";
+    display: inline-block;
+    padding: 0 5px;
+    color: #888;
 }
-.cs-recent-post-v1 ul li a {
-    font-size: 14px;
-    font-weight: 700;
-    line-height: 18px;
-    text-transform: uppercase;
+.widget-login li:last-child:after{
+    content: "";
+    padding: 0;
 }
-.cs-recent-post-v1 ul li {
-    margin-bottom: 10px;
-}
-.cs-recent-post-v1 ul li:last-child {
-    margin-bottom: 0;
+.widget-login li a i{
+    margin-left: 10px;
 }
