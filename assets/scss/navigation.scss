@@ -66,6 +66,10 @@
     &.back{
         right: 100%;
         left:auto;
+        ul{
+            right: 100%;
+            left: auto;
+        }
     }
   }
   .main-navigation ul li:hover > ul,
