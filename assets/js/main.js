@@ -106,12 +106,12 @@ jQuery(document).ready(function($) {
 		if(sub_menu.length > 0){
 			var sub_x = sub_menu.offset().left;
 			var sub_w = sub_menu.outerWidth(true);
-			if((sub_x + sub_w) > window_width){
+			if(sub_x > 0 && (sub_x + sub_w) > window_width){
 				sub_menu.addClass('ping-right');
 			} else {
 				sub_menu.removeClass('ping-right');
 			}
-			console.log(sub_x+':'+sub_w);
+			
 		}
 	});
 	
