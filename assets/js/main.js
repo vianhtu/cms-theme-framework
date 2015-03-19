@@ -101,28 +101,7 @@ jQuery(document).ready(function($) {
 	 * @author Fox
 	 * @since 1.0.0
 	 */
-	$('#header-navigation li').hover(function(){
-		var sub_menu = $(this).find('ul:first');
-		
-		if(sub_menu.length > 0){
-			
-			var sub_x = sub_menu.offset().left;
-			var sub_w = sub_menu.outerWidth(true);
-			
-			console.log(sub_x + sub_w);
-			
-			if(sub_x >= sub_w && (sub_x + sub_w) > window_width){
-					
-				console.log('right');
-				if(!sub_menu.parents('ul').hasClass('ping-right')){
-					sub_menu.addClass('ping-right');
-				}
-			} else {
-				console.log('left');
-			}
-			
-		}
-	});
+	
 	
 	/**
 	 * Mobile menu
