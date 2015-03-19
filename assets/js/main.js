@@ -109,7 +109,7 @@ jQuery(document).ready(function($) {
 			if((sub_x + sub_w) > window_width){
 				sub_menu.addClass('align-left');
 			} else {
-				sub_menu.addClass('align-right');
+				sub_menu.removeClass('align-left');
 			}
 		}
 	});
