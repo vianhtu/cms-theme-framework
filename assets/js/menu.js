@@ -8,6 +8,8 @@
                 $(this).hover(function(){
                     if($submenu.offset().left + $submenu.width() > $(window).width()){
                         $submenu.addClass('back');
+                    }else if($submenu.offset().left < 0){
+                        $submenu.addClass('back');
                     }
                 }, function(){
                     $submenu.removeClass('back');
