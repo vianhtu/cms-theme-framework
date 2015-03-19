@@ -111,7 +111,7 @@ jQuery(document).ready(function($) {
 			} else {
 				sub_menu.removeClass('ping-right');
 			}
-			console.log(sub_x+':'sub_w);
+			console.log(sub_x+':'+sub_w);
 		}
 	});
 	
