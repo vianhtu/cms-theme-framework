@@ -112,6 +112,8 @@ jQuery(document).ready(function($) {
 			if(sub_x > 0 && (sub_x + sub_w) > window_width){
 				if(!sub_menu.parents('ul').hasClass('ping-right')){
 					sub_menu.addClass('ping-right');
+				} else {
+					sub_menu.removeClass('ping-right');
 				}
 			} else {
 				if(sub_menu.parents('ul').hasClass('ping-right')){
