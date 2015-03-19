@@ -116,11 +116,9 @@ jQuery(document).ready(function($) {
 				console.log('right');
 				if(!sub_menu.parents('ul').hasClass('ping-right')){
 					sub_menu.addClass('ping-right');
-				} else {
-					sub_menu.removeClass('ping-right');
 				}
 			} else {
-				
+				console.log('left');
 			}
 			
 		}

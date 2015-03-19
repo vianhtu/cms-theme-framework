@@ -64,6 +64,9 @@ require( get_template_directory() . '/inc/dynamic/static.css.php' );
 /* Dynamic css*/
 require( get_template_directory() . '/inc/dynamic/dynamic.css.php' );
 
+/* Add mega menu */
+require( get_template_directory() . '/inc/megamenu/mega-menu.php' );
+
 // Set up the content width value based on the theme's design and stylesheet.
 if ( ! isset( $content_width ) )
 	$content_width = 625;
