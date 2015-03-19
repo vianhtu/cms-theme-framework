@@ -116,13 +116,13 @@ jQuery(document).ready(function($) {
 					sub_menu.removeClass('ping-right');
 				}
 			} else {
+				console.log("x: "+sub_x + "w: " + sub_w);
 				if(sub_menu.parents('ul').hasClass('ping-right')){
 					sub_menu.addClass('ping-right');
 				} else {
 					sub_menu.removeClass('ping-right');
 				}
 			}
-			console.log("x: "+sub_x + "w: " + sub_w);
 			
 		}
 	});
