@@ -374,14 +374,6 @@ function cms_post_nav() {
 		<h1 class="screen-reader-text"><?php _e( 'Post navigation', THEMENAME ); ?></h1>
 		<div class="nav-links">
 
-		<?php
-		wp_link_pages( array(
-		'before'      => '<div class="page-links"><span class="page-links-title">' . __( 'Pages:', 'twentyfourteen' ) . '</span>',
-		'after'       => '</div>',
-		'link_before' => '<span>',
-		'link_after'  => '</span>',
-		) );
-		?>
 			<?php previous_post_link( '%link', _x( '<span class="meta-nav">&larr;</span>', 'Previous post link', THEMENAME ) ); ?>
 			<?php next_post_link( '%link', _x( '<span class="meta-nav">&rarr;</span>', 'Next post link', THEMENAME ) ); ?>
 
