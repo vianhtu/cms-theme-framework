@@ -63,6 +63,10 @@
   .main-navigation li ul ul {
     top: 0;
     left: 100%;
+    &.back{
+        right: 100%;
+        left:auto;
+    }
   }
   .main-navigation ul li:hover > ul,
   .main-navigation ul li:focus > ul,
