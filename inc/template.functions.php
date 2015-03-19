@@ -68,7 +68,9 @@ function cms_post_detail(){
         <li class="detail-date"><i class="fa fa-calendar-o"></i> <a href="<?php echo get_day_link(get_the_time('Y'),get_the_time('m'),get_the_time('d'));?>"><?php the_date(get_option('date_format', 'Y/m/d'));?></a></li>
         <li class="detail-author"><i class="fa fa-user"></i> <?php _e('BY', THEMENAME); ?> <?php the_author_posts_link(); ?></li>
         <li class="detail-terms"><?php the_terms( get_the_ID(), 'category', '<i class="fa fa-folder"></i>'.__(' POSTED IN ', THEMENAME), ' / ' ); ?></li>
+        <?php if(has_tag()): ?>
         <li class="detail-tags"><?php the_tags('<i class="fa fa-tags"></i>'.__(' TAGS ', THEMENAME), ' / ' ); ?></li>
+        <?php endif; ?>
         <li class="detail-comment"><i class="fa fa-comment"></i> <?php _e('WITH', THEMENAME); ?> <a href="<?php the_permalink(); ?>"><?php echo comments_number('0','1','%'); ?> <?php _e('Comments', THEMENAME); ?></a></li>
     </ul>
     <?php
