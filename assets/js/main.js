@@ -107,9 +107,9 @@ jQuery(document).ready(function($) {
 			var sub_x = sub_menu.offset().left;
 			var sub_w = sub_menu.outerWidth(true);
 			if((sub_x + sub_w) > window_width){
-				sub_menu.addClass('align-right');
+				sub_menu.addClass('ping-right');
 			} else {
-				sub_menu.removeClass('align-right');
+				sub_menu.removeClass('ping-right');
 			}
 		}
 	});
