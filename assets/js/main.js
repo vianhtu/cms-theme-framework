@@ -20,13 +20,13 @@ jQuery(document).ready(function($) {
 	 */
 	$(window).load(function() {
 		
-		/* current scroll */
+		/** current scroll */
 		var top = $(window).scrollTop();
 		
-		/* current window width */
+		/** current window width */
 		window_width = $(window).width();
 		
-		/* current window height */
+		/** current window height */
 		window_height = $(window).height();
 		
 		/* get admin bar height */
@@ -52,10 +52,10 @@ jQuery(document).ready(function($) {
 	 * @author Fox
 	 */
 	$(window).resize(function(event, ui) {
-		/* current window width */
+		/** current window width */
 		window_width = $(event.target).width();
 		
-		/* current window height */
+		/** current window height */
 		window_height = $(window).height();
 		
 		/* check mobile menu */
@@ -69,7 +69,7 @@ jQuery(document).ready(function($) {
 	 * @author Fox
 	 */
 	$(window).scroll(function() {
-		/* current scroll */
+		/** current scroll */
 		var top = $(window).scrollTop();
 		
 		/* check sticky menu. */
@@ -94,6 +94,26 @@ jQuery(document).ready(function($) {
 		}
 	}
 
+	/**
+	 * Sub menu align
+	 * 
+	 * Set position sub menu left or right.
+	 * @author Fox
+	 * @since 1.0.0
+	 */
+	$('#header-navigation li').hover(function(){
+		var sub_menu = $(this).find('ul:first');
+		if(sub_menu.length > 0){
+			var sub_x = sub_menu.offset().left;
+			var sub_w = sub_menu.outerWidth(true);
+			if((sub_x + sub_w) > window_width){
+				sub_menu.addClass('align-left');
+			} else {
+				sub_menu.addClass('align-right');
+			}
+		}
+	});
+	
 	/**
 	 * Mobile menu
 	 * 
@@ -140,8 +160,12 @@ jQuery(document).ready(function($) {
 			});
 		});
 	}
+	
 	/**
 	 * Back To Top
+	 * 
+	 * @author Fox
+	 * @since 1.0.0
 	 */
 	$('#back_to_top').click(function () {
         $("html, body").animate({
@@ -149,7 +173,7 @@ jQuery(document).ready(function($) {
         }, 1500);
     });
 	
-	/* */
+	/* show or hide buttom  */
 	function cms_back_to_top(top){
 		/* back to top */
         if (top < window_height) {
