@@ -17,7 +17,7 @@ get_header(); ?>
 
                 <?php /* Start the Loop */ ?>
                 <?php while ( have_posts() ) : the_post(); ?>
-                    <?php get_template_part( 'single-templates/content', get_post_format() ); ?>
+                    <?php get_template_part( 'single-templates/content/content' ); ?>
                 <?php endwhile; ?>
 
                 <?php cms_paging_nav(); ?>
