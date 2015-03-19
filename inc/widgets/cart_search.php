@@ -9,8 +9,8 @@ class WC_Widget_Cart_Search extends WP_Widget {
         add_action('wp_enqueue_scripts', array($this, 'widget_scripts'));
     }
     function widget_scripts() {
-        wp_enqueue_script('widget_cart_search_scripts', get_template_directory_uri() . '/framework/widgets/widgets.js');
-        wp_enqueue_style('widget_cart_search_scripts', get_template_directory_uri() . '/framework/widgets/widgets.css');
+        wp_enqueue_script('widget_cart_search_scripts', get_template_directory_uri() . '/inc/widgets/widgets.js');
+        wp_enqueue_style('widget_cart_search_scripts', get_template_directory_uri() . '/inc/widgets/widgets.css');
     }
     function widget($args, $instance) {
         extract(shortcode_atts($instance,$args));
