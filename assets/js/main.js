@@ -110,7 +110,7 @@ jQuery(document).ready(function($) {
 			var sub_w = sub_menu.outerWidth(true);
 			
 			if(sub_x > 0 && (sub_x + sub_w) > window_width){
-				if(sub_menu.parents('ul').hasClass('ping-right')){
+				if(!sub_menu.parents('ul').hasClass('ping-right')){
 					sub_menu.addClass('ping-right');
 				}
 			} else {
