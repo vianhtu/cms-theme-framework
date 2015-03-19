@@ -10,6 +10,7 @@
                         $submenu.addClass('back');
                     }else if($submenu.offset().left < 0){
                         $submenu.addClass('back');
+                        console.log('Left hand');
                     }
                 }, function(){
                     $submenu.removeClass('back');
