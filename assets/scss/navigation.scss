@@ -73,11 +73,12 @@
         ul.back{
             left: 100%;
             right: auto;
+            ul{
+                left: 100%;
+                right: auto;
+            }
         }
     }
-  }
-  .main-navigation li ul ul{
-
   }
   .main-navigation ul li:hover > ul,
   .main-navigation ul li:focus > ul,
