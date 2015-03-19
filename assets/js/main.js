@@ -109,7 +109,7 @@ jQuery(document).ready(function($) {
 			var sub_x = sub_menu.offset().left;
 			var sub_w = sub_menu.outerWidth(true);
 			
-			if(sub_x >= sub_w && (sub_x + sub_w) > window_width){
+			if(sub_x <= sub_w && (sub_x + sub_w) > window_width){
 				
 				console.log("x: "+sub_x + "w: " + sub_w);
 				
