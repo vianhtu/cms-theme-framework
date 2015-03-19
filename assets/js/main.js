@@ -110,18 +110,16 @@ jQuery(document).ready(function($) {
 			var sub_w = sub_menu.outerWidth(true);
 			
 			if(sub_x >= sub_w && (sub_x + sub_w) > window_width){
+				
+				console.log("x: "+sub_x + "w: " + sub_w);
+				
 				if(!sub_menu.parents('ul').hasClass('ping-right')){
 					sub_menu.addClass('ping-right');
 				} else {
 					sub_menu.removeClass('ping-right');
 				}
 			} else {
-				console.log("x: "+sub_x + "w: " + sub_w);
-				if(sub_menu.parents('ul').hasClass('ping-right')){
-					sub_menu.addClass('ping-right');
-				} else {
-					sub_menu.removeClass('ping-right');
-				}
+				
 			}
 			
 		}
