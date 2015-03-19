@@ -122,6 +122,7 @@ jQuery(document).ready(function($) {
 					sub_menu.removeClass('ping-right');
 				}
 			}
+			console.log("x: "+sub_x + "w: " + sub_w);
 			
 		}
 	});
