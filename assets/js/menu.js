@@ -7,8 +7,10 @@
             if($submenu.length == 1){
                 $(this).hover(function(){
                     if($submenu.offset().left + $submenu.width() > $(window).width()){
-                        console.log('Dap vao tuong roi');
+                        $submenu.addClass('back');
                     }
+                }, function(){
+                    $submenu.removeClass('back');
                 });
             }
         });
