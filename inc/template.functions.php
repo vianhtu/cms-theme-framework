@@ -65,7 +65,7 @@ function cms_page_title(){
 function cms_post_detail(){
     ?>
     <ul>
-        <li class="detail-date"><i class="fa fa-calendar-o"></i> <a href="<?php echo get_day_link(get_the_time('Y'),get_the_time('m'),get_the_time('d'));?>"><?php the_date(get_option('date_format', 'Y/m/d'));?></a></li>
+        <li class="detail-date"><i class="fa fa-calendar-o"></i> <a href="<?php echo get_day_link(get_the_time('Y'),get_the_time('m'),get_the_time('d'));?>"><?php the_date('Y/m/d');?></a></li>
         <li class="detail-author"><i class="fa fa-user"></i> <?php _e('BY', THEMENAME); ?> <?php the_author_posts_link(); ?></li>
         <?php if(has_category()): ?>
         <li class="detail-terms"><?php the_terms( get_the_ID(), 'category', '<i class="fa fa-folder"></i>'.__(' POSTED IN ', THEMENAME), ' / ' ); ?></li>
