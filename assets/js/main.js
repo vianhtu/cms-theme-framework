@@ -109,10 +109,11 @@ jQuery(document).ready(function($) {
 			var sub_x = sub_menu.offset().left;
 			var sub_w = sub_menu.outerWidth(true);
 			
-			console.log("x: "+sub_x + "w: " + sub_w);
+			console.log(sub_x + sub_w);
 			
-			if(sub_x <= sub_w && (sub_x + sub_w) > window_width){
+			if(sub_x >= sub_w && (sub_x + sub_w) > window_width){
 					
+				console.log('right');
 				if(!sub_menu.parents('ul').hasClass('ping-right')){
 					sub_menu.addClass('ping-right');
 				} else {
