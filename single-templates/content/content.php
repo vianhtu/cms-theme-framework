@@ -19,7 +19,7 @@
 	<!-- .entry-header -->
 
 	<div class="entry-content">
-		<?php the_content();
+		<?php the_excerpt();
     		wp_link_pages( array(
         		'before'      => '<div class="pagination loop-pagination"><span class="page-links-title">' . __( 'Pages:',THEMENAME) . '</span>',
         		'after'       => '</div>',
