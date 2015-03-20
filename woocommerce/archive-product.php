@@ -79,11 +79,10 @@ get_header( 'shop' ); ?>
                 		do_action( 'woocommerce_after_main_content' );
                 	?>
                 </div>
-                <?php if(is_active_sidebar('woocommerce_sidebar')):?>
                 <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
                     <div id="secondary" class="widget-area" role="complementary">
                         <div id="primary-sidebar" class="primary-sidebar widget-area" role="complementary">
-                            <?php dynamic_sidebar('woocommerce_sidebar'); ?>
+                            <?php get_sidebar(); ?>
                         </div>
                     </div>
                 </div>
@@ -91,5 +90,4 @@ get_header( 'shop' ); ?>
         </div>
     </main><!-- #main -->
 </section><!-- #primary -->
-<?php endif; ?>
 <?php get_footer( 'shop' ); ?>
