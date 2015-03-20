@@ -13,7 +13,7 @@
 	<header class="entry-header">
 	    <?php cms_archive_audio(); ?>
 		<h1 class="entry-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h1>
-		<div><?php cms_post_detail(); ?></div>
+		<div><?php cms_archive_detail(); ?></div>
 	</header>
 	<!-- .entry-header -->
 

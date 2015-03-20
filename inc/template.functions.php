@@ -62,22 +62,6 @@ function cms_page_title(){
     }
 }
 
-function cms_post_detail(){
-    ?>
-    <ul>
-        <li class="detail-date"><i class="fa fa-calendar-o"></i> <a href="<?php echo get_day_link(get_the_time('Y'),get_the_time('m'),get_the_time('d'));?>"><?php echo get_the_date(get_option('date_format', 'Y/m/d'));?></a></li>
-        <li class="detail-author"><i class="fa fa-user"></i> <?php _e('BY', THEMENAME); ?> <?php the_author_posts_link(); ?></li>
-        <?php if(has_category()): ?>
-        <li class="detail-terms"><?php the_terms( get_the_ID(), 'category', '<i class="fa fa-folder"></i>'.__(' POSTED IN ', THEMENAME), ' / ' ); ?></li>
-        <?php endif; ?>
-        <?php if(has_tag()): ?>
-        <li class="detail-tags"><?php the_tags('<i class="fa fa-tags"></i>'.__(' TAGS ', THEMENAME), ' / ' ); ?></li>
-        <?php endif; ?>
-        <li class="detail-comment"><i class="fa fa-comment"></i> <?php _e('WITH', THEMENAME); ?> <a href="<?php the_permalink(); ?>"><?php echo comments_number('0','1','%'); ?> <?php _e('Comments', THEMENAME); ?></a></li>
-    </ul>
-    <?php
-}
-
 /**
  * Get Header Layout.
  * 
@@ -150,16 +134,54 @@ function cms_main_class(){
 }
 
 /**
+ * Single detail
+ *
+ * @author Fox
+ * @since 1.0.0
+ */
+function cms_single_detail(){
+    
+}
+
+/**
+ * Archive detail
+ * 
+ * @author Fox
+ * @since 1.0.0
+ */
+function cms_archive_detail(){
+    ?>
+    <ul>
+        <li class="detail-date"><i class="fa fa-calendar-o"></i> <a href="<?php echo get_day_link(get_the_time('Y'),get_the_time('m'),get_the_time('d'));?>"><?php echo get_the_date(get_option('date_format', 'Y/m/d'));?></a></li>
+        <li class="detail-author"><i class="fa fa-user"></i> <?php _e('BY', THEMENAME); ?> <?php the_author_posts_link(); ?></li>
+        <?php if(has_category()): ?>
+        <li class="detail-terms"><?php the_terms( get_the_ID(), 'category', '<i class="fa fa-folder"></i>'.__(' POSTED IN ', THEMENAME), ' / ' ); ?></li>
+        <?php endif; ?>
+        <?php if(has_tag()): ?>
+        <li class="detail-tags"><?php the_tags('<i class="fa fa-tags"></i>'.__(' TAGS ', THEMENAME), ' / ' ); ?></li>
+        <?php endif; ?>
+        <li class="detail-comment"><i class="fa fa-comment"></i> <?php _e('WITH', THEMENAME); ?> <a href="<?php the_permalink(); ?>"><?php echo comments_number('0','1','%'); ?> <?php _e('Comments', THEMENAME); ?></a></li>
+    </ul>
+    <?php
+}
+
+/**
  * Media Audio.
  * 
  * @param string $before
  * @param string $after
  */
 function cms_archive_audio() {
-    
+    /* get shortcode audio. */
     $shortcode = CMSSuperHeroes_Base::getShortcodeFromContent('audio', get_the_content());
     
-    echo do_shortcode($shortcode);
+    if($shortcode != ''){
+        echo do_shortcode($shortcode);
+    } else {
+        if(has_post_thumbnail()){
+            the_post_thumbnail();
+        }
+    }
     
 }
 
@@ -172,20 +194,33 @@ function cms_archive_audio() {
 function cms_archive_video() {
     
     global $wp_embed;
-    /* Local Video */
-    $shortcode = CMSSuperHeroes_Base::getShortcodeFromContent('video', get_the_content());
+    /* Get Local Video */
+    $local_video = CMSSuperHeroes_Base::getShortcodeFromContent('video', get_the_content());
     
-    /* Youtobe or Vimeo */
-    if($shortcode == ''){
-        $shortcode = CMSSuperHeroes_Base::getShortcodeFromContent('embed', get_the_content());
-        echo $wp_embed->run_shortcode($shortcode);
-    } else {
+    /* Get Youtobe or Vimeo */
+    $remote_video = CMSSuperHeroes_Base::getShortcodeFromContent('embed', get_the_content());
+    
+    if($local_video){
+        /* view local. */
         echo do_shortcode($shortcode);
+    } elseif ($remote_video) {
+        /* view youtobe or vimeo. */
+        echo $wp_embed->run_shortcode($shortcode);
+    } elseif (has_post_thumbnail()) {
+        /* view thumbnail. */
+        the_post_thumbnail();
     }
+    
 }
 
+/**
+ * Gallerry Images
+ * 
+ * @author Fox
+ * @since 1.0.0
+ */
 function cms_archive_gallery(){
-    
+    /* get shortcode gallery. */
     $shortcode = CMSSuperHeroes_Base::getShortcodeFromContent('gallery', get_the_content());
     
     if($shortcode != ''){
@@ -213,5 +248,28 @@ function cms_archive_gallery(){
     		</a>
     	</div>
         <?php
+    } else {
+        if(has_post_thumbnail()){
+            the_post_thumbnail();
+        }
+    }
+}
+
+/**
+ * Quote Text.
+ * 
+ * @author Fox
+ * @since 1.0.0
+ */
+function cms_archive_quote() {
+    /* get text. */
+    preg_match('/\<blockquote\>(.*)\<\/blockquote\>/', get_the_content(), $blockquote);
+    
+    if(!empty($blockquote[0])){
+        echo '<blockquote>'.$blockquote[0].'</blockquote>';
+    } else {
+        if(has_post_thumbnail()){
+            the_post_thumbnail();
+        }
     }
 }

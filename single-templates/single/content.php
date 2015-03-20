@@ -12,9 +12,8 @@
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 	<header class="entry-header">
-	    <div><?php the_post_thumbnail(); ?></div>
 		<h1 class="entry-title"><?php the_title(); ?></h1>
-		<div><?php cms_post_detail(); ?></div>
+		<div><?php cms_single_detail(); ?></div>
 	</header>
 	<!-- .entry-header -->
 
