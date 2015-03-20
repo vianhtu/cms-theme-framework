@@ -148,3 +148,70 @@ function cms_main_class(){
     
     echo apply_filters('cms_main_class', $main_class);
 }
+
+/**
+ * Media Audio.
+ * 
+ * @param string $before
+ * @param string $after
+ */
+function cms_archive_audio() {
+    
+    $shortcode = CMSSuperHeroes_Base::getShortcodeFromContent('audio', get_the_content());
+    
+    echo do_shortcode($shortcode);
+    
+}
+
+/**
+ * Media Video.
+ *
+ * @param string $before
+ * @param string $after
+ */
+function cms_archive_video() {
+    
+    global $wp_embed;
+    /* Local Video */
+    $shortcode = CMSSuperHeroes_Base::getShortcodeFromContent('video', get_the_content());
+    
+    /* Youtobe or Vimeo */
+    if($shortcode == ''){
+        $shortcode = CMSSuperHeroes_Base::getShortcodeFromContent('embed', get_the_content());
+        echo $wp_embed->run_shortcode($shortcode);
+    } else {
+        echo do_shortcode($shortcode);
+    }
+}
+
+function cms_archive_gallery(){
+    
+    $shortcode = CMSSuperHeroes_Base::getShortcodeFromContent('gallery', get_the_content());
+    
+    if($shortcode != ''){
+        preg_match('/\[gallery.*ids=.(.*).\]/', $shortcode, $ids);
+        $array_id = explode(",", $ids[1]);
+        ?>
+        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+            <?php $i = 0; ?>
+            <?php foreach ($array_id as $image_id): ?>
+    			<?php
+                $attachment_image = wp_get_attachment_image_src($image_id, 'full', false);
+                if($attachment_image[0] != ''):?>
+    				<div class="item <?php if( $i == 0 ){ echo 'active'; } ?>">
+                		<img style="width:100%;" data-src="holder.js" src="<?php echo $attachment_image[0];?>" alt="" />
+                	</div>
+                <?php $i++; endif; ?>
+            <?php endforeach; ?>
+            </div>
+            <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+    		    <span class="ion-ios7-arrow-left"></span>
+    		</a>
+    		<a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+    		    <span class="ion-ios7-arrow-right"></span>
+    		</a>
+    	</div>
+        <?php
+    }
+}

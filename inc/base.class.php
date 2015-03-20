@@ -199,6 +199,20 @@ class CMSSuperHeroes_Base
     }
     
     /**
+     * Get Shortcode From Content
+     * 
+     * @param string $shortcode
+     * @param string $content
+     * @return unknown
+     */
+    public static function getShortcodeFromContent($shortcode = '', $content = ''){
+        
+        preg_match("/\[".$shortcode."(.*)/", $content , $matches);
+        
+        return !empty($matches[0]) ? $matches[0] : null ;
+    }
+    
+    /**
      * minimize CSS styles
      *
      * @since 1.1.0

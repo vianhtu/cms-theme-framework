@@ -9,16 +9,16 @@
  * @since 1.0.0
  */
 ?>
-
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 	<header class="entry-header">
+	    <?php cms_archive_audio(); ?>
 		<h1 class="entry-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h1>
 		<div><?php cms_post_detail(); ?></div>
 	</header>
 	<!-- .entry-header -->
 
 	<div class="entry-content">
-			<?php the_content(); 
+			<?php the_excerpt(); 
     			wp_link_pages( array(
         			'before'      => '<div class="pagination loop-pagination"><span class="page-links-title">' . __( 'Pages:',THEMENAME) . '</span>',
         			'after'       => '</div>',
