@@ -105,6 +105,9 @@ function cms_setup() {
 	// Adds title tag
 	add_theme_support( "title-tag" );
 	
+	// Add woocommerce
+	add_theme_support('woocommerce');
+	
 	// Adds custom header
 	add_theme_support( 'custom-header' );
 	
