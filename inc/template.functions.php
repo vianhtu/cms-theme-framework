@@ -166,6 +166,16 @@ function cms_archive_detail(){
 }
 
 /**
+ * Archive readmore
+ * 
+ * @author Fox
+ * @since 1.0.0
+ */
+function cms_archive_readmore(){
+    echo '<a href="'.get_the_permalink().'" title="'.get_the_title().'" >'.__('Read More', THEMENAME).'</a>';
+}
+
+/**
  * Media Audio.
  * 
  * @param string $before

@@ -31,7 +31,9 @@
 	<!-- .entry-content -->
 
 	<footer class="entry-meta">
-			<?php edit_post_link( __( 'Edit', THEMENAME ), '<span class="edit-link">', '</span>' ); ?>
+	    <?php cms_archive_readmore(); ?>
+	    <!-- .readmore link -->
+		<?php edit_post_link( __( 'Edit', THEMENAME ), '<span class="edit-link">', '</span>' ); ?>
 	</footer>
 	<!-- .entry-meta -->
 </article>
