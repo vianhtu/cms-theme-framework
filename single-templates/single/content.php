@@ -11,10 +11,10 @@
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-	<header class="entry-header">
+	<div class="entry-header">
 		<h1 class="entry-title"><?php the_title(); ?></h1>
 		<div><?php cms_single_detail(); ?></div>
-	</header>
+	</div>
 	<!-- .entry-header -->
 
 	<div class="entry-content">
