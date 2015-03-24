@@ -25,7 +25,7 @@
 /**
  * Add global values.
  */
-global $cms_meta;
+global $smof_data, $cms_meta;
 
 $theme = wp_get_theme();
 
@@ -65,7 +65,9 @@ require( get_template_directory() . '/inc/dynamic/static.css.php' );
 require( get_template_directory() . '/inc/dynamic/dynamic.css.php' );
 
 /* Add mega menu */
-require( get_template_directory() . '/inc/megamenu/mega-menu.php' );
+if($smof_data['menu_mega'] && !class_exists('HeroMenuWalker')){
+    require( get_template_directory() . '/inc/megamenu/mega-menu.php' );
+}
 
 /* Add widgets */
 require( get_template_directory() . '/inc/widgets/cart_search.php' );
@@ -311,9 +313,23 @@ function cms_widgets_init() {
 add_action( 'widgets_init', 'cms_widgets_init' );
 
 /**
+ * Filter the page menu arguments.
+ *
+ * Makes our wp_nav_menu() fallback -- wp_page_menu() -- show a home link.
+ *
+ * @since 1.0.0
+ */
+function cms_page_menu_args( $args ) {
+    if ( ! isset( $args['show_home'] ) )
+        $args['show_home'] = true;
+    return $args;
+}
+add_filter( 'wp_page_menu_args', 'cms_page_menu_args' );
+
+/**
  * Display navigation to next/previous set of posts when applicable.
  *
- * @since Twenty Thirteen 1.0
+ * @since 1.0.0
  */
 function cms_paging_nav() {
     // Don't print empty markup if there's only one page.

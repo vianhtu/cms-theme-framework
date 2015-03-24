@@ -93,6 +93,22 @@ $this->sections[] = array(
     )
 );
 
+/* Menu */
+$this->sections[] = array(
+    'title' => __('Menu', THEMENAME),
+    'icon' => 'el-icon-tasks',
+    'subsection' => true,
+    'fields' => array(
+        array(
+            'subtitle' => __('enable mega menu.', THEMENAME),
+            'id' => 'menu_mega',
+            'type' => 'switch',
+            'title' => __('Mega Menu', THEMENAME),
+            'default' => false,
+        )
+    )
+);
+
 /**
  * Page Title
  *
@@ -250,6 +266,7 @@ $this->sections[] = array(
 $this->sections[] = array(
     'title' => __('Content', THEMENAME),
     'icon' => 'el-icon-compass',
+    'subsection' => true,
     'fields' => array(
         array(
             'id'       => 'container_background',
@@ -272,33 +289,6 @@ $this->sections[] = array(
             'title' => 'Padding',
             'default' => ''
         )
-    )
-);
-
-/* Archive */
-$this->sections[] = array(
-    'title' => __('Archive', THEMENAME),
-    'icon' => 'el-icon-folder',
-    'subsection' => true,
-    'fields' => array(
-    )
-);
-
-/* Pages */
-$this->sections[] = array(
-    'title' => __('Pages', THEMENAME),
-    'icon' => 'el-icon-file',
-    'subsection' => true,
-    'fields' => array(
-    )
-);
-
-/* Single */
-$this->sections[] = array(
-    'title' => __('Single', THEMENAME),
-    'icon' => 'el-icon-pencil-alt',
-    'subsection' => true,
-    'fields' => array(
     )
 );
 
