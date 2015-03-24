@@ -11,11 +11,11 @@
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-	<header class="entry-header">
+	<div class="entry-header">
 	    <div><?php the_post_thumbnail(); ?></div>
 		<h1 class="entry-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h1>
 		<div><?php cms_archive_detail(); ?></div>
-	</header>
+	</div>
 	<!-- .entry-header -->
 
 	<div class="entry-content">
