@@ -159,7 +159,11 @@ add_action('wp', 'cms_meta_data');
  * @since CMS SuperHeroes 1.0
  */
 function cms_scripts_styles() {
-	global $wp_styles;
+    
+	global $smof_data, $wp_styles;
+	
+	/** theme options. */
+	$script_options = array('menu_sticky'=> $smof_data['menu_sticky']);
 
 	/*------------------------------------- JavaScript ---------------------------------------*/
 	
@@ -167,7 +171,10 @@ function cms_scripts_styles() {
 	wp_enqueue_script('cmssuperheroes-bootstrap', get_template_directory_uri() . '/assets/js/bootstrap.min.js', array( 'jquery' ), '3.3.2');
 	
 	/* Add main.js */
-	wp_enqueue_script('cmssuperheroes-main', get_template_directory_uri() . '/assets/js/main.js', array( 'jquery' ), '1.0.0', true);
+	wp_register_script('cmssuperheroes-main', get_template_directory_uri() . '/assets/js/main.js', array( 'jquery' ), '1.0.0', true);
+	wp_localize_script('cmssuperheroes-main', 'cms-theme-options', $script_options);
+	wp_enqueue_script('cmssuperheroes-main');
+	/* Add menu.js */
     wp_enqueue_script('cmssuperheroes-menu', get_template_directory_uri() . '/assets/js/menu.js', array( 'jquery' ), '1.0.0', true);
 	
 	/*
