@@ -44,7 +44,11 @@ jQuery(document).ready(function($) {
 		cms_mobile_menu(window_width);
 		
 		/* check back to top */
-		cms_back_to_top(top);
+		if(CMSOptions.back_to_top == '1'){
+			/* add html. */
+			$('body').append('<div id="back_to_top" class="back_to_top"><span class="go_up"><i style="" class="fa fa-arrow-up"></i></span></div><!-- #back-to-top -->');
+			cms_back_to_top(top);
+		}
 	});
 
 	/**
@@ -151,7 +155,7 @@ jQuery(document).ready(function($) {
 	 * @author Fox
 	 * @since 1.0.0
 	 */
-	$('#back_to_top').click(function () {
+	$('body').on('click', '#back_to_top', function () {
         $("html, body").animate({
             scrollTop: 0
         }, 1500);
