@@ -167,12 +167,19 @@ function cms_scripts_styles() {
 
 	/*------------------------------------- JavaScript ---------------------------------------*/
 	
+	
+	/** --------------------------libs--------------------------------- */
+	
+	
 	/* Adds JavaScript Bootstrap. */
 	wp_enqueue_script('cmssuperheroes-bootstrap', get_template_directory_uri() . '/assets/js/bootstrap.min.js', array( 'jquery' ), '3.3.2');
 	
+	
+	/** --------------------------custom------------------------------- */
+	
 	/* Add main.js */
 	wp_register_script('cmssuperheroes-main', get_template_directory_uri() . '/assets/js/main.js', array( 'jquery' ), '1.0.0', true);
-	wp_localize_script('cmssuperheroes-main', 'cms-theme-options', $script_options);
+	wp_localize_script('cmssuperheroes-main', 'CMSOptions', $script_options);
 	wp_enqueue_script('cmssuperheroes-main');
 	/* Add menu.js */
     wp_enqueue_script('cmssuperheroes-menu', get_template_directory_uri() . '/assets/js/menu.js', array( 'jquery' ), '1.0.0', true);
@@ -186,11 +193,15 @@ function cms_scripts_styles() {
 
     /*------------------------------------- Stylesheet ---------------------------------------*/
 	
+	/** --------------------------libs--------------------------------- */
+	
 	/* Loads Bootstrap stylesheet. */
 	wp_enqueue_style('cmssuperheroes-bootstrap', get_template_directory_uri() . '/assets/css/bootstrap.min.css', array(), '3.3.2');
 	
 	/* Loads Bootstrap stylesheet. */
 	wp_enqueue_style('cmssuperheroes-font-awesome', get_template_directory_uri() . '/assets/css/font-awesome.min.css', array(), '4.3.0');
+	
+	/** --------------------------custom------------------------------- */
 	
 	/* Loads our main stylesheet. */
 	wp_enqueue_style( 'cmssuperheroes-style', get_stylesheet_uri(), array( 'cmssuperheroes-bootstrap' ));

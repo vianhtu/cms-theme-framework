@@ -36,7 +36,9 @@ jQuery(document).ready(function($) {
 		header_top = header.length > 0 ? header.offset().top - adminbar_height : 0 ;
 		
 		/* check sticky menu. */
-		cms_stiky_menu(top);
+		if(CMSOptions.menu_sticky == '1'){
+			cms_stiky_menu(top);
+		}
 		
 		/* check mobile menu */
 		cms_mobile_menu(window_width);
@@ -73,7 +75,9 @@ jQuery(document).ready(function($) {
 		var top = $(window).scrollTop();
 		
 		/* check sticky menu. */
-		cms_stiky_menu(top);
+		if(CMSOptions.menu_sticky == '1'){
+			cms_stiky_menu(top);
+		}
 		
 		/* check back to top */
 		cms_back_to_top(top);
@@ -93,15 +97,6 @@ jQuery(document).ready(function($) {
 			header.removeClass('header-fixed');
 		}
 	}
-
-	/**
-	 * Sub menu align
-	 * 
-	 * Set position sub menu left or right.
-	 * @author Fox
-	 * @since 1.0.0
-	 */
-	
 	
 	/**
 	 * Mobile menu
