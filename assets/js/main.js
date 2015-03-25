@@ -64,6 +64,13 @@ jQuery(document).ready(function($) {
 		/** current window height */
 		window_height = $(window).height();
 		
+		var top = $(window).scrollTop();
+		
+		/* check sticky menu. */
+		if(CMSOptions.menu_sticky == '1'){
+			cms_stiky_menu(top);
+		}
+		
 		/* check mobile menu */
 		cms_mobile_menu();
 	});
@@ -96,7 +103,20 @@ jQuery(document).ready(function($) {
 	 */
 	function cms_stiky_menu(top) {
 		if (header_top <= top) {
-			header.addClass('header-fixed');
+			switch (true) {
+			case (window_width > 992):
+				header.addClass('header-fixed');
+				break;
+			case ((window_width <= 992 && window_width >= 768) && (CMSOptions.menu_sticky_tablets == '1')):
+				header.addClass('header-fixed');
+				break;
+			case ((window_width <= 768) && (CMSOptions.menu_sticky_mobile == '1')):
+				header.addClass('header-fixed');
+				break;
+			default:
+				removeClass('header-fixed');
+				break;
+			}
 		} else {
 			header.removeClass('header-fixed');
 		}
