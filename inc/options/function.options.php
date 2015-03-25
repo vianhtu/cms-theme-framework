@@ -112,7 +112,23 @@ $this->sections[] = array(
             'type' => 'switch',
             'title' => __('Sticky Menu', THEMENAME),
             'default' => false,
-        )
+        ),
+        array(
+            'subtitle' => __('enable sticky mode for menu Tablets.', THEMENAME),
+            'id' => 'menu_sticky_tablets',
+            'type' => 'switch',
+            'title' => __('Sticky Tablets', THEMENAME),
+            'default' => false,
+            'required' => array( 'menu_sticky', '=', '1' )
+        ),
+        array(
+            'subtitle' => __('enable sticky mode for menu Mobile.', THEMENAME),
+            'id' => 'menu_sticky_mobile',
+            'type' => 'switch',
+            'title' => __('Sticky Mobile', THEMENAME),
+            'default' => false,
+            'required' => array( 'menu_sticky', '=', '1' )
+        ),
     )
 );
 

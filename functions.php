@@ -165,6 +165,8 @@ function cms_scripts_styles() {
 	/** theme options. */
 	$script_options = array(
 	    'menu_sticky'=> $smof_data['menu_sticky'],
+	    'menu_sticky_tablets'=> $smof_data['menu_sticky_tablets'],
+	    'menu_sticky_mobile'=> $smof_data['menu_sticky_mobile'],
 	    'back_to_top'=> $smof_data['footer_botton_back_to_top']
 	);
 
