@@ -367,6 +367,13 @@ $this->sections[] = array(
             'type' => 'text',
             'title' => 'Padding',
             'default' => ''
+        ),
+        array(
+            'subtitle' => __('enable button back to top.', THEMENAME),
+            'id' => 'footer_botton_back_to_top',
+            'type' => 'switch',
+            'title' => __('Back To Top', THEMENAME),
+            'default' => true,
         )
     )
 );

@@ -163,7 +163,10 @@ function cms_scripts_styles() {
 	global $smof_data, $wp_styles;
 	
 	/** theme options. */
-	$script_options = array('menu_sticky'=> $smof_data['menu_sticky']);
+	$script_options = array(
+	    'menu_sticky'=> $smof_data['menu_sticky'],
+	    'back_to_top'=> $smof_data['footer_botton_back_to_top']
+	);
 
 	/*------------------------------------- JavaScript ---------------------------------------*/
 	
