@@ -105,6 +105,13 @@ $this->sections[] = array(
             'type' => 'switch',
             'title' => __('Mega Menu', THEMENAME),
             'default' => false,
+        ),
+        array(
+            'subtitle' => __('enable sticky mode for menu.', THEMENAME),
+            'id' => 'menu_sticky',
+            'type' => 'switch',
+            'title' => __('Sticky Menu', THEMENAME),
+            'default' => false,
         )
     )
 );
