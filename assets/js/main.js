@@ -30,7 +30,7 @@ jQuery(document).ready(function($) {
 		window_height = $(window).height();
 		
 		/* get admin bar height */
-		adminbar_height = adminbar.length > 0 ? adminbar.height() : 0 ;
+		adminbar_height = adminbar.length > 0 ? adminbar.outerHeight(true) : 0 ;
 		
 		/* get top header menu */
 		header_top = header.length > 0 ? header.offset().top - adminbar_height : 0 ;
