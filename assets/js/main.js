@@ -201,6 +201,9 @@ jQuery(document).ready(function($) {
 		});
 	}
 	
+	/** smoothscroll */
+	
+	
 	/**
 	 * Back To Top
 	 * 
