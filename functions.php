@@ -42,6 +42,14 @@ if(!class_exists('ReduxFramework')){
 /* Add theme options. */
 require( get_template_directory() . '/inc/options/functions.php' );
 
+/* Add custom vc params. */
+if(class_exists('Vc_Manager')){
+    add_action('init', 'cms_vc_params');
+    function cms_vc_params() {
+        require( get_template_directory() . '/inc/vc_params/vc_rows.php' );
+    }
+}
+
 /* Add SCSS */
 if(!class_exists('scssc')){
     require( get_template_directory() . '/inc/libs/scss.inc.php' );

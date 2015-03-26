@@ -82,9 +82,21 @@ jQuery(document).ready(function($) {
 	 * Bind an event handler to the "scroll" JavaScript event, or trigger that event on an element.
 	 * @author Fox
 	 */
+	var lastScrollTop = 0;
+	
 	$(window).scroll(function() {
 		/** current scroll */
 		scroll_top = $(window).scrollTop();
+		/** check scroll up or down. */
+		if(scroll_top < lastScrollTop) {
+			/* scroll up. */
+			console.log('up');
+		} else {
+			/* scroll down. */
+			console.log('down');
+		}
+		
+		lastScrollTop = scroll_top;
 		
 		/* check sticky menu. */
 		if(CMSOptions.menu_sticky == '1'){
