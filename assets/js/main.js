@@ -184,6 +184,24 @@ jQuery(document).ready(function($) {
 	}
 	
 	/**
+	 * Parallax.
+	 * 
+	 * @author Fox
+	 * @since 1.0.0
+	 */
+	var cms_parallax = $('.cms_parallax');
+	if(cms_parallax.length > 0){
+		cms_parallax.each(function() {
+			"use strict";
+			var speed = $(this).attr('data-speed');
+			
+			speed = (speed != undefined && speed != '') ? speed : 0.1 ;
+			
+			$(this).parallax("50%", speed);
+		});
+	}
+	
+	/**
 	 * Back To Top
 	 * 
 	 * @author Fox
