@@ -533,6 +533,32 @@ $this->sections[] = array(
     )
 );
 /**
+ * Animations
+ *
+ * Animations options for theme. libs css, js.
+ * @author Fox
+ */
+$this->sections[] = array(
+    'title' => __('Animations', THEMENAME),
+    'icon' => 'el-icon-magic',
+    'fields' => array(
+        array(
+            'subtitle' => __('Enable animation mouse scroll...', THEMENAME),
+            'id' => 'smoothscroll',
+            'type' => 'switch',
+            'title' => __('Smooth Scroll', THEMENAME),
+            'default' => false
+        ),
+        array(
+            'subtitle' => __('Enable animation parallax for images...', THEMENAME),
+            'id' => 'paralax',
+            'type' => 'switch',
+            'title' => __('Images Paralax', THEMENAME),
+            'default' => true
+        ),
+    )
+);
+/**
  * Optimal Core
  * 
  * Optimal options for theme. optimal speed
