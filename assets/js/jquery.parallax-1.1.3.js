@@ -33,7 +33,7 @@ http://www.gnu.org/licenses/gpl.html
 			};
 		} else {
 			getHeight = function(jqo) {
-				return jqo.outerHeight();
+				return jqo.outerHeight(true);
 			};
 		}
 			
