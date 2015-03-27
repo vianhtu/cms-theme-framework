@@ -28,7 +28,7 @@ switch ($bg_style){
         break;
     case 'hvideo':
         $el_class .= "row-bg-video";
-        $video_style = '<div class="cms-bg-video">'.do_shortcode('[video autoplay="on" height="0" width="0" mp4="'.$bg_video_mp4.'" webm="'.$bg_video_webm.'"]').'</div>';
+        $video_style = '<div class="cms-bg-video">'.do_shortcode('[video autoplay="on" loop="on" height="0" width="0" mp4="'.$bg_video_mp4.'" webm="'.$bg_video_webm.'"]').'</div>';
         break;
 }
 
