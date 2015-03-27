@@ -175,6 +175,7 @@ function cms_scripts_styles() {
 	    'menu_sticky'=> $smof_data['menu_sticky'],
 	    'menu_sticky_tablets'=> $smof_data['menu_sticky_tablets'],
 	    'menu_sticky_mobile'=> $smof_data['menu_sticky_mobile'],
+	    'paralax' => $smof_data['paralax'],
 	    'back_to_top'=> $smof_data['footer_botton_back_to_top']
 	);
 
@@ -188,10 +189,13 @@ function cms_scripts_styles() {
 	wp_enqueue_script('cmssuperheroes-bootstrap', get_template_directory_uri() . '/assets/js/bootstrap.min.js', array( 'jquery' ), '3.3.2');
 	
 	/* Add parallax plugin. */
-	wp_enqueue_script('cmssuperheroes-parallax', get_template_directory_uri() . '/assets/js/jquery.parallax-1.1.3.js', array( 'jquery' ), '1.1.3', true);
-	
+	if($smof_data['paralax']){
+	   wp_enqueue_script('cmssuperheroes-parallax', get_template_directory_uri() . '/assets/js/jquery.parallax-1.1.3.js', array( 'jquery' ), '1.1.3', true);
+	}
 	/* Add smoothscroll plugin */
-	wp_enqueue_script('cmssuperheroes-smoothscroll', get_template_directory_uri() . '/assets/js/smoothscroll.min.js', array( 'jquery' ), '1.0.0', true);
+	if($smof_data['smoothscroll']){
+	   wp_enqueue_script('cmssuperheroes-smoothscroll', get_template_directory_uri() . '/assets/js/smoothscroll.min.js', array( 'jquery' ), '1.0.0', true);
+	}
 	
 	/** --------------------------custom------------------------------- */
 	

@@ -520,7 +520,7 @@ $this->sections[] = array(
  */
 $this->sections[] = array(
     'title' => __('Custom CSS', THEMENAME),
-    'icon' => 'el-icon-magic',
+    'icon' => 'el-icon-bulb',
     'fields' => array(
         array(
             'id' => 'custom_css',
