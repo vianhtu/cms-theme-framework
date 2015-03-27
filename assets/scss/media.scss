@@ -69,3 +69,14 @@ img.wp-smiley,
 .gallery-columns-1 .gallery-icon img {
   padding: 3%;
 }
+
+/* Video background */
+.row-bg-video{
+  position: relative;
+  overflow: hidden;
+  .cms-bg-video{
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+}
