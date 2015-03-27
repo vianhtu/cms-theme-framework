@@ -15,18 +15,18 @@ if (shortcode_exists('vc_row')) {
         ),
         'description' => __("Yes = content boxed, default content full width.", THEMENAME)
     ));
-    
-    $bg_style = array('Default' => '','Image / Fixed' => 'img_fixed','YouTube Video' => 'yvideo','Vimeo Video' => 'vvideo','Hosted Video' => 'hvideo');
-    
-    if($smof_data['paralax']){
-        $bg_style['Image / Parallax'] = 'img_parallax';
-    }
-    
     vc_add_param('vc_row', array(
         'type' => 'dropdown',
         'heading' => __("Background Style", THEMENAME),
         'param_name' => 'bg_style',
-        'value' => $bg_style,
+        'value' => array(
+            'Default' => '',
+            'Image / Parallax' => 'img_parallax',
+            'Image / Fixed' => 'img_fixed',
+            'YouTube Video' => 'yvideo',
+            'Vimeo Video' => 'vvideo',
+            'Hosted Video' => 'hvideo'
+        ),
         'group' => 'Design options',
         'description' => __("Select the kind of background would you like to set for this row.", THEMENAME)
     ));
