@@ -23,8 +23,7 @@ if (shortcode_exists('vc_row')) {
             'Default' => '',
             'Image / Parallax' => 'img_parallax',
             'Image / Fixed' => 'img_fixed',
-            'YouTube Video' => 'yvideo',
-            'Vimeo Video' => 'vvideo',
+            'YouTube or Vimeo' => 'yvvideo',
             'Hosted Video' => 'hvideo'
         ),
         'group' => 'Design options',

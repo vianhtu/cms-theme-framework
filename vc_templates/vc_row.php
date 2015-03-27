@@ -10,7 +10,7 @@ extract( shortcode_atts( array(
 	'css' => '',
 ), $atts ) );
 
-$row_style = '';
+$row_style = ''; $video_style = '';
 
 /** bg style image */
 switch ($bg_style){
@@ -24,6 +24,16 @@ switch ($bg_style){
     case 'img_fixed':
         $row_style .= "background-attachment:fixed;background-size:cover;";
         break;
+    case 'yvvideo':
+        
+        global $wp_embed;
+        
+        $video_style = $wp_embed->run_shortcode('[embed]https://youtu.be/PgqmJRkrutI[/embed]');
+        
+        break;
+    case 'hvideo':
+        
+        break;
 }
 
 
@@ -35,7 +45,9 @@ $css_class = apply_filters( VC_SHORTCODE_CUSTOM_CSS_FILTER_TAG, 'row ' . ( $this
 $style = ' style ="'.$row_style.'"';  //$this->buildStyle();
 
 ?>
-<div class="<?php echo esc_attr( $css_class ); ?>"<?php echo $row_data; ?><?php echo $style; ?>>
+<div class="<?php echo esc_attr( $css_class ); ?>"<?php echo esc_attr($row_data); ?><?php echo $style; ?>>
+
+    <?php echo $video_style; ?>
 
     <?php if($full_width): ?><div class="container"><?php endif ; ?>
     
