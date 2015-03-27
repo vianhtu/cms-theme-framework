@@ -38,9 +38,8 @@ if (shortcode_exists('vc_row')) {
         "dependency" => array(
             "element" => "bg_style",
             "value" => array(
-                "image"
-            ),
-            "not_empty" => true
+                "img_parallax"
+            )
         ),
         'description' => __("Set speed moving for parallax default 0.1 .", THEMENAME)
     ));
