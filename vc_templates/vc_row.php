@@ -15,7 +15,7 @@ $row_style = '';
 if($bg_style == 'image'){
     $el_class .= " cms_parallax";
     $row_data .= " data-speed = $bd_p_speed";
-    $row_style .= "background-position: 50% 0;background-repeat:no-repeat;background-attachment:fixed";
+    $row_style .= "background-position: 50% 0;background-repeat:no-repeat;background-size:cover;";
 }
 
 
