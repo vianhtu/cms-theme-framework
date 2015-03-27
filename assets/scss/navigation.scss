@@ -121,6 +121,9 @@
 
 /* Minimum width of 992 pixels. */
 @media screen and (max-width: 991px) {
+  #menu-mobile{
+    display: block;
+  }
   .main-navigation div.nav-menu > ul {
     max-height: 0;
     overflow: hidden;
