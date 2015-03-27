@@ -21,7 +21,8 @@ if (shortcode_exists('vc_row')) {
         'param_name' => 'bg_style',
         'value' => array(
             'Default' => '',
-            'Image / Parallax' => 'image',
+            'Image / Parallax' => 'img_parallax',
+            'Image / Fixed' => 'img_fixed',
             'YouTube Video' => 'yvideo',
             'Vimeo Video' => 'vvideo',
             'Hosted Video' => 'hvideo'

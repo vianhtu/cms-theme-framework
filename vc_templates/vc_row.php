@@ -12,10 +12,15 @@ extract( shortcode_atts( array(
 $row_style = '';
 
 /** bg style image */
-if($bg_style == 'image'){
-    $el_class .= " cms_parallax";
-    $row_data .= " data-speed = $bd_p_speed";
-    $row_style .= "background-position: 50% 0;background-repeat:no-repeat;background-attachment:fixed;background-size:cover;";
+switch ($bg_style){
+    case 'img_parallax':
+        $el_class .= " cms_parallax";
+        $row_data .= " data-speed = $bd_p_speed";
+        $row_style .= "background-position: 50% 0;background-repeat:no-repeat;background-attachment:fixed;background-size:cover;";
+        break;
+    case 'img_fixed':
+        $row_style .= "background-attachment:fixed;background-size:cover;";
+        break;
 }
 
 
