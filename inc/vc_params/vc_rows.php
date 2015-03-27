@@ -23,7 +23,6 @@ if (shortcode_exists('vc_row')) {
             'Default' => '',
             'Image / Parallax' => 'img_parallax',
             'Image / Fixed' => 'img_fixed',
-            'YouTube or Vimeo' => 'yvvideo',
             'Hosted Video' => 'hvideo'
         ),
         'group' => 'Design options',
@@ -41,5 +40,31 @@ if (shortcode_exists('vc_row')) {
             )
         ),
         'description' => __("Set speed moving for parallax default 0.1 .", THEMENAME)
+    ));
+    vc_add_param('vc_row', array(
+        'type' => 'textfield',
+        'heading' => __("MP4 (URL)", THEMENAME),
+        'param_name' => 'bg_video_mp4',
+        'group' => 'Design options',
+        "dependency" => array(
+            "element" => "bg_style",
+            "value" => array(
+                "hvideo"
+            )
+        ),
+        'description' => __(".mp4 video.", THEMENAME)
+    ));
+    vc_add_param('vc_row', array(
+        'type' => 'textfield',
+        'heading' => __("WEBM (URL)", THEMENAME),
+        'param_name' => 'bg_video_webm',
+        'group' => 'Design options',
+        "dependency" => array(
+            "element" => "bg_style",
+            "value" => array(
+                "hvideo"
+            )
+        ),
+        'description' => __(".webm video.", THEMENAME)
     ));
 }

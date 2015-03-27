@@ -6,6 +6,8 @@ extract( shortcode_atts( array(
 	'full_width' => false,
 	'bg_style' => '',
 	'bd_p_speed' => 0.1,
+	'bg_video_mp4' => '',
+	'bg_video_webm' => '',
 	'row_data' => '',
 	'css' => '',
 ), $atts ) );
@@ -24,15 +26,8 @@ switch ($bg_style){
     case 'img_fixed':
         $row_style .= "background-attachment:fixed;background-size:cover;";
         break;
-    case 'yvvideo':
-        
-        global $wp_embed;
-        
-        $video_style = $wp_embed->run_shortcode('[embed]https://youtu.be/PgqmJRkrutI[/embed]');
-        
-        break;
     case 'hvideo':
-        
+        $video_style = '<div class="cms-bg-video">'.do_shortcode('[video autoplay="on" height="0" width="0" mp4="'.$bg_video_mp4.'" webm="'.$bg_video_webm.'"]').'</div>';
         break;
 }
 
