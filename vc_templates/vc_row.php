@@ -1,4 +1,5 @@
 <?php
+global $smof_data;
 /** @var $this WPBakeryShortCode_VC_Row */
 extract( shortcode_atts( array(
 	'el_class' => '',
@@ -14,9 +15,11 @@ $row_style = '';
 /** bg style image */
 switch ($bg_style){
     case 'img_parallax':
-        $el_class .= " cms_parallax";
-        $row_data .= " data-speed = $bd_p_speed";
-        $row_style .= "background-position: 50% 0;background-repeat:no-repeat;background-attachment:fixed;background-size:cover;";
+        if($smof_data['paralax']){
+            $el_class .= " cms_parallax";
+            $row_data .= " data-speed = $bd_p_speed";
+            $row_style .= "background-position: 50% 0;background-repeat:no-repeat;background-attachment:fixed;background-size:cover;";
+        }
         break;
     case 'img_fixed':
         $row_style .= "background-attachment:fixed;background-size:cover;";
