@@ -68,7 +68,7 @@ class CMSSuperHeroes_StaticCss
      */
     public function scss_render(){
         /* compile scss to css */
-        return $this->scss->compile('@import "mixins.scss"; @import "buttons.scss"; @import "content.scss"; @import "elements.scss"; @import "footer.scss"; @import "forms.scss"; @import "header.scss"; @import "main.scss"; @import "media.scss"; @import "navigation.scss"; @import "sidebar.scss"; @import "typography.scss"; @import "widgets.scss"; @import "responsive.scss"');
+        return $this->scss->compile('@import "mixins.scss"; @import "buttons.scss"; @import "content.scss"; @import "comment.scss"; @import "elements.scss"; @import "footer.scss"; @import "forms.scss"; @import "header.scss"; @import "main.scss"; @import "media.scss"; @import "navigation.scss"; @import "sidebar.scss"; @import "typography.scss"; @import "widgets.scss"; @import "responsive.scss"');
     }
     
     /**
