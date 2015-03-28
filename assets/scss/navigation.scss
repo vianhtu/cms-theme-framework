@@ -127,6 +127,12 @@
   .main-navigation .columns4 > li{width:25% !important;}
   .main-navigation .columns3 > li{width:33% !important;}
   .main-navigation .columns2 > li{width:50% !important;}
+  .main-navigation [class*="columns"]  > li{
+    float: left;
+    > a {
+      width: 100%;
+    }
+  }
 }
 
 /* Minimum width of 992 pixels. */
