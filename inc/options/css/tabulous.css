@@ -1,7 +1,4 @@
-html{
-	background: rgb(101, 92, 137);
-		font-family: "Lato", sans-serif;
-}
+/* Don't forget to include a CSS reset file otherwise it might look a little bit strange*/
 a:active,a:focus {
 	outline: expression(hideFocus='true');
 }
