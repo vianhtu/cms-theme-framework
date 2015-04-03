@@ -14,7 +14,32 @@ $this->sections[] = array(
         )
     )
 );
-
+/* Start Dummy Data*/
+include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+$msg = $disabled = '';
+if (!class_exists('WPBakeryVisualComposerAbstract') or !class_exists('CmssuperheroesCore')){
+    $disabled = ' disabled ';
+    $msg='You should be install visual composer and Cmssuperheroes plugins to import';
+}
+$this->sections[] = array(
+    'icon' => 'el-icon-briefcase',
+    'title' => __('Demo Content', THEMENAME),
+    'subsection' => true,
+    'fields' => array(
+        array(
+            'subtitle' => '<input type=\'button\' name=\'sample\' id=\'dummy-data\' '.$disabled.' value=\'Import Now\' /><div class=\'cms-dummy-process\'><div  class=\'cms-dummy-process-bar\'></div></div><div id=\'cms-msg\'><span class="cms-status"></span>'.$msg.'</div>',
+            'id' => 'theme',
+            'icon' => true,
+            'default' => 'cmstheme',
+            'options' => array(
+                'cmstheme' => get_template_directory_uri().'/assets/images/dummy/cmstheme.png'
+            ),
+            'type' => 'image_select',
+            'title' => 'Select Theme'
+        )
+    )
+);
+/* End Dummy Data*/
 /**
  * Header Options
  * 
