@@ -73,7 +73,7 @@ require( get_template_directory() . '/inc/dynamic/static.css.php' );
 require( get_template_directory() . '/inc/dynamic/dynamic.css.php' );
 
 /* Add mega menu */
-if($smof_data['menu_mega'] && !class_exists('HeroMenuWalker')){
+if(isset($smof_data['menu_mega']) && $smof_data['menu_mega'] && !class_exists('HeroMenuWalker')){
     require( get_template_directory() . '/inc/megamenu/mega-menu.php' );
 }
 
