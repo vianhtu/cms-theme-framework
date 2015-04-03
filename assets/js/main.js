@@ -12,6 +12,9 @@ jQuery(document).ready(function($) {
 	var header = $('.header');
 	var header_top = 0;
 	
+	/* scroll status */
+	var scroll_status = '';
+	
 	/**
 	 * window load event.
 	 * 
@@ -90,10 +93,10 @@ jQuery(document).ready(function($) {
 		/** check scroll up or down. */
 		if(scroll_top < lastScrollTop) {
 			/* scroll up. */
-			console.log('up');
+			scroll_status = 'up';
 		} else {
 			/* scroll down. */
-			console.log('down');
+			scroll_status = 'down';
 		}
 		
 		lastScrollTop = scroll_top;
@@ -114,8 +117,8 @@ jQuery(document).ready(function($) {
 	 * @author Fox
 	 * @since 1.0.0
 	 */
-	function cms_stiky_menu() {
-		if (header_top <= scroll_top) {
+	function cms_stiky_menu(fixed) {
+		if (header_top <= scroll_top && scroll_status == 'up') {
 			switch (true) {
 				case (window_width > 992):
 					header.addClass('header-fixed');
