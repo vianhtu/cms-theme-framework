@@ -2,7 +2,6 @@
 
     /**
      * Redux Framework API Class
-     *
      * Makes instantiating a Redux object an absolute piece of cake.
      *
      * @package     Redux_Framework
@@ -57,7 +56,7 @@
             }
 
             public static function loadExtensions( $ReduxFramework ) {
-                if ( $instanceExtensions = self::getExtensions( '', $ReduxFramework->args['opt_name'] ) ) {
+                if ( $instanceExtensions = self::getExtensions( $ReduxFramework->args['opt_name'], "" ) ) {
                     foreach ( $instanceExtensions as $name => $extension ) {
                         if ( ! class_exists( $extension['class'] ) ) {
                             // In case you wanted override your override, hah.
@@ -78,9 +77,27 @@
                 }
             }
 
+            public static function extensionPath( $extension, $folder = true ) {
+                if ( ! isset( Redux::$extensions[ $extension ] ) ) {
+                    return;
+                }
+                $path = end( Redux::$extensions[ $extension ] );
+                if ( ! $folder ) {
+                    return $path;
+                }
+
+                return str_replace( 'extension_' . $extension . '.php', '', $path );
+            }
+
+
             public static function loadRedux( $opt_name = "" ) {
-                $check = ReduxFrameworkInstances::get_instance($opt_name);
-                if (isset($check->apiHasRun)) {
+
+                if ( empty( $opt_name ) ) {
+                    return;
+                }
+
+                $check = ReduxFrameworkInstances::get_instance( $opt_name );
+                if ( isset( $check->apiHasRun ) ) {
                     return;
                 }
 
@@ -95,8 +112,13 @@
                     add_action( "redux/extensions/{$opt_name}/before", array( 'Redux', 'loadExtensions' ), 0 );
                 }
 
-                $redux = new ReduxFramework( $sections, $args );
-                $redux->apiHasRun = 1;
+                $redux                   = new ReduxFramework( $sections, $args );
+                $redux->apiHasRun        = 1;
+                self::$init[ $opt_name ] = 1;
+                if ( isset( $redux->args['opt_name'] ) && $redux->args['opt_name'] != $opt_name ) {
+                    self::$init[ $redux->args['opt_name'] ] = 1;
+                }
+
             }
 
             public static function createRedux() {
@@ -108,7 +130,8 @@
             }
 
             public static function constructArgs( $opt_name ) {
-                $args             = self::$args[ $opt_name ];
+                $args = isset( self::$args[ $opt_name ] ) ? self::$args[ $opt_name ] : array();
+
                 $args['opt_name'] = $opt_name;
                 if ( ! isset( $args['menu_title'] ) ) {
                     $args['menu_title'] = ucfirst( $opt_name ) . ' Options';
@@ -125,6 +148,10 @@
 
             public static function constructSections( $opt_name ) {
                 $sections = array();
+                if ( ! isset( self::$sections[ $opt_name ] ) ) {
+                    return $sections;
+
+                }
                 foreach ( self::$sections[ $opt_name ] as $section_id => $section ) {
                     $section['fields'] = self::constructFields( $opt_name, $section_id );
                     $p                 = $section['priority'];
@@ -169,10 +196,26 @@
                 return false;
             }
 
+            public static function setSections( $opt_name = '', $sections = array() ) {
+                self::check_opt_name( $opt_name );
+                if ( ! empty( $sections ) ) {
+                    foreach ( $sections as $section ) {
+                        Redux::setSection( $opt_name, $section );
+                    }
+                }
+            }
+
             public static function setSection( $opt_name = '', $section = array() ) {
                 self::check_opt_name( $opt_name );
                 if ( ! isset( $section['id'] ) ) {
                     $section['id'] = strtolower( sanitize_html_class( $section['title'] ) );
+                    if ( isset( self::$sections[ $opt_name ][ $section['id'] ] ) ) {
+                        $orig = $section['id'];
+                        $i    = 0;
+                        while ( isset( self::$sections[ $opt_name ][ $section['id'] ] ) ) {
+                            $section['id'] = $orig . '_' . $i;
+                        }
+                    }
                 }
 
                 if ( ! empty( $opt_name ) && is_array( $section ) && ! empty( $section ) ) {
@@ -201,6 +244,9 @@
             public static function processFieldsArray( $opt_name = "", $section_id = "", $fields = array() ) {
                 if ( ! empty( $opt_name ) && ! empty( $section_id ) && is_array( $fields ) && ! empty( $fields ) ) {
                     foreach ( $fields as $field ) {
+                        if ( ! is_array( $field ) ) {
+                            continue;
+                        }
                         $field['section_id'] = $section_id;
                         self::setField( $opt_name, $field );
                     }
@@ -255,6 +301,22 @@
                 self::check_opt_name( $opt_name );
                 if ( ! empty( $opt_name ) && ! empty( $args ) && is_array( $args ) ) {
                     self::$args[ $opt_name ] = wp_parse_args( $args, self::$args[ $opt_name ] );
+                }
+            }
+
+            public static function getArgs( $opt_name = "" ) {
+                self::check_opt_name( $opt_name );
+                if ( ! empty( $opt_name ) && ! empty( self::$args[ $opt_name ] ) ) {
+                    return self::$args[ $opt_name ];
+                }
+            }
+
+            public static function getArg( $opt_name = "", $key = "" ) {
+                self::check_opt_name( $opt_name );
+                if ( ! empty( $opt_name ) && ! empty( $key ) && ! empty( self::$args[ $opt_name ] ) ) {
+                    return self::$args[ $opt_name ][ $key ];
+                } else {
+                    return;
                 }
             }
 
@@ -365,7 +427,7 @@
                 }
             }
 
-            public static function getExtensions( $key = "", $opt_name = "" ) {
+            public static function getExtensions( $opt_name = "", $key = "" ) {
                 if ( empty( $opt_name ) ) {
                     if ( empty( $key ) ) {
                         return self::$extension_paths[ $key ];

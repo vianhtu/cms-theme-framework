@@ -1,4 +1,4 @@
-/* global confirm, relid:true, jsonView */
+/* global redux, confirm, relid:true, jsonView */
 
 (function( $ ) {
     'use strict';
@@ -15,7 +15,6 @@
                 var win = $( window );
                 var viewport = {
                     top: win.scrollTop(),
-                    left: win.scrollLeft()
                 };
 
                 viewport.right = viewport.left + win.width();
@@ -98,7 +97,8 @@
                 },
                 error: function( response ) {
                     if ( !window.console ) console = {};
-                    console.log = console.log || function( name, data ) {};
+                    console.log = console.log || function( name, data ) {
+                    };
                     console.log( redux.ajax.console );
                     console.log( response.responseText );
                     jQuery( '.redux-action_bar input' ).removeAttr( 'disabled' );
@@ -259,6 +259,7 @@
                 height: stickyHeight
             }
         );
+        $( '#redux-footer-sticky' ).removeClass( 'hide' );
 
         if ( $( '#redux-footer' ).length !== 0 ) {
             $( window ).scroll(
@@ -613,15 +614,23 @@
             function() {
                 var type = $( this ).attr( 'data-type' );
                 //console.log(type);
-                if ( redux.field_objects[type] ) {
+                if ( typeof redux.field_objects != 'undefined' && redux.field_objects[type] && redux.field_objects[type] ) {
                     redux.field_objects[type].init();
+                }
+                if ( $( this ).hasClass( 'redux_remove_th' ) ) {
+                    var tr = $( this ).parents( 'tr:first' );
+                    var th = tr.find( 'th:first' );
+                    $( this ).prepend( th.html() );
+                    $( this ).find( '.redux_field_th' ).css( 'padding', '0 0 10px 0' );
+                    $( this ).parent().attr( 'colspan', '2' );
+                    th.remove();
                 }
             }
         );
     };
 
     $.redux.notices = function() {
-        if ( redux.errors !== undefined ) {
+        if ( redux.errors && redux.errors.errors ) {
             $.each(
                 redux.errors.errors, function( sectionID, sectionArray ) {
                     $.each(
@@ -629,6 +638,8 @@
                             $( "#" + redux.args.opt_name + '-' + value.id ).addClass( "redux-field-error" );
                             if ( $( "#" + redux.args.opt_name + '-' + value.id ).parent().find( '.redux-th-error' ).length === 0 ) {
                                 $( "#" + redux.args.opt_name + '-' + value.id ).append( '<div class="redux-th-error">' + value.msg + '</div>' );
+                            } else {
+                                $( "#" + redux.args.opt_name + '-' + value.id ).parent().find( '.redux-th-error' ).html(value.msg).css('display', 'block');
                             }
                         }
                     );
@@ -662,7 +673,7 @@
                 }
             );
         }
-        if ( redux.warnings !== undefined ) {
+        if ( redux.warnings && redux.warnings.warnings ) {
             $.each(
                 redux.warnings.warnings, function( sectionID, sectionArray ) {
                     $.each(
@@ -670,6 +681,8 @@
                             $( "#" + redux.args.opt_name + '-' + value.id ).addClass( "redux-field-warning" );
                             if ( $( "#" + redux.args.opt_name + '-' + value.id ).parent().find( '.redux-th-warning' ).length === 0 ) {
                                 $( "#" + redux.args.opt_name + '-' + value.id ).append( '<div class="redux-th-warning">' + value.msg + '</div>' );
+                            } else {
+                                $( "#" + redux.args.opt_name + '-' + value.id ).parent().find( '.redux-th-warning' ).html(value.msg ).css('display', 'block');
                             }
                         }
                     );
@@ -1163,25 +1176,21 @@
     };
 
     $.redux.stickyInfo = function() {
-        var stickyWidth = $( '#info_bar' ).width() - 4;
+        var stickyWidth = $( '.redux-main' ).innerWidth() - 20;
 
         if ( !$( '#info_bar' ).isOnScreen() && !$( '#redux-footer-sticky' ).isOnScreen() ) {
-            $( '#redux-sticky' ).addClass( 'sticky-save-warn' );
-
             $( '#redux-footer' ).css(
                 {
                     position: 'fixed',
                     bottom: '0',
-                    width: stickyWidth
+                    width: stickyWidth,
+                    right: 21
                 }
             );
-
             $( '#redux-footer' ).addClass( 'sticky-footer-fixed' );
             $( '.redux-save-warn' ).css( 'left', $( '#redux-sticky' ).offset().left );
             $( '#redux-sticky-padder' ).show();
         } else {
-            $( '#redux-sticky' ).removeClass( 'sticky-save-warn' );
-
             $( '#redux-footer' ).css(
                 {
                     background: '#eee',
@@ -1190,9 +1199,13 @@
                     width: 'inherit'
                 }
             );
-
             $( '#redux-sticky-padder' ).hide();
             $( '#redux-footer' ).removeClass( 'sticky-footer-fixed' );
+        }
+        if ( !$( '#info_bar' ).isOnScreen() ) {
+            $( '#redux-sticky' ).addClass( 'sticky-save-warn' );
+        } else {
+            $( '#redux-sticky' ).removeClass( 'sticky-save-warn' );
         }
     };
 
