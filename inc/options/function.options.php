@@ -447,7 +447,7 @@ $this->sections[] = array(
         array(
             'subtitle' => __('set color main color.', THEMENAME),
             'id' => 'primary_color',
-            'type' => 'color_rgba',
+            'type' => 'color',
             'title' => __('Primary Color', THEMENAME),
             'default' => ''
         ),
