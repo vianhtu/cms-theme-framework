@@ -27,5 +27,5 @@
 	<header id="masthead" class="site-header" role="banner">
 		<?php cms_header(); ?>
 	</header><!-- #masthead -->
-    <?php cms_page_title(); var_dump($smof_data['primary_color']['rgba']);exit(); ?>
+    <?php cms_page_title(); ?>
 	<div id="main">
