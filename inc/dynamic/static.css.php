@@ -55,8 +55,14 @@ class CMSSuperHeroes_StaticCss
             /* compile scss to css */
             $css .= $this->scss_render();
             
+            $file = "static.css";
+            
+            if($smof_data['presets_color']){
+                $file = "presets-".$smof_data['presets_color'].".css";
+            }
+            
             /* write static.css file */
-            file_put_contents(get_template_directory() . '/assets/css/' . 'static.css', $css, LOCK_EX); // Save it
+            file_put_contents(get_template_directory() . '/assets/css/' . $file, $css, LOCK_EX); // Save it
         }
     }
     
