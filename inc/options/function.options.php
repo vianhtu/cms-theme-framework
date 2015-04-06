@@ -430,6 +430,21 @@ $this->sections[] = array(
     'icon' => 'el-icon-adjust',
     'fields' => array(
         array(
+            'subtitle' => __('select presets color.', THEMENAME),
+            'id' => 'presets_color',
+            'type' => 'image_select',
+            'title' => __('Presets Color', THEMENAME),
+            'default' => '',
+            'options' => array(
+                '' => get_template_directory_uri().'/inc/options/images/pagetitle/pr-c-0.png',
+                '1' => get_template_directory_uri().'/inc/options/images/pagetitle/pr-c-1.png',
+                '2' => get_template_directory_uri().'/inc/options/images/pagetitle/pr-c-2.png',
+                '3' => get_template_directory_uri().'/inc/options/images/pagetitle/pr-c-3.png',
+                '4' => get_template_directory_uri().'/inc/options/images/pagetitle/pr-c-4.png',
+                '5' => get_template_directory_uri().'/inc/options/images/pagetitle/pr-c-5.png',
+            )
+        ),
+        array(
             'subtitle' => __('set color main color.', THEMENAME),
             'id' => 'primary_color',
             'type' => 'color',
