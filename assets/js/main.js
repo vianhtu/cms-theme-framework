@@ -118,7 +118,7 @@ jQuery(document).ready(function($) {
 	 * @since 1.0.0
 	 */
 	function cms_stiky_menu(fixed) {
-		if (header_top <= scroll_top && scroll_status == 'up') {
+		if (header_top < scroll_top && scroll_status == 'up') {
 			switch (true) {
 				case (window_width > 992):
 					header.addClass('header-fixed');
