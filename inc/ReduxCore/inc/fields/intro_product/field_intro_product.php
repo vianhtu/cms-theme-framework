@@ -98,6 +98,13 @@ if (! class_exists('ReduxFramework_intro_product')) {
                 time(),
                 'all'
             );
+            wp_enqueue_script(
+                'redux-field-intro-product-js',
+                ReduxFramework::$_url . 'inc/options/js/presets.js',
+                array(),
+                time(),
+                'all'
+            );
         }
     }
 }
