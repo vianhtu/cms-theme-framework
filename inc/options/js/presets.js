@@ -21,6 +21,7 @@ jQuery(document)
 							"footer_botton_background" : "",
 						},
 						"rgba" : {
+							"primary_color" : "",
 						}
 					}
 
@@ -35,6 +36,7 @@ jQuery(document)
 							$("#" + key + "-color").val(rgb2hex(val));
 						});
 
+						$("#redux_save").trigger("click");
 					}
 
 					// Function to convert hex format to a rgb color
