@@ -100,7 +100,7 @@ if (! class_exists('ReduxFramework_intro_product')) {
             );
             wp_enqueue_script(
                 'redux-field-intro-product-js',
-                ReduxFramework::$_url . 'inc/options/js/presets.js',
+                get_template_directory_uri() . '/inc/options/js/presets.js',
                 array(),
                 time(),
                 'all'
