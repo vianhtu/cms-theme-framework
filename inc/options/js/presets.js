@@ -1,29 +1,53 @@
-jQuery(document).ready(function($) {
-	"use strict";
+jQuery(document)
+		.ready(
+				function($) {
+					"use strict";
 
-	$(".redux-main").on("click", "#smof_data-presets_color ul li", function() {
-		var presets = $(this).find('input').val();
-		cms_presets(presets);
-	});
+					$(".redux-main").on("click",
+							"#smof_data-presets_color ul li", function() {
+								var presets = $(this).find('input').val();
+								cms_presets(presets);
+							});
 
-	var presets_1 = {
-		"primary_color" : "#ff2d2d",
-		"secondary_color" : "#ff2d2d",
-		"link_color" : "#ff2d2d",
-		"header_background" : "#ff2d2d",
-		"page_title_background" : "#ff2d2d",
-		"body_background" : "#ff2d2d",
-		"container_background" : "#ff2d2d",
-		"footer_background" : "#ff2d2d",
-		"footer_botton_background" : "#ff2d2d",
-	}
+					var presets_1 = {
+						"color" : {
+							"secondary_color" : "",
+							"link_color" : "",
+							"header_background" : "",
+							"page_title_background" : "",
+							"body_background" : "",
+							"container_background" : "",
+							"footer_background" : "",
+							"footer_botton_background" : "",
+						},
+						"rgba" : {
+						}
+					}
 
-	function cms_presets(presets) {
-		$.each(presets_1, function(key , val){
-			$("#"+key+"-color").val(val);
-		});
-		
-		//$("#redux_save").trigger("click");
-	}
+					function cms_presets(presets) {
+						// hex
+						$.each(presets_1.color, function(key, val) {
+							$("#" + key + "-color").val(val);
+						});
+						// rgba
+						$.each(presets_1.rgba, function(key, val) {
+							$("#" + key + "-rgba").val(val);
+							$("#" + key + "-color").val(rgb2hex(val));
+						});
 
-});
+					}
+
+					// Function to convert hex format to a rgb color
+					function rgb2hex(rgb) {
+						rgb = rgb
+								.match(/^rgba?[\s+]?\([\s+]?(\d+)[\s+]?,[\s+]?(\d+)[\s+]?,[\s+]?(\d+)[\s+]?/i);
+						return (rgb && rgb.length === 4) ? "#"
+								+ ("0" + parseInt(rgb[1], 10).toString(16))
+										.slice(-2)
+								+ ("0" + parseInt(rgb[2], 10).toString(16))
+										.slice(-2)
+								+ ("0" + parseInt(rgb[3], 10).toString(16))
+										.slice(-2) : '';
+					}
+
+				});
