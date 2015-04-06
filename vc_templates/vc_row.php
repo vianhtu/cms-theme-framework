@@ -47,10 +47,10 @@ $style = ' style ="'.$row_style.'"';  //$this->buildStyle();
     
     <div class="cms-bg-overlay"></div>
 
-    <?php if($full_width): ?><div class="container"><?php endif ; ?>
+    <?php if(!$full_width): ?><div class="container"><?php endif ; ?>
     
     <?php echo wpb_js_remove_wpautop( $content ); ?>
     
-    <?php if($full_width): ?></div><?php endif ; ?>
+    <?php if(!$full_width): ?></div><?php endif ; ?>
     
 </div>

@@ -8,12 +8,12 @@
 if (shortcode_exists('vc_row')) {
     vc_add_param('vc_row', array(
         'type' => 'checkbox',
-        'heading' => __("Content Boxed", THEMENAME),
+        'heading' => __("Content Full Width", THEMENAME),
         'param_name' => 'full_width',
         'value' => array(
             'Yes' => true
         ),
-        'description' => __("Yes = content boxed, default content full width.", THEMENAME)
+        'description' => __("Yes = content full width, default content boxed.", THEMENAME)
     ));
     vc_add_param('vc_row', array(
         'type' => 'dropdown',
