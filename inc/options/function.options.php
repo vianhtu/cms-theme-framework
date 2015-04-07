@@ -381,9 +381,9 @@ $this->sections[] = array(
     )
 );
 
-/* footer botton */
+/* footer bottom */
 $this->sections[] = array(
-    'title' => __('Botton', THEMENAME),
+    'title' => __('Bottom', THEMENAME),
     'icon' => 'el-icon-bookmark',
     'subsection' => true,
     'fields' => array(
@@ -397,14 +397,14 @@ $this->sections[] = array(
         ),
         array(
             'subtitle' => __('in pixels, top right bottom left, ex: 10px 10px 10px 10px', THEMENAME),
-            'id' => 'footer_botton_margin',
+            'id' => 'footer_bottom_margin',
             'type' => 'text',
             'title' => 'Margin',
             'default' => ''
         ),
         array(
             'subtitle' => __('in pixels, top right bottom left, ex: 10px 10px 10px 10px', THEMENAME),
-            'id' => 'footer_botton_padding',
+            'id' => 'footer_bottom_padding',
             'type' => 'text',
             'title' => 'Padding',
             'default' => ''

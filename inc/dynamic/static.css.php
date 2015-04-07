@@ -118,8 +118,8 @@ class CMSSuperHeroes_StaticCss
         }
         
         /* footer botton margin & padding. */
-        if($smof_data['footer_botton_margin'] || $smof_data['footer_botton_padding']){
-            echo "footer #footer-bottom{margin:".esc_attr($smof_data['footer_botton_margin']).";padding:".esc_attr($smof_data['footer_botton_padding']).";}";
+        if($smof_data['footer_bottom_margin'] || $smof_data['footer_bottom_padding']){
+            echo "footer #footer-bottom{margin:".esc_attr($smof_data['footer_bottom_margin']).";padding:".esc_attr($smof_data['footer_bottom_padding']).";}";
         }
         return ob_get_clean();
     }
