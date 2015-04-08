@@ -31,6 +31,11 @@ $theme = wp_get_theme();
 
 define('THEMENAME', $theme->get('Name'));
 
+
+/* Run shortcodes in widget text */
+add_filter('widget_text', 'do_shortcode');
+
+
 /* Add base functions */
 require( get_template_directory() . '/inc/base.class.php' );
 
