@@ -1,1 +1,26 @@
 @CHARSET "ISO-8859-1";
+
+/*** Tab Option ***/
+.etabs li.tab {
+	display: inline-block;
+}
+.etabs li.tab a {
+	color: #c3c2b9;
+	background-color: #f8f7ee;
+    display: block;
+	font-size: 14px;
+    height: 60px;
+    line-height: 60px;
+    line-height: 60px;
+    padding: 0 50px;
+    text-align: center;
+    width: auto;
+}
+.etabs li.active a {
+	background-color: #fff;
+	-webkit-box-shadow: 0 2px 0 #6f4792 inset;
+       -moz-box-shadow: 0 2px 0 #6f4792 inset;
+        -ms-box-shadow: 0 2px 0 #6f4792 inset;
+         -o-box-shadow: 0 2px 0 #6f4792 inset;
+            box-shadow: 0 2px 0 #6f4792 inset;
+}
