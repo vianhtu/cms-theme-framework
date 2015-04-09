@@ -21,14 +21,31 @@
     width: auto;
     text-decoration: none;
     outline: none;
+    position: relative;
+    border-color: #ddd;
+    border-style: solid;
+    border-width: 1px 1px 0 1px;
 }
 .etabs li.active a {
 	background-color: #fff;
+    border-color: #ddd;
+    border-style: solid;
+    border-width: 0 1px;
+    margin-bottom: 0;
 	-webkit-box-shadow: 0 2px 0 #6f4792 inset;
        -moz-box-shadow: 0 2px 0 #6f4792 inset;
         -ms-box-shadow: 0 2px 0 #6f4792 inset;
          -o-box-shadow: 0 2px 0 #6f4792 inset;
             box-shadow: 0 2px 0 #6f4792 inset;
+}
+.etabs li.active a:before {
+	background: #fff;
+    bottom: -1px;
+    content: "";
+    height: 1px;
+    left: 0;
+    position: absolute;
+    width: 100%;
 }
 .panel-container {
 	border: 1px solid #f8f7ee;

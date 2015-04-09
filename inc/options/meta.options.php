@@ -37,7 +37,7 @@ class CMSMetaOptions
     function template_page_options() {
         ?>
 	    <div class="tab-container clearfix">
-	        <ul class='etabs'>
+	        <ul class='etabs clearfix'>
 	           <li class="tab"><a href="#tabs-general"><i class="fa fa-server"></i><?php _e('General', THEMENAME); ?></a></li>
 	           <li class="tab"><a href="#tabs-header"><i class="fa fa-diamond"></i><?php _e('Header', THEMENAME); ?></a></li>
 	           <li class="tab"><a href="#tabs-page-title"><i class="fa fa-connectdevelop"></i><?php _e('Page Title', THEMENAME); ?></a></li>
