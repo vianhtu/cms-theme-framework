@@ -480,7 +480,7 @@ class CsCoreControl
     public function metabox($params){
         ob_start();
         ?>
-		<div id="cs_metabox_field_<?php echo $params['id']; ?>" class="cs_metabox_field">
+		<div id="cs_metabox_field_<?php echo $params['id']; ?>" class="cs_metabox_field clearfix">
 		  <?php if(isset($params['label'])): ?>
 		    <label class="field-title" for="<?php echo $params['id']; ?>"><?php echo $params['label']; ?></label>
 	      <?php endif; ?>
