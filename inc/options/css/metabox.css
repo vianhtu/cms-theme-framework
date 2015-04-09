@@ -1,8 +1,12 @@
 @CHARSET "ISO-8859-1";
 
 /*** Tab Option ***/
+.etabs {
+	margin: 10px 0 0;
+}
 .etabs li.tab {
 	display: inline-block;
+	margin: 0;
 }
 .etabs li.tab a {
 	color: #c3c2b9;
@@ -25,4 +29,8 @@
         -ms-box-shadow: 0 2px 0 #6f4792 inset;
          -o-box-shadow: 0 2px 0 #6f4792 inset;
             box-shadow: 0 2px 0 #6f4792 inset;
+}
+.panel-container {
+	border: 1px solid #f8f7ee;
+    padding: 20px;
 }
