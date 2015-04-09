@@ -170,7 +170,7 @@ jQuery(document).ready(function($) {
 			menu.removeClass('tablets-nav').addClass('phones-nav');
 			break;
 		default:
-			menu.removeClass('mobile-nav tablets-nav');
+			menu.removeClass('mobile-nav tablets-nav collapse');
 			menu.find('li').removeClass('mobile-group');
 			break;
 		}	
