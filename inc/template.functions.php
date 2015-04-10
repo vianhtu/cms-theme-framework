@@ -212,10 +212,10 @@ function cms_archive_video() {
     
     if($local_video){
         /* view local. */
-        echo do_shortcode($shortcode);
+        echo do_shortcode($local_video);
     } elseif ($remote_video) {
         /* view youtobe or vimeo. */
-        echo $wp_embed->run_shortcode($shortcode);
+        echo $wp_embed->run_shortcode($remote_video);
     } elseif (has_post_thumbnail()) {
         /* view thumbnail. */
         the_post_thumbnail();
