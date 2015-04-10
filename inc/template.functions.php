@@ -283,3 +283,46 @@ function cms_archive_quote() {
         }
     }
 }
+
+/**
+ * Get icon from post format.
+ *
+ * @return multitype:string Ambigous <string, mixed>
+ * @author Fox
+ * @since 1.0.0
+ */
+function cms_archive_post_icon() {
+    $post_icon = array('icon'=>'fa fa-file-text-o','text'=>__('STANDARD', THEMENAME));
+    switch (get_post_format()) {
+        case 'gallery':
+            $post_icon['icon'] = 'fa fa-file-image-o';
+            $post_icon['text'] = __('GALLERY', THEMENAME);
+            break;
+        case 'link':
+            $post_icon['icon'] = 'fa fa-external-link';
+            $post_icon['text'] = __('LINK', THEMENAME);
+            break;
+        case 'quote':
+            $post_icon['icon'] = 'fa fa-quote-left';
+            $post_icon['text'] = __('QUOTE', THEMENAME);
+            break;
+        case 'video':
+            $post_icon['icon'] = 'fa fa-film';
+            $post_icon['text'] = __('VIDEO', THEMENAME);
+            break;
+        case 'audio':
+            $post_icon['icon'] = 'fa fa-bullhorn';
+            $post_icon['text'] = __('AUDIO', THEMENAME);
+            break;
+        default:
+            if(is_sticky()){
+                $post_icon['icon'] = 'fa fa-thumbs-o-up';
+                $post_icon['text'] = __('STICKY', THEMENAME);
+            } else {
+                $post_icon['icon'] = 'fa fa-file-text-o';
+                $post_icon['text'] = __('STANDARD', THEMENAME);
+            }
+            break;
+    }
+    echo '<i class="'.$post_icon['icon'].'"></i>';
+}

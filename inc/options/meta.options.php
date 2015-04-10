@@ -57,33 +57,36 @@ class CMSMetaOptions
                     'label' => __('Header',THEMENAME),
                     'type' => 'switch',
                     'options' => array('on'=>'1','off'=>''),
+                    'follow' => array('1'=>array('#page_header_enable'))
                 ));
-                cms_options(array(
-                    'id' => 'header_layout',
-                    'label' => __('Layout',THEMENAME),
-                    'type' => 'imegesselect',
-                    'options' => array(
-                        '' => get_template_directory_uri().'/inc/options/images/header/h-default.png',
-                        '1' => get_template_directory_uri().'/inc/options/images/header/h-default.png',
-                        '2' => get_template_directory_uri().'/inc/options/images/header/h-default.png',
-                    )
-                ));
-                $menus = array();
-                $menus[''] = 'Default';
-                $obj_menus = wp_get_nav_menus();
-                foreach ($obj_menus as $obj_menu){
-                    $menus[$obj_menu->term_id] = $obj_menu->name;
-                }
-                $navs = get_registered_nav_menus();
-                foreach ($navs as $key => $mav){
+                ?>  <div id="page_header_enable"><?php
                     cms_options(array(
-                    'id' => $key,
-                    'label' => $mav,
-                    'type' => 'select',
-                    'options' => $menus
+                        'id' => 'header_layout',
+                        'label' => __('Layout',THEMENAME),
+                        'type' => 'imegesselect',
+                        'options' => array(
+                            '' => get_template_directory_uri().'/inc/options/images/header/h-default.png',
+                            '1' => get_template_directory_uri().'/inc/options/images/header/h-default.png',
+                            '2' => get_template_directory_uri().'/inc/options/images/header/h-default.png',
+                        )
                     ));
-                }
-                ?>
+                    $menus = array();
+                    $menus[''] = 'Default';
+                    $obj_menus = wp_get_nav_menus();
+                    foreach ($obj_menus as $obj_menu){
+                        $menus[$obj_menu->term_id] = $obj_menu->name;
+                    }
+                    $navs = get_registered_nav_menus();
+                    foreach ($navs as $key => $mav){
+                        cms_options(array(
+                        'id' => $key,
+                        'label' => $mav,
+                        'type' => 'select',
+                        'options' => $menus
+                        ));
+                    }
+                    ?>
+                    </div>
                 </div>
                 <div id="tabs-1">
                 <?php
@@ -93,27 +96,30 @@ class CMSMetaOptions
                     'label' => __('Page Title',THEMENAME),
                     'type' => 'switch',
                     'options' => array('on'=>'1','off'=>''),
+                    'follow' => array('1'=>array('#page_title_enable'))
                 ));
-                cms_options(array(
-                    'id' => 'page_title_text',
-                    'label' => __('Title',THEMENAME),
-                    'type' => 'text',
-                ));
-                cms_options(array(
-                    'id' => 'page_title_type',
-                    'label' => __('Layout',THEMENAME),
-                    'type' => 'imegesselect',
-                    'options' => array(
-                        '' => get_template_directory_uri().'/inc/options/images/pagetitle/pt-s-0.png',
-                        '1' => get_template_directory_uri().'/inc/options/images/pagetitle/pt-s-1.png',
-                        '2' => get_template_directory_uri().'/inc/options/images/pagetitle/pt-s-2.png',
-                        '3' => get_template_directory_uri().'/inc/options/images/pagetitle/pt-s-3.png',
-                        '4' => get_template_directory_uri().'/inc/options/images/pagetitle/pt-s-4.png',
-                        '5' => get_template_directory_uri().'/inc/options/images/pagetitle/pt-s-5.png',
-                        '6' => get_template_directory_uri().'/inc/options/images/pagetitle/pt-s-6.png',
-                    )
-                ));
-                ?>
+                ?>  <div id="page_title_enable"><?php
+                    cms_options(array(
+                        'id' => 'page_title_text',
+                        'label' => __('Title',THEMENAME),
+                        'type' => 'text',
+                    ));
+                    cms_options(array(
+                        'id' => 'page_title_type',
+                        'label' => __('Layout',THEMENAME),
+                        'type' => 'imegesselect',
+                        'options' => array(
+                            '' => get_template_directory_uri().'/inc/options/images/pagetitle/pt-s-0.png',
+                            '1' => get_template_directory_uri().'/inc/options/images/pagetitle/pt-s-1.png',
+                            '2' => get_template_directory_uri().'/inc/options/images/pagetitle/pt-s-2.png',
+                            '3' => get_template_directory_uri().'/inc/options/images/pagetitle/pt-s-3.png',
+                            '4' => get_template_directory_uri().'/inc/options/images/pagetitle/pt-s-4.png',
+                            '5' => get_template_directory_uri().'/inc/options/images/pagetitle/pt-s-5.png',
+                            '6' => get_template_directory_uri().'/inc/options/images/pagetitle/pt-s-6.png',
+                        )
+                    ));
+                    ?>
+                    </div>
                 </div>
             </div>
         </div>
