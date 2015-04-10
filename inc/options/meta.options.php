@@ -38,9 +38,9 @@ class CMSMetaOptions
         ?>
 	    <div class="tab-container clearfix">
 	        <ul class='etabs'>
-	           <li class="tab"><a href="#tabs-general"><?php _e('General', THEMENAME); ?></a></li>
-	           <li class="tab"><a href="#tabs-header"><?php _e('Header', THEMENAME); ?></a></li>
-	           <li class="tab"><a href="#tabs-page-title"><?php _e('Page Title', THEMENAME); ?></a></li>
+	           <li class="tab"><a href="#tabs-general"><i class="fa fa-server"></i><?php _e('General', THEMENAME); ?></a></li>
+	           <li class="tab"><a href="#tabs-header"><i class="fa fa-diamond"></i><?php _e('Header', THEMENAME); ?></a></li>
+	           <li class="tab"><a href="#tabs-page-title"><i class="fa fa-connectdevelop"></i><?php _e('Page Title', THEMENAME); ?></a></li>
 	        </ul>
 	        <div class='panel-container'>
                 <div id="tabs-general">
