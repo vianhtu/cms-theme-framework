@@ -17,10 +17,9 @@ class CMSMetaOptions
     {
         global $pagenow;
         if (is_admin() && ($pagenow == 'post-new.php' || $pagenow == 'post.php')) {
-            wp_enqueue_style('tabulous', get_template_directory_uri() . '/inc/options/css/tabulous.css');
             wp_enqueue_style('metabox', get_template_directory_uri() . '/inc/options/css/metabox.css');
             
-            wp_enqueue_script('tabulous', get_template_directory_uri() . '/inc/options/js/tabulous.js');
+            wp_enqueue_script('easytabs', get_template_directory_uri() . '/inc/options/js/jquery.easytabs.min.js');
             wp_enqueue_script('metabox', get_template_directory_uri() . '/inc/options/js/metabox.js');
         }
     }
