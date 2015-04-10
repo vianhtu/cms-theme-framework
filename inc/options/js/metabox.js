@@ -2,5 +2,8 @@ jQuery(document).ready(function($) {
 	"use strict";
 	
 	/* meta tabs */
-	$('.tab-container').easytabs();
+	var meta_tabs = $('.tab-container');
+	if(meta_tabs.lenght > 0){
+		meta_tabs.easytabs();
+	}
 });
