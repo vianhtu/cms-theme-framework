@@ -3,7 +3,6 @@ jQuery(document).ready(function($) {
 	
 	/* meta tabs */
 	var meta_tabs = $('.tab-container');
-	if(meta_tabs.lenght > 0){
-		meta_tabs.easytabs();
-	}
+	meta_tabs.easytabs();
+	console.log(meta_tabs.lenght);
 });
