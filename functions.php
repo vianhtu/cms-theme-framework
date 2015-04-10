@@ -167,6 +167,20 @@ function cms_meta_data(){
 add_action('wp', 'cms_meta_data');
 
 /**
+ * Get post meta data.
+ * @author Fox
+ * @return mixed|NULL
+ */
+function cms_post_meta_data(){
+    global $post;
+    if(isset($post->ID)){
+        return json_decode(get_post_meta($post->ID, '_cms_meta_data', true));
+    } else {
+        return null;
+    }
+}
+
+/**
  * Enqueue scripts and styles for front-end.
  * @author Fox
  * @since CMS SuperHeroes 1.0
