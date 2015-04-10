@@ -22,31 +22,31 @@ function cms_page_title(){
             <?php switch ($smof_data['page_title_layout']){
                 case '1':
                     ?>
-                    <div id="page-title-text" class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><h1><?php CMSSuperHeroes_Base::getPageTitle(); ?></h1></div>
+                    <div id="page-title-text" class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><h1><?php CMSSuperHeroes_Base::getPageTitle(); ?></h1><?php cms_page_sub_title(); ?></div>
                     <div id="breadcrumb-text" class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><?php CMSSuperHeroes_Base::getBreadCrumb(); ?></div>
                     <?php
                     break;
                 case '2':
                     ?>
                     <div id="breadcrumb-text" class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><?php CMSSuperHeroes_Base::getBreadCrumb(); ?></div>
-                    <div id="page-title-text" class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><h1><?php CMSSuperHeroes_Base::getPageTitle(); ?></h1></div>
+                    <div id="page-title-text" class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><h1><?php CMSSuperHeroes_Base::getPageTitle(); ?></h1><?php cms_page_sub_title(); ?></div>
                     <?php          
                     break;
                 case '3':
                     ?>
-                    <div id="page-title-text" class="col-xs-12 col-sm-6 col-md-6 col-lg-6"><h1><?php CMSSuperHeroes_Base::getPageTitle(); ?></h1></div>
+                    <div id="page-title-text" class="col-xs-12 col-sm-6 col-md-6 col-lg-6"><h1><?php CMSSuperHeroes_Base::getPageTitle(); ?></h1><?php cms_page_sub_title(); ?></div>
                     <div id="breadcrumb-text" class="col-xs-12 col-sm-6 col-md-6 col-lg-6"><?php CMSSuperHeroes_Base::getBreadCrumb(); ?></div>
                     <?php
                     break;
                 case '4':
                     ?>
                     <div id="breadcrumb-text" class="col-xs-12 col-sm-6 col-md-6 col-lg-6"><?php CMSSuperHeroes_Base::getBreadCrumb(); ?></div>
-                    <div id="page-title-text" class="col-xs-12 col-sm-6 col-md-6 col-lg-6"><h1><?php CMSSuperHeroes_Base::getPageTitle(); ?></h1></div>
+                    <div id="page-title-text" class="col-xs-12 col-sm-6 col-md-6 col-lg-6"><h1><?php CMSSuperHeroes_Base::getPageTitle(); ?></h1><?php cms_page_sub_title(); ?></div>
                     <?php
                     break;
                 case '5':
                     ?>
-                    <div id="page-title-text" class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><h1><?php CMSSuperHeroes_Base::getPageTitle(); ?></h1></div>
+                    <div id="page-title-text" class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><h1><?php CMSSuperHeroes_Base::getPageTitle(); ?></h1><?php cms_page_sub_title(); ?></div>
                     <?php
                     break;
                 case '6':
@@ -61,6 +61,19 @@ function cms_page_title(){
         <?php
     }
 }
+
+/**
+ * Get sub page title.
+ * 
+ * @author Fox
+ */
+function cms_page_sub_title(){
+    global $cms_meta;
+    if(!empty($cms_meta->_cms_page_title_sub_text)){
+        echo '<div class="page-sub-title">'.esc_attr($cms_meta->_cms_page_title_sub_text).'</div>';
+    }
+}
+
 
 /**
  * Get Header Layout.

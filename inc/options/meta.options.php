@@ -105,6 +105,11 @@ class CMSMetaOptions
                         'type' => 'text',
                     ));
                     cms_options(array(
+                        'id' => 'page_title_sub_text',
+                        'label' => __('Sub Title',THEMENAME),
+                        'type' => 'text',
+                    ));
+                    cms_options(array(
                         'id' => 'page_title_type',
                         'label' => __('Layout',THEMENAME),
                         'type' => 'imegesselect',
