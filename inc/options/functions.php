@@ -9,6 +9,7 @@ add_action('wp_ajax_cms_update_preset_options', 'cms_update_preset_options_callb
 
 function cms_update_preset_options_callback() {
     $data = !empty($_REQUEST['data']) ? $_REQUEST['data'] : null;
+    
 }
 /**
  * Ajax get preset options.
@@ -20,6 +21,7 @@ add_action('wp_ajax_get_preset_options_callback', 'cms_get_preset_options_callba
 
 function cms_get_preset_options_callback(){
     $data = !empty($_REQUEST['data']) ? $_REQUEST['data'] : null;
+    
 }
 
 /**

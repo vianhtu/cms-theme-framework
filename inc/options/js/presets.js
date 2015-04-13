@@ -7,6 +7,13 @@ jQuery(document)
 							"#smof_data-presets_color ul li", function() {
 								var presets = $(this).find('input').val();
 								cms_presets(presets);
+								
+								$.post(ajaxurl, {
+									'action' : 'cms_update_preset_options',
+									'data' : {},
+								}, function(response) {
+									console.log(response);
+								});
 							});
 
 					var presets_1 = {
