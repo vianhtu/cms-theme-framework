@@ -51,7 +51,7 @@ class CMSSuperHeroes_StaticCss
             }
             
             /* compile scss to css */
-            $css .= $this->scss_render();
+            $css = $this->scss_render();
             
             $file = "static.css";
             
