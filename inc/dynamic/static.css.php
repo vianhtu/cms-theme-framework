@@ -41,14 +41,12 @@ class CMSSuperHeroes_StaticCss
     {
         global $smof_data;
         if (! empty($smof_data)) {
-            /* get css string */
-            $css = $this->css_render();
+            
+            /* write options to scss file */
+            file_put_contents(get_template_directory() . '/assets/scss/options.scss', $this->css_render(), LOCK_EX); // Save it
             
             /* minimize CSS styles */
             if (!$smof_data['dev_mode']) {
-                $css = CMSSuperHeroes_Base::compressCss($css);
-                
-                /* set compressed css */
                 $this->scss->setFormatter('scss_formatter_compressed');
             }
             
