@@ -85,40 +85,12 @@ class CMSSuperHeroes_StaticCss
     {
         global $smof_data;
         ob_start();
-        ?>
-        @CHARSET "ISO-8859-1";
-        <?php
         /* custom css. */ 
         echo esc_attr($smof_data['custom_css']);
-        
-        /* body margin & padding. */
-        if($smof_data['body_padding'] || $smof_data['body_margin']){
-            echo "body #page{margin:".esc_attr($smof_data['body_margin']).";padding:".esc_attr($smof_data['body_padding']).";}";
-        }
-        /* header margin & padding */
-        if($smof_data['header_padding'] || $smof_data['header_margin']){
-            echo "body #masthead{margin:".esc_attr($smof_data['header_margin']).";padding:".esc_attr($smof_data['header_padding']).";}";
+        if($smof_data['primary_color']){
+           echo '$primary : '.$smof_data['primary_color'].';';
         }
         
-        /* page title margin & padding */
-        if($smof_data['page_title_padding'] || $smof_data['page_title_margin']){
-            echo "body .page-title{margin:".esc_attr($smof_data['page_title_margin']).";padding:".esc_attr($smof_data['page_title_padding']).";}";
-        }
-        
-        /* main margin & padding */
-        if($smof_data['container_padding'] || $smof_data['container_margin']){
-            echo "body #main{margin:".esc_attr($smof_data['container_padding']).";padding:".esc_attr($smof_data['container_margin']).";}";
-        }
-        
-        /* footer top margin & padding. */
-        if($smof_data['footer_margin'] || $smof_data['footer_padding']){
-            echo "footer #footer-top{margin:".esc_attr($smof_data['footer_margin']).";padding:".esc_attr($smof_data['footer_padding']).";}";
-        }
-        
-        /* footer botton margin & padding. */
-        if($smof_data['footer_bottom_margin'] || $smof_data['footer_bottom_padding']){
-            echo "footer #footer-bottom{margin:".esc_attr($smof_data['footer_bottom_margin']).";padding:".esc_attr($smof_data['footer_bottom_padding']).";}";
-        }
         return ob_get_clean();
     }
 }

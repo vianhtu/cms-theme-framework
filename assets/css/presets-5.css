@@ -52,7 +52,6 @@
 /* =Front page template
 -------------------------------------------------------------- */
 /* Images */
-@charset "ISO-8859-1";
 /* Navigation Menu */
 .entry-meta {
   clear: both; }
@@ -407,6 +406,9 @@ a.comment-reply-link:hover, a.comment-edit-link:hover {
 
 .admin-bar #cs-header.header-fixed {
   top: 32px; }
+
+body {
+  background-color: ; }
 
 .entry-page-image {
   margin-bottom: 14px; }
