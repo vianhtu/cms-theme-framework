@@ -1,31 +1,5 @@
 <?php
 /**
- * Ajax update preset options.
- * 
- * @author Fox
- */
-
-add_action('wp_ajax_cms_update_preset_options', 'cms_update_preset_options_callback');
-
-function cms_update_preset_options_callback() {
-    $data = !empty($_REQUEST['data']) ? $_REQUEST['data'] : null;
-    echo "ffffff";
-    exit();
-}
-/**
- * Ajax get preset options.
- * 
- * @author Fox
- */
-
-add_action('wp_ajax_get_preset_options_callback', 'cms_get_preset_options_callback');
-
-function cms_get_preset_options_callback(){
-    $data = !empty($_REQUEST['data']) ? $_REQUEST['data'] : null;
-    exit();
-}
-
-/**
  * ReduxFramework Sample Config File
  * For full documentation, please visit: http://docs.reduxframework.com/
  */

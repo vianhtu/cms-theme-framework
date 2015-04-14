@@ -60,12 +60,25 @@ if(!class_exists('scssc')){
     require( get_template_directory() . '/inc/libs/scss.inc.php' );
 }
 
-/* Add Meta Core Options */
-if(is_admin() && !class_exists('CsCoreControl')){
-    /* add mete core */
-    require( get_template_directory() . '/inc/metacore/core.options.php' );
-    /* add meta options */
-    require( get_template_directory() . '/inc/options/meta.options.php' );
+/**
+ * Admin Loader.
+ * require admin files.
+ * 
+ * @author Fox
+ */
+if(is_admin()){
+    /* Add Meta Core Options */
+    if(!class_exists('CsCoreControl')){
+        
+        /* add mete core */
+        require( get_template_directory() . '/inc/metacore/core.options.php' );
+        
+        /* add meta options */
+        require( get_template_directory() . '/inc/options/meta.options.php' );
+    }
+    
+    /* add presets */
+    require( get_template_directory() . '/inc/options/presets.php' );
 }
 
 /* Add Template functions */
