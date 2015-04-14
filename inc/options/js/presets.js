@@ -23,7 +23,7 @@ jQuery(document).ready(function($) {
 				$("#" + key + "-color").val(val);
 				$("#" + key + "-color").trigger("change");
 			} else {
-				if(val.rgba != undefined && val.rgba != ''){
+				if(val.color != undefined && val.color != ''){
 					$('input#' + key + '-color').val(val.color);
 					$('input#' + key + '-rgba').val(val.rgba);
 					$('input#' + key + '-alpha').val(val.alpha);
