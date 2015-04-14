@@ -18,20 +18,41 @@ jQuery(document).ready(function($) {
 	});
 
 	function cms_set_presets(presets) {
+		"use strict";
+		
 		$.each(presets, function(key, val) {
+			
+			var item = $('#smof_data-' + key);
+			var item_view = $('#smof_data-' + key + ' .sp-preview-inner');
+			var color = $('#' + key + '-color');
+			
 			if(!$.isPlainObject(val)){
-				$("#" + key + "-color").val(val);
-				$("#" + key + "-color").trigger("change");
+				/* hex. */
+				color.val(val);
+				color.trigger("change");
 			} else {
-				if(val.color != undefined && val.color != ''){
+				/* rbga. */
+				if(val['rgba'] != undefined && val['rgba'] != '' && val['color'] != undefined && val['color'] != ''){
+					
+					item.find('input.redux-color-rgba').attr('value', val.color).attr('data-color', val.rgba).attr('data-current-color', val.color);
 					$('input#' + key + '-color').val(val.color);
 					$('input#' + key + '-rgba').val(val.rgba);
 					$('input#' + key + '-alpha').val(val.alpha);
-					$('#smof_data-' + key + ' .sp-preview-inner').css("background-color", val.rgba);
-				} else if (val['background-color'] != undefined && val['background-color'] != '') {
-					$("#" + key + "-color").val(val['background-color']);
-					$("#" + key + "-color").trigger("change");
+					
+					item_view.css("background-color", val.rgba);
+					
+				} else {
+					item_view.attr("style", null);
+					item.find('input.redux-color-rgba').attr('value', "").attr('data-color', "").attr('data-current-color', "");
+					$('input#' + key + '-color').val("");
+					$('input#' + key + '-rgba').val("");
+					$('input#' + key + '-alpha').val("");
 				}
+			}
+			/* bg hex. */
+			if (val['background-color'] != undefined && val['background-color'] != '') {
+				color.val(val['background-color']);
+				color.trigger("change");
 			}
 		});
 	}

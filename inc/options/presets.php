@@ -50,7 +50,7 @@ function cms_preset_save_options()
     
     $theme_info = wp_get_theme();
     
-    if ($smof_data['presets_color']) {
+    if (isset($smof_data['presets_color'])) {
         
         $preset_name = "_" . $theme_info->get("TextDomain") . "_preset_" . $smof_data['presets_color'];
         
@@ -80,14 +80,11 @@ function cms_get_preset_options_callback()
 {
     header('Content-Type: application/json');
     
-    $preset = ! empty($_REQUEST['preset']) ? $_REQUEST['preset'] : null;
+    $preset = ! empty($_REQUEST['preset']) ? $_REQUEST['preset'] : '0';
     
-    if ($preset != null) {
-        
-        $theme_info = wp_get_theme();
-        
-        $preset = get_option("_" . $theme_info->get("TextDomain") . "_preset_" . $preset, null);
-    }
+    $theme_info = wp_get_theme();
+    
+    $preset = get_option("_" . $theme_info->get("TextDomain") . "_preset_" . $preset, null);
     
     die($preset);
 }
