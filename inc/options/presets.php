@@ -11,7 +11,13 @@ function cms_presets()
     return array(
         'primary_color',
         'secondary_color',
-        'link_color'
+        'link_color',
+        'header_background',
+        'page_title_background',
+        'body_background',
+        'container_background',
+        'footer_background',
+        'footer_botton_background',
     );
 }
 
