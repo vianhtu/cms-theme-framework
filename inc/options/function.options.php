@@ -436,7 +436,6 @@ $this->sections[] = array(
             'title' => __('Presets Color', THEMENAME),
             'default' => '',
             'options' => array(
-                '0' => get_template_directory_uri().'/inc/options/images/presets/pr-c-0.png',
                 '1' => get_template_directory_uri().'/inc/options/images/presets/pr-c-1.png',
                 '2' => get_template_directory_uri().'/inc/options/images/presets/pr-c-2.png',
                 '3' => get_template_directory_uri().'/inc/options/images/presets/pr-c-3.png',
