@@ -12,29 +12,27 @@ jQuery(document).ready(function($) {
 		}, function(response) {
 			/* set data. */
 			if(response){
-				cms_presets(response);
+				cms_set_presets(response);
 			}
 		});
 	});
 
-	function cms_presets(presets) {
+	function cms_set_presets(presets) {
 		$.each(presets, function(key, val) {
-			$("#" + key + "-color").val(val);
-			$("#" + key + "-color").trigger("change");
+			if(!$.isPlainObject(val)){
+				$("#" + key + "-color").val(val);
+				$("#" + key + "-color").trigger("change");
+			} else {
+				if(val.rgba != undefined && val.rgba != ''){
+					$('input#' + key + '-color').val(val.color);
+					$('input#' + key + '-rgba').val(val.rgba);
+					$('input#' + key + '-alpha').val(val.alpha);
+					$('#smof_data-' + key + ' .sp-preview-inner').css("background-color", val.rgba);
+				} else if (val['background-color'] != undefined && val['background-color'] != '') {
+					$("#" + key + "-color").val(val['background-color']);
+					$("#" + key + "-color").trigger("change");
+				}
+			}
 		});
 	}
-
-	// Function to convert hex format to a rgb color
-	function rgb2hex(rgb) {
-		rgb = rgb
-				.match(/^rgba?[\s+]?\([\s+]?(\d+)[\s+]?,[\s+]?(\d+)[\s+]?,[\s+]?(\d+)[\s+]?/i);
-		return (rgb && rgb.length === 4) ? "#"
-				+ ("0" + parseInt(rgb[1], 10).toString(16))
-						.slice(-2)
-				+ ("0" + parseInt(rgb[2], 10).toString(16))
-						.slice(-2)
-				+ ("0" + parseInt(rgb[3], 10).toString(16))
-						.slice(-2) : '';
-	}
-
 });
