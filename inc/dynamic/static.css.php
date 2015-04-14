@@ -55,7 +55,7 @@ class CMSSuperHeroes_StaticCss
             
             $file = "static.css";
             
-            if($smof_data['presets_color']){
+            if($smof_data['presets_color'] != '0'){
                 $file = "presets-".$smof_data['presets_color'].".css";
             }
             
