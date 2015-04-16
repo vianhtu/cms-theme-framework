@@ -212,8 +212,13 @@ class CMS_Base
         return !empty($matches[0]) ? $matches[0] : null ;
     }
     
-    
-    public static function getListLocalFonts(){
+    /**
+     * Get list name local fonts.
+     * 
+     * @return multitype:unknown Ambigous <string, mixed>
+     * @since 1.0.0
+     */
+    public static function getListLocalFontsName(){
         
         /* array fonts. */
         $localfonts = array();
@@ -234,6 +239,33 @@ class CMS_Base
         closedir($handle);
         
         return $localfonts;
+    }
+    
+    public static function getFontFace($name = '' , $selecter = ''){
+        
+        $css = '';
+        $font_part = get_template_directory_uri()."/assets/fonts/".esc_attr($name);
+        
+        /* load font files. */
+        if($name){
+            $css .= "@font-face {".
+                         "font-family: '".esc_attr($name)."';".
+                         "src: url('$font_part.eot');"./* IE9 Compat Modes */
+                         "src:". 
+                             "url('$font_part.eot?#iefix') format('embedded-opentype'),'"./* IE6-IE8 */
+                             "url('$font_part.woff') format('woff'),"./* Pretty Modern Browsers */
+                             "url('$font_part.ttf') format('truetype'),"./* Safari, Android, iOS */
+                             "url('$font_part.svg#".esc_attr($name)."') format('svg');"./* Legacy iOS */
+                         "font-weight: normal;".
+                         "font-style: normal;".
+                    "}";
+            /* add font selecter. */
+            if($selecter){
+                $css .= esc_attr($selecter)."{font-family:'".esc_attr($name)."';}";
+            }
+        }
+        
+        echo $css;
     }
     
     /**

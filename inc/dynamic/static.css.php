@@ -83,10 +83,15 @@ class CMSSuperHeroes_StaticCss
      */
     public function css_render()
     {
-        global $smof_data;
+        global $smof_data, $cms_base;
+        
         ob_start();
         /* custom css. */ 
         echo esc_attr($smof_data['custom_css']);
+        /* local fonts */
+        $cms_base->getFontFace($smof_data['local-fonts-1'], $smof_data['local-fonts-selector-1']);
+        $cms_base->getFontFace($smof_data['local-fonts-2'], $smof_data['local-fonts-selector-2']);
+        
         if($smof_data['primary_color']){
            echo '$primary : '.$smof_data['primary_color'].';';
         }
