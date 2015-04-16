@@ -274,7 +274,7 @@ function cms_scripts_styles() {
 	}
 	
 	/* Load static css*/
-	$static_css = $smof_data['presets_color'] ? "presets-".$smof_data['presets_color'].".css" : "static.css" ;
+	$static_css = isset($smof_data['presets_color']) && $smof_data['presets_color'] ? "presets-".$smof_data['presets_color'].".css" : "static.css" ;
 	
 	wp_enqueue_style('cmssuperheroes-static', get_template_directory_uri() . "/assets/css/$static_css", array( 'cmssuperheroes-style' ), '1.0.0');
 }
