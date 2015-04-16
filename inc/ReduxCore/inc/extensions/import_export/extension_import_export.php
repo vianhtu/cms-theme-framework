@@ -57,7 +57,7 @@
 
                 $this->parent = $parent;
                 if ( empty( $this->extension_dir ) ) {
-                    $this->extension_dir = trailingslashit( str_replace( '\\', '/', dirname( __FILE__ ) ) );
+                    //$this->extension_dir = trailingslashit( str_replace( '\\', '/', dirname( __FILE__ ) ) );
                 }
                 $this->field_name = 'import_export';
 
@@ -120,6 +120,7 @@
                     'title' => __( 'Import / Export', 'redux-framework' ),
                     'heading' => '',
                     'icon' => 'el el-refresh',
+                    'customizer' => false,
                     'fields' => array(
                         array(
                             'id' => 'redux_import_export',

@@ -835,7 +835,22 @@ class Parsedown
 
     protected function identifyReference($Line)
     {
-        
+        if (preg_match('/^\[(.+?)\]:[ ]*<?(\S+?)>?(?:[ ]+["\'(](.+)["\')])?[ ]*$/', $Line['text'], $matches))
+        {
+            $Definition = array(
+                'id' => strtolower($matches[1]),
+                'data' => array(
+                    'url' => $matches[2],
+                ),
+            );
+
+            if (isset($matches[3]))
+            {
+                $Definition['data']['title'] = $matches[3];
+            }
+
+            return $Definition;
+        }
     }
 
     #
