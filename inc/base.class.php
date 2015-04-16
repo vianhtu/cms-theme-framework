@@ -169,36 +169,6 @@ class CMS_Base
     }
     
     /**
-     * Hooked class method by wp_footer WP action to output shortcodes css editor settings from page meta data.
-     *
-     * Method gets post meta value for page by key '_wpb_shortcodes_custom_css' and if it is not empty
-     * outputs css string wrapped into style tag.
-     *
-     * @since  4.2
-     * @access public
-     *
-     * @param integer $id
-     *
-     */
-    public static function addShortcodesCustomCss() {
-        if ( !is_singular() ) {
-            return;
-        }
-        if ( empty($id )) {
-            $id = get_the_ID();
-        }
-        
-        if ( $id ) {
-            $shortcodes_custom_css = get_post_meta( $id, '_cms_shortcodes_custom_css', true );
-            if ( !empty( $shortcodes_custom_css ) ) {
-                echo '<style type="text/css" data-type="cms_shortcodes-custom-css">';
-                echo $shortcodes_custom_css;
-                echo '</style>';
-            }
-        }
-    }
-    
-    /**
      * Get Shortcode From Content
      * 
      * @param string $shortcode

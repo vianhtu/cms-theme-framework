@@ -261,7 +261,7 @@ function cms_archive_gallery(){
                 $attachment_image = wp_get_attachment_image_src($image_id, 'full', false);
                 if($attachment_image[0] != ''):?>
     				<div class="item <?php if( $i == 0 ){ echo 'active'; } ?>">
-                		<img style="width:100%;" data-src="holder.js" src="<?php echo $attachment_image[0];?>" alt="" />
+                		<img style="width:100%;" data-src="holder.js" src="<?php echo esc_url($attachment_image[0]);?>" alt="" />
                 	</div>
                 <?php $i++; endif; ?>
             <?php endforeach; ?>
