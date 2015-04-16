@@ -168,7 +168,7 @@ class CsCoreControl
 	    <input type="text"
 	    name="<?php echo esc_attr($params['id']); ?>"
 		id="<?php echo esc_attr($params['id']); ?>"
-		class="xvalue <?php echo $indent; ?>"
+		class="xvalue <?php echo esc_attr($indent); ?>"
 		value="<?php if(isset($params['value'])){ echo esc_attr($params['value']);} ?>"
 		placeholder="<?php if(isset($params['placeholder'])){ echo esc_attr($params['placeholder']);} ?>" />
         </div>
@@ -195,7 +195,7 @@ class CsCoreControl
         <div class="select-field csfield">
         <select name="<?php echo esc_attr($params['id']); ?>" id="<?php echo esc_attr($params['id']); ?>">
         	<?php foreach ($params['options'] as $key => $option): ?>
-        		<option value="<?php echo $key; ?>" <?php if(isset($params['value']) && ($params['value'] == $key)){ echo "selected"; } ?>><?php echo esc_attr($option); ?></option>
+        		<option value="<?php echo esc_attr($key); ?>" <?php if(isset($params['value']) && ($params['value'] == $key)){ echo "selected"; } ?>><?php echo esc_attr($option); ?></option>
         	<?php endforeach; ?>
         </select>
         </div>
@@ -211,7 +211,7 @@ class CsCoreControl
                 <li data-value="<?php echo esc_attr($key); ?>" class="<?php if($params['value'] == $key) { echo 'active'; } ?>"><img alt="" src="<?php echo esc_url($image) ?>"></li>
                 <?php endforeach; ?>
             </ul>
-            <input type="hidden" name="<?php echo esc_attr($params['id']); ?>" id="<?php echo esc_attr($params['id']); ?>" class="xvalue" value="<?php echo $params['value']; ?>"/>
+            <input type="hidden" name="<?php echo esc_attr($params['id']); ?>" id="<?php echo esc_attr($params['id']); ?>" class="xvalue" value="<?php echo esc_attr($params['value']); ?>"/>
         </div>
 	    <?php
         return ob_get_clean();
@@ -226,7 +226,7 @@ class CsCoreControl
         <div class="multiple-field">
         <select multiple="multiple">
         	<?php foreach ($params['options'] as $key => $option): ?>
-        		<option value="<?php echo $key; ?>" <?php if(in_array($key, $selected)){ echo 'selected="selected"'; } ?>><?php echo esc_attr($option); ?></option>
+        		<option value="<?php echo esc_attr($key); ?>" <?php if(in_array($key, $selected)){ echo 'selected="selected"'; } ?>><?php echo esc_attr($option); ?></option>
         	<?php endforeach; ?>
         </select>
     	<input type="hidden" name="<?php echo esc_attr($params['id']); ?>" id="<?php echo esc_attr($params['id']); ?>" value="<?php echo implode(",", $selected); ?>"/>
@@ -252,17 +252,17 @@ class CsCoreControl
         ?>
             <div class="slider-field xfield">
                 <div class="slider-main">
-                    <div class="slider-item" data-start="<?php echo $value; ?>" data-max="<?php echo $params['max']; ?>" data-min="<?php echo $params['min']; ?>"></div>
+                    <div class="slider-item" data-start="<?php echo esc_attr($value); ?>" data-max="<?php echo esc_attr($params['max']); ?>" data-min="<?php echo esc_attr($params['min']); ?>"></div>
                     <div class="slider-max">
                         <span class="curent"></span>
-                        <span class="unit"><?php if(isset($params['unit'])){ echo $params['unit']; } ?></span>
+                        <span class="unit"><?php if(isset($params['unit'])){ echo esc_attr($params['unit']); } ?></span>
                     </div>
                 </div>
                 <input type="hidden"
         	    name="<?php echo esc_attr($params['id']); ?>"
         		id="<?php echo esc_attr($params['id']); ?>"
         		class="xvalue"
-        		value="<?php echo $value; ?>"/>
+        		value="<?php echo esc_attr($value); ?>"/>
             </div>
             <?php
             return ob_get_clean();
@@ -280,7 +280,7 @@ class CsCoreControl
         }
         ob_start();
         ?>
-        <div class="color-field csfield" <?php echo $data; ?>>
+        <div class="color-field csfield" <?php echo esc_attr($data); ?>>
             <input type="text"
             name="<?php echo esc_attr($params['id']); ?>"
             id="<?php echo esc_attr($params['id']); ?>"
@@ -308,7 +308,7 @@ class CsCoreControl
         ?>
         <div class="switch-field csfield<?php if($params['value'] == $options['on']){ echo ' on'; } else { echo ' off'; } ?>"<?php echo implode(' ', $data); ?>>
             <span></span>
-            <input type="hidden" name="<?php echo esc_attr($params['id']); ?>" id="<?php echo esc_attr($params['id']); ?>" class="xvalue" value="<?php echo $params['value']; ?>"/>
+            <input type="hidden" name="<?php echo esc_attr($params['id']); ?>" id="<?php echo esc_attr($params['id']); ?>" class="xvalue" value="<?php echo esc_attr($params['value']); ?>"/>
         </div>
         <?php
         return ob_get_clean();
@@ -346,7 +346,7 @@ class CsCoreControl
             foreach ($selected as $value):
                 $attachment_image = wp_get_attachment_image_src($value,'thumbnail');
                 if (count($attachment_image) > 0):?>
-                <li class="items" data-id="<?php echo $value; ?>" style="background-image:url(<?php echo esc_url($attachment_image[0]);?>);background-size:cover;">
+                <li class="items" data-id="<?php echo esc_attr($value); ?>" style="background-image:url(<?php echo esc_url($attachment_image[0]);?>);background-size:cover;">
                     <i class="edit dashicons dashicons-plus-alt" title="<?php _e('Replace Image', CSCORE_NAME); ?>"></i>
                     <i class="remove dashicons dashicons-dismiss" title="<?php _e('Remove Image', CSCORE_NAME); ?>"></i>
                 </li>
@@ -367,7 +367,7 @@ class CsCoreControl
         ob_start();
         ?>
         <div class="file-field csfield">
-    		<input name="<?php echo esc_attr($params['id']); ?>" class="upload_field" id="<?php echo esc_attr($params['id']); ?>" type="text" value="<?php if(!empty($params['value'])){ echo $params['value'];} ?>" placeholder="<?php echo $params['placeholder']; ?>"/>
+    		<input name="<?php echo esc_attr($params['id']); ?>" class="upload_field" id="<?php echo esc_attr($params['id']); ?>" type="text" value="<?php if(!empty($params['value'])){ echo esc_attr($params['value']);} ?>" placeholder="<?php echo esc_attr($params['placeholder']); ?>"/>
     		<input class="cshero_upload_button button button-primary" type="button" value="Browse" />
     		<input data-id="<?php echo esc_attr($params['id']); ?>" class="cshero_clear_button button button-danger" type="button" value="Clear" />
         </div>
@@ -382,7 +382,7 @@ class CsCoreControl
         }
         ob_start();
         ?>
-            <div class="date-field" data-type="<?php echo $params['field']; ?>" data-format="<?php if(!empty($params['format'])){ echo $params['format']; } else { echo 'm/d/Y'; } ?>">
+            <div class="date-field" data-type="<?php echo esc_attr($params['field']); ?>" data-format="<?php if(!empty($params['format'])){ echo esc_attr($params['format']); } else { echo 'm/d/Y'; } ?>">
                 <?php switch ($params['field']){
                     case 'date':
                         echo '<i class="fa fa-calendar-o"></i>';
@@ -394,7 +394,7 @@ class CsCoreControl
                         echo '<i class="fa fa-calendar"></i>';
                         break;
                 } ?>
-                <input type="text" name="<?php echo esc_attr($params['id']); ?>" id="<?php echo esc_attr($params['id']); ?>" class="text-indent xvalue" value="<?php if(!empty($params['value'])){ echo $params['value'];} ?>" placeholder="<?php echo $params['placeholder']; ?>"/>
+                <input type="text" name="<?php echo esc_attr($params['id']); ?>" id="<?php echo esc_attr($params['id']); ?>" class="text-indent xvalue" value="<?php if(!empty($params['value'])){ echo esc_attr($params['value']);} ?>" placeholder="<?php echo esc_attr($params['placeholder']); ?>"/>
             </div>
             <?php
             return ob_get_clean();
@@ -407,7 +407,7 @@ class CsCoreControl
                 <i class="fa fa-caret-up"></i>
                 <i class="fa fa-caret-down"></i>
             </div>
-            <input type="text" name="<?php echo esc_attr($params['id']); ?>" id="<?php echo esc_attr($params['id']); ?>" class="text-indent xvalue" value="<?php echo $params['value']; ?>"/>
+            <input type="text" name="<?php echo esc_attr($params['id']); ?>" id="<?php echo esc_attr($params['id']); ?>" class="text-indent xvalue" value="<?php echo esc_attr($params['value']); ?>"/>
             <?php if(!empty($params['format'])): ?>
             <span class="follow-right"><?php echo esc_attr($params['format']); ?></span>
             <?php endif; ?>
@@ -480,9 +480,9 @@ class CsCoreControl
     public function metabox($params){
         ob_start();
         ?>
-		<div id="cs_metabox_field_<?php echo $params['id']; ?>" class="cs_metabox_field clearfix">
+		<div id="cs_metabox_field_<?php echo esc_attr($params['id']); ?>" class="cs_metabox_field clearfix">
 		  <?php if(isset($params['label'])): ?>
-		    <label class="field-title" for="<?php echo $params['id']; ?>"><?php echo $params['label']; ?></label>
+		    <label class="field-title" for="<?php echo esc_attr($params['id']); ?>"><?php echo esc_attr($params['label']); ?></label>
 	      <?php endif; ?>
 	      <div class="field<?php if(isset($params['class'])){ echo ' class="'.$params['class'].'"'; } ?>">
 	          <?php echo $this->renderType($params); ?>
@@ -499,7 +499,7 @@ class CsCoreControl
         ?>
         <tr class="form-field">
         	<th scope="row" valign="top">
-        	   <label class="field-title" for="<?php echo $params['id']; ?>"><?php if(isset($params['label'])){ echo $params['label'];} ?></label>
+        	   <label class="field-title" for="<?php echo esc_attr($params['id']); ?>"><?php if(isset($params['label'])){ echo esc_attr($params['label']);} ?></label>
         	</th>
         	<td<?php if(isset($params['class'])){ echo ' class="'.$params['class'].'"'; } ?>>
                <?php echo $this->renderType($params); ?>
