@@ -44,8 +44,6 @@ class CMSSuperHeroes_DynamicCss
             height:<?php echo esc_attr($smof_data['main_logo_height']); ?>;
         }
         <?php
-        /*-------------------------- shortcodes-custom-css -------------------------*/
-        $cms_base->addShortcodesCustomCss();
         return ob_get_clean();
     }
 }
