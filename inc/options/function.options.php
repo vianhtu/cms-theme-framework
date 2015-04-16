@@ -1,7 +1,7 @@
 <?php
 global $cms_base;
 /* get local fonts. */
-$local_fonts = is_admin() ? $cms_base->getListLocalFonts() : array() ;
+$local_fonts = is_admin() ? $cms_base->getListLocalFontsName() : array() ;
 
 /**
  * Home Options
@@ -564,10 +564,43 @@ $this->sections[] = array(
         array(
             'id'       => 'local-fonts-1',
             'type'     => 'select',
-            'title'    => __( 'Fonts', THEMENAME ),
+            'title'    => __( 'Fonts 1', THEMENAME ),
             'options'  => $local_fonts,
             'default'  => '',
         ),
+        array(
+            'id' => 'local-fonts-selector-1',
+            'type' => 'textarea',
+            'title' => __('Selector 1', THEMENAME),
+            'subtitle' => __('add html tags ID or class (body,a,.class,#id)', THEMENAME),
+            'validate' => 'no_html',
+            'default' => '',
+            'required' => array(
+                0 => 'local-fonts-1',
+                1 => '!=',
+                2 => ''
+            )
+        ),
+        array(
+            'id'       => 'local-fonts-2',
+            'type'     => 'select',
+            'title'    => __( 'Fonts 2', THEMENAME ),
+            'options'  => $local_fonts,
+            'default'  => '',
+        ),
+        array(
+            'id' => 'local-fonts-selector-2',
+            'type' => 'textarea',
+            'title' => __('Selector 2', THEMENAME),
+            'subtitle' => __('add html tags ID or class (body,a,.class,#id)', THEMENAME),
+            'validate' => 'no_html',
+            'default' => '',
+            'required' => array(
+                0 => 'local-fonts-2',
+                1 => '!=',
+                2 => ''
+            )
+        )
     )
 );
 
