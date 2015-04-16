@@ -212,6 +212,30 @@ class CMSSuperHeroes_Base
         return !empty($matches[0]) ? $matches[0] : null ;
     }
     
+    
+    public static function getListLocalFonts(){
+        
+        /* array fonts. */
+        $localfonts = array();
+        $localfonts[''] = __('None', THEMENAME);
+        
+        /* folder fonts. */
+        $font_path = get_template_directory() . "/assets/fonts";
+        
+        if (!$handle = opendir($font_path)) {
+        } else {
+            while (false !== ($file = readdir($handle))) {
+                if (strpos($file, ".ttf") !== false || strpos($file, ".eot") !== false || strpos($file, ".svg") !== false || strpos($file, ".woff") !== false) {
+                    $file = str_replace(array('.ttf', '.eot', '.svg', '.woff'), '', $file);
+                    $localfonts[$file] = $file;
+                }
+            }
+        }
+        closedir($handle);
+        
+        return $localfonts;
+    }
+    
     /**
      * minimize CSS styles
      *

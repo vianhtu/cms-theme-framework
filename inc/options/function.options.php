@@ -1,4 +1,7 @@
 <?php
+/* get local fonts. */
+$local_fonts = CMSSuperHeroes_Base::getListLocalFonts();
+
 /**
  * Home Options
  * 
