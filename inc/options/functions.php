@@ -179,20 +179,10 @@ if ( ! class_exists( 'Redux_Framework_sample_config' ) ) {
 
             // SOCIAL ICONS -> Setup custom links in the footer for quick links in your panel footer icons.
             $this->args['share_icons'][] = array(
-                'url'   => '#',
+                'url'   => 'https://github.com/supperhero',
                 'title' => 'Visit us on GitHub',
-                'icon'  => 'el-icon-github'
+                'icon'  => 'el el-icon-github'
                 //'img'   => '', // You can use icon OR img. IMG needs to be a full URL.
-            );
-            $this->args['share_icons'][] = array(
-                'url'   => '#',
-                'title' => 'Like us on Facebook',
-                'icon'  => 'el-icon-facebook'
-            );
-            $this->args['share_icons'][] = array(
-                'url'   => '#',
-                'title' => 'Follow us on Twitter',
-                'icon'  => 'el-icon-twitter'
             );
 
             // Panel Intro text -> before the form
