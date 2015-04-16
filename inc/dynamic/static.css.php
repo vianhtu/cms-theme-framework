@@ -91,10 +91,7 @@ class CMSSuperHeroes_StaticCss
         /* local fonts */
         $cms_base->getFontFace($smof_data['local-fonts-1'], $smof_data['local-fonts-selector-1']);
         $cms_base->getFontFace($smof_data['local-fonts-2'], $smof_data['local-fonts-selector-2']);
-        
-        if($smof_data['primary_color']){
-           echo '$primary : '.$smof_data['primary_color'].';';
-        }
+        /* forward options to scss. */
         
         return ob_get_clean();
     }

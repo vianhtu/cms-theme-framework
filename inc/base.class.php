@@ -222,7 +222,6 @@ class CMS_Base
         
         /* array fonts. */
         $localfonts = array();
-        $localfonts[''] = __('None', THEMENAME);
         
         /* folder fonts. */
         $font_path = get_template_directory() . "/assets/fonts";
@@ -252,7 +251,7 @@ class CMS_Base
                          "font-family: '".esc_attr($name)."';".
                          "src: url('$font_part.eot');"./* IE9 Compat Modes */
                          "src:". 
-                             "url('$font_part.eot?#iefix') format('embedded-opentype'),'"./* IE6-IE8 */
+                             "url('$font_part.eot?#iefix') format('embedded-opentype'),"./* IE6-IE8 */
                              "url('$font_part.woff') format('woff'),"./* Pretty Modern Browsers */
                              "url('$font_part.ttf') format('truetype'),"./* Safari, Android, iOS */
                              "url('$font_part.svg#".esc_attr($name)."') format('svg');"./* Legacy iOS */
