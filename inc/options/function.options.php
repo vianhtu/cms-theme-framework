@@ -1,6 +1,7 @@
 <?php
+global $cms_base;
 /* get local fonts. */
-$local_fonts = CMSSuperHeroes_Base::getListLocalFonts();
+$local_fonts = is_admin() ? $cms_base->getListLocalFonts() : array() ;
 
 /**
  * Home Options
@@ -551,6 +552,22 @@ $this->sections[] = array(
             'output'  => array('h6'),
             'units' => 'px',
         )
+    )
+);
+
+/* local fonts. */
+$this->sections[] = array(
+    'title' => __('Local Fonts', THEMENAME),
+    'icon' => 'el-icon-bookmark',
+    'subsection' => true,
+    'fields' => array(
+        array(
+            'id'       => 'local-fonts-1',
+            'type'     => 'select',
+            'title'    => __( 'Fonts', THEMENAME ),
+            'options'  => $local_fonts,
+            'default'  => '',
+        ),
     )
 );
 

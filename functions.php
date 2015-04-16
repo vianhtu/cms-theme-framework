@@ -25,7 +25,7 @@
 /**
  * Add global values.
  */
-global $smof_data, $cms_meta;
+global $smof_data, $cms_meta, $cms_base;
 
 $theme = wp_get_theme();
 
@@ -38,6 +38,10 @@ add_filter('widget_text', 'do_shortcode');
 
 /* Add base functions */
 require( get_template_directory() . '/inc/base.class.php' );
+
+if(class_exists("CMS_Base")){
+    $cms_base = new CMS_Base();
+}
 
 /* Add ReduxFramework. */
 if(!class_exists('ReduxFramework')){

@@ -5,7 +5,7 @@
  * @author Fox
  */
 function cms_page_title(){
-    global $smof_data, $cms_meta;
+    global $smof_data, $cms_meta, $cms_base;
     
     /* page options */
     if(isset($cms_meta->_cms_page_title) && $cms_meta->_cms_page_title){
@@ -22,36 +22,36 @@ function cms_page_title(){
             <?php switch ($smof_data['page_title_layout']){
                 case '1':
                     ?>
-                    <div id="page-title-text" class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><h1><?php CMSSuperHeroes_Base::getPageTitle(); ?></h1><?php cms_page_sub_title(); ?></div>
-                    <div id="breadcrumb-text" class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><?php CMSSuperHeroes_Base::getBreadCrumb(); ?></div>
+                    <div id="page-title-text" class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><h1><?php $cms_base->getPageTitle(); ?></h1><?php cms_page_sub_title(); ?></div>
+                    <div id="breadcrumb-text" class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><?php $cms_base->getBreadCrumb(); ?></div>
                     <?php
                     break;
                 case '2':
                     ?>
-                    <div id="breadcrumb-text" class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><?php CMSSuperHeroes_Base::getBreadCrumb(); ?></div>
-                    <div id="page-title-text" class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><h1><?php CMSSuperHeroes_Base::getPageTitle(); ?></h1><?php cms_page_sub_title(); ?></div>
+                    <div id="breadcrumb-text" class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><?php $cms_base->getBreadCrumb(); ?></div>
+                    <div id="page-title-text" class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><h1><?php $cms_base->getPageTitle(); ?></h1><?php cms_page_sub_title(); ?></div>
                     <?php          
                     break;
                 case '3':
                     ?>
-                    <div id="page-title-text" class="col-xs-12 col-sm-6 col-md-6 col-lg-6"><h1><?php CMSSuperHeroes_Base::getPageTitle(); ?></h1><?php cms_page_sub_title(); ?></div>
-                    <div id="breadcrumb-text" class="col-xs-12 col-sm-6 col-md-6 col-lg-6"><?php CMSSuperHeroes_Base::getBreadCrumb(); ?></div>
+                    <div id="page-title-text" class="col-xs-12 col-sm-6 col-md-6 col-lg-6"><h1><?php $cms_base->getPageTitle(); ?></h1><?php cms_page_sub_title(); ?></div>
+                    <div id="breadcrumb-text" class="col-xs-12 col-sm-6 col-md-6 col-lg-6"><?php $cms_base->getBreadCrumb(); ?></div>
                     <?php
                     break;
                 case '4':
                     ?>
-                    <div id="breadcrumb-text" class="col-xs-12 col-sm-6 col-md-6 col-lg-6"><?php CMSSuperHeroes_Base::getBreadCrumb(); ?></div>
-                    <div id="page-title-text" class="col-xs-12 col-sm-6 col-md-6 col-lg-6"><h1><?php CMSSuperHeroes_Base::getPageTitle(); ?></h1><?php cms_page_sub_title(); ?></div>
+                    <div id="breadcrumb-text" class="col-xs-12 col-sm-6 col-md-6 col-lg-6"><?php $cms_base->getBreadCrumb(); ?></div>
+                    <div id="page-title-text" class="col-xs-12 col-sm-6 col-md-6 col-lg-6"><h1><?php $cms_base->getPageTitle(); ?></h1><?php cms_page_sub_title(); ?></div>
                     <?php
                     break;
                 case '5':
                     ?>
-                    <div id="page-title-text" class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><h1><?php CMSSuperHeroes_Base::getPageTitle(); ?></h1><?php cms_page_sub_title(); ?></div>
+                    <div id="page-title-text" class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><h1><?php $cms_base->getPageTitle(); ?></h1><?php cms_page_sub_title(); ?></div>
                     <?php
                     break;
                 case '6':
                     ?>
-                    <div id="breadcrumb-text" class="col-xs-12 col-sm-6 col-md-6 col-lg-6"><?php CMSSuperHeroes_Base::getBreadCrumb(); ?></div>
+                    <div id="breadcrumb-text" class="col-xs-12 col-sm-6 col-md-6 col-lg-6"><?php $cms_base->getBreadCrumb(); ?></div>
                     <?php
                     break;
             } ?>
@@ -195,8 +195,10 @@ function cms_archive_readmore(){
  * @param string $after
  */
 function cms_archive_audio() {
+    global $cms_base;
+    
     /* get shortcode audio. */
-    $shortcode = CMSSuperHeroes_Base::getShortcodeFromContent('audio', get_the_content());
+    $shortcode = $cms_base->getShortcodeFromContent('audio', get_the_content());
     
     if($shortcode != ''){
         echo do_shortcode($shortcode);
@@ -216,12 +218,12 @@ function cms_archive_audio() {
  */
 function cms_archive_video() {
     
-    global $wp_embed;
+    global $wp_embed, $cms_base;
     /* Get Local Video */
-    $local_video = CMSSuperHeroes_Base::getShortcodeFromContent('video', get_the_content());
+    $local_video = $cms_base->getShortcodeFromContent('video', get_the_content());
     
     /* Get Youtobe or Vimeo */
-    $remote_video = CMSSuperHeroes_Base::getShortcodeFromContent('embed', get_the_content());
+    $remote_video = $cms_base->getShortcodeFromContent('embed', get_the_content());
     
     if($local_video){
         /* view local. */
@@ -243,8 +245,9 @@ function cms_archive_video() {
  * @since 1.0.0
  */
 function cms_archive_gallery(){
+    global $cms_base;
     /* get shortcode gallery. */
-    $shortcode = CMSSuperHeroes_Base::getShortcodeFromContent('gallery', get_the_content());
+    $shortcode = $cms_base->getShortcodeFromContent('gallery', get_the_content());
     
     if($shortcode != ''){
         preg_match('/\[gallery.*ids=.(.*).\]/', $shortcode, $ids);

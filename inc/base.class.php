@@ -1,6 +1,6 @@
 <?php
 
-class CMSSuperHeroes_Base
+class CMS_Base
 {
     /**
      * Page title
