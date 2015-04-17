@@ -555,7 +555,7 @@ $this->sections[] = array(
     'subsection' => true,
     'fields' => array(
         array(
-            'id' => 'google_font_1',
+            'id' => 'google-font-1',
             'type' => 'typography',
             'title' => __('Font 1', THEMENAME),
             'google' => true,
@@ -568,7 +568,20 @@ $this->sections[] = array(
             'subsets'=> false,
         ),
         array(
-            'id' => 'google_font_2',
+            'id' => 'google-font-selector-1',
+            'type' => 'textarea',
+            'title' => __('Selector 1', THEMENAME),
+            'subtitle' => __('add html tags ID or class (body,a,.class,#id)', THEMENAME),
+            'validate' => 'no_html',
+            'default' => '',
+            'required' => array(
+                0 => 'local-fonts-1',
+                1 => '!=',
+                2 => ''
+            )
+        ),
+        array(
+            'id' => 'google-font-2',
             'type' => 'typography',
             'title' => __('Font 2', THEMENAME),
             'google' => true,
@@ -579,6 +592,19 @@ $this->sections[] = array(
             'line-height'=>false,
             'font-size'=> false,
             'subsets'=> false,
+        ),
+        array(
+            'id' => 'google-font-selector-2',
+            'type' => 'textarea',
+            'title' => __('Selector 2', THEMENAME),
+            'subtitle' => __('add html tags ID or class (body,a,.class,#id)', THEMENAME),
+            'validate' => 'no_html',
+            'default' => '',
+            'required' => array(
+                0 => 'google-font-2',
+                1 => '!=',
+                2 => ''
+            )
         ),
     )
 );
