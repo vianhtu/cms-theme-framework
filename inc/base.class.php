@@ -235,9 +235,9 @@ class CMS_Base
     }
     
     /**
-     * Set google font.
+     * load google font + set font for selecter.
      * 
-     * @param unknown $googlefont
+     * @param array $googlefont
      * @param string $selecter
      */
     public static function setGoogleFont($googlefont = array(), $selecter = ''){
