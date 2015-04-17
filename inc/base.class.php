@@ -238,7 +238,7 @@ class CMS_Base
         
         /* import google font. */
         if(!empty($googlefont)){
-            var_dump($googlefont);
+            var_dump($googlefont); exit();
             echo '@import "http://fonts.googleapis.com/css?family=:300";';
             
             /* add font selecter. */
@@ -271,4 +271,4 @@ class CMS_Base
     }
 }
 global $smof_data;
-CMS_Base::setGoogleFont($smof_data['google-font-1']);
+var_dump($smof_data['google-font-1']);exit();
