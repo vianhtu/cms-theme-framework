@@ -1,6 +1,4 @@
 <?php
-global $smof_data, $cms_base;
-$cms_base->setGoogleFont($smof_data['google-font-1']);
 /**
  * The Header template for our theme
  *
