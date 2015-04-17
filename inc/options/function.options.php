@@ -565,6 +565,7 @@ $this->sections[] = array(
             'color' => false,
             'text-align'=> false,
             'line-height'=>false,
+            'font-size'=> false,
         ),
     )
 );
