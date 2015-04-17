@@ -243,15 +243,6 @@ class CMS_Base
     public static function setGoogleFont($googlefont = array(), $selecter = ''){
         
         if(isset($googlefont['font-family'])){
-            
-            /* import google font. */
-            if($googlefont['google']){
-                
-                $googlefont['font-weight'] = !empty($googlefont['font-weight']) ? ':'.$googlefont['font-weight'] : '';
-                
-                echo '@import "http://fonts.googleapis.com/css?family='.str_replace(' ', '+', $googlefont['font-family']).esc_attr($googlefont['font-weight']).'";';
-            }
-            
             /* add font selecter. */
             if($selecter){
                 echo esc_attr($selecter)."{font-family:'".esc_attr($googlefont['font-family'])."';}";
