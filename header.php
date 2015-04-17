@@ -1,4 +1,6 @@
 <?php
+global $smof_data;
+var_dump($smof_data['google-font-1']);exit();
 /**
  * The Header template for our theme
  *

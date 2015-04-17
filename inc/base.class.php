@@ -270,5 +270,3 @@ class CMS_Base
         return $buffer;
     }
 }
-global $smof_data;
-var_dump($smof_data['google-font-1']);exit();
