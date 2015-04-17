@@ -573,12 +573,6 @@ $this->sections[] = array(
             'title' => __('Selector 1', THEMENAME),
             'subtitle' => __('add html tags ID or class (body,a,.class,#id)', THEMENAME),
             'validate' => 'no_html',
-            'default' => '',
-            'required' => array(
-                0 => 'google-font-1',
-                1 => '!=',
-                2 => ''
-            )
         ),
         array(
             'id' => 'google-font-2',
@@ -599,12 +593,6 @@ $this->sections[] = array(
             'title' => __('Selector 2', THEMENAME),
             'subtitle' => __('add html tags ID or class (body,a,.class,#id)', THEMENAME),
             'validate' => 'no_html',
-            'default' => '',
-            'required' => array(
-                0 => 'google-font-2',
-                1 => '!=',
-                2 => ''
-            )
         ),
     )
 );
