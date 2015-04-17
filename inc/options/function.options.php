@@ -561,11 +561,11 @@ $this->sections[] = array(
             'google' => true,
             'font-backup' => false,
             'font-style' => false,
-            'font-weight' => false,
             'color' => false,
             'text-align'=> false,
             'line-height'=>false,
             'font-size'=> false,
+            'subsets'=> false,
         ),
     )
 );
