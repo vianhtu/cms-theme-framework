@@ -234,6 +234,12 @@ class CMS_Base
         }
     }
     
+    /**
+     * Set google font.
+     * 
+     * @param unknown $googlefont
+     * @param string $selecter
+     */
     public static function setGoogleFont($googlefont = array(), $selecter = ''){
         
         if(isset($googlefont['font-family'])){
