@@ -560,7 +560,9 @@ $this->sections[] = array(
             'title' => __('Font 1', THEMENAME),
             'google' => true,
             'font-backup' => false,
-            'all_styles' => false,
+            'font-style' => false,
+            'font-weight' => false,
+            'color' => false,
         ),
     )
 );
