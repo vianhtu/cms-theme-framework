@@ -554,7 +554,14 @@ $this->sections[] = array(
     'icon' => 'el el-fontsize',
     'subsection' => true,
     'fields' => array(
-        
+        array(
+            'id' => 'google_font_1',
+            'type' => 'typography',
+            'title' => __('Font 1', THEMENAME),
+            'google' => true,
+            'font-backup' => false,
+            'all_styles' => false,
+        ),
     )
 );
 

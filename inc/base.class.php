@@ -210,14 +210,13 @@ class CMS_Base
         return $localfonts;
     }
     
-    public static function getFontFace($name = '' , $selecter = ''){
+    public static function setFontFace($name = '' , $selecter = ''){
         
-        $css = '';
         $font_part = get_template_directory_uri()."/assets/fonts/".esc_attr($name);
         
         /* load font files. */
         if($name){
-            $css .= "@font-face {".
+            echo "@font-face {".
                          "font-family: '".esc_attr($name)."';".
                          "src: url('$font_part.eot');"./* IE9 Compat Modes */
                          "src:". 
@@ -230,11 +229,23 @@ class CMS_Base
                     "}";
             /* add font selecter. */
             if($selecter){
-                $css .= esc_attr($selecter)."{font-family:'".esc_attr($name)."';}";
+                echo esc_attr($selecter)."{font-family:'".esc_attr($name)."';}";
             }
         }
+    }
+    
+    public static function setGoogleFont($googlefont = array(), $selecter = ''){
         
-        echo $css;
+        /* import google font. */
+        if(!empty($googlefont)){
+            var_dump($googlefont);
+            echo '@import "http://fonts.googleapis.com/css?family=Open+Sans:300";';
+            
+            /* add font selecter. */
+            if($selecter){
+                
+            }
+        }
     }
     
     /**

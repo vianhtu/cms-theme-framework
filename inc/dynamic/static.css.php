@@ -89,8 +89,8 @@ class CMSSuperHeroes_StaticCss
         /* custom css. */ 
         echo esc_attr($smof_data['custom_css']);
         /* local fonts */
-        $cms_base->getFontFace($smof_data['local-fonts-1'], $smof_data['local-fonts-selector-1']);
-        $cms_base->getFontFace($smof_data['local-fonts-2'], $smof_data['local-fonts-selector-2']);
+        $cms_base->setFontFace($smof_data['local-fonts-1'], $smof_data['local-fonts-selector-1']);
+        $cms_base->setFontFace($smof_data['local-fonts-2'], $smof_data['local-fonts-selector-2']);
         /* forward options to scss. */
         
         return ob_get_clean();
