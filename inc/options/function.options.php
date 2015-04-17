@@ -548,6 +548,16 @@ $this->sections[] = array(
     )
 );
 
+/* extra font. */
+$this->sections[] = array(
+    'title' => __('Extra Fonts', THEMENAME),
+    'icon' => 'el el-fontsize',
+    'subsection' => true,
+    'fields' => array(
+        
+    )
+);
+
 /* local fonts. */
 $this->sections[] = array(
     'title' => __('Local Fonts', THEMENAME),
