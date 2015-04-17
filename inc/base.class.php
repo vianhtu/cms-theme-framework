@@ -237,9 +237,8 @@ class CMS_Base
     public static function setGoogleFont($googlefont = array(), $selecter = ''){
         
         /* import google font. */
-        if(!empty($googlefont)){
-            var_dump($googlefont); exit();
-            echo '@import "http://fonts.googleapis.com/css?family=:300";';
+        if($googlefont['google']){
+            echo '@import "http://fonts.googleapis.com/css?family='.str_replace(' ', '+', $googlefont['font-family']).':'.$googlefont['font-weight'].'";';
             
             /* add font selecter. */
             if($selecter){
