@@ -235,7 +235,7 @@ class CMS_Base
     }
     
     /**
-     * load google font + set font for selecter.
+     * set google font for selecter.
      * 
      * @param array $googlefont
      * @param string $selecter
