@@ -567,6 +567,19 @@ $this->sections[] = array(
             'font-size'=> false,
             'subsets'=> false,
         ),
+        array(
+            'id' => 'google_font_2',
+            'type' => 'typography',
+            'title' => __('Font 2', THEMENAME),
+            'google' => true,
+            'font-backup' => false,
+            'font-style' => false,
+            'color' => false,
+            'text-align'=> false,
+            'line-height'=>false,
+            'font-size'=> false,
+            'subsets'=> false,
+        ),
     )
 );
 
