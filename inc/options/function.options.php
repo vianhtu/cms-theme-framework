@@ -575,7 +575,7 @@ $this->sections[] = array(
             'validate' => 'no_html',
             'default' => '',
             'required' => array(
-                0 => 'local-fonts-1',
+                0 => 'google-font-1',
                 1 => '!=',
                 2 => ''
             )
