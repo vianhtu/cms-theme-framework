@@ -593,10 +593,7 @@ $this->sections[] = array(
             'title' => __('Selector 2', THEMENAME),
             'subtitle' => __('add html tags ID or class (body,a,.class,#id)', THEMENAME),
             'validate' => 'no_html',
-            'required' => array(
-                array('google-font-2','equals','1'),
-                array('font-family','!=',''),
-            )
+            'required' => array('google-font-2','not','')
         ),
     )
 );
