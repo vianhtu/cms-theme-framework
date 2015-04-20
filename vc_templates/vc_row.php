@@ -32,7 +32,7 @@ switch ($bg_style){
         break;
 }
 
-var_dump($el_class);
+var_dump($bg_style);
 
 $el_class = $this->getExtraClass( $el_class );
 
