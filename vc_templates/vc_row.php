@@ -17,11 +17,9 @@ $row_style = ''; $video_style = '';
 /** bg style image */
 switch ($bg_style){
     case 'img_parallax':
-        if($smof_data['paralax']){
-            $el_class .= " cms_parallax";
-            $row_data .= " data-speed = $bd_p_speed";
-            $row_style .= "background-position: 50% 0;background-repeat:no-repeat;background-attachment:fixed;background-size:cover;";
-        }
+        $el_class .= " cms_parallax";
+        $row_data .= " data-speed = $bd_p_speed";
+        $row_style .= "background-position: 50% 0;background-repeat:no-repeat;background-attachment:fixed;background-size:cover;";
         break;
     case 'img_fixed':
         $row_style .= "background-attachment:fixed;background-size:cover;";
@@ -31,8 +29,6 @@ switch ($bg_style){
         $video_style = '<div class="cms-bg-video">'.do_shortcode('[video autoplay="on" loop="on" preload="none" height="0" width="0" mp4="'.$bg_video_mp4.'" webm="'.$bg_video_webm.'"]').'</div>';
         break;
 }
-
-var_dump($bg_style);
 
 $el_class = $this->getExtraClass( $el_class );
 
