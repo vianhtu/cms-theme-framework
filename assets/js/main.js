@@ -193,7 +193,7 @@ jQuery(document).ready(function($) {
 	 * @since 1.0.0
 	 */
 	var cms_parallax = $('.cms_parallax');
-	if(cms_parallax.length > 0 && CMSOptions.paralax == '1'){
+	if(cms_parallax.length > 0){
 		cms_parallax.each(function() {
 			"use strict";
 			var speed = $(this).attr('data-speed');

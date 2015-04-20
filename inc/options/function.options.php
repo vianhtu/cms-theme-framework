@@ -682,14 +682,7 @@ $this->sections[] = array(
             'type' => 'switch',
             'title' => __('Smooth Scroll', THEMENAME),
             'default' => false
-        ),
-        array(
-            'subtitle' => __('Enable animation parallax for images...', THEMENAME),
-            'id' => 'paralax',
-            'type' => 'switch',
-            'title' => __('Images Paralax', THEMENAME),
-            'default' => true
-        ),
+        )
     )
 );
 /**
