@@ -242,10 +242,13 @@ class CMS_Base
      */
     public static function setGoogleFont($googlefont = array(), $selecter = ''){
         
-        if(isset($googlefont['font-family'])){
+        if(!empty($googlefont['font-family'])){
             /* add font selecter. */
+            
+            $font_weight =  !empty($googlefont['font-weight']) ? "font-weight:'".esc_attr($googlefont['font-weight'])."';" : '';
+                
             if($selecter){
-                echo esc_attr($selecter)."{font-family:'".esc_attr($googlefont['font-family'])."';}";
+                echo esc_attr($selecter)."{font-family:'".esc_attr($googlefont['font-family'])."';'".$font_weight."'}";
             }
         }
     }
