@@ -280,7 +280,7 @@ class CsCoreControl
         }
         ob_start();
         ?>
-        <div class="color-field csfield" <?php echo esc_attr($data); ?>>
+        <div class="color-field csfield" <?php echo $data; ?>>
             <input type="text"
             name="<?php echo esc_attr($params['id']); ?>"
             id="<?php echo esc_attr($params['id']); ?>"
