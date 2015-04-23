@@ -248,7 +248,7 @@ class CMS_Base
             $font_weight =  !empty($googlefont['font-weight']) ? "font-weight:'".esc_attr($googlefont['font-weight'])."';" : '';
                 
             if(!empty($selecter)){
-                echo esc_attr($selecter)."{font-family:'".esc_attr($googlefont['font-family'])."';'".$font_weight."'}";
+                echo esc_attr($selecter)."{font-family:'".esc_attr($googlefont['font-family'])."';".$font_weight."}";
             }
         }
     }
