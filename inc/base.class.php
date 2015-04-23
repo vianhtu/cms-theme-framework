@@ -215,7 +215,7 @@ class CMS_Base
         $font_part = get_template_directory_uri()."/assets/fonts/".esc_attr($name);
         
         /* load font files. */
-        if($name){
+        if(!empty($name)){
             echo "@font-face {".
                          "font-family: '".esc_attr($name)."';".
                          "src: url('$font_part.eot');"./* IE9 Compat Modes */
@@ -228,7 +228,7 @@ class CMS_Base
                          "font-style: normal;".
                     "}";
             /* add font selecter. */
-            if($selecter){
+            if(!empty($selecter)){
                 echo esc_attr($selecter)."{font-family:'".esc_attr($name)."';}";
             }
         }
@@ -247,7 +247,7 @@ class CMS_Base
             
             $font_weight =  !empty($googlefont['font-weight']) ? "font-weight:'".esc_attr($googlefont['font-weight'])."';" : '';
                 
-            if($selecter){
+            if(!empty($selecter)){
                 echo esc_attr($selecter)."{font-family:'".esc_attr($googlefont['font-family'])."';'".$font_weight."'}";
             }
         }

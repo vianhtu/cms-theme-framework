@@ -55,7 +55,7 @@ class CMSSuperHeroes_StaticCss
             
             $file = "static.css";
             
-            if($smof_data['presets_color'] != '0'){
+            if(isset($smof_data['presets_color']) && $smof_data['presets_color'] != '0'){
                 $file = "presets-".$smof_data['presets_color'].".css";
             }
             
@@ -89,11 +89,19 @@ class CMSSuperHeroes_StaticCss
         /* custom css. */ 
         echo esc_attr($smof_data['custom_css']);
         /* google fonts. */
-        $cms_base->setGoogleFont($smof_data['google-font-1'], $smof_data['google-font-selector-1']);
-        $cms_base->setGoogleFont($smof_data['google-font-2'], $smof_data['google-font-selector-2']);
+        if(isset($smof_data['google-font-1'])){
+            $cms_base->setGoogleFont($smof_data['google-font-1'], $smof_data['google-font-selector-1']);
+        }
+        if(isset($smof_data['google-font-2'])){
+            $cms_base->setGoogleFont($smof_data['google-font-2'], $smof_data['google-font-selector-2']);
+        }
         /* local fonts. */
-        $cms_base->setFontFace($smof_data['local-fonts-1'], $smof_data['local-fonts-selector-1']);
-        $cms_base->setFontFace($smof_data['local-fonts-2'], $smof_data['local-fonts-selector-2']);
+        if(isset($smof_data['local-fonts-1'])){
+            $cms_base->setFontFace($smof_data['local-fonts-1'], $smof_data['local-fonts-selector-1']);
+        }
+        if(isset($smof_data['local-fonts-2'])){
+            $cms_base->setFontFace($smof_data['local-fonts-2'], $smof_data['local-fonts-selector-2']);
+        }
         /* forward options to scss. */
         
         return ob_get_clean();
