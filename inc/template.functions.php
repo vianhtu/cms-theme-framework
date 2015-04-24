@@ -342,3 +342,20 @@ function cms_archive_post_icon() {
     }
     echo '<i class="'.$post_icon['icon'].'"></i>';
 }
+
+/**
+ * List socials share for post.
+ * 
+ * @since 1.0.0
+ */
+function cms_socials_share(){
+    ?>
+	<div class="post-share">
+		<a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=<?php the_permalink();?>"><span class="share-box"><i class="fa fa-facebook"></i></span></a>
+		<a target="_blank" href="https://twitter.com/home?status=<?php _e('Check out this article', THEMENAME);?>:%20<?php the_title();?>%20-%20<?php the_permalink();?>"><span class="share-box"><i class="fa fa-twitter"></i></span></a>
+		<a target="_blank" href="https://pinterest.com/pin/create/button/?url=<?php echo the_permalink();?>&amp;media=<?php the_post_thumbnail();?>&amp;description=<?php the_title();?>"><span class="share-box"><i class="fa fa-pinterest"></i></span></a>
+		<a target="_blank" href="https://plus.google.com/share?url=<?php the_permalink();?>"><span class="share-box"><i class="fa fa-google-plus"></i></span></a>
+		<a target="_blank" href="http://www.linkedin.com/shareArticle?mini=true&url=<?php echo the_permalink();?>&title=<?php the_title();?>"><span class="share-box"><i class="fa fa-linkedin"></i></span></a>
+	</div>
+	<?php
+}
