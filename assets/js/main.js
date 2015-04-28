@@ -211,8 +211,6 @@ jQuery(document).ready(function($) {
 	 * @since 1.0.0
 	 */
 	
-	var like_click = 0;
-	
 	$('body').on('click', '.cms-post-like', function () {
 		"use strict";
 		/* get post id. */
@@ -220,7 +218,7 @@ jQuery(document).ready(function($) {
 		
 		var post_id = bt_like.attr('data-id');
 		
-		if(post_id != undefined && post_id != '' && like_click == 0){
+		if(post_id != undefined && post_id != ''){
 			/* add like. */
 			$.post(ajaxurl, {
 				'action' : 'cms_post_like',
@@ -229,7 +227,6 @@ jQuery(document).ready(function($) {
 				if(response != ''){
 					bt_like.find('i').attr('class', 'fa fa-heart')
 					bt_like.find('span').html(response);
-					like_click = 0;
 				}
 			});
 		}
