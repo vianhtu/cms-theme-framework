@@ -30,7 +30,9 @@
 	<!-- .entry-content -->
 
 	<footer class="entry-meta">
-	    <?php cms_socials_share(); ?>
+	    <?php cms_get_socials_share(); ?>
+	    <?php cms_get_post_view(); ?>
+	    <?php cms_get_post_like(); ?>
 		<?php edit_post_link( __( 'Edit', THEMENAME ), '<span class="edit-link">', '</span>' ); ?>
 	</footer>
 	<!-- .entry-meta -->

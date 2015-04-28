@@ -348,14 +348,45 @@ function cms_archive_post_icon() {
  * 
  * @since 1.0.0
  */
-function cms_socials_share(){
+function cms_get_socials_share(){
     ?>
 	<div class="post-share">
 		<a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=<?php the_permalink();?>"><span class="share-box"><i class="fa fa-facebook"></i></span></a>
 		<a target="_blank" href="https://twitter.com/home?status=<?php _e('Check out this article', THEMENAME);?>:%20<?php the_title();?>%20-%20<?php the_permalink();?>"><span class="share-box"><i class="fa fa-twitter"></i></span></a>
-		<a target="_blank" href="https://pinterest.com/pin/create/button/?url=<?php echo the_permalink();?>&media=<?php the_post_thumbnail();?>&description=<?php the_title();?>"><span class="share-box"><i class="fa fa-pinterest"></i></span></a>
+		<a target="_blank" href="https://pinterest.com/pin/create/button/?url=<?php echo the_permalink();?>&media=&description=<?php the_title();?>"><span class="share-box"><i class="fa fa-pinterest"></i></span></a>
 		<a target="_blank" href="https://plus.google.com/share?url=<?php the_permalink();?>"><span class="share-box"><i class="fa fa-google-plus"></i></span></a>
 		<a target="_blank" href="http://www.linkedin.com/shareArticle?mini=true&url=<?php echo the_permalink();?>&title=<?php the_title();?>"><span class="share-box"><i class="fa fa-linkedin"></i></span></a>
 	</div>
 	<?php
 }
+
+/**
+ * Show post like.
+ * 
+ * @since 1.0.0
+ */
+function cms_get_post_like(){
+    
+    $likes = get_post_meta(get_the_ID() , '_cms_post_likes', true);
+    
+    if(!$likes) $likes = 0;
+    
+    ?>
+    <div class="cms-post-like"><i class="fa fa-heart-o"><?php echo esc_attr($likes); ?></i></div>
+    <?php
+}
+
+/**
+ * Show post view.
+ * 
+ * @since 1.0.0
+ */
+ function cms_get_post_view(){
+     $views = get_post_meta(get_the_ID() , '_cms_post_views', true);
+     
+     if(!$views) $views = 0;
+     
+     ?>
+     <div class="cms-post-view"><i class="fa fa-eye"><?php echo esc_attr($views); ?></i></div>
+     <?php
+ }

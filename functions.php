@@ -398,11 +398,6 @@ function cms_widgets_init() {
 
 add_action( 'widgets_init', 'cms_widgets_init' );
 
-
-function cms_get_post_like(){
-    
-}
-
 /**
  * Count post view.
  * 
