@@ -224,7 +224,7 @@ jQuery(document).ready(function($) {
 			/* add like. */
 			$.post(ajaxurl, {
 				'action' : 'cms_post_like',
-				'id' : post_id,
+				'id' : post_id
 			}, function(response) {
 				if(response != ''){
 					bt_like.find('i').attr('class', 'fa fa-heart').html(response);
