@@ -227,7 +227,8 @@ jQuery(document).ready(function($) {
 				'id' : post_id
 			}, function(response) {
 				if(response != ''){
-					bt_like.find('i').attr('class', 'fa fa-heart').html(response);
+					bt_like.find('i').attr('class', 'fa fa-heart')
+					bt_like.find('span').html(response);
 					like_click = 0;
 				}
 			});

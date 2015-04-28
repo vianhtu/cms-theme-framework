@@ -372,7 +372,7 @@ function cms_get_post_like(){
     if(!$likes) $likes = 0;
     
     ?>
-    <div class="cms-post-like" data-id="<?php the_ID(); ?>"><i class="<?php echo !isset($_COOKIE['cms_post_view_'. get_the_ID()]) ? 'fa fa-heart-o' : 'fa fa-heart' ; ?>"><?php echo esc_attr($likes); ?></i></div>
+    <div class="cms-post-like" data-id="<?php the_ID(); ?>"><i class="<?php echo !isset($_COOKIE['cms_post_view_'. get_the_ID()]) ? 'fa fa-heart-o' : 'fa fa-heart' ; ?>"></i><span><?php echo esc_attr($likes); ?></span></div>
     <?php
 }
 
