@@ -395,7 +395,35 @@ function cms_widgets_init() {
     	'after_title' => '</h3>',
 	) );
 }
+
 add_action( 'widgets_init', 'cms_widgets_init' );
+
+
+function cms_get_post_like(){
+    
+}
+
+/**
+ * Count post view.
+ * 
+ * @since 1.0.0
+ */
+function cms_count_view(){
+    global $post;
+    
+    if(is_single() && !empty($post->ID)){
+        
+        $views = get_post_meta($post->ID , '_cms_post_views', true);
+        
+        $views = $views ? (int)$views : 0 ;
+        
+        $views++;
+        
+        update_post_meta($post->ID, '_cms_post_views' , $views);
+    }
+}
+
+add_action( 'wp', 'cms_count_view' );
 
 /**
  * Filter the page menu arguments.
