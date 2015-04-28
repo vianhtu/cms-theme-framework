@@ -222,10 +222,10 @@ jQuery(document).ready(function($) {
 				'action' : 'cms_post_like',
 			}, function(response) {
 				console.log(response);
-			}
+			});
 		}
 		
-	})
+	});
 	
 	/**
 	 * Back To Top
