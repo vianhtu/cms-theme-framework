@@ -407,6 +407,18 @@ function cms_widgets_init() {
 add_action( 'widgets_init', 'cms_widgets_init' );
 
 /**
+ * Ajax post like.
+ * 
+ * @since 1.0.0
+ */
+function cms_post_like_callback(){
+    echo "ffffff";
+    exit();
+}
+
+add_action('wp_ajax_nopriv_cms_post_like', 'cms_post_like_callback');
+
+/**
  * Count post view.
  * 
  * @since 1.0.0

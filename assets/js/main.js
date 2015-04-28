@@ -213,11 +213,16 @@ jQuery(document).ready(function($) {
 	
 	$('body').on('click', '.cms-post-like', function () {
 		"use strict";
-		
+		/* get post id. */
 		var post_id = $(this).attr('data-id');
 		
 		if(post_id != undefined && post_id != ''){
-			
+			/* add like. */
+			$.post(ajaxurl, {
+				'action' : 'cms_post_like',
+			}, function(response) {
+				console.log(response);
+			}
 		}
 		
 	})
