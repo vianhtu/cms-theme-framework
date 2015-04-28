@@ -204,8 +204,23 @@ jQuery(document).ready(function($) {
 		});
 	}
 	
-	/** smoothscroll */
+	/**
+	 * Post Like.
+	 * 
+	 * @author Fox
+	 * @since 1.0.0
+	 */
 	
+	$('body').on('click', '.cms-post-like', function () {
+		"use strict";
+		
+		var post_id = $(this).attr('data-id');
+		
+		if(post_id != undefined && post_id != ''){
+			
+		}
+		
+	})
 	
 	/**
 	 * Back To Top

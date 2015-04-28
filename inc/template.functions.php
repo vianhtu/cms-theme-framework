@@ -372,7 +372,7 @@ function cms_get_post_like(){
     if(!$likes) $likes = 0;
     
     ?>
-    <div class="cms-post-like"><i class="fa fa-heart-o"><?php echo esc_attr($likes); ?></i></div>
+    <div class="cms-post-like" data-id="<?php the_ID(); ?>"><i class="fa fa-heart-o"><?php echo esc_attr($likes); ?></i></div>
     <?php
 }
 

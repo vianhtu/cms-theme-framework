@@ -279,6 +279,14 @@ function cms_scripts_styles() {
 add_action( 'wp_enqueue_scripts', 'cms_scripts_styles' );
 
 /**
+ * Load ajax url.
+ */
+function cms_ajax_url_head() {
+    echo '<script type="text/javascript"> var ajaxurl = "'.admin_url('admin-ajax.php').'"; </script>';
+}
+add_action( 'admin_head', 'cms_ajax_url_head');
+
+/**
  * Load admin ajax url.
  */
 function cms_ajax_url_admin_head() {
@@ -404,9 +412,9 @@ add_action( 'widgets_init', 'cms_widgets_init' );
  * @since 1.0.0
  */
 function cms_count_view(){
-    global $post;
+    global $post, $smof_data;
     
-    if(is_single() && !empty($post->ID)){
+    if(is_single() && $smof_data['post_view'] && !empty($post->ID)){
         
         $views = get_post_meta($post->ID , '_cms_post_views', true);
         

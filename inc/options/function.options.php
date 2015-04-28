@@ -701,6 +701,20 @@ $this->sections[] = array(
             'type' => 'switch',
             'title' => __('Dev Mode (not recommended)', THEMENAME),
             'default' => false
+        ),
+        array(
+            'subtitle' => __('count view for single post.', THEMENAME),
+            'id' => 'post_view',
+            'type' => 'switch',
+            'title' => __('Count Views', THEMENAME),
+            'default' => false
+        ),
+        array(
+            'subtitle' => __('show buttom like in post.', THEMENAME),
+            'id' => 'post_like',
+            'type' => 'switch',
+            'title' => __('Post Like', THEMENAME),
+            'default' => false
         )
     )
 );
