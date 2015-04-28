@@ -412,11 +412,35 @@ add_action( 'widgets_init', 'cms_widgets_init' );
  * @since 1.0.0
  */
 function cms_post_like_callback(){
-    echo "ffffff";
+    global $smof_data;
+    
+    $post_id = isset($_REQUEST['id']) ? $_REQUEST['id'] : null;
+    
+    $likes = null;
+    
+    if($post_id && !isset($_COOKIE['cms_post_like_'. $post_id])){
+        
+        /* get old like. */
+        $likes = get_post_meta($post_id , '_cms_post_likes', true);
+        
+        /* check old like. */
+        $likes = $likes ? $likes : 0 ;
+        
+        $likes++;
+        
+        /* update */
+        update_post_meta($post_id, '_cms_post_likes' , $likes);
+        
+        /* set cookie. */
+        setcookie('cms_post_like_'. $post_id, $post_id, time() * 20, '/');
+    }
+    
+    echo esc_attr($likes);
+    
     exit();
 }
 
-add_action('wp_ajax_nopriv_cms_post_like', 'cms_post_like_callback');
+add_action('wp_ajax_cms_post_like', 'cms_post_like_callback');
 
 /**
  * Count post view.
@@ -426,15 +450,18 @@ add_action('wp_ajax_nopriv_cms_post_like', 'cms_post_like_callback');
 function cms_count_view(){
     global $post, $smof_data;
     
-    if(is_single() && $smof_data['post_view'] && !empty($post->ID)){
+    if(is_single() && $smof_data['post_view'] && !empty($post->ID) && !isset($_COOKIE['cms_post_view_'. $post->ID])){
         
         $views = get_post_meta($post->ID , '_cms_post_views', true);
         
-        $views = $views ? (int)$views : 0 ;
+        $views = $views ? $views : 0 ;
         
         $views++;
         
         update_post_meta($post->ID, '_cms_post_views' , $views);
+        
+        /* set cookie. */
+        setcookie('cms_post_view_'. $post->ID, $post->ID, time() * 20, '/');
     }
 }
 

@@ -708,13 +708,6 @@ $this->sections[] = array(
             'type' => 'switch',
             'title' => __('Count Views', THEMENAME),
             'default' => false
-        ),
-        array(
-            'subtitle' => __('show buttom like in post.', THEMENAME),
-            'id' => 'post_like',
-            'type' => 'switch',
-            'title' => __('Post Like', THEMENAME),
-            'default' => false
         )
     )
 );

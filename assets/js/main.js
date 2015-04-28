@@ -214,14 +214,19 @@ jQuery(document).ready(function($) {
 	$('body').on('click', '.cms-post-like', function () {
 		"use strict";
 		/* get post id. */
-		var post_id = $(this).attr('data-id');
+		var bt_like = $(this);
+		
+		var post_id = bt_like.attr('data-id');
 		
 		if(post_id != undefined && post_id != ''){
 			/* add like. */
 			$.post(ajaxurl, {
 				'action' : 'cms_post_like',
+				'id' : post_id,
 			}, function(response) {
-				console.log(response);
+				if(response != ''){
+					bt_like.find('i').attr('class', 'fa fa-heart').html(response);
+				}
 			});
 		}
 		
