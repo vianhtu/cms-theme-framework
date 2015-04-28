@@ -387,6 +387,6 @@ function cms_get_post_like(){
      if(!$views) $views = 0;
      
      ?>
-     <div class="cms-post-view"><i class="fa fa-eye"><?php echo esc_attr($views); ?></i></div>
+     <div class="cms-post-view"><i class="fa fa-eye"></i><span><?php echo esc_attr($views); ?></span></div>
      <?php
  }
