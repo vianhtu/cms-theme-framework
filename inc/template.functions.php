@@ -340,7 +340,7 @@ function cms_archive_post_icon() {
             }
             break;
     }
-    echo '<i class="'.$post_icon['icon'].'"></i>';
+    echo '<i class="'.esc_attr($post_icon['icon']).'"></i>';
 }
 
 /**
