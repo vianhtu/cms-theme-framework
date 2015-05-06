@@ -231,9 +231,6 @@ jQuery(document).ready(function($) {
 			});
 		}
 		
-		/* limit click. */
-		like_click++;
-		
 	});
 	
 	/**
