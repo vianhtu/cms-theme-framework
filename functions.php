@@ -81,6 +81,9 @@ if(is_admin()){
         require( get_template_directory() . '/inc/options/meta.options.php' );
     }
     
+    /* tmp plugins. */
+    require( get_template_directory() . '/inc/libs/class-tgm-plugin-activation.php' );
+    
     /* add presets */
     require( get_template_directory() . '/inc/options/presets.php' );
 }
