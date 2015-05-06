@@ -284,7 +284,7 @@ add_action( 'wp_enqueue_scripts', 'cms_scripts_styles' );
 function cms_ajax_url_head() {
     echo '<script type="text/javascript"> var ajaxurl = "'.admin_url('admin-ajax.php').'"; </script>';
 }
-add_action( 'admin_head', 'cms_ajax_url_head');
+add_action( 'wp_head', 'cms_ajax_url_head');
 
 /**
  * Load admin ajax url.
