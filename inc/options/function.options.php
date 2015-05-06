@@ -1,4 +1,8 @@
 <?php
+global $cms_base;
+/* get local fonts. */
+$local_fonts = is_admin() ? $cms_base->getListLocalFontsName() : array() ;
+
 /**
  * Home Options
  * 
@@ -50,6 +54,18 @@ $this->sections[] = array(
     'icon' => 'el-icon-credit-card',
     'fields' => array(
         array(
+            'id' => 'header_layout',
+            'title' => __('Layouts', THEMENAME),
+            'subtitle' => __('select a layout for header', THEMENAME),
+            'default' => '',
+            'type' => 'image_select',
+            'options' => array(
+                '' => get_template_directory_uri().'/inc/options/images/header/h-default.png',
+                '1' => get_template_directory_uri().'/inc/options/images/header/h-default.png',
+                '2' => get_template_directory_uri().'/inc/options/images/header/h-default.png',
+            )
+        ),
+        array(
             'id'       => 'header_background',
             'type'     => 'background',
             'title'    => __( 'Background', THEMENAME ),
@@ -69,6 +85,71 @@ $this->sections[] = array(
             'type' => 'text',
             'title' => 'Padding',
             'default' => ''
+        ),
+        array(
+            'subtitle' => __('Enable menu sticky.', THEMENAME),
+            'id' => 'menu_sticky',
+            'type' => 'switch',
+            'title' => __('Menu Sticky', THEMENAME),
+            'default' => false,
+        ),
+        array(
+            'subtitle' => __('enable sticky mode for menu Tablets.', THEMENAME),
+            'id' => 'menu_sticky_tablets',
+            'type' => 'switch',
+            'title' => __('Sticky Tablets', THEMENAME),
+            'default' => false,
+            'required' => array( 0 => 'menu_sticky', 1 => '=', 2 => 1 )
+        ),
+        array(
+            'subtitle' => __('enable sticky mode for menu Mobile.', THEMENAME),
+            'id' => 'menu_sticky_mobile',
+            'type' => 'switch',
+            'title' => __('Sticky Mobile', THEMENAME),
+            'default' => false,
+            'required' => array( 0 => 'menu_sticky', 1 => '=', 2 => 1 )
+        ),
+    )
+);
+
+/* Logo */
+$this->sections[] = array(
+    'title' => __('Logo', THEMENAME),
+    'icon' => 'el-icon-picture',
+    'subsection' => true,
+    'fields' => array(
+        array(
+            'title' => __('Logo', THEMENAME),
+            'subtitle' => __('Select an image file for your logo.', THEMENAME),
+            'id' => 'main_logo',
+            'type' => 'media',
+            'url' => true,
+            'default' => array(
+                'url'=>get_template_directory_uri().'/assets/images/cmssuperheroes.png'
+            )
+        ),
+        array(
+            'subtitle' => __('in pixels.', THEMENAME),
+            'id' => 'main_logo_height',
+            'type' => 'text',
+            'title' => 'Height',
+            'default' => '80px'
+        ),
+    )
+);
+
+/* Menu */
+$this->sections[] = array(
+    'title' => __('Menu', THEMENAME),
+    'icon' => 'el-icon-tasks',
+    'subsection' => true,
+    'fields' => array(
+        array(
+            'subtitle' => __('enable mega menu.', THEMENAME),
+            'id' => 'menu_mega',
+            'type' => 'switch',
+            'title' => __('Mega Menu', THEMENAME),
+            'default' => false,
         )
     )
 );
@@ -89,13 +170,13 @@ $this->sections[] = array(
             'default' => '1',
             'type' => 'image_select',
             'options' => array(
-                '' => '',
-                '1' => get_template_directory_uri().'/inc/options/images/pagetitle/pt-s-1.jpg',
-                '2' => get_template_directory_uri().'/inc/options/images/pagetitle/pt-s-2.jpg',
-                '3' => get_template_directory_uri().'/inc/options/images/pagetitle/pt-s-3.jpg',
-                '4' => get_template_directory_uri().'/inc/options/images/pagetitle/pt-s-4.jpg',
-                '5' => get_template_directory_uri().'/inc/options/images/pagetitle/pt-s-5.jpg',
-                '6' => get_template_directory_uri().'/inc/options/images/pagetitle/pt-s-6.jpg',
+                '' => get_template_directory_uri().'/inc/options/images/pagetitle/pt-s-0.png',
+                '1' => get_template_directory_uri().'/inc/options/images/pagetitle/pt-s-1.png',
+                '2' => get_template_directory_uri().'/inc/options/images/pagetitle/pt-s-2.png',
+                '3' => get_template_directory_uri().'/inc/options/images/pagetitle/pt-s-3.png',
+                '4' => get_template_directory_uri().'/inc/options/images/pagetitle/pt-s-4.png',
+                '5' => get_template_directory_uri().'/inc/options/images/pagetitle/pt-s-5.png',
+                '6' => get_template_directory_uri().'/inc/options/images/pagetitle/pt-s-6.png',
             )
         ),
         array(
@@ -146,7 +227,7 @@ $this->sections[] = array(
             'units' => 'px',
             'subtitle' => __('Typography option with title text.', THEMENAME),
             'default' => array(
-                'color' => '#ffffff',
+                'color' => '',
             )
         ),
     )
@@ -171,11 +252,11 @@ $this->sections[] = array(
             'google' => true,
             'font-backup' => true,
             'all_styles' => true,
-            'output'  => array('.page-title #breadcrumb-text'),
+            'output'  => array('.page-title #breadcrumb-text','.page-title #breadcrumb-text ul li a'),
             'units' => 'px',
             'subtitle' => __('Typography option with title text.', THEMENAME),
             'default' => array(
-                'color' => '#ffffff',
+                'color' => '',
             )
         ),
     )
@@ -190,6 +271,13 @@ $this->sections[] = array(
     'title' => __('Body', THEMENAME),
     'icon' => 'el-icon-website',
     'fields' => array(
+        array(
+            'subtitle' => __('Set layout boxed default(Wide).', THEMENAME),
+            'id' => 'body_layout',
+            'type' => 'switch',
+            'title' => __('Boxed Layout', THEMENAME),
+            'default' => false,
+        ),
         array(
             'id'       => 'body_background',
             'type'     => 'background',
@@ -214,10 +302,15 @@ $this->sections[] = array(
     )
 );
 
-/* Container */
+/**
+ * Content
+ * 
+ * Archive, Pages, Single, 404, Search, Category, Tags .... 
+ * @author Fox
+ */
 $this->sections[] = array(
-    'title' => __('Container', THEMENAME),
-    'icon' => 'el-icon-pencil',
+    'title' => __('Content', THEMENAME),
+    'icon' => 'el-icon-compass',
     'subsection' => true,
     'fields' => array(
         array(
@@ -245,69 +338,28 @@ $this->sections[] = array(
 );
 
 /**
- * Content
- * 
- * Archive, Pages, Single, 404, Search, Category, Tags .... 
- * @author Fox
- */
-$this->sections[] = array(
-    'title' => __('Content', THEMENAME),
-    'icon' => 'el-icon-compass',
-    'fields' => array(
-        
-    )
-);
-
-/* Archive */
-$this->sections[] = array(
-    'title' => __('Archive', THEMENAME),
-    'icon' => 'el-icon-folder',
-    'subsection' => true,
-    'fields' => array(
-    )
-);
-
-/* Pages */
-$this->sections[] = array(
-    'title' => __('Pages', THEMENAME),
-    'icon' => 'el-icon-file',
-    'subsection' => true,
-    'fields' => array(
-    )
-);
-
-/* Single */
-$this->sections[] = array(
-    'title' => __('Single', THEMENAME),
-    'icon' => 'el-icon-pencil-alt',
-    'subsection' => true,
-    'fields' => array(
-    )
-);
-
-/**
  * Footer
  *
  * @author Fox
  */
 $this->sections[] = array(
     'title' => __('Footer', THEMENAME),
+    'icon' => 'el-icon-credit-card',
+);
+
+/* Footer top */
+$this->sections[] = array(
+    'title' => __('Top', THEMENAME),
     'icon' => 'el-icon-fork',
+    'subsection' => true,
     'fields' => array(
         array(
             'id'       => 'footer_background',
             'type'     => 'background',
             'title'    => __( 'Background', THEMENAME ),
             'subtitle' => __( 'footer background with image, color, etc.', THEMENAME ),
-            'output'   => array('footer'),
+            'output'   => array('footer #footer-top'),
             'default'   => array()
-        ),
-        array(
-            'subtitle' => 'Remove class .container.',
-            'id' => 'footer_full_width',
-            'type' => 'switch',
-            'title' => 'Full Width',
-            'default' => true
         ),
         array(
             'subtitle' => __('in pixels, top right bottom left, ex: 10px 10px 10px 10px', THEMENAME),
@@ -326,21 +378,274 @@ $this->sections[] = array(
     )
 );
 
-/* Footer layout */
+/* footer bottom */
 $this->sections[] = array(
-    'icon' => 'el-icon-th-large',
-    'title' => __('Layout', THEMENAME),
+    'title' => __('Bottom', THEMENAME),
+    'icon' => 'el-icon-bookmark',
     'subsection' => true,
     'fields' => array(
         array(
-            'subtitle' => 'Remove class .container.',
-            'id' => 'footer_layout_full_width',
+            'id'       => 'footer_botton_background',
+            'type'     => 'background',
+            'title'    => __( 'Background', THEMENAME ),
+            'subtitle' => __( 'background with image, color, etc.', THEMENAME ),
+            'output'   => array('footer #footer-bottom'),
+            'default'   => array()
+        ),
+        array(
+            'subtitle' => __('in pixels, top right bottom left, ex: 10px 10px 10px 10px', THEMENAME),
+            'id' => 'footer_bottom_margin',
+            'type' => 'text',
+            'title' => 'Margin',
+            'default' => ''
+        ),
+        array(
+            'subtitle' => __('in pixels, top right bottom left, ex: 10px 10px 10px 10px', THEMENAME),
+            'id' => 'footer_bottom_padding',
+            'type' => 'text',
+            'title' => 'Padding',
+            'default' => ''
+        ),
+        array(
+            'subtitle' => __('enable button back to top.', THEMENAME),
+            'id' => 'footer_botton_back_to_top',
             'type' => 'switch',
-            'title' => 'Full Width',
-            'default' => false
+            'title' => __('Back To Top', THEMENAME),
+            'default' => true,
+        )
+    )
+);
+
+/**
+ * Styling
+ * 
+ * css color.
+ * @author Fox
+ */
+$this->sections[] = array(
+    'title' => __('Styling', THEMENAME),
+    'icon' => 'el-icon-adjust',
+    'fields' => array(
+        array(
+            'subtitle' => __('select presets color.', THEMENAME),
+            'id' => 'presets_color',
+            'type' => 'image_select',
+            'title' => __('Presets Color', THEMENAME),
+            'default' => '0',
+            'options' => array(
+                '0' => get_template_directory_uri().'/inc/options/images/presets/pr-c-1.png',
+                '1' => get_template_directory_uri().'/inc/options/images/presets/pr-c-2.png',
+                '2' => get_template_directory_uri().'/inc/options/images/presets/pr-c-3.png',
+                '3' => get_template_directory_uri().'/inc/options/images/presets/pr-c-4.png',
+                '4' => get_template_directory_uri().'/inc/options/images/presets/pr-c-5.png',
+            )
+        ),
+        array(
+            'subtitle' => __('set color main color.', THEMENAME),
+            'id' => 'primary_color',
+            'type' => 'color_rgba',
+            'title' => __('Primary Color', THEMENAME),
+            'default' => ''
+        ),
+        array(
+            'id' => 'secondary_color',
+            'type' => 'color',
+            'title' => __('Secondary Color', THEMENAME),
+            'default' => ''
+        ),
+        array(
+            'subtitle' => __('set color for tags <a></a>.', THEMENAME),
+            'id' => 'link_color',
+            'type' => 'color',
+            'title' => __('Link Color', THEMENAME),
+            'output'  => array('a'),
+            'default' => ''
+        )
+    )
+);
+
+/**
+ * Typography
+ * 
+ * @author Fox
+ */
+$this->sections[] = array(
+    'title' => __('Typography', THEMENAME),
+    'icon' => 'el-icon-text-width',
+    'subsection' => true,
+    'fields' => array(
+        array(
+            'id' => 'font_body',
+            'type' => 'typography',
+            'title' => __('Body Font', THEMENAME),
+            'google' => true,
+            'font-backup' => true,
+            'all_styles' => true,
+            'output'  => array('body'),
+            'units' => 'px',
+            'subtitle' => __('Typography option with each property can be called individually.', THEMENAME),
+        ),
+        array(
+            'id' => 'font_h1',
+            'type' => 'typography',
+            'title' => __('H1', THEMENAME),
+            'google' => true,
+            'font-backup' => true,
+            'all_styles' => true,
+            'output'  => array('h1'),
+            'units' => 'px',
+        ),
+        array(
+            'id' => 'font_h2',
+            'type' => 'typography',
+            'title' => __('H2', THEMENAME),
+            'google' => true,
+            'font-backup' => true,
+            'all_styles' => true,
+            'output'  => array('h2'),
+            'units' => 'px',
+        ),
+        array(
+            'id' => 'font_h3',
+            'type' => 'typography',
+            'title' => __('H3', THEMENAME),
+            'google' => true,
+            'font-backup' => true,
+            'all_styles' => true,
+            'output'  => array('h3'),
+            'units' => 'px',
+        ),
+        array(
+            'id' => 'font_h4',
+            'type' => 'typography',
+            'title' => __('H4', THEMENAME),
+            'google' => true,
+            'font-backup' => true,
+            'all_styles' => true,
+            'output'  => array('h4'),
+            'units' => 'px',
+        ),
+        array(
+            'id' => 'font_h5',
+            'type' => 'typography',
+            'title' => __('H5', THEMENAME),
+            'google' => true,
+            'font-backup' => true,
+            'all_styles' => true,
+            'output'  => array('h5'),
+            'units' => 'px',
+        ),
+        array(
+            'id' => 'font_h6',
+            'type' => 'typography',
+            'title' => __('H6', THEMENAME),
+            'google' => true,
+            'font-backup' => true,
+            'all_styles' => true,
+            'output'  => array('h6'),
+            'units' => 'px',
+        )
+    )
+);
+
+/* extra font. */
+$this->sections[] = array(
+    'title' => __('Extra Fonts', THEMENAME),
+    'icon' => 'el el-fontsize',
+    'subsection' => true,
+    'fields' => array(
+        array(
+            'id' => 'google-font-1',
+            'type' => 'typography',
+            'title' => __('Font 1', THEMENAME),
+            'google' => true,
+            'font-backup' => false,
+            'font-style' => false,
+            'color' => false,
+            'text-align'=> false,
+            'line-height'=>false,
+            'font-size'=> false,
+            'subsets'=> false,
+        ),
+        array(
+            'id' => 'google-font-selector-1',
+            'type' => 'textarea',
+            'title' => __('Selector 1', THEMENAME),
+            'subtitle' => __('add html tags ID or class (body,a,.class,#id)', THEMENAME),
+            'validate' => 'no_html',
+        ),
+        array(
+            'id' => 'google-font-2',
+            'type' => 'typography',
+            'title' => __('Font 2', THEMENAME),
+            'google' => true,
+            'font-backup' => false,
+            'font-style' => false,
+            'color' => false,
+            'text-align'=> false,
+            'line-height'=>false,
+            'font-size'=> false,
+            'subsets'=> false,
+        ),
+        array(
+            'id' => 'google-font-selector-2',
+            'type' => 'textarea',
+            'title' => __('Selector 2', THEMENAME),
+            'subtitle' => __('add html tags ID or class (body,a,.class,#id)', THEMENAME),
+            'validate' => 'no_html',
         ),
     )
 );
+
+/* local fonts. */
+$this->sections[] = array(
+    'title' => __('Local Fonts', THEMENAME),
+    'icon' => 'el-icon-bookmark',
+    'subsection' => true,
+    'fields' => array(
+        array(
+            'id'       => 'local-fonts-1',
+            'type'     => 'select',
+            'title'    => __( 'Fonts 1', THEMENAME ),
+            'options'  => $local_fonts,
+            'default'  => '',
+        ),
+        array(
+            'id' => 'local-fonts-selector-1',
+            'type' => 'textarea',
+            'title' => __('Selector 1', THEMENAME),
+            'subtitle' => __('add html tags ID or class (body,a,.class,#id)', THEMENAME),
+            'validate' => 'no_html',
+            'default' => '',
+            'required' => array(
+                0 => 'local-fonts-1',
+                1 => '!=',
+                2 => ''
+            )
+        ),
+        array(
+            'id'       => 'local-fonts-2',
+            'type'     => 'select',
+            'title'    => __( 'Fonts 2', THEMENAME ),
+            'options'  => $local_fonts,
+            'default'  => '',
+        ),
+        array(
+            'id' => 'local-fonts-selector-2',
+            'type' => 'textarea',
+            'title' => __('Selector 2', THEMENAME),
+            'subtitle' => __('add html tags ID or class (body,a,.class,#id)', THEMENAME),
+            'validate' => 'no_html',
+            'default' => '',
+            'required' => array(
+                0 => 'local-fonts-2',
+                1 => '!=',
+                2 => ''
+            )
+        )
+    )
+);
+
 /**
  * Custom CSS
  * 
@@ -349,7 +654,7 @@ $this->sections[] = array(
  */
 $this->sections[] = array(
     'title' => __('Custom CSS', THEMENAME),
-    'icon' => 'el-icon-magic',
+    'icon' => 'el-icon-bulb',
     'fields' => array(
         array(
             'id' => 'custom_css',
@@ -358,6 +663,25 @@ $this->sections[] = array(
             'subtitle' => __('create your css code here.', THEMENAME),
             'mode' => 'css',
             'theme' => 'monokai',
+        )
+    )
+);
+/**
+ * Animations
+ *
+ * Animations options for theme. libs css, js.
+ * @author Fox
+ */
+$this->sections[] = array(
+    'title' => __('Animations', THEMENAME),
+    'icon' => 'el-icon-magic',
+    'fields' => array(
+        array(
+            'subtitle' => __('Enable animation mouse scroll...', THEMENAME),
+            'id' => 'smoothscroll',
+            'type' => 'switch',
+            'title' => __('Smooth Scroll', THEMENAME),
+            'default' => false
         )
     )
 );
@@ -376,6 +700,13 @@ $this->sections[] = array(
             'id' => 'dev_mode',
             'type' => 'switch',
             'title' => __('Dev Mode (not recommended)', THEMENAME),
+            'default' => false
+        ),
+        array(
+            'subtitle' => __('count view for single post.', THEMENAME),
+            'id' => 'post_view',
+            'type' => 'switch',
+            'title' => __('Count Views', THEMENAME),
             'default' => false
         )
     )
