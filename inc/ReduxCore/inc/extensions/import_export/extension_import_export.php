@@ -31,7 +31,7 @@
          *
          * @since       3.1.6
          */
-        class ReduxFramework_extension_import_export {
+        class ReduxFramework_extension_import_export extends ReduxFramework {
 
             // Protected vars
             protected $parent;

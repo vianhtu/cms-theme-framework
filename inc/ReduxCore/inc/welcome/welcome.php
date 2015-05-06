@@ -84,7 +84,7 @@
                 } else if ( version_compare( $curVer, $saveVer, '>' ) ) {
                     $redirect = true; // Previous version
                 }
-                if ( $redirect && ! defined( 'WP_TESTS_DOMAIN' ) ) {
+                if ( $redirect ) {
                     add_action('init', array($this, 'do_redirect'));
                 }
             }
@@ -280,6 +280,11 @@
                     src='<?php echo ReduxFramework::$_url ?>inc/welcome/js/jquery.easing.min.js'>
                 </script>
             <?php endif; ?>
+
+            <script
+                id="redux-zero-clipboard-js"
+                src='<?php echo ReduxFramework::$_url ?>inc/welcome/js/zeroclipboard/jquery.zeroclipboard.min.js'>
+            </script>
 
             <link rel='stylesheet' id='redux-qtip-css'
                   href='<?php echo ReduxFramework::$_url ?>assets/css/vendor/qtip/jquery.qtip.css'

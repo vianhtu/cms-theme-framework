@@ -185,33 +185,36 @@ if( !class_exists( 'ReduxFramework_color_rgba' ) ) {
             
             // Set up min files for dev_mode = false.
             $min = Redux_Functions::isMin();
+            
+            // Spectrum colour picker
+            wp_enqueue_script(
+                'redux-spectrum-js', 
+                ReduxFramework::$_url . 'assets/js/vendor/spectrum/redux-spectrum' . $min . '.js', 
+                array('jquery'), 
+                time(), 
+                true
+            );
 
             // Field dependent JS
-            if (!wp_script_is ( 'redux-field-color-rgba-js' )) {
-                wp_enqueue_script(
-                    'redux-field-color-rgba-js', 
-                    ReduxFramework::$_url . 'inc/fields/color_rgba/field_color_rgba' . Redux_Functions::isMin() . '.js',
-                    array('jquery', 'redux-spectrum-js'), 
-                    time(), 
-                    true
-                );
-            }
+            wp_enqueue_script(
+                'redux-field-color-rgba-js', 
+                ReduxFramework::$_url . 'inc/fields/color_rgba/field_color_rgba' . Redux_Functions::isMin() . '.js',
+                array('jquery', 'redux-spectrum-js'), 
+                time(), 
+                true
+            );
             
             // Spectrum CSS
-            if (!wp_style_is ( 'redux-spectrum-css' )) {
-                wp_enqueue_style('redux-spectrum-css');
-            }
+            wp_enqueue_style('redux-spectrum-css');
             
             if ($this->parent->args['dev_mode']) {
-                if (!wp_style_is ( 'redux-field-color-rgba-css' )) {
-                    wp_enqueue_style(
-                        'redux-field-color-rgba-css',
-                        ReduxFramework::$_url . 'inc/fields/color_rgba/field_color_rgba.css',
-                        array(),
-                        time(),
-                        'all'
-                    );
-                }
+                wp_enqueue_style(
+                    'redux-field-color-rgba-css',
+                    ReduxFramework::$_url . 'inc/fields/color_rgba/field_color_rgba.css',
+                    array(),
+                    time(),
+                    'all'
+                );
             }
         }
 

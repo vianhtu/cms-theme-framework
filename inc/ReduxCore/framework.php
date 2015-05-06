@@ -43,9 +43,6 @@
 // Don't duplicate me!
     if ( ! class_exists( 'ReduxFramework' ) ) {
 
-        // Redux CDN class
-        require_once( dirname( __FILE__ ) . '/inc/class.redux_cdn.php' );
-        
         // Redux API class  :)
         require_once( dirname( __FILE__ ) . '/inc/class.redux_api.php' );
 
@@ -77,7 +74,7 @@
             // Please update the build number with each push, no matter how small.
             // This will make for easier support when we ask users what version they are using.
 
-            public static $_version = '3.5.4.7';
+            public static $_version = '3.5.4.3';
             public static $_dir;
             public static $_url;
             public static $_upload_dir;
@@ -173,6 +170,7 @@
             public $toHide = array(); // Values to hide on page load
             public $typography = null; //values to generate google font CSS
             public $import_export = null;
+            public $debug = null;
             public $no_panel = array(); // Fields that are not visible in the panel
             private $show_hints = false;
             public $hidden_perm_fields = array(); //  Hidden fields specified by 'permissions' arg.
@@ -209,8 +207,7 @@
                 }
 
                 // Pass parent pointer to function helper.
-                Redux_Functions::$_parent   = $this;
-                Redux_CDN::$_parent         = $this;
+                Redux_Functions::$_parent = $this;
 
                 // Set values
                 $this->set_default_args();
@@ -352,6 +349,9 @@
 
                     // Display admin notices in dev_mode
                     if ( true == $this->args['dev_mode'] ) {
+                        require_once( self::$_dir . 'inc/debug.php' );
+                        $this->debug = new ReduxDebugObject ( $this );
+
                         if ( true == $this->args['update_notice'] ) {
                             add_action( 'admin_init', array( $this, '_update_check' ) );
                         }
@@ -540,15 +540,13 @@
                         ),
                     ),
                     'show_import_export'        => true,
-                    'show_options_object'       => false,
                     'dev_mode'                  => true,
-                    
+                    'system_info'               => false,
                     'disable_tracking'          => false,
                     'templates_path'            => '',
                     // Path to the templates file for various Redux elements
                     'ajax_save'                 => true,
                     // Disable the use of ajax saving for the panel
-                    'cdn_check_time'            => 1440,
                 );
             }
 
@@ -570,6 +568,14 @@
                     'meta'   => array( 'class' => 'redux-network-admin' )
                 );
                 $wp_admin_bar->add_node( $args );
+            }
+
+            private function stripslashes_deep( $value ) {
+                $value = is_array( $value ) ?
+                    array_map( 'stripslashes_deep', $value ) :
+                    stripslashes( $value );
+
+                return $value;
             }
 
             public function save_network_page() {
@@ -1117,62 +1123,6 @@
                 return $value;
             }
 
-            public function field_default_values($field) {
-                // Detect what field types are being used
-                if ( ! isset ( $this->fields[ $field['type'] ][ $field['id'] ] ) ) {
-                    $this->fields[ $field['type'] ][ $field['id'] ] = 1;
-                } else {
-                    $this->fields[ $field['type'] ] = array( $field['id'] => 1 );
-                }
-                if ( isset ( $field['default'] ) ) {
-                    $this->options_defaults[ $field['id'] ] = $field['default'];
-                } elseif ( ( $field['type'] != "ace_editor" ) ) {
-                    // Sorter data filter
-
-                    if ( isset( $field['data'] ) && !empty( $field['data'] ) ) {
-                        if (!isset($field['args'])) {
-                            $field['args'] = array();
-                        }
-                        if ( is_array( $field['data'] ) && !empty( $field['data'] ) ) {
-                            foreach ( $field['data'] as $key => $data ) {
-                                if (!empty($data)) {
-                                    if ( ! isset ( $this->field['args'][ $key ] ) ) {
-                                        $field['args'][ $key ] = array();
-                                    }
-                                    $field['options'][ $key ] = $this->get_wordpress_data( $data, $field['args'][ $key ] );
-                                }
-                            }
-                        } else {
-                            $field['options'] = $this->get_wordpress_data( $field['data'], $field['args'] );
-                        }
-                    }
-
-                    if ( $field['type'] == "sorter" && isset ( $field['data'] ) && ! empty ( $field['data'] ) && is_array( $field['data'] ) ) {
-                        if ( ! isset ( $field['args'] ) ) {
-                            $field['args'] = array();
-                        }
-                        foreach ( $field['data'] as $key => $data ) {
-                            if ( ! isset ( $field['args'][ $key ] ) ) {
-                                $field['args'][ $key ] = array();
-                            }
-                            $field['options'][ $key ] = $this->get_wordpress_data( $data, $field['args'][ $key ] );
-                        }
-                    }
-
-                    if (isset ( $field['options'] )) {
-                        if ( $field['type'] == "sortable" ) {
-                            $this->options_defaults[ $field['id'] ] = array();
-                        } elseif ( $field['type'] == "image_select" ) {
-                            $this->options_defaults[ $field['id'] ] = '';
-                        } elseif ( $field['type'] == "select" ) {
-                            $this->options_defaults[ $field['id'] ] = '';
-                        } else {
-                            $this->options_defaults[ $field['id'] ] = $field['options'];
-                        }
-                    }
-                }
-            }
-
             /**
              * Get default options into an array suitable for the settings API
              *
@@ -1209,7 +1159,39 @@
                                     $field['class'] .= "redux-section-indent-start";
                                     $this->sections[ $sk ]['fields'][ $k ] = $field;
                                 }
-                                $this->field_default_values($field);
+                                // Detect what field types are being used
+                                if ( ! isset ( $this->fields[ $field['type'] ][ $field['id'] ] ) ) {
+                                    $this->fields[ $field['type'] ][ $field['id'] ] = 1;
+                                } else {
+                                    $this->fields[ $field['type'] ] = array( $field['id'] => 1 );
+                                }
+                                if ( isset ( $field['default'] ) ) {
+                                    $this->options_defaults[ $field['id'] ] = $field['default'];
+                                } elseif ( isset ( $field['options'] ) && ( $field['type'] != "ace_editor" ) ) {
+                                    // Sorter data filter
+
+                                    if ( $field['type'] == "sorter" && isset ( $field['data'] ) && ! empty ( $field['data'] ) && is_array( $field['data'] ) ) {
+                                        if ( ! isset ( $field['args'] ) ) {
+                                            $field['args'] = array();
+                                        }
+                                        foreach ( $field['data'] as $key => $data ) {
+                                            if ( ! isset ( $field['args'][ $key ] ) ) {
+                                                $field['args'][ $key ] = array();
+                                            }
+                                            $field['options'][ $key ] = $this->get_wordpress_data( $data, $field['args'][ $key ] );
+                                        }
+                                    }
+
+                                    if ( $field['type'] == "sortable" ) {
+                                        $this->options_defaults[ $field['id'] ] = array();
+                                    } elseif ( $field['type'] == "image_select" ) {
+                                        $this->options_defaults[ $field['id'] ] = '';
+                                    } elseif ( $field['type'] == "select" ) {
+                                        $this->options_defaults[ $field['id'] ] = '';
+                                    } else {
+                                        $this->options_defaults[ $field['id'] ] = $field['options'];
+                                    }
+                                }
                             }
                         }
                     }
@@ -1248,11 +1230,7 @@
                     $this->dev_mode_forced  = true;
                     $this->args['dev_mode'] = true;
                 }
-                
-                if ($this->args['dev_mode']) {
-                    $this->args['show_options_object'] = true;
-                }
-                
+
                 // Auto create the page_slug appropriately
                 if ( empty( $this->args['page_slug'] ) ) {
                     if ( ! empty( $this->args['display_name'] ) ) {
@@ -1420,6 +1398,16 @@
 
                             // Remove parent submenu item instead of adding null item.
                             remove_submenu_page( $this->args['page_slug'], $this->args['page_slug'] );
+                        }
+
+                        if ( true == $this->args['dev_mode'] ) {
+                            $this->debug->add_submenu();
+                        }
+
+                        if ( true == $this->args['system_info'] ) {
+                            add_submenu_page(
+                                $this->args['page_slug'], __( 'System Info', 'redux-framework' ), __( 'System Info', 'redux-framework' ), $this->args['page_permissions'], $this->args['page_slug'] . '&tab=system_info_default', '__return_null'
+                            );
                         }
                     }
                 }
@@ -1966,7 +1954,7 @@
              * @access      public
              * @return      void
              */
-            public function _register_settings($setOption = true) {
+            public function _register_settings() {
 
                 // TODO - REMOVE
                 // Not used by new sample-config, but in here for legacy builds
@@ -1975,13 +1963,10 @@
                     include( ABSPATH . "wp-includes/pluggable.php" );
                 }
 
-                if ($setOption) {
-                    register_setting( $this->args['opt_name'] . '_group', $this->args['opt_name'], array(
-                        $this,
-                        '_validate_options'
-                    ) );
-                }
-
+                register_setting( $this->args['opt_name'] . '_group', $this->args['opt_name'], array(
+                    $this,
+                    '_validate_options'
+                ) );
 
                 if ( is_null( $this->sections ) ) {
                     return;
@@ -2114,10 +2099,8 @@
                                 }
                             }
                             if ( isset ( $field['customizer_only'] ) && $field['customizer_only'] == true ) {
-                                $display = false;
+                                //$display = false;
                             }
-
-
 
                             if ( isset ( $field['permissions'] ) ) {
 
@@ -2300,16 +2283,13 @@
                                 if ( isset ( $field['hidden'] ) && $field['hidden'] ) {
                                     $field['label_for'] = 'redux_hide_field';
                                 }
-                                if ( $setOption ) {
-                                    add_settings_field(
-                                        "{$fieldk}_field", $th, array(
-                                        &$this,
-                                        '_field_input'
-                                    ), "{$this->args['opt_name']}{$k}_section_group", "{$this->args['opt_name']}{$k}_section", $field
-                                    );
-                                } else {
-                                    $this->field_head[$field['id']] = $th;
-                                }
+
+                                add_settings_field(
+                                    "{$fieldk}_field", $th, array(
+                                    &$this,
+                                    '_field_input'
+                                ), "{$this->args['opt_name']}{$k}_section_group", "{$this->args['opt_name']}{$k}_section", $field
+                                );
 
                             }
                         }
@@ -2709,11 +2689,10 @@
                     return;
                 }
 
-                if ( defined( 'WP_CACHE' ) && WP_CACHE && class_exists( 'W3_ObjectCache' ) && function_exists ( 'w3_instance' ) ) {
+                if ( defined( 'WP_CACHE' ) && WP_CACHE && class_exists( 'W3_ObjectCache' ) ) {
                     //echo "here";
-                    $w3_inst    = w3_instance('W3_ObjectCache');
-                    $w3         = $w3_inst->instance();
-                    $key        = $w3->_get_cache_key( $this->args['opt_name'] . '-transients', 'transient' );
+                    $w3  = W3_ObjectCache::instance();
+                    $key = $w3->_get_cache_key( $this->args['opt_name'] . '-transients', 'transient' );
                     //echo $key;
                     $w3->delete( $key, 'transient', true );
                     //set_transient($this->args['opt_name'].'-transients', $this->transients);

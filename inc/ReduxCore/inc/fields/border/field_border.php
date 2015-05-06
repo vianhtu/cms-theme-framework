@@ -206,39 +206,27 @@ if ( ! class_exists( 'ReduxFramework_border' ) ) {
          */
         function enqueue() {
             $min = Redux_Functions::isMin();
+            wp_enqueue_style( 'select2-css' );
+            wp_enqueue_style( 'wp-color-picker' );
             
-            if (!wp_style_is ( 'select2-css' )) {
-                wp_enqueue_style( 'select2-css' );
-            }
-            
-            if (!wp_style_is ( 'wp-color-picker' )) {
-                wp_enqueue_style( 'wp-color-picker' );
-            }
-            
-            if (!wp_script_is ( 'redux-field-border-js' )) {
-                wp_enqueue_script(
-                    'redux-field-border-js',
-                    ReduxFramework::$_url . 'inc/fields/border/field_border' . $min . '.js',
-                    array( 'jquery', 'select2-js', 'wp-color-picker', 'redux-js' ),
-                    time(),
-                    true
-                );
-            }
+            wp_enqueue_script(
+                'redux-field-border-js',
+                ReduxFramework::$_url . 'inc/fields/border/field_border' . $min . '.js',
+                array( 'jquery', 'select2-js', 'wp-color-picker', 'redux-js' ),
+                time(),
+                true
+            );
 
             if ($this->parent->args['dev_mode']) {
-                if (!wp_style_is ( 'redux-color-picker-css' )) {
-                    wp_enqueue_style( 'redux-color-picker-css' );
-                }
+                wp_enqueue_style( 'redux-color-picker-css' );
                 
-                if (!wp_style_is ( 'redux-field-border-css' )) {
-                    wp_enqueue_style(
-                        'redux-field-border-css',
-                        ReduxFramework::$_url . 'inc/fields/border/field_border.css',
-                        array(),
-                        time(),
-                        'all'
-                    );
-                }
+                wp_enqueue_style(
+                    'redux-field-border-css',
+                    ReduxFramework::$_url . 'inc/fields/border/field_border.css',
+                    array(),
+                    time(),
+                    'all'
+                );
             }
         } //function
 

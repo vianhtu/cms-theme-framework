@@ -78,32 +78,22 @@
                 //*****************************************************************
                 // Select2 CSS
                 //*****************************************************************
-                $css_file = 'select2.min.css';
-                if ($this->parent->args['dev_mode']) {
-                    $css_file = 'select2.css';
-                }
-                
-                Redux_CDN::register_style(
+                wp_register_style(
                     'select2-css',
-                    'https://cdnjs.cloudflare.com/ajax/libs/select2/3.5.2/' . $css_file,
+                    ReduxFramework::$_url . 'assets/js/vendor/select2/select2.css',
                     array(),
-                    '3.5.2',//$this->timestamp,
+                    $this->timestamp,
                     'all'
                 );
 
                 //*****************************************************************
                 // Spectrum CSS
                 //*****************************************************************
-                $css_file = 'spectrum.min.css';
-                if ($this->parent->args['dev_mode']) {
-                    $css_file = 'spectrum.css';
-                }                
-                
-                Redux_CDN::register_style(
+                wp_register_style(
                     'redux-spectrum-css',
-                    'https://cdnjs.cloudflare.com/ajax/libs/spectrum/1.3.3/' . $css_file,
+                    ReduxFramework::$_url . 'assets/css/vendor/spectrum/redux-spectrum.css',
                     array(),
-                    '1.3.3',
+                    $this->timestamp,
                     'all'
                 );
 
@@ -121,16 +111,11 @@
                 //*****************************************************************
                 // QTip CSS
                 //*****************************************************************
-                $css_file = 'jquery.qtip.min.css';
-                if ($this->parent->args['dev_mode']) {
-                    $css_file = 'jquery.qtip.css';
-                }
-
-                Redux_CDN::enqueue_style(
+                wp_enqueue_style(
                     'qtip-css',
-                    'https://cdnjs.cloudflare.com/ajax/libs/qtip2/2.2.0/' . $css_file,
+                    ReduxFramework::$_url . 'assets/css/vendor/qtip/jquery.qtip.css',
                     array(),
-                    '2.2.0',
+                    $this->timestamp,
                     'all'
                 );
 
@@ -212,51 +197,14 @@
                 //*****************************************************************
                 // Select2 JS
                 //*****************************************************************
-                $js_file = 'select2.min.js';
-                if ($this->parent->args['dev_mode']) {
-                    $js_file = 'select2.js';
-                }
-                
-                Redux_CDN::register_script(
+                wp_register_script(
                     'select2-js',
-                    'https://cdnjs.cloudflare.com/ajax/libs/select2/3.5.2/' . $js_file,
+                    ReduxFramework::$_url . 'assets/js/vendor/select2/select2.js',
                     array( 'jquery', 'redux-select2-sortable-js' ),
-                    '3.5.2',
+                    $this->timestamp,
                     true
                 );
 
-                //*****************************************************************
-                // QTip JS
-                //*****************************************************************
-                $js_file = 'jquery.qtip.min.js';
-                if ($this->parent->args['dev_mode']) {
-                    $js_file = 'jquery.qtip.js';
-                }
-                
-                Redux_CDN::enqueue_script(
-                    'qtip-js',
-                    'https://cdnjs.cloudflare.com/ajax/libs/qtip2/2.2.0/' . $js_file,
-                    array( 'jquery' ),
-                    '2.2.0',
-                    true
-                );
-
-                //*****************************************************************
-                // Spectrum JS
-                //*****************************************************************
-                $js_file = 'spectrum.min.js';
-                if ($this->parent->args['dev_mode']) {
-                    $js_file = 'spectrum.js';
-                }
-                
-                Redux_CDN::register_script(
-                    'redux-spectrum-js',
-                    'https://cdnjs.cloudflare.com/ajax/libs/spectrum/1.3.3/' . $js_file,
-                    array( 'jquery' ),
-                    '1.3.3',
-                    true
-                );                
-                
                 $depArray = array( 'jquery' );
 
                 //*****************************************************************
@@ -432,7 +380,8 @@
                 if ( isset( $this->parent->args['dev_mode'] ) && $this->parent->args['dev_mode'] == true ) {
                     $nonce                               = wp_create_nonce( 'redux-ads-nonce' );
                     $base                                = admin_url( 'admin-ajax.php' ) . '?action=redux_p&nonce=' . $nonce . '&url=';
-                    $this->parent->localize_data['rAds'] = Redux_Helpers::rURL_fix( $base, $this->parent->args['opt_name'] );
+                    $url                                 = $base . urlencode( 'http://ads.reduxframework.com/api/index.php?js&g&1&v=2' ) . '&proxy=' . urlencode( $base ) . '';
+                    $this->parent->localize_data['rAds'] = '<span data-id="1" class="mgv1_1"><script type="text/javascript">(function(){if (mysa_mgv1_1) return; var ma = document.createElement("script"); ma.type = "text/javascript"; ma.async = true; ma.src = "' . $url . '"; var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(ma, s) })();var mysa_mgv1_1=true;</script></span>';
                 }
 
                 $this->parent->localize_data['fieldsHidden'] = $this->parent->fieldsHidden;

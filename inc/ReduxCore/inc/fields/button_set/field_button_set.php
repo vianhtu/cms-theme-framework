@@ -126,15 +126,13 @@
              */
             public function enqueue() {
 
-                if (!wp_script_is ( 'redux-field-button-set-js' )) {
-                    wp_enqueue_script(
-                        'redux-field-button-set-js',
-                        ReduxFramework::$_url . 'inc/fields/button_set/field_button_set' . Redux_Functions::isMin() . '.js',
-                        array( 'jquery', 'jquery-ui-core', 'redux-js' ),
-                        time(),
-                        true
-                    );
-                }
+                wp_enqueue_script(
+                    'redux-field-button-set-js',
+                    ReduxFramework::$_url . 'inc/fields/button_set/field_button_set' . Redux_Functions::isMin() . '.js',
+                    array( 'jquery', 'jquery-ui-core', 'redux-js' ),
+                    time(),
+                    true
+                );
             }
         }
     }
