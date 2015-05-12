@@ -165,9 +165,11 @@ function cms_setup() {
 
 	// This theme uses a custom image size for featured images, displayed on "standard" posts.
 	add_theme_support( 'post-thumbnails' );
-	add_image_size('related-img', 50, 50, true);
-	add_image_size('related-img-1', 100, 100, true);
-	set_post_thumbnail_size( 624, 9999 ); // Unlimited height, soft crop
+	
+	//add_image_size('demo', 345, 245, true);
+	
+	// Unlimited height, soft crop
+	set_post_thumbnail_size( 624, 9999 );
 }
 add_action( 'after_setup_theme', 'cms_setup' );
 
