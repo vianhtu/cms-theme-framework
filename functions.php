@@ -53,7 +53,19 @@ require( get_template_directory() . '/inc/options/functions.php' );
 
 /* Add custom vc params. */
 if(class_exists('Vc_Manager')){
+    
+    /* Add theme elements */
+    add_action('vc_before_init', 'cms_vc_elements');
+    
+    function cms_vc_elements(){
+        if(class_exists('CmsShortCode')){
+            require( get_template_directory() . '/inc/elements/cms_custom.php' );
+        }
+    }
+    
+    /* Add element options. */
     add_action('init', 'cms_vc_params');
+    
     function cms_vc_params() {
         require( get_template_directory() . '/vc_params/vc_rows.php' );
     }
