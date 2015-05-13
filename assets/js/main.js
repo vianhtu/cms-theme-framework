@@ -147,7 +147,7 @@ jQuery(document).ready(function($) {
 	 * @since 1.0.0
 	 */
 	
-	$('#menu-mobile').click(function(){
+	$('body').on('click', '#menu-mobile',function(){
 		var navigation = $(this).parent().find('#header-navigation');
 		if(!navigation.hasClass('collapse')){
 			navigation.addClass('collapse');
