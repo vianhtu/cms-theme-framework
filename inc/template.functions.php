@@ -195,17 +195,21 @@ function cms_archive_readmore(){
  * @param string $after
  */
 function cms_archive_audio() {
-    global $cms_base;
-    
+	global $cms_base;
     /* get shortcode audio. */
     $shortcode = $cms_base->getShortcodeFromContent('audio', get_the_content());
     
     if($shortcode != ''){
         echo do_shortcode($shortcode);
+        
+        return true;
+        
     } else {
         if(has_post_thumbnail()){
             the_post_thumbnail();
         }
+        
+        return false;
     }
     
 }
@@ -228,12 +232,20 @@ function cms_archive_video() {
     if($local_video){
         /* view local. */
         echo do_shortcode($local_video);
+        
+        return true;
+        
     } elseif ($remote_video) {
         /* view youtobe or vimeo. */
         echo $wp_embed->run_shortcode($remote_video);
+        
+        return true;
+        
     } elseif (has_post_thumbnail()) {
         /* view thumbnail. */
         the_post_thumbnail();
+    } else {
+        return false;
     }
     
 }
@@ -245,35 +257,44 @@ function cms_archive_video() {
  * @since 1.0.0
  */
 function cms_archive_gallery(){
-    global $cms_base;
+	global $cms_base;
     /* get shortcode gallery. */
     $shortcode = $cms_base->getShortcodeFromContent('gallery', get_the_content());
     
     if($shortcode != ''){
         preg_match('/\[gallery.*ids=.(.*).\]/', $shortcode, $ids);
-        $array_id = explode(",", $ids[1]);
-        ?>
-        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-            <div class="carousel-inner">
-            <?php $i = 0; ?>
-            <?php foreach ($array_id as $image_id): ?>
-    			<?php
-                $attachment_image = wp_get_attachment_image_src($image_id, 'full', false);
-                if($attachment_image[0] != ''):?>
-    				<div class="item <?php if( $i == 0 ){ echo 'active'; } ?>">
-                		<img style="width:100%;" data-src="holder.js" src="<?php echo esc_url($attachment_image[0]);?>" alt="" />
-                	</div>
-                <?php $i++; endif; ?>
-            <?php endforeach; ?>
-            </div>
-            <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-    		    <span class="ion-ios7-arrow-left"></span>
-    		</a>
-    		<a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-    		    <span class="ion-ios7-arrow-right"></span>
-    		</a>
-    	</div>
-        <?php
+        
+        if(!empty($ids)){
+        
+            $array_id = explode(",", $ids[1]);
+            ?>
+            <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                <?php $i = 0; ?>
+                <?php foreach ($array_id as $image_id): ?>
+        			<?php
+                    $attachment_image = wp_get_attachment_image_src($image_id, 'full', false);
+                    if($attachment_image[0] != ''):?>
+        				<div class="item <?php if( $i == 0 ){ echo 'active'; } ?>">
+                    		<img style="width:100%;" data-src="holder.js" src="<?php echo $attachment_image[0];?>" alt="" />
+                    	</div>
+                    <?php $i++; endif; ?>
+                <?php endforeach; ?>
+                </div>
+                <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+        		    <span class="fa fa-angle-left"></span>
+        		</a>
+        		<a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+        		    <span class="fa fa-angle-right"></span>
+        		</a>
+        	</div>
+            <?php
+            
+            return true;
+        
+        } else {
+            return false;
+        }
     } else {
         if(has_post_thumbnail()){
             the_post_thumbnail();
@@ -292,11 +313,13 @@ function cms_archive_quote() {
     preg_match('/\<blockquote\>(.*)\<\/blockquote\>/', get_the_content(), $blockquote);
     
     if(!empty($blockquote[0])){
-        echo '<blockquote>'.$blockquote[0].'</blockquote>';
+        echo ''.$blockquote[0].'';
+        return true;
     } else {
         if(has_post_thumbnail()){
             the_post_thumbnail();
         }
+        return false;
     }
 }
 
