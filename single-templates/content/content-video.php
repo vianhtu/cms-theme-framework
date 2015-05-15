@@ -11,30 +11,46 @@
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-	<div class="entry-header">
-	    <?php cms_archive_video(); ?>
-		<h2 class="entry-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
-		<div><?php cms_archive_detail(); ?></div>
-	</div>
-	<!-- .entry-header -->
+	<div class="entry-blog">
+		<div class="entry-header">
+			<div class="entry-date">
+				<div class="arow-date"></div>
+				<?php cms_archive_post_icon(); ?>
+				<span><?php echo get_the_date("F d,Y"); ?></span>
+			</div>
+		    <h2 class="entry-title">
+		    	<a href="<?php the_permalink(); ?>">
+		    		<?php
+			    		if(is_sticky()){
+			                echo "<i class='fa fa-thumb-tack'></i>";
+			            }
+			    	?>
+		    		<?php the_title(); ?>
+		    	</a>
+		    </h2>
+		    <div class="entry-feature entry-video"><?php cms_archive_video(); ?></div>
+			<div class="entry-meta"><?php cms_archive_detail(); ?></div>
+		</div>
+		<!-- .entry-header -->
 
-	<div class="entry-content">
-			<?php the_excerpt(); 
-    			wp_link_pages( array(
-        			'before'      => '<div class="pagination loop-pagination"><span class="page-links-title">' . __( 'Pages:',THEMENAME) . '</span>',
-        			'after'       => '</div>',
-        			'link_before' => '<span class="page-numbers">',
-        			'link_after'  => '</span>',
-    			) );
+		<div class="entry-content">
+			<?php echo substr(get_the_excerpt(), 0,300);
+	    		wp_link_pages( array(
+	        		'before'      => '<div class="pagination loop-pagination"><span class="page-links-title">' . __( 'Pages:',THEMENAME) . '</span>',
+	        		'after'       => '</div>',
+	        		'link_before' => '<span class="page-numbers">',
+	        		'link_after'  => '</span>',
+	    		) );
 			?>
 		</div>
-	<!-- .entry-content -->
+		<!-- .entry-content -->
 
-	<footer class="entry-meta">
-	    <?php cms_archive_readmore(); ?>
-	    <!-- .readmore link -->
-	    <?php edit_post_link( __( 'Edit', THEMENAME ), '<span class="edit-link">', '</span>' ); ?>
-	</footer>
-	<!-- .entry-meta -->
+		<footer class="entry-footer">
+		    <?php cms_archive_readmore(); ?>
+		    <!-- .readmore link -->
+		</footer>
+		<!-- .entry-footer -->
+	</div>
+	<!-- .entry-blog -->
 </article>
 <!-- #post -->

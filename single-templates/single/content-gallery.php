@@ -11,30 +11,25 @@
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-	<div class="entry-blog">
+	<div class="entry-blog entry-post">
 		<div class="entry-header">
 			<div class="entry-date">
 				<div class="arow-date"></div>
 				<?php cms_archive_post_icon(); ?>
 				<span><?php echo get_the_date("F d,Y"); ?></span>
 			</div>
-		    <h2 class="entry-title">
-		    	<a href="<?php the_permalink(); ?>">
-		    		<?php
-			    		if(is_sticky()){
-			                echo "<i class='fa fa-thumb-tack'></i>";
-			            }
-			    	?>
-		    		<?php the_title(); ?>
-		    	</a>
-		    </h2>
-		    <div class="entry-feature entry-gallery"><?php cms_archive_gallery(); ?></div>
+		    <div class="entry-feature entry-gallery"><?php $gallery = cms_archive_gallery(); ?></div>
 			<div class="entry-meta"><?php cms_archive_detail(); ?></div>
 		</div>
 		<!-- .entry-header -->
 
 		<div class="entry-content">
-			<?php echo substr(get_the_excerpt(), 0,300);
+			<?php
+    			if($gallery) {
+    			    echo apply_filters('the_content', preg_replace('/\[gallery(.*)]/', '', get_the_content(), 1));
+    			} else {
+    			    the_content();
+    			}
 	    		wp_link_pages( array(
 	        		'before'      => '<div class="pagination loop-pagination"><span class="page-links-title">' . __( 'Pages:',THEMENAME) . '</span>',
 	        		'after'       => '</div>',
@@ -44,12 +39,6 @@
 			?>
 		</div>
 		<!-- .entry-content -->
-
-		<footer class="entry-footer">
-		    <?php cms_archive_readmore(); ?>
-		    <!-- .readmore link -->
-		</footer>
-		<!-- .entry-footer -->
 	</div>
 	<!-- .entry-blog -->
 </article>
