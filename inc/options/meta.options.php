@@ -58,7 +58,7 @@ class CMSMetaOptions
                 /* header. */
                 cms_options(array(
                     'id' => 'header',
-                    'label' => __('Header',THEMENAME),
+                    'label' => __('Custom',THEMENAME),
                     'type' => 'switch',
                     'options' => array('on'=>'1','off'=>''),
                     'follow' => array('1'=>array('#page_header_enable'))
@@ -97,7 +97,7 @@ class CMSMetaOptions
                 /* page title. */
                 cms_options(array(
                     'id' => 'page_title',
-                    'label' => __('Page Title',THEMENAME),
+                    'label' => __('Custom',THEMENAME),
                     'type' => 'switch',
                     'options' => array('on'=>'1','off'=>''),
                     'follow' => array('1'=>array('#page_title_enable'))
