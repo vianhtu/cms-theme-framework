@@ -38,23 +38,45 @@ function cms_theme_register_required_plugins() {
         ), */
 
         array(
-            'name'               => 'CMSSuperHeroes', // The plugin name.
-            'slug'               => 'cmssuperheroes', // The plugin slug (typically the folder name).
-            'source'             => 'http://cmssuperheroes.com/plugins/cmssuperheroesv2.zip', // The plugin source.
-            'required'           => true, // If false, the plugin is only 'recommended' instead of required.
+            'name'               => 'CMSSuperHeroes',
+            'slug'               => 'cmssuperheroes',
+            'source'             => 'http://cmssuperheroes.com/plugins/cmssuperheroesv2.zip',
+            'required'           => true,
         ),
         array(
-            'name'               => 'Visual Composer', // The plugin name.
-            'slug'               => 'js_composer', // The plugin slug (typically the folder name).
-            'source'             => 'http://cmssuperheroes.com/plugins/js_composer.zip', // The plugin source.
-            'required'           => true, // If false, the plugin is only 'recommended' instead of required.
+            'name'               => 'Visual Composer',
+            'slug'               => 'js_composer',
+            'source'             => 'http://cmssuperheroes.com/plugins/js_composer.zip',
+            'required'           => true,
         ),
         array(
             'name'      => 'Custom Post Type UI',
-            'slug'      => 'cpt-plugin',
+            'slug'      => 'custom-post-type-ui',
             'required'  => true,
         ),
-
+        array(
+            'name'               => 'Revolution Slider',
+            'slug'               => 'revslider',
+            'source'             => 'http://cmssuperheroes.com/plugins/revslider.zip',
+            'required'           => false,
+        ),
+        array(
+            'name'               => 'Essential Grid',
+            'slug'               => 'essential-grid',
+            'source'             => 'http://cmssuperheroes.com/plugins/essential-grid.zip',
+            'required'           => false,
+        ),
+        array(
+            'name'               => 'Time Table',
+            'slug'               => 'timetable',
+            'source'             => 'http://cmssuperheroes.com/plugins/timetable.zip',
+            'required'           => false,
+        ),
+        array(
+            'name'               => 'Contact Form 7',
+            'slug'               => 'contact-form-7',
+            'required'           => false,
+        ),
     );
 
     /**
