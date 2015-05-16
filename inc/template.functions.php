@@ -8,7 +8,7 @@ function cms_page_title(){
     global $smof_data, $cms_meta, $cms_base;
     
     /* page options */
-    if(isset($cms_meta->_cms_page_title) && $cms_meta->_cms_page_title){
+    if(is_page() && isset($cms_meta->_cms_page_title) && $cms_meta->_cms_page_title){
         if(isset($cms_meta->_cms_page_title_type)){
             $smof_data['page_title_layout'] = $cms_meta->_cms_page_title_type;
         }
