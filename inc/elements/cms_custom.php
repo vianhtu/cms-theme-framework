@@ -10,16 +10,12 @@ vc_map(
 	            "type" => "textfield",
 	            "heading" => __("Title",CMS_NAME),
 	            "param_name" => "title",
-	            "value" => "",
-	            "description" => __("",CMS_NAME),
 	            "group" => __("General Settings", CMS_NAME)
 	        ),
 	        array(
 	            "type" => "textarea",
 	            "heading" => __("Description",CMS_NAME),
 	            "param_name" => "description",
-	            "value" => "",
-	            "description" => __("",CMS_NAME),
 	            "group" => __("General Settings", CMS_NAME)
 	        ),
 	        array(
@@ -39,8 +35,6 @@ vc_map(
 	            "type" => "textfield",
 	            "heading" => __("Extra Class",CMS_NAME),
 	            "param_name" => "class",
-	            "value" => "",
-	            "description" => __("",CMS_NAME),
 	            "group" => __("Template", CMS_NAME)
 	        ),
 	    	array(
