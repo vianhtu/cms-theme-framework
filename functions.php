@@ -31,6 +31,8 @@ $theme = wp_get_theme();
 
 define('THEMENAME', $theme->get('Name'));
 
+/* language. */
+load_theme_textdomain(THEMENAME, get_template_directory().'/languages');
 
 /* Run shortcodes in widget text */
 add_filter('widget_text', 'do_shortcode');
