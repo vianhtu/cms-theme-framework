@@ -67,11 +67,6 @@ if(class_exists('Vc_Manager')){
     function cms_vc_params() {
         require( get_template_directory() . '/vc_params/vc_rows.php' );
         require( get_template_directory() . '/vc_params/vc_column.php' );	
-        require( get_template_directory() . '/vc_params/vc_btn.php' );	
-        require( get_template_directory() . '/vc_params/vc_separator.php' );		
-        require( get_template_directory() . '/vc_params/vc_tabs.php' );		
-        require( get_template_directory() . '/vc_params/vc_pie.php' );		
-        require( get_template_directory() . '/vc_params/vc_custom_heading.php' );	
     }
 }
 
