@@ -74,18 +74,7 @@ if(class_exists('Vc_Manager')){
         require( get_template_directory() . '/vc_params/vc_custom_heading.php' );	
     }
 }
-/* Remove Element VC */
-if(class_exists('Vc_Manager')){
-	vc_remove_element( "vc_button" );
-	vc_remove_element( "vc_button2" );
-	vc_remove_element( "vc_cta_button" );
-	vc_remove_element( "vc_cta_button2" );
-}
-/* Remove Element FancyBox CMS */
-add_action('vc_after_init', 'cms_remove_some_element');
-function cms_remove_some_element(){
- vc_remove_element('cms_fancybox_single');
-}
+
 /* Add SCSS */
 if(!class_exists('scssc')){
     require( get_template_directory() . '/inc/libs/scss.inc.php' );
