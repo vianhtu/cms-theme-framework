@@ -52,7 +52,7 @@ function cms_options($params = array())
             $core_options->metabox($params);
         }
     } else {
-        _e('Error', THEMENAME);
+        _e('Error', CSCORE_NAME);
     }
     wp_enqueue_script('core-options');
 }
@@ -280,7 +280,7 @@ class CsCoreControl
         }
         ob_start();
         ?>
-        <div class="color-field csfield" <?php echo $data; ?>>
+        <div class="color-field csfield" <?php echo ''.$data; ?>>
             <input type="text"
             name="<?php echo esc_attr($params['id']); ?>"
             id="<?php echo esc_attr($params['id']); ?>"
@@ -347,14 +347,14 @@ class CsCoreControl
                 $attachment_image = wp_get_attachment_image_src($value,'thumbnail');
                 if (count($attachment_image) > 0):?>
                 <li class="items" data-id="<?php echo esc_attr($value); ?>" style="background-image:url(<?php echo esc_url($attachment_image[0]);?>);background-size:cover;">
-                    <i class="edit dashicons dashicons-plus-alt" title="<?php _e('Replace Image', THEMENAME); ?>"></i>
-                    <i class="remove dashicons dashicons-dismiss" title="<?php _e('Remove Image', THEMENAME); ?>"></i>
+                    <i class="edit dashicons dashicons-plus-alt" title="<?php _e('Replace Image', CSCORE_NAME); ?>"></i>
+                    <i class="remove dashicons dashicons-dismiss" title="<?php _e('Remove Image', CSCORE_NAME); ?>"></i>
                 </li>
             <?php endif; endforeach; ?>
             <?php if($params['field'] != 'single'): ?>
-                <li class="items" data-id=""><i class="add dashicons dashicons-plus-alt" title="<?php _e('Add Image', THEMENAME); ?>"></i></li>
+                <li class="items" data-id=""><i class="add dashicons dashicons-plus-alt" title="<?php _e('Add Image', CSCORE_NAME); ?>"></i></li>
             <?php elseif(count($selected) == 0): ?>
-                <li class="items" data-id=""><i class="add dashicons dashicons-plus-alt" title="<?php _e('Add Image', THEMENAME); ?>"></i></li>
+                <li class="items" data-id=""><i class="add dashicons dashicons-plus-alt" title="<?php _e('Add Image', CSCORE_NAME); ?>"></i></li>
             <?php endif; ?>
             </ul>
             <input type="hidden" name="<?php echo esc_attr($params['id']); ?>" id="<?php echo esc_attr($params['id']); ?>" value="<?php echo  implode(",", $selected); ?>"/>
@@ -485,7 +485,7 @@ class CsCoreControl
 		    <label class="field-title" for="<?php echo esc_attr($params['id']); ?>"><?php echo esc_attr($params['label']); ?></label>
 	      <?php endif; ?>
 	      <div class="field<?php if(isset($params['class'])){ echo ' class="'.$params['class'].'"'; } ?>">
-	          <?php echo $this->renderType($params); ?>
+	          <?php echo ''.$this->renderType($params); ?>
 	      </div>
 	      <?php if(isset($params['desc'])): ?>
 	      <p class="field-desc"><?php echo esc_attr($params['desc']); ?></p>
@@ -502,7 +502,7 @@ class CsCoreControl
         	   <label class="field-title" for="<?php echo esc_attr($params['id']); ?>"><?php if(isset($params['label'])){ echo esc_attr($params['label']);} ?></label>
         	</th>
         	<td<?php if(isset($params['class'])){ echo ' class="'.$params['class'].'"'; } ?>>
-               <?php echo $this->renderType($params); ?>
+               <?php echo ''.$this->renderType($params); ?>
                <br />
         	   <span class="description"><?php if(isset($params['desc'])){ echo esc_attr($params['desc']);} ?></span>
         	</td>

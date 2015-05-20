@@ -16,5 +16,14 @@
                 });
             }
         });
+        /* Menu drop down*/
+        $('.nav-menu li.menu-item-has-children').append('<span class="cs-menu-toggle"><i class="fa fa-angle-down"></i></span>');
+        $('.cs-menu-toggle').click(function(){
+            $(this).prev().toggleClass('submenu-open');
+        });
+        /* Page Fixed Menu */
+        $('.header-fixed-page').parents('body').addClass('remove-margin-top');
+        $('#cshero-header.no-sticky').parents('body').addClass('remove-margin-top');
     });
+
 })(jQuery);

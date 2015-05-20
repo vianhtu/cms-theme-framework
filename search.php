@@ -17,15 +17,7 @@ get_header(); ?>
 
                 <?php /* Start the Loop */ ?>
                 <?php while ( have_posts() ) : the_post(); ?>
-                
-                    <?php 
-                    if(get_post_type() != 'page'){
-                        get_template_part( 'single-templates/content/content', get_post_format() ); 
-                    } else {
-                        get_template_part( 'single-templates/content/search', 'page' );
-                    }
-                    ?>
-                
+                    <?php get_template_part( 'single-templates/content/content' ); ?>
                 <?php endwhile; ?>
 
                 <?php cms_paging_nav(); ?>

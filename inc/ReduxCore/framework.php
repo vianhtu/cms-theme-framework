@@ -62,7 +62,7 @@
         require_once( dirname( __FILE__ ) . '/inc/class.redux_themecheck.php' );
 
         // Welcome
-        require_once( dirname( __FILE__ ) . '/inc/welcome/welcome.php' );
+        //require_once( dirname( __FILE__ ) . '/inc/welcome/welcome.php' );
 
         //require_once( dirname( __FILE__ ) . '/inc/class.redux_sass.php' );
 

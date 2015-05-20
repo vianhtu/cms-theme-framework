@@ -64,16 +64,18 @@ function cms_page_title(){
 
 /**
  * Get sub page title.
- * 
+ *
  * @author Fox
  */
 function cms_page_sub_title(){
-    global $cms_meta;
+    global $cms_meta, $post;
+
     if(!empty($cms_meta->_cms_page_title_sub_text)){
         echo '<div class="page-sub-title">'.esc_attr($cms_meta->_cms_page_title_sub_text).'</div>';
+    } elseif (!empty($post->ID) && get_post_meta($post->ID, 'post_subtitle', true)){
+        echo '<div class="page-sub-title">'.esc_attr(get_post_meta($post->ID, 'post_subtitle', true)).'</div>';
     }
 }
-
 
 /**
  * Get Header Layout.
@@ -102,6 +104,23 @@ function cms_menu_location($option = '_cms_primary'){
     global $cms_meta;
     /* get menu id from page setting */
     return (isset($cms_meta->$option) && $cms_meta->$option) ? $cms_meta->$option : null ;
+}
+
+function cms_get_page_loading() {
+    global $smof_data;
+    
+    if($smof_data['enable_page_loadding']){
+        echo '<div id="cms-loadding">';
+        switch ($smof_data['page_loadding_style']){
+            case '2':
+                echo '<div class="ball"></div>';
+                break;
+            default:
+                echo '<div class="loader"></div>';
+                break;
+        }
+        echo '</div>';
+    }
 }
 
 /**
@@ -135,7 +154,7 @@ function cms_main_class(){
     
     $main_class = '';
     /* chect content full width */
-    if(isset($cms_meta->_cms_full_width) && $cms_meta->_cms_full_width){
+    if(is_page() && isset($cms_meta->_cms_full_width) && $cms_meta->_cms_full_width){
         /* full width */
         $main_class = "no-container";
     } else {
@@ -165,15 +184,14 @@ function cms_single_detail(){
 function cms_archive_detail(){
     ?>
     <ul>
-        <li class="detail-date"><i class="fa fa-calendar-o"></i> <a href="<?php echo get_day_link(get_the_time('Y'),get_the_time('m'),get_the_time('d'));?>"><?php echo get_the_date(get_option('date_format', 'Y/m/d'));?></a></li>
-        <li class="detail-author"><i class="fa fa-user"></i> <?php _e('BY', THEMENAME); ?> <?php the_author_posts_link(); ?></li>
+        <li class="detail-author"><?php _e('By', THEMENAME); ?> <?php the_author_posts_link(); ?></li>
         <?php if(has_category()): ?>
-        <li class="detail-terms"><?php the_terms( get_the_ID(), 'category', '<i class="fa fa-folder"></i>'.__(' POSTED IN ', THEMENAME), ' / ' ); ?></li>
+        <li class="detail-terms"><?php the_terms( get_the_ID(), 'category', '<i class="fa fa-sitemap"></i>', ' / ' ); ?></li>
         <?php endif; ?>
+        <li class="detail-comment"><i class="fa fa-comments-o"></i><a href="<?php the_permalink(); ?>"><?php echo comments_number('0','1','%'); ?> <?php _e('Comments', THEMENAME); ?></a></li>
         <?php if(has_tag()): ?>
-        <li class="detail-tags"><?php the_tags('<i class="fa fa-tags"></i>'.__(' TAGS ', THEMENAME), ' / ' ); ?></li>
+        <li class="detail-tags"><?php the_tags('<i class="fa fa-tags"></i>', ', ' ); ?></li>
         <?php endif; ?>
-        <li class="detail-comment"><i class="fa fa-comment"></i> <?php _e('WITH', THEMENAME); ?> <a href="<?php the_permalink(); ?>"><?php echo comments_number('0','1','%'); ?> <?php _e('Comments', THEMENAME); ?></a></li>
     </ul>
     <?php
 }
@@ -185,7 +203,7 @@ function cms_archive_detail(){
  * @since 1.0.0
  */
 function cms_archive_readmore(){
-    echo '<a href="'.get_the_permalink().'" title="'.get_the_title().'" >'.__('Read More', THEMENAME).'</a>';
+    echo '<a class="btn btn-default" href="'.get_the_permalink().'" title="'.get_the_title().'" >'.__('Continue Reading', THEMENAME).'</a>';
 }
 
 /**
@@ -276,7 +294,7 @@ function cms_archive_gallery(){
                     $attachment_image = wp_get_attachment_image_src($image_id, 'full', false);
                     if($attachment_image[0] != ''):?>
         				<div class="item <?php if( $i == 0 ){ echo 'active'; } ?>">
-                    		<img style="width:100%;" data-src="holder.js" src="<?php echo $attachment_image[0];?>" alt="" />
+                    		<img style="width:100%;" data-src="holder.js" src="<?php echo esc_url($attachment_image[0]);?>" alt="" />
                     	</div>
                     <?php $i++; endif; ?>
                 <?php endforeach; ?>
@@ -325,7 +343,7 @@ function cms_archive_quote() {
 
 /**
  * Get icon from post format.
- *
+ * 
  * @return multitype:string Ambigous <string, mixed>
  * @author Fox
  * @since 1.0.0
@@ -334,7 +352,7 @@ function cms_archive_post_icon() {
     $post_icon = array('icon'=>'fa fa-file-text-o','text'=>__('STANDARD', THEMENAME));
     switch (get_post_format()) {
         case 'gallery':
-            $post_icon['icon'] = 'fa fa-file-image-o';
+            $post_icon['icon'] = 'fa fa-camera-retro';
             $post_icon['text'] = __('GALLERY', THEMENAME);
             break;
         case 'link':
@@ -346,70 +364,17 @@ function cms_archive_post_icon() {
             $post_icon['text'] = __('QUOTE', THEMENAME);
             break;
         case 'video':
-            $post_icon['icon'] = 'fa fa-film';
+            $post_icon['icon'] = 'fa  fa-youtube-play';
             $post_icon['text'] = __('VIDEO', THEMENAME);
             break;
         case 'audio':
-            $post_icon['icon'] = 'fa fa-bullhorn';
+            $post_icon['icon'] = 'fa fa-volume-up';
             $post_icon['text'] = __('AUDIO', THEMENAME);
             break;
         default:
-            if(is_sticky()){
-                $post_icon['icon'] = 'fa fa-thumbs-o-up';
-                $post_icon['text'] = __('STICKY', THEMENAME);
-            } else {
-                $post_icon['icon'] = 'fa fa-file-text-o';
-                $post_icon['text'] = __('STANDARD', THEMENAME);
-            }
+            $post_icon['icon'] = 'fa fa-image';
+            $post_icon['text'] = __('STANDARD', THEMENAME);
             break;
     }
-    echo '<i class="'.esc_attr($post_icon['icon']).'"></i>';
+    echo '<i class="'.$post_icon['icon'].'"></i>';
 }
-
-/**
- * List socials share for post.
- * 
- * @since 1.0.0
- */
-function cms_get_socials_share(){
-    ?>
-	<div class="post-share">
-		<a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=<?php the_permalink();?>"><span class="share-box"><i class="fa fa-facebook"></i></span></a>
-		<a target="_blank" href="https://twitter.com/home?status=<?php _e('Check out this article', THEMENAME);?>:%20<?php the_title();?>%20-%20<?php the_permalink();?>"><span class="share-box"><i class="fa fa-twitter"></i></span></a>
-		<a target="_blank" href="https://pinterest.com/pin/create/button/?url=<?php echo the_permalink();?>&media=&description=<?php the_title();?>"><span class="share-box"><i class="fa fa-pinterest"></i></span></a>
-		<a target="_blank" href="https://plus.google.com/share?url=<?php the_permalink();?>"><span class="share-box"><i class="fa fa-google-plus"></i></span></a>
-		<a target="_blank" href="http://www.linkedin.com/shareArticle?mini=true&url=<?php echo the_permalink();?>&title=<?php the_title();?>"><span class="share-box"><i class="fa fa-linkedin"></i></span></a>
-	</div>
-	<?php
-}
-
-/**
- * Show post like.
- * 
- * @since 1.0.0
- */
-function cms_get_post_like(){
-    
-    $likes = get_post_meta(get_the_ID() , '_cms_post_likes', true);
-    
-    if(!$likes) $likes = 0;
-    
-    ?>
-    <div class="cms-post-like" data-id="<?php the_ID(); ?>"><i class="<?php echo !isset($_COOKIE['cms_post_like_'. get_the_ID()]) ? 'fa fa-heart-o' : 'fa fa-heart' ; ?>"></i><span><?php echo esc_attr($likes); ?></span></div>
-    <?php
-}
-
-/**
- * Show post view.
- * 
- * @since 1.0.0
- */
- function cms_get_post_view(){
-     $views = get_post_meta(get_the_ID() , '_cms_post_views', true);
-     
-     if(!$views) $views = 0;
-     
-     ?>
-     <div class="cms-post-view"><i class="fa fa-eye"></i><span><?php echo esc_attr($views); ?></span></div>
-     <?php
- }

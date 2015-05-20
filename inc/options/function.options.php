@@ -2,7 +2,6 @@
 global $cms_base;
 /* get local fonts. */
 $local_fonts = is_admin() ? $cms_base->getListLocalFontsName() : array() ;
-
 /**
  * Home Options
  * 
@@ -34,9 +33,9 @@ $this->sections[] = array(
             'subtitle' => '<input type=\'button\' name=\'sample\' id=\'dummy-data\' '.$disabled.' value=\'Import Now\' /><div class=\'cms-dummy-process\'><div  class=\'cms-dummy-process-bar\'></div></div><div id=\'cms-msg\'><span class="cms-status"></span>'.$msg.'</div>',
             'id' => 'theme',
             'icon' => true,
-            'default' => 'cmstheme',
+            'default' => 'kindergarten',
             'options' => array(
-                'cmstheme' => get_template_directory_uri().'/assets/images/dummy/cmstheme.png'
+                'kindergarten' => get_template_directory_uri().'/assets/images/dummy/kindergarten.png'
             ),
             'type' => 'image_select',
             'title' => 'Select Theme'
@@ -60,17 +59,15 @@ $this->sections[] = array(
             'default' => '',
             'type' => 'image_select',
             'options' => array(
-                '' => get_template_directory_uri().'/inc/options/images/header/h-default.png',
-                '1' => get_template_directory_uri().'/inc/options/images/header/h-default.png',
-                '2' => get_template_directory_uri().'/inc/options/images/header/h-default.png',
+                '' => get_template_directory_uri().'/inc/options/images/header/h-default.png'
             )
         ),
         array(
-            'id'       => 'header_background',
-            'type'     => 'background',
-            'title'    => __( 'Background', THEMENAME ),
-            'subtitle' => __( 'header background with image, color, etc.', THEMENAME ),
-            'output'   => array('#masthead')
+            'subtitle' => __('in pixels.', THEMENAME),
+            'id' => 'header_height',
+            'type' => 'text',
+            'title' => 'Header Height',
+            'default' => '186px'
         ),
         array(
             'subtitle' => __('in pixels, top right bottom left, ex: 10px 10px 10px 10px', THEMENAME),
@@ -87,11 +84,19 @@ $this->sections[] = array(
             'default' => ''
         ),
         array(
-            'subtitle' => __('Enable menu sticky.', THEMENAME),
+            'subtitle' => __('enable sticky mode for menu.', THEMENAME),
             'id' => 'menu_sticky',
             'type' => 'switch',
-            'title' => __('Menu Sticky', THEMENAME),
+            'title' => __('Sticky Header', THEMENAME),
             'default' => false,
+        ),
+         array(
+            'subtitle' => __('in pixels.', THEMENAME),
+            'id' => 'menu_sticky_height',
+            'type' => 'text',
+            'title' => 'Sticky Header Height',
+            'default' => '80px',
+            'required' => array( 0 => 'menu_sticky', 1 => '=', 2 => 1 )
         ),
         array(
             'subtitle' => __('enable sticky mode for menu Tablets.', THEMENAME),
@@ -108,7 +113,40 @@ $this->sections[] = array(
             'title' => __('Sticky Mobile', THEMENAME),
             'default' => false,
             'required' => array( 0 => 'menu_sticky', 1 => '=', 2 => 1 )
+        )
+    )
+);
+
+/* Header Top */
+
+$this->sections[] = array(
+    'title' => __('Header Top', THEMENAME),
+    'icon' => 'el-icon-minus',
+    'subsection' => true,
+    'fields' => array(
+        array(
+            'subtitle' => __('Enable header top.', THEMENAME),
+            'id' => 'enable_header_top',
+            'type' => 'switch',
+            'title' => __('Enable Header Top', THEMENAME),
+            'default' => false,
         ),
+        array(
+            'subtitle' => __('in pixels, top right bottom left, ex: 10px 10px 10px 10px', THEMENAME),
+            'id' => 'header_top_margin',
+            'type' => 'text',
+            'title' => 'Header Top Margin',
+            'default' => '',
+            'required' => array( 0 => 'enable_header_top', 1 => '=', 2 => 1 )
+        ),
+        array(
+            'subtitle' => __('in pixels, top right bottom left, ex: 10px 10px 10px 10px', THEMENAME),
+            'id' => 'header_top_padding',
+            'type' => 'text',
+            'title' => 'Header Top Padding',
+            'default' => '',
+            'required' => array( 0 => 'enable_header_top', 1 => '=', 2 => 1 )
+        )
     )
 );
 
@@ -119,22 +157,29 @@ $this->sections[] = array(
     'subsection' => true,
     'fields' => array(
         array(
-            'title' => __('Logo', THEMENAME),
+            'title' => __('Select Logo', THEMENAME),
             'subtitle' => __('Select an image file for your logo.', THEMENAME),
             'id' => 'main_logo',
             'type' => 'media',
             'url' => true,
             'default' => array(
-                'url'=>get_template_directory_uri().'/assets/images/cmssuperheroes.png'
+                'url'=>get_template_directory_uri().'/assets/images/logo.png'
             )
         ),
         array(
             'subtitle' => __('in pixels.', THEMENAME),
             'id' => 'main_logo_height',
             'type' => 'text',
-            'title' => 'Height',
-            'default' => '80px'
+            'title' => 'Logo Height',
+            'default' => '129px'
         ),
+        array(
+            'subtitle' => __('in pixels.', THEMENAME),
+            'id' => 'sticky_logo_height',
+            'type' => 'text',
+            'title' => 'Sticky Logo Height',
+            'default' => '60px'
+        )
     )
 );
 
@@ -145,12 +190,102 @@ $this->sections[] = array(
     'subsection' => true,
     'fields' => array(
         array(
-            'subtitle' => __('enable mega menu.', THEMENAME),
+            'subtitle' => 'Menu position.',
+            'id' => 'menu_position',
+            'options' => array(
+                1 => 'Menu Left',
+                2 => 'Menu Right',
+            ),
+            'type' => 'select',
+            'title' => 'Menu Position',
+            'default' => '2'
+        ),
+        array(
+            'subtitle' => __('in pixels.', THEMENAME),
+            'id' => 'menu_padding_first_level',
+            'type' => 'text',
+            'title' => 'Menu Padding - First Level',
+            'default' => '0 15px'
+        ),
+        array(
+            'subtitle' => __('in pixels.', THEMENAME),
+            'id' => 'menu_margin_first_level',
+            'type' => 'text',
+            'title' => 'Menu Margin - First Level',
+            'default' => '0'
+        ),
+        array(
+            'subtitle' => __('in pixels.', THEMENAME),
+            'id' => 'menu_fontsize_first_level',
+            'type' => 'text',
+            'title' => 'Menu Font Size - First Level',
+            'default' => '22px'
+        ),
+        array(
+            'subtitle' => __('in pixels.', THEMENAME),
+            'id' => 'menu_fontsize_sub_level',
+            'type' => 'text',
+            'title' => 'Menu Font Size - Sub Level',
+            'default' => '18px'
+        ),
+        array(
+            'subtitle' => __('enable sub menu border bottom.', THEMENAME),
+            'id' => 'menu_border_color_bottom',
+            'type' => 'switch',
+            'title' => __('Border Bottom Menu Item Sub Level', THEMENAME),
+            'default' => false,
+        ),
+        array(
+            'subtitle' => __('Enable mega menu.', THEMENAME),
             'id' => 'menu_mega',
             'type' => 'switch',
             'title' => __('Mega Menu', THEMENAME),
+            'default' => true,
+        ),
+        array(
+            'subtitle' => __('Enable menu first level uppercase.', THEMENAME),
+            'id' => 'menu_first_level_uppercase',
+            'type' => 'switch',
+            'title' => __('Menu First Level Uppercase', THEMENAME),
             'default' => false,
+        ),
+        array(
+            'subtitle' => __('in pixels.', THEMENAME),
+            'id' => 'menu_icon_font_size',
+            'type' => 'text',
+            'title' => 'Menu Icon Font Size',
+            'default' => '34px'
         )
+    )
+);
+
+/* Stick Menu */
+$this->sections[] = array(
+    'title' => __('Stick Menu', THEMENAME),
+    'icon' => 'el-icon-tasks',
+    'subsection' => true,
+    'fields' => array(
+        array(
+            'subtitle' => __('in pixels.', THEMENAME),
+            'id' => 'stick_menu_fontsize_first_level',
+            'type' => 'text',
+            'title' => 'Stick Menu Font Size - First Level',
+            'default' => '18px'
+        ),
+        array(
+            'subtitle' => __('in pixels.', THEMENAME),
+            'id' => 'sticky_menu_fontsize_sub_level',
+            'type' => 'text',
+            'title' => 'Sticky Menu Font Size - Sub Level',
+            'default' => '16px'
+        ),
+        array(
+            'subtitle' => __('in pixels.', THEMENAME),
+            'id' => 'sticky_menu_icon_font_size',
+            'type' => 'text',
+            'title' => 'Sticky Menu Icon Font Size',
+            'default' => '24px'
+        ),
     )
 );
 
@@ -167,7 +302,7 @@ $this->sections[] = array(
             'id' => 'page_title_layout',
             'title' => __('Layouts', THEMENAME),
             'subtitle' => __('select a layout for page title', THEMENAME),
-            'default' => '1',
+            'default' => '5',
             'type' => 'image_select',
             'options' => array(
                 '' => get_template_directory_uri().'/inc/options/images/pagetitle/pt-s-0.png',
@@ -186,12 +321,12 @@ $this->sections[] = array(
             'subtitle' => __( 'page title background with image, color, etc.', THEMENAME ),
             'output'   => array('.page-title'),
             'default'   => array(
-                'background-color'=>'',
-                'background-image'=>'',
-                'background-repeat'=>'',
-                'background-size'=>'',
+                'background-color'=>'#6e4692',
+                'background-image'=> get_template_directory_uri().'/assets/images/bg-vector-lg.png',
+                'background-repeat'=>'no-repeat',
+                'background-size'=>'cover',
                 'background-attachment'=>'',
-                'background-position'=>''
+                'background-position'=>'center center'
             )
         ),
         array(
@@ -199,14 +334,14 @@ $this->sections[] = array(
             'id' => 'page_title_margin',
             'type' => 'text',
             'title' => 'Margin',
-            'default' => ''
+            'default' => '0 0 70px'
         ),
         array(
             'subtitle' => __('in pixels, top right bottom left, ex: 10px 10px 10px 10px', THEMENAME),
             'id' => 'page_title_padding',
             'type' => 'text',
             'title' => 'Padding',
-            'default' => ''
+            'default' => '50px 0'
         )
     )
 );
@@ -227,7 +362,14 @@ $this->sections[] = array(
             'units' => 'px',
             'subtitle' => __('Typography option with title text.', THEMENAME),
             'default' => array(
-                'color' => '',
+                'color' => '#fff',
+                'font-style' => 'normal',
+                'font-weight' => '700',
+                'font-family' => 'Dosis',
+                'google' => true,
+                'font-size' => '42px',
+                'line-height' => '42px',
+                'text-align' => 'center'
             )
         ),
     )
@@ -243,7 +385,7 @@ $this->sections[] = array(
             'id' => 'breacrumb_home_prefix',
             'type' => 'text',
             'title' => __('Breadcrumb Home Prefix', THEMENAME),
-            'default' => 'You are here:  Home'
+            'default' => 'Home'
         ),
         array(
             'id' => 'breacrumb_typography',
@@ -325,7 +467,7 @@ $this->sections[] = array(
             'id' => 'container_margin',
             'type' => 'text',
             'title' => 'Margin',
-            'default' => ''
+            'default' => '0 0 80px'
         ),
         array(
             'subtitle' => __('in pixels, top right bottom left, ex: 10px 10px 10px 10px', THEMENAME),
@@ -334,6 +476,39 @@ $this->sections[] = array(
             'title' => 'Padding',
             'default' => ''
         )
+    )
+);
+
+/**
+ * Page Loadding
+ * 
+ * 
+ * @author Fox
+ */
+$this->sections[] = array(
+    'title' => __('Page Loadding', THEMENAME),
+    'icon' => 'el-icon-compass',
+    'subsection' => true,
+    'fields' => array(
+        array(
+            'subtitle' => __('Enable page loadding.', THEMENAME),
+            'id' => 'enable_page_loadding',
+            'type' => 'switch',
+            'title' => __('Enable Page Loadding', THEMENAME),
+            'default' => false,
+        ),
+        array(
+            'subtitle' => 'Select Style Page Loadding.',
+            'id' => 'page_loadding_style',
+            'type' => 'select',
+            'options' => array(
+                '1' => 'Style 1',
+                '2' => 'Style 2'
+            ),
+            'title' => 'Page Loadding Style',
+            'default' => 'style-1',
+            'required' => array( 0 => 'enable_page_loadding', 1 => '=', 2 => 1 )
+        )     
     )
 );
 
@@ -349,62 +524,89 @@ $this->sections[] = array(
 
 /* Footer top */
 $this->sections[] = array(
-    'title' => __('Top', THEMENAME),
+    'title' => __('Footer Top', THEMENAME),
     'icon' => 'el-icon-fork',
     'subsection' => true,
     'fields' => array(
+        array(
+            'subtitle' => __('Enable footer top.', THEMENAME),
+            'id' => 'enable_footer_top',
+            'type' => 'switch',
+            'title' => __('Enable Footer Top', THEMENAME),
+            'default' => true,
+        ),
         array(
             'id'       => 'footer_background',
             'type'     => 'background',
             'title'    => __( 'Background', THEMENAME ),
             'subtitle' => __( 'footer background with image, color, etc.', THEMENAME ),
-            'output'   => array('footer #footer-top'),
-            'default'   => array()
+            'output'   => array('footer #cshero-footer-top'),
+            'default'   => array(
+                'background-color'=>'#6e4692',
+                'background-image'=> get_template_directory_uri().'/assets/images/bg-vector-lg.png',
+                'background-repeat'=>'repeat',
+                'background-size'=>'contain',
+                'background-attachment'=>'',
+                'background-position'=>'center center'
+            ),
+            'required' => array( 0 => 'enable_footer_top', 1 => '=', 2 => 1 )
         ),
         array(
             'subtitle' => __('in pixels, top right bottom left, ex: 10px 10px 10px 10px', THEMENAME),
             'id' => 'footer_margin',
             'type' => 'text',
             'title' => 'Margin',
-            'default' => ''
+            'default' => '',
+            'required' => array( 0 => 'enable_footer_top', 1 => '=', 2 => 1 )
         ),
         array(
             'subtitle' => __('in pixels, top right bottom left, ex: 10px 10px 10px 10px', THEMENAME),
             'id' => 'footer_padding',
             'type' => 'text',
             'title' => 'Padding',
-            'default' => ''
+            'default' => '65px 0',
+            'required' => array( 0 => 'enable_footer_top', 1 => '=', 2 => 1 )
         )
     )
 );
 
-/* footer bottom */
+/* footer botton */
 $this->sections[] = array(
-    'title' => __('Bottom', THEMENAME),
+    'title' => __('Footer Botton', THEMENAME),
     'icon' => 'el-icon-bookmark',
     'subsection' => true,
     'fields' => array(
+        array(
+            'subtitle' => __('Enable footer bottom.', THEMENAME),
+            'id' => 'enable_footer_bottom',
+            'type' => 'switch',
+            'title' => __('Enable Footer Botton', THEMENAME),
+            'default' => false,
+        ),
         array(
             'id'       => 'footer_botton_background',
             'type'     => 'background',
             'title'    => __( 'Background', THEMENAME ),
             'subtitle' => __( 'background with image, color, etc.', THEMENAME ),
-            'output'   => array('footer #footer-bottom'),
-            'default'   => array()
+            'output'   => array('footer #cshero-footer-bottom'),
+            'default'   => array(),
+            'required' => array( 0 => 'enable_footer_bottom', 1 => '=', 2 => 1 )
         ),
         array(
             'subtitle' => __('in pixels, top right bottom left, ex: 10px 10px 10px 10px', THEMENAME),
-            'id' => 'footer_bottom_margin',
+            'id' => 'footer_botton_margin',
             'type' => 'text',
             'title' => 'Margin',
-            'default' => ''
+            'default' => '',
+            'required' => array( 0 => 'enable_footer_bottom', 1 => '=', 2 => 1 )
         ),
         array(
             'subtitle' => __('in pixels, top right bottom left, ex: 10px 10px 10px 10px', THEMENAME),
-            'id' => 'footer_bottom_padding',
+            'id' => 'footer_botton_padding',
             'type' => 'text',
             'title' => 'Padding',
-            'default' => ''
+            'default' => '',
+            'required' => array( 0 => 'enable_footer_bottom', 1 => '=', 2 => 1 )
         ),
         array(
             'subtitle' => __('enable button back to top.', THEMENAME),
@@ -417,6 +619,133 @@ $this->sections[] = array(
 );
 
 /**
+ * Button Option
+ *
+ * @author Fox
+ */
+$this->sections[] = array(
+    'title' => __('Button', THEMENAME),
+    'icon' => 'el el-bold',
+    'fields' => array(
+        array(
+            'subtitle' => __('in pixels.', THEMENAME),
+            'id' => 'button_font_size',
+            'type' => 'text',
+            'title' => 'Button Font Size',
+            'default' => '18px'
+        ),
+        array(
+            'subtitle' => __('Enable button uppercase.', THEMENAME),
+            'id' => 'button_text_uppercase',
+            'type' => 'switch',
+            'title' => __('Button Text Uppercase', THEMENAME),
+            'default' => false,
+        )
+    )
+);
+
+/* Button Default */
+$this->sections[] = array(
+    'icon' => 'el el-minus',
+    'title' => __('Button Default', THEMENAME),
+    'subsection' => true,
+    'fields' => array(
+        array(
+            'subtitle' => __('in pixels.', THEMENAME),
+            'id' => 'btn_default_padding_top',
+            'type' => 'text',
+            'title' => __('Button Default - Padding Top', THEMENAME),
+            'default' => '16px'
+        ),
+        array(
+            'subtitle' => __('in pixels.', THEMENAME),
+            'id' => 'btn_default_padding_right',
+            'type' => 'text',
+            'title' => __('Button Default - Padding Right', THEMENAME),
+            'default' => '50px'
+        ),
+        array(
+            'subtitle' => __('in pixels.', THEMENAME),
+            'id' => 'btn_default_padding_bottom',
+            'type' => 'text',
+            'title' => __('Button Default - Padding Bottom', THEMENAME),
+            'default' => '16px'
+        ),
+        array(
+            'subtitle' => __('in pixels.', THEMENAME),
+            'id' => 'btn_default_padding_left',
+            'type' => 'text',
+            'title' => __('Button Default - Padding Left', THEMENAME),
+            'default' => '50px'
+        ),
+        array(
+            'subtitle' => __('in pixels: Ex 1px 1px 1px 1px.', THEMENAME),
+            'id' => 'btn_default_border_width',
+            'type' => 'text',
+            'title' => __('Button Default - Border Width', THEMENAME),
+            'default' => '2px'
+        ),
+        array(
+            'subtitle' => __('in pixels: Ex 5px.', THEMENAME),
+            'id' => 'btn_default_border_radius',
+            'type' => 'text',
+            'title' => __('Button Default - Border Radius', THEMENAME),
+            'default' => '3px'
+        )
+    )
+);
+
+/* Button Primary */
+$this->sections[] = array(
+    'icon' => 'el el-minus',
+    'title' => __('Button Primary', THEMENAME),
+    'subsection' => true,
+    'fields' => array(
+        array(
+            'subtitle' => __('in pixels.', THEMENAME),
+            'id' => 'btn_primary_padding_top',
+            'type' => 'text',
+            'title' => __('Button Primary - Padding Top', THEMENAME),
+            'default' => '16px'
+        ),
+        array(
+            'subtitle' => __('in pixels.', THEMENAME),
+            'id' => 'btn_primary_padding_right',
+            'type' => 'text',
+            'title' => __('Button Primary - Padding Right', THEMENAME),
+            'default' => '50px'
+        ),
+        array(
+            'subtitle' => __('in pixels.', THEMENAME),
+            'id' => 'btn_primary_padding_bottom',
+            'type' => 'text',
+            'title' => __('Button Primary - Padding Bottom', THEMENAME),
+            'default' => '16px'
+        ),
+        array(
+            'subtitle' => __('in pixels.', THEMENAME),
+            'id' => 'btn_primary_padding_left',
+            'type' => 'text',
+            'title' => __('Button Primary - Padding Left', THEMENAME),
+            'default' => '50px'
+        ),
+        array(
+            'subtitle' => __('in pixels: Ex 1px 1px 1px 1px.', THEMENAME),
+            'id' => 'btn_primary_border_width',
+            'type' => 'text',
+            'title' => __('Button Primary - Border Width', THEMENAME),
+            'default' => '2px'
+        ),
+        array(
+            'subtitle' => __('in pixels: Ex 5px.', THEMENAME),
+            'id' => 'btn_primary_border_radius',
+            'type' => 'text',
+            'title' => __('Button Primary - Border Radius', THEMENAME),
+            'default' => '5px'
+        )
+    )
+);
+/**
  * Styling
  * 
  * css color.
@@ -427,31 +756,23 @@ $this->sections[] = array(
     'icon' => 'el-icon-adjust',
     'fields' => array(
         array(
-            'subtitle' => __('select presets color.', THEMENAME),
-            'id' => 'presets_color',
-            'type' => 'image_select',
-            'title' => __('Presets Color', THEMENAME),
-            'default' => '0',
-            'options' => array(
-                '0' => get_template_directory_uri().'/inc/options/images/presets/pr-c-1.png',
-                '1' => get_template_directory_uri().'/inc/options/images/presets/pr-c-2.png',
-                '2' => get_template_directory_uri().'/inc/options/images/presets/pr-c-3.png',
-                '3' => get_template_directory_uri().'/inc/options/images/presets/pr-c-4.png',
-                '4' => get_template_directory_uri().'/inc/options/images/presets/pr-c-5.png',
-            )
-        ),
-        array(
             'subtitle' => __('set color main color.', THEMENAME),
             'id' => 'primary_color',
-            'type' => 'color_rgba',
+            'type' => 'color',
             'title' => __('Primary Color', THEMENAME),
-            'default' => ''
+            'default' => '#6e4692'
         ),
         array(
             'id' => 'secondary_color',
             'type' => 'color',
             'title' => __('Secondary Color', THEMENAME),
-            'default' => ''
+            'default' => '#ffdd00'
+        ),
+        array(
+            'id' => 'kindergarten_color',
+            'type' => 'color',
+            'title' => __('Kindergarten Color', THEMENAME),
+            'default' => '#5fcde3'
         ),
         array(
             'subtitle' => __('set color for tags <a></a>.', THEMENAME),
@@ -459,6 +780,284 @@ $this->sections[] = array(
             'type' => 'color',
             'title' => __('Link Color', THEMENAME),
             'output'  => array('a'),
+            'default' => '#6f4792'
+        ),
+        array(
+            'subtitle' => __('set color for tags <a></a>.', THEMENAME),
+            'id' => 'link_color_hover',
+            'type' => 'color',
+            'title' => __('Link Color Hover', THEMENAME),
+            'output'  => array('a:hover'),
+            'default' => '#9c9c9c'
+        )
+    )
+);
+
+/** Header Top Color **/
+$this->sections[] = array(
+    'title' => __('Header Top Color', THEMENAME),
+    'icon' => 'el-icon-minus',
+    'subsection' => true,
+    'fields' => array(
+        array(
+            'subtitle' => __('Set background color header top.', THEMENAME),
+            'id' => 'bg_header_top_color',
+            'type' => 'color',
+            'title' => __('Background Color', THEMENAME),
+            'default' => ''
+        ),
+        array(
+            'subtitle' => __('Set color header top.', THEMENAME),
+            'id' => 'header_top_color',
+            'type' => 'color',
+            'title' => __('Font Color', THEMENAME),
+            'default' => ''
+        )
+    )
+);
+
+/** Header Main Color **/
+$this->sections[] = array(
+    'title' => __('Header Main Color', THEMENAME),
+    'icon' => 'el-icon-minus',
+    'subsection' => true,
+    'fields' => array(
+        array(
+            'subtitle' => __('set color for header background color.', THEMENAME),
+            'id' => 'bg_header',
+            'type' => 'color_rgba',
+            'title' => __('Header Background Color', THEMENAME),
+            'default' => array('color'=>'#fff','alpha'=>'0.8', 'rgba'=>'rgba(255,255,255,0.8)')
+        )
+    )
+);
+
+/** Sticky Header Color **/
+$this->sections[] = array(
+    'title' => __('Sticky Header', THEMENAME),
+    'icon' => 'el-icon-minus',
+    'subsection' => true,
+    'fields' => array(
+        array(
+            'subtitle' => __('set color for sticky header.', THEMENAME),
+            'id' => 'bg_sticky_header',
+            'type' => 'color_rgba',
+            'title' => __('Sticky Background Color', THEMENAME),
+            'default' => array('color'=>'#fff','alpha'=>'0.8', 'rgba'=>'rgba(255,255,255,0.8)'),
+            'required' => array( 0 => 'menu_sticky', 1 => '=', 2 => 1 )
+        )
+    )
+);
+
+/** Menu Color **/
+
+$this->sections[] = array(
+    'title' => __('Menu Color', THEMENAME),
+    'icon' => 'el-icon-minus',
+    'subsection' => true,
+    'fields' => array(
+        array(
+            'subtitle' => __('Controls the text color of first level menu items.', THEMENAME),
+            'id' => 'menu_color_first_level',
+            'type' => 'color',
+            'title' => __('Menu Font Color - First Level', THEMENAME),
+            'default' => '#575656'
+        ),
+        array(
+            'subtitle' => __('Controls the text hover color of first level menu items.', THEMENAME),
+            'id' => 'menu_color_hover_first_level',
+            'type' => 'color',
+            'title' => __('Menu Font Color Hover - First Level', THEMENAME),
+            'default' => '#6e4692'
+        ),
+        array(
+            'subtitle' => __('Controls the text hover color of first level menu items.', THEMENAME),
+            'id' => 'menu_color_active_first_level',
+            'type' => 'color',
+            'title' => __('Menu Font Color Active - First Level', THEMENAME),
+            'default' => '#6e4692'
+        ),
+        array(
+            'subtitle' => __('Controls the text color of sub level menu items.', THEMENAME),
+            'id' => 'menu_color_sub_level',
+            'type' => 'color',
+            'title' => __('Menu Font Color - Sub Level', THEMENAME),
+            'default' => '#575656'
+        ),
+        array(
+            'subtitle' => __('Controls the text hover color of sub level menu items.', THEMENAME),
+            'id' => 'menu_color_hover_sub_level',
+            'type' => 'color',
+            'title' => __('Menu Font Color Hover - Sub Level', THEMENAME),
+            'default' => '#6e4692'
+        ),
+        array(
+            'subtitle' => __('Controls the text background color of sub level menu items.', THEMENAME),
+            'id' => 'menu_bg_color_sub_level',
+            'type' => 'color',
+            'title' => __('Menu Background Color - Sub Level', THEMENAME),
+            'default' => '#f5f5f5'
+        ),
+        array(
+            'subtitle' => __('Controls the text background color hover of sub level menu items.', THEMENAME),
+            'id' => 'menu_bg_color_hover_sub_level',
+            'type' => 'color',
+            'title' => __('Menu Background Color Hover - Sub Level', THEMENAME),
+            'default' => '#e9e9e9'
+        ),
+        array(
+            'subtitle' => __('Controls the border color of sub level menu items.', THEMENAME),
+            'id' => 'menu_item_border_color',
+            'type' => 'color',
+            'title' => __('Border Color - Sub Level', THEMENAME),
+            'default' => '',
+            'required' => array( 0 => 'menu_border_color_bottom', 1 => '=', 2 => 1 )
+        )
+    )
+);
+
+/** Button Color **/
+
+$this->sections[] = array(
+    'title' => __('Button Color', THEMENAME),
+    'icon' => 'el el-bold',
+    'subsection' => true,
+    'fields' => array(
+        array(
+            'subtitle' => __('Controls the button text color.', THEMENAME),
+            'id' => 'btn_default_color',
+            'type' => 'color',
+            'title' => __('Button Default - Font Color', THEMENAME),
+            'default' => '#ffffff'
+        ),
+        array(
+            'subtitle' => __('Controls the button text hover color.', THEMENAME),
+            'id' => 'btn_default_color_hover',
+            'type' => 'color',
+            'title' => __('Button Default - Font Color Hover', THEMENAME),
+            'default' => '#ffffff'
+        ),
+        array(
+            'subtitle' => __('Controls the button background color.', THEMENAME),
+            'id' => 'btn_default_bg_color',
+            'type' => 'color',
+            'title' => __('Button Default - Background Color', THEMENAME),
+            'default' => '#3bbcd6'
+        ),
+        array(
+            'subtitle' => __('Controls the button background color.', THEMENAME),
+            'id' => 'btn_default_bg_color_hover',
+            'type' => 'color',
+            'title' => __('Button Default - Background Color Hover', THEMENAME),
+            'default' => '#ffde0a'
+        ),
+        array(
+            'subtitle' => __('Controls the button border color.', THEMENAME),
+            'id' => 'btn_default_border_color',
+            'type' => 'color',
+            'title' => __('Button Default - Border Color', THEMENAME),
+            'default' => '#1a9eb9'
+        ),
+        array(
+            'subtitle' => __('Controls the button border hover color.', THEMENAME),
+            'id' => 'btn_default_border_color_hover',
+            'type' => 'color',
+            'title' => __('Button Default - Border Color Hover', THEMENAME),
+            'default' => '#f0ba00'
+        ),
+        array(
+            'subtitle' => __('Controls the button text color.', THEMENAME),
+            'id' => 'btn_primary_color',
+            'type' => 'color',
+            'title' => __('Button Primary - Font Color', THEMENAME),
+            'default' => '#ffffff'
+        ),
+        array(
+            'subtitle' => __('Controls the button text hover color.', THEMENAME),
+            'id' => 'btn_primary_color_hover',
+            'type' => 'color',
+            'title' => __('Button Primary - Font Color Hover', THEMENAME),
+            'default' => '#ffffff'
+        ),
+        array(
+            'subtitle' => __('Controls the button background color.', THEMENAME),
+            'id' => 'btn_primary_bg_color',
+            'type' => 'color',
+            'title' => __('Button Primary - Background Color', THEMENAME),
+            'default' => '#765197'
+        ),
+        array(
+            'subtitle' => __('Controls the button background color.', THEMENAME),
+            'id' => 'btn_primary_bg_color_hover',
+            'type' => 'color',
+            'title' => __('Button Primary - Background Color Hover', THEMENAME),
+            'default' => '#765197'
+        ),
+        array(
+            'subtitle' => __('Controls the button border color.', THEMENAME),
+            'id' => 'btn_primary_border_color',
+            'type' => 'color',
+            'title' => __('Button Primary - Border Color', THEMENAME),
+            'default' => '#5c367c'
+        ),
+        array(
+            'subtitle' => __('Controls the button border hover color.', THEMENAME),
+            'id' => 'btn_primary_border_color_hover',
+            'type' => 'color',
+            'title' => __('Button Primary - Border Color Hover', THEMENAME),
+            'default' => '#5c367c'
+        )
+    )
+);
+
+/** Footer Top Color **/
+$this->sections[] = array(
+    'title' => __('Footer Top Color', THEMENAME),
+    'icon' => 'el-icon-chevron-up',
+    'subsection' => true,
+    'fields' => array(
+        array(
+            'subtitle' => __('Set color footer top.', THEMENAME),
+            'id' => 'footer_top_color',
+            'type' => 'color',
+            'title' => __('Footer Top Color', THEMENAME),
+            'default' => '#ffffff'
+        ),
+        array(
+            'subtitle' => __('Set title color footer top.', THEMENAME),
+            'id' => 'footer_headding_color',
+            'type' => 'color',
+            'title' => __('Footer Headding Color', THEMENAME),
+            'default' => '#ffffff'
+        ),
+        array(
+            'subtitle' => __('Set title link color footer top.', THEMENAME),
+            'id' => 'footer_top_link_color',
+            'type' => 'color',
+            'title' => __('Footer Link Color', THEMENAME),
+            'default' => '#ffffff'
+        ),
+        array(
+            'subtitle' => __('Set title link color footer top.', THEMENAME),
+            'id' => 'footer_top_link_color_hover',
+            'type' => 'color',
+            'title' => __('Footer Link Color Hover', THEMENAME),
+            'default' => '#ffffff'
+        )
+    )
+);
+
+/** Footer Bottom Color **/
+$this->sections[] = array(
+    'title' => __('Footer Bottom Color', THEMENAME),
+    'icon' => 'el-icon-chevron-down',
+    'subsection' => true,
+    'fields' => array(
+        array(
+            'subtitle' => __('Set color footer top.', THEMENAME),
+            'id' => 'footer_bottom_color',
+            'type' => 'color',
+            'title' => __('Footer Bottom Color', THEMENAME),
             'default' => ''
         )
     )
@@ -472,7 +1071,6 @@ $this->sections[] = array(
 $this->sections[] = array(
     'title' => __('Typography', THEMENAME),
     'icon' => 'el-icon-text-width',
-    'subsection' => true,
     'fields' => array(
         array(
             'id' => 'font_body',
@@ -483,6 +1081,16 @@ $this->sections[] = array(
             'all_styles' => true,
             'output'  => array('body'),
             'units' => 'px',
+            'default' => array(
+                'color' => '#9c9c9c',
+                'font-style' => 'normal',
+                'font-weight' => '400',
+                'font-family' => 'Dosis',
+                'google' => true,
+                'font-size' => '18px',
+                'line-height' => '26px',
+                'text-align' => ''
+            ),
             'subtitle' => __('Typography option with each property can be called individually.', THEMENAME),
         ),
         array(
@@ -492,8 +1100,18 @@ $this->sections[] = array(
             'google' => true,
             'font-backup' => true,
             'all_styles' => true,
-            'output'  => array('h1'),
+            'output'  => array('body h1'),
             'units' => 'px',
+            'default' => array(
+                'color' => '#6f4792',
+                'font-style' => 'normal',
+                'font-weight' => '700',
+                'font-family' => 'Amatic SC',
+                'google' => true,
+                'font-size' => '62px',
+                'line-height' => '72px',
+                'text-align' => ''
+            )
         ),
         array(
             'id' => 'font_h2',
@@ -502,8 +1120,18 @@ $this->sections[] = array(
             'google' => true,
             'font-backup' => true,
             'all_styles' => true,
-            'output'  => array('h2'),
+            'output'  => array('body h2'),
             'units' => 'px',
+            'default' => array(
+                'color' => '#6f4792',
+                'font-style' => 'normal',
+                'font-weight' => '700',
+                'font-family' => 'Amatic SC',
+                'google' => true,
+                'font-size' => '53px',
+                'line-height' => '58px',
+                'text-align' => ''
+            )
         ),
         array(
             'id' => 'font_h3',
@@ -512,8 +1140,18 @@ $this->sections[] = array(
             'google' => true,
             'font-backup' => true,
             'all_styles' => true,
-            'output'  => array('h3'),
+            'output'  => array('body h3'),
             'units' => 'px',
+            'default' => array(
+                'color' => '#6f4792',
+                'font-style' => 'normal',
+                'font-weight' => '700',
+                'font-family' => 'Amatic SC',
+                'google' => true,
+                'font-size' => '48px',
+                'line-height' => '54px',
+                'text-align' => ''
+            )
         ),
         array(
             'id' => 'font_h4',
@@ -522,8 +1160,18 @@ $this->sections[] = array(
             'google' => true,
             'font-backup' => true,
             'all_styles' => true,
-            'output'  => array('h4'),
+            'output'  => array('body h4'),
             'units' => 'px',
+            'default' => array(
+                'color' => '',
+                'font-style' => 'normal',
+                'font-weight' => '700',
+                'font-family' => 'Dosis',
+                'google' => true,
+                'font-size' => '34px',
+                'line-height' => '34px',
+                'text-align' => ''
+            )
         ),
         array(
             'id' => 'font_h5',
@@ -532,8 +1180,18 @@ $this->sections[] = array(
             'google' => true,
             'font-backup' => true,
             'all_styles' => true,
-            'output'  => array('h5'),
+            'output'  => array('body h5'),
             'units' => 'px',
+            'default' => array(
+                'color' => '',
+                'font-style' => 'normal',
+                'font-weight' => '700',
+                'font-family' => 'Dosis',
+                'google' => true,
+                'font-size' => '24px',
+                'line-height' => '26px',
+                'text-align' => ''
+            )
         ),
         array(
             'id' => 'font_h6',
@@ -542,8 +1200,18 @@ $this->sections[] = array(
             'google' => true,
             'font-backup' => true,
             'all_styles' => true,
-            'output'  => array('h6'),
+            'output'  => array('body h6'),
             'units' => 'px',
+            'default' => array(
+                'color' => '',
+                'font-style' => 'normal',
+                'font-weight' => '700',
+                'font-family' => 'Dosis',
+                'google' => true,
+                'font-size' => '14px',
+                'line-height' => '18px',
+                'text-align' => ''
+            )
         )
     )
 );
@@ -566,6 +1234,10 @@ $this->sections[] = array(
             'line-height'=>false,
             'font-size'=> false,
             'subsets'=> false,
+            'default' => array(
+                'font-weight' => '700',
+                'font-family' => 'Dosis'
+            )
         ),
         array(
             'id' => 'google-font-selector-1',
@@ -573,6 +1245,7 @@ $this->sections[] = array(
             'title' => __('Selector 1', THEMENAME),
             'subtitle' => __('add html tags ID or class (body,a,.class,#id)', THEMENAME),
             'validate' => 'no_html',
+            'default' => 'body .btn, #secondary .wg-title, #comments .comments-title, #comments .comment-reply-title, .cms-recent-post-wrapper .cms-recent-details .title',
         ),
         array(
             'id' => 'google-font-2',
@@ -586,6 +1259,10 @@ $this->sections[] = array(
             'line-height'=>false,
             'font-size'=> false,
             'subsets'=> false,
+            'default' => array(
+                'font-weight' => '700',
+                'font-family' => 'Amatic SC'
+            )
         ),
         array(
             'id' => 'google-font-selector-2',
@@ -593,6 +1270,7 @@ $this->sections[] = array(
             'title' => __('Selector 2', THEMENAME),
             'subtitle' => __('add html tags ID or class (body,a,.class,#id)', THEMENAME),
             'validate' => 'no_html',
+            'default' => '#cshero-footer-top .wg-title',
         ),
     )
 );
@@ -608,7 +1286,7 @@ $this->sections[] = array(
             'type'     => 'select',
             'title'    => __( 'Fonts 1', THEMENAME ),
             'options'  => $local_fonts,
-            'default'  => '',
+            'default'  => 'MyriadPro-Semibold',
         ),
         array(
             'id' => 'local-fonts-selector-1',
@@ -616,7 +1294,7 @@ $this->sections[] = array(
             'title' => __('Selector 1', THEMENAME),
             'subtitle' => __('add html tags ID or class (body,a,.class,#id)', THEMENAME),
             'validate' => 'no_html',
-            'default' => '',
+            'default' => '.cms-pricing-wrapper .cms-pricing-content ul li span',
             'required' => array(
                 0 => 'local-fonts-1',
                 1 => '!=',
@@ -682,7 +1360,14 @@ $this->sections[] = array(
             'type' => 'switch',
             'title' => __('Smooth Scroll', THEMENAME),
             'default' => false
-        )
+        ),
+        array(
+            'subtitle' => __('Enable animation parallax for images...', THEMENAME),
+            'id' => 'paralax',
+            'type' => 'switch',
+            'title' => __('Images Paralax', THEMENAME),
+            'default' => true
+        ),
     )
 );
 /**
@@ -700,13 +1385,6 @@ $this->sections[] = array(
             'id' => 'dev_mode',
             'type' => 'switch',
             'title' => __('Dev Mode (not recommended)', THEMENAME),
-            'default' => false
-        ),
-        array(
-            'subtitle' => __('count view for single post.', THEMENAME),
-            'id' => 'post_view',
-            'type' => 'switch',
-            'title' => __('Count Views', THEMENAME),
             'default' => false
         )
     )

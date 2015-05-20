@@ -9,14 +9,14 @@ function modify_arguments( $arguments ) {
 }
 add_action('wp_update_nav_menu_item', 'custom_nav_update',10, 3);
 function custom_nav_update($menu_id, $menu_item_db_id, $args ) {
-    $fields = array('submenu_type','dropdown','widget_area','column_width','group','hide_link','bg_image','bg_image_attachment','bg_image_size','bg_image_position','bg_image_repeat','bg_color','menu_icon','el_class');
+    $fields = array('submenu_type','dropdown','widget_area','column_width','group','hide_link','bg_image','bg_image_attachment','bg_image_size','bg_image_position','bg_image_repeat','bg_color','icon_color','icon_font_size','menu_icon','el_class');
     foreach($fields as $i=>$field){
         if (isset($_REQUEST['menu-item-'.$field][$menu_item_db_id])) {
             $mega_value = $_REQUEST['menu-item-'.$field][$menu_item_db_id];
             update_post_meta( $menu_item_db_id, '_menu_item_'.$field, $mega_value );
         }else{
-			update_post_meta( $menu_item_db_id, '_menu_item_'.$field, '');
-		}
+            update_post_meta( $menu_item_db_id, '_menu_item_'.$field, '');
+        }
     }
 }
 
@@ -25,7 +25,7 @@ function custom_nav_update($menu_id, $menu_item_db_id, $args ) {
  */
 add_filter( 'wp_setup_nav_menu_item','custom_nav_item' );
 function custom_nav_item($menu_item) {
-    $fields = array('submenu_type','dropdown','widget_area','column_width','group','hide_link','bg_image','bg_image_attachment','bg_image_size','bg_image_position','bg_image_repeat','bg_color','menu_icon','el_class');
+    $fields = array('submenu_type','dropdown','widget_area','column_width','group','hide_link','bg_image','bg_image_attachment','bg_image_size','bg_image_position','bg_image_repeat','bg_color','icon_color','icon_font_size','menu_icon','el_class');
     foreach($fields as $i=>$field){
         $menu_item->$field = get_post_meta( $menu_item->ID, '_menu_item_'.$field, true );
     }
@@ -116,17 +116,17 @@ function start_el( &$output, $item, $depth = 0, $args = array(), $current_object
     if ( ! empty( $item->_invalid ) ) {
         $classes[] = 'menu-item-invalid';
         /* translators: %s: title of menu item which is invalid */
-        $title = sprintf( __( '%s (Invalid)', CSCORE_NAME), $item->title );
+        $title = sprintf( __( '%s (Invalid)', THEMENAME), $item->title );
     } elseif ( isset( $item->post_status ) && 'draft' == $item->post_status ) {
         $classes[] = 'pending';
         /* translators: %s: title of menu item in draft status */
-        $title = sprintf( __('%s (Pending)', CSCORE_NAME), $item->title );
+        $title = sprintf( __('%s (Pending)', THEMENAME), $item->title );
     }
 
     $title = empty( $item->label ) ? $title : $item->label;
 
     ?>
-    <li data-menuanchor="" id="menu-item-<?php echo $item_id; ?>" class="<?php echo implode(' ', $classes ); ?>">
+    <li data-menuanchor="" id="menu-item-<?php echo ''.$item_id; ?>" class="<?php echo implode(' ', $classes ); ?>">
         <dl class="menu-item-bar">
             <dt class="menu-item-handle">
                 <span class="item-title"><?php echo esc_html( $title ); ?></span>
@@ -144,7 +144,7 @@ function start_el( &$output, $item, $depth = 0, $args = array(), $current_object
                                 ),
                                 'move-menu_item'
                             );
-                        ?>" class="item-move-up"><abbr title="<?php esc_attr_e('Move up',CSCORE_NAME); ?>">&#8593;</abbr></a>
+                        ?>" class="item-move-up"><abbr title="<?php esc_attr_e('Move up',THEMENAME); ?>">&#8593;</abbr></a>
                         |
                         <a href="<?php
                             echo wp_nonce_url(
@@ -157,181 +157,181 @@ function start_el( &$output, $item, $depth = 0, $args = array(), $current_object
                                 ),
                                 'move-menu_item'
                             );
-                        ?>" class="item-move-down"><abbr title="<?php esc_attr_e('Move down',CSCORE_NAME); ?>">&#8595;</abbr></a>
+                        ?>" class="item-move-down"><abbr title="<?php esc_attr_e('Move down',THEMENAME); ?>">&#8595;</abbr></a>
                     </span>
-                    <a class="item-edit" id="edit-<?php echo $item_id; ?>" title="<?php esc_attr_e('Edit Menu Item',CSCORE_NAME); ?>" href="<?php
+                    <a class="item-edit" id="edit-<?php echo ''.$item_id; ?>" title="<?php esc_attr_e('Edit Menu Item',THEMENAME); ?>" href="<?php
                         echo ( isset( $_GET['edit-menu-item'] ) && $item_id == $_GET['edit-menu-item'] ) ? admin_url( 'nav-menus.php' ) : add_query_arg( 'edit-menu-item', $item_id, remove_query_arg( $removed_args, admin_url( 'nav-menus.php#menu-item-settings-' . $item_id ) ) );
-                    ?>"><?php _e( 'Edit Menu Item' ,CSCORE_NAME); ?></a>
+                    ?>"><?php _e( 'Edit Menu Item' ,THEMENAME); ?></a>
                 </span>
             </dt>
         </dl>
 
-        <div class="menu-item-settings" id="menu-item-settings-<?php echo $item_id; ?>">
+        <div class="menu-item-settings" id="menu-item-settings-<?php echo ''.$item_id; ?>">
             <?php if( 'custom' == $item->type ) : ?>
                 <p class="field-url description description-wide">
-                    <label for="edit-menu-item-url-<?php echo $item_id; ?>">
-                        <?php _e( 'URL' ,CSCORE_NAME); ?><br />
-                        <input type="text" id="edit-menu-item-url-<?php echo $item_id; ?>" class="widefat code edit-menu-item-url" name="menu-item-url[<?php echo $item_id; ?>]" value="<?php echo esc_attr( $item->url ); ?>" />
+                    <label for="edit-menu-item-url-<?php echo ''.$item_id; ?>">
+                        <?php _e( 'URL' ,THEMENAME); ?><br />
+                        <input type="text" id="edit-menu-item-url-<?php echo ''.$item_id; ?>" class="widefat code edit-menu-item-url" name="menu-item-url[<?php echo ''.$item_id; ?>]" value="<?php echo esc_attr( $item->url ); ?>" />
                     </label>
                 </p>
             <?php endif; ?>
             <p class="description description-thin">
-                <label for="edit-menu-item-title-<?php echo $item_id; ?>">
-                    <?php _e( 'Navigation Label' ,CSCORE_NAME); ?><br />
-                    <input type="text" id="edit-menu-item-title-<?php echo $item_id; ?>" class="widefat edit-menu-item-title" name="menu-item-title[<?php echo $item_id; ?>]" value="<?php echo esc_attr( $item->title ); ?>" />
+                <label for="edit-menu-item-title-<?php echo ''.$item_id; ?>">
+                    <?php _e( 'Navigation Label' ,THEMENAME); ?><br />
+                    <input type="text" id="edit-menu-item-title-<?php echo ''.$item_id; ?>" class="widefat edit-menu-item-title" name="menu-item-title[<?php echo ''.$item_id; ?>]" value="<?php echo esc_attr( $item->title ); ?>" />
                 </label>
             </p>
             <p class="description description-thin">
-                <label for="edit-menu-item-attr-title-<?php echo $item_id; ?>">
-                    <?php _e( 'Title Attribute',CSCORE_NAME ); ?><br />
-                    <input type="text" id="edit-menu-item-attr-title-<?php echo $item_id; ?>" class="widefat edit-menu-item-attr-title" name="menu-item-attr-title[<?php echo $item_id; ?>]" value="<?php echo esc_attr( $item->post_excerpt ); ?>" />
+                <label for="edit-menu-item-attr-title-<?php echo ''.$item_id; ?>">
+                    <?php _e( 'Title Attribute',THEMENAME ); ?><br />
+                    <input type="text" id="edit-menu-item-attr-title-<?php echo ''.$item_id; ?>" class="widefat edit-menu-item-attr-title" name="menu-item-attr-title[<?php echo ''.$item_id; ?>]" value="<?php echo esc_attr( $item->post_excerpt ); ?>" />
                 </label>
             </p>
             <p class="field-link-target description">
-                <label for="edit-menu-item-target-<?php echo $item_id; ?>">
-                    <input type="checkbox" id="edit-menu-item-target-<?php echo $item_id; ?>" value="_blank" name="menu-item-target[<?php echo $item_id; ?>]"<?php checked( $item->target, '_blank' ); ?> />
-                    <?php _e( 'Open link in a new window/tab' ,CSCORE_NAME); ?>
+                <label for="edit-menu-item-target-<?php echo ''.$item_id; ?>">
+                    <input type="checkbox" id="edit-menu-item-target-<?php echo ''.$item_id; ?>" value="_blank" name="menu-item-target[<?php echo ''.$item_id; ?>]"<?php checked( $item->target, '_blank' ); ?> />
+                    <?php _e( 'Open link in a new window/tab' ,THEMENAME); ?>
                 </label>
             </p>
             <p class="field-css-classes description description-thin">
-                <label for="edit-menu-item-classes-<?php echo $item_id; ?>">
-                    <?php _e( 'CSS Classes (optional)' ,CSCORE_NAME); ?><br />
-                    <input type="text" id="edit-menu-item-classes-<?php echo $item_id; ?>" class="widefat code edit-menu-item-classes" name="menu-item-classes[<?php echo $item_id; ?>]" value="<?php echo esc_attr( implode(' ', $item->classes ) ); ?>" />
+                <label for="edit-menu-item-classes-<?php echo ''.$item_id; ?>">
+                    <?php _e( 'CSS Classes (optional)' ,THEMENAME); ?><br />
+                    <input type="text" id="edit-menu-item-classes-<?php echo ''.$item_id; ?>" class="widefat code edit-menu-item-classes" name="menu-item-classes[<?php echo ''.$item_id; ?>]" value="<?php echo esc_attr( implode(' ', $item->classes ) ); ?>" />
                 </label>
             </p>
             <p class="field-xfn description description-thin">
-                <label for="edit-menu-item-xfn-<?php echo $item_id; ?>">
-                    <?php _e( 'Link Relationship (XFN)' ,CSCORE_NAME); ?><br />
-                    <input type="text" id="edit-menu-item-xfn-<?php echo $item_id; ?>" class="widefat code edit-menu-item-xfn" name="menu-item-xfn[<?php echo $item_id; ?>]" value="<?php echo esc_attr( $item->xfn ); ?>" />
+                <label for="edit-menu-item-xfn-<?php echo ''.$item_id; ?>">
+                    <?php _e( 'Link Relationship (XFN)' ,THEMENAME); ?><br />
+                    <input type="text" id="edit-menu-item-xfn-<?php echo ''.$item_id; ?>" class="widefat code edit-menu-item-xfn" name="menu-item-xfn[<?php echo ''.$item_id; ?>]" value="<?php echo esc_attr( $item->xfn ); ?>" />
                 </label>
             </p>
             <p class="field-description description description-wide">
-                <label for="edit-menu-item-description-<?php echo $item_id; ?>">
-                    <?php _e( 'Description' ,CSCORE_NAME); ?><br />
-                    <textarea id="edit-menu-item-description-<?php echo $item_id; ?>" class="widefat edit-menu-item-description" rows="3" cols="20" name="menu-item-description[<?php echo $item_id; ?>]"><?php echo esc_html( $item->description ); ?></textarea>
-                    <span class="description"><?php _e('The description will be displayed in the menu if the current theme supports it.',CSCORE_NAME); ?></span>
+                <label for="edit-menu-item-description-<?php echo ''.$item_id; ?>">
+                    <?php _e( 'Description' ,THEMENAME); ?><br />
+                    <textarea id="edit-menu-item-description-<?php echo ''.$item_id; ?>" class="widefat edit-menu-item-description" rows="3" cols="20" name="menu-item-description[<?php echo ''.$item_id; ?>]"><?php echo esc_html( $item->description ); ?></textarea>
+                    <span class="description"><?php _e('The description will be displayed in the menu if the current theme supports it.',THEMENAME); ?></span>
                 </label>
             </p>
             <?php
             /*
              * This is the added field
              */
-			$title              = 'Extra Class';
-			$key = "menu-item-el_class";
-			$value = $item->el_class;
-			?>
-			<p class="description description-wide description_width_100">
-                <label for="edit-<?php echo $key . '-' . $item_id; ?>">
-                    <span class='obtheme_long_desc'><?php _e( $title, CSCORE_NAME ); ?></span><br />
-                    <input type="text" value="<?php echo $value; ?>" id="edit-<?php echo $key . '-' . $item_id; ?>" class=" <?php echo $key; ?>" name="<?php echo $key . "[" . $item_id . "]"; ?>" />					
+            $title              = 'Extra Class';
+            $key = "menu-item-el_class";
+            $value = $item->el_class;
+            ?>
+            <p class="description description-wide description_width_100">
+                <label for="edit-<?php echo ''.$key . '-' . $item_id; ?>">
+                    <span class='obtheme_long_desc'><?php _e( $title, THEMENAME ); ?></span><br />
+                    <input type="text" value="<?php echo ''.$value; ?>" id="edit-<?php echo ''.$key . '-' . $item_id; ?>" class=" <?php echo ''.$key; ?>" name="<?php echo ''.$key . "[" . $item_id . "]"; ?>" />                   
                 </label>
-			</p>
+            </p>
             <?php
             /*
              * This is the added field
              */
-			if ( ! $depth ) {
-			$title              = 'Submenu Type';
-			$key = "menu-item-submenu_type";
-			$value = $item->submenu_type;
-			?>
-			<p class="description description-wide description_width_100">
-				<?php _e( $title, CSCORE_NAME ); ?><br />
-				<label for="edit-<?php echo $key . '-' . $item_id; ?>">
-					<select id="edit-<?php echo $key . '-' . $item_id; ?>" class=" <?php echo $key; ?>" name="<?php echo $key . "[" . $item_id . "]"; ?>">
-						<option value="standard" <?php echo ( $value == 'standard' ) ? ' selected="selected" ' : ''; ?>><?php _e( 'Standard Dropdown', CSCORE_NAME ); ?></option>
-						<option value="columns2" <?php echo ( $value == 'columns2' ) ? ' selected="selected" ' : ''; ?>><?php _e( '2 columns dropdown', CSCORE_NAME ); ?></option>
-						<option value="columns3" <?php echo ( $value == 'columns3' ) ? ' selected="selected" ' : ''; ?>><?php _e( '3 columns dropdown', CSCORE_NAME ); ?>
-						</option>
-						<option value="columns4" <?php echo ( $value == 'columns4' ) ? ' selected="selected" ' : ''; ?>><?php _e( '4 columns dropdown', CSCORE_NAME ); ?></option>
-						<option value="columns5" <?php echo ( $value == 'columns5' ) ? ' selected="selected" ' : ''; ?>><?php _e( '5 columns dropdown', CSCORE_NAME ); ?></option>
-					</select>
-				</label>
-			</p>
-			<?php
-			$title = 'Sub menu column width ( Example: 200)';
-			$key = "menu-item-column_width";
-			$value = $item->column_width;
-			?>            
+            if ( ! $depth ) {
+            $title              = 'Submenu Type';
+            $key = "menu-item-submenu_type";
+            $value = $item->submenu_type;
+            ?>
+            <p class="description description-wide description_width_100">
+                <?php _e( $title, THEMENAME ); ?><br />
+                <label for="edit-<?php echo ''.$key . '-' . $item_id; ?>">
+                    <select id="edit-<?php echo ''.$key . '-' . $item_id; ?>" class=" <?php echo ''.$key; ?>" name="<?php echo ''.$key . "[" . $item_id . "]"; ?>">
+                        <option value="standard" <?php echo ( $value == 'standard' ) ? ' selected="selected" ' : ''; ?>><?php _e( 'Standard Dropdown', THEMENAME ); ?></option>
+                        <option value="columns2" <?php echo ( $value == 'columns2' ) ? ' selected="selected" ' : ''; ?>><?php _e( '2 columns dropdown', THEMENAME ); ?></option>
+                        <option value="columns3" <?php echo ( $value == 'columns3' ) ? ' selected="selected" ' : ''; ?>><?php _e( '3 columns dropdown', THEMENAME ); ?>
+                        </option>
+                        <option value="columns4" <?php echo ( $value == 'columns4' ) ? ' selected="selected" ' : ''; ?>><?php _e( '4 columns dropdown', THEMENAME ); ?></option>
+                        <option value="columns5" <?php echo ( $value == 'columns5' ) ? ' selected="selected" ' : ''; ?>><?php _e( '5 columns dropdown', THEMENAME ); ?></option>
+                    </select>
+                </label>
+            </p>
+            <?php
+            $title = 'Sub menu column width ( Example: 200)';
+            $key = "menu-item-column_width";
+            $value = $item->column_width;
+            ?>            
             <p class="description description-wide obtheme_checkbox obtheme_mega_menu obtheme_mega_menu_d2">
-                <label for="edit-<?php echo $key . '-' . $item_id; ?>">
-                    <span class='obtheme_long_desc'><?php _e( $title, CSCORE_NAME ); ?></span><br />
-                    <input type="text" value="<?php echo $value; ?>" id="edit-<?php echo $key . '-' . $item_id; ?>" class=" <?php echo $key; ?>" name="<?php echo $key . "[" . $item_id . "]"; ?>" />					
+                <label for="edit-<?php echo ''.$key . '-' . $item_id; ?>">
+                    <span class='obtheme_long_desc'><?php _e( $title, THEMENAME ); ?></span><br />
+                    <input type="text" value="<?php echo ''.$value; ?>" id="edit-<?php echo ''.$key . '-' . $item_id; ?>" class=" <?php echo ''.$key; ?>" name="<?php echo ''.$key . "[" . $item_id . "]"; ?>" />                   
                 </label>
             </p>
-			<?php
-			$title = 'Side of Dropdown Elements';
-			$key = "menu-item-dropdown";
-			$value = $item->dropdown;
-			?>
-			<p class="description description-wide description_width_100">
-				<?php _e( $title, CSCORE_NAME ); ?><br />
-				<label for="edit-<?php echo $key . '-' . $item_id; ?>">
-					<select id="edit-<?php echo $key . '-' . $item_id; ?>" class=" <?php echo $key; ?>" name="<?php echo $key . "[" . $item_id . "]"; ?>">
-						<option value="autodrop_submenu" <?php echo ( $value == 'autodrop_submenu' ) ? ' selected="selected" ' : ''; ?>><?php _e( 'Auto drop', CSCORE_NAME ); ?></option>
-						<option value="drop_to_left" <?php echo ( $value == 'drop_to_left' ) ? ' selected="selected" ' : ''; ?>><?php _e( 'Drop To Left Side', CSCORE_NAME ); ?></option>
-						<option value="drop_to_right" <?php echo ( $value == 'drop_to_right' ) ? ' selected="selected" ' : ''; ?>><?php _e( 'Drop To Right Side', CSCORE_NAME ); ?></option>
-						<option value="drop_to_center" <?php echo ( $value == 'drop_to_center' ) ? ' selected="selected" ' : ''; ?>><?php _e( 'Drop To Center', CSCORE_NAME ); ?></option>
-						<option value="drop_full_width" <?php echo ( $value == 'drop_full_width' ) ? ' selected="selected" ' : ''; ?>><?php _e( 'Full width', CSCORE_NAME ); ?></option>
-					</select>
-				</label>
-			</p>
             <?php
-			}
-			if($depth){
-			$title = 'Widget Area';
-			$key = "menu-item-widget_area";
-			$value = $item->widget_area;
-			$sidebars = $GLOBALS['wp_registered_sidebars'];
-			?>
-			<p class="description description-wide description_width_100 el_widget_area">
-				<?php _e( $title, CSCORE_NAME ); ?><br />
-				<label for="edit-<?php echo $key . '-' . $item_id; ?>">
-					<select id="edit-<?php echo $key . '-' . $item_id; ?>" class=" <?php echo $key; ?>" name="<?php echo $key . "[" . $item_id . "]"; ?>">
-						<option value="" <?php echo ( $value == '' ) ? ' selected="selected" ' : ''; ?>><?php _e( 'Select Widget Area', CSCORE_NAME ); ?></option>
-						<?php
-						foreach ( $sidebars as $sidebar ) {
-							echo '<option value="' . $sidebar['id'] . '" ' . ( ( $value == $sidebar['id'] ) ? ' selected="selected" ' : '' ) . '>[' . $sidebar['id'] . '] - ' . $sidebar['name'] . '</option>';
-						}
-						?>
-					</select>
-				</label>
-			</p>
-			<?php }
-			$title = 'Group';
-			$key = "menu-item-group";
-			$value = $item->group;
-			?>
-			<p class="description description-wide description_width_100">
-				<?php _e( $title, CSCORE_NAME ); ?><br />
-				<label for="edit-<?php echo $key . '-' . $item_id; ?>">
-					<select id="edit-<?php echo $key . '-' . $item_id; ?>" class=" <?php echo $key; ?>" name="<?php echo $key . "[" . $item_id . "]"; ?>">
-						<option value="no_group" <?php echo ( $value == 'no_group' ) ? ' selected="selected" ' : ''; ?>><?php _e( 'No', CSCORE_NAME ); ?></option>
-						<option value="group" <?php echo ( $value == 'group' ) ? ' selected="selected" ' : ''; ?>><?php _e( 'Yes', CSCORE_NAME ); ?></option>
-					</select>
-				</label>
-			</p>
-			<?php
-			if($depth){
-			$title = 'Hide title';
-			$key = "menu-item-hide_link";
-			$value = $item->hide_link;
-			?>
-			<p class="description description-wide description_width_100">
-				<?php _e( $title, CSCORE_NAME ); ?><br />
-				<label for="edit-<?php echo $key . '-' . $item_id; ?>">
-					<select id="edit-<?php echo $key . '-' . $item_id; ?>" class=" <?php echo $key; ?>" name="<?php echo $key . "[" . $item_id . "]"; ?>">
-						<option value="0" <?php echo ( $value == '0' ) ? ' selected="selected" ' : ''; ?>><?php _e( 'No', CSCORE_NAME ); ?></option>
-						<option value="1" <?php echo ( $value == '1' ) ? ' selected="selected" ' : ''; ?>><?php _e( 'Yes', CSCORE_NAME ); ?></option>
-					</select>
-				</label>
-			</p>
-		<?php }
+            $title = 'Side of Dropdown Elements';
+            $key = "menu-item-dropdown";
+            $value = $item->dropdown;
+            ?>
+            <p class="description description-wide description_width_100">
+                <?php _e( $title, THEMENAME ); ?><br />
+                <label for="edit-<?php echo ''.$key . '-' . $item_id; ?>">
+                    <select id="edit-<?php echo ''.$key . '-' . $item_id; ?>" class=" <?php echo ''.$key; ?>" name="<?php echo ''.$key . "[" . $item_id . "]"; ?>">
+                        <option value="autodrop_submenu" <?php echo ( $value == 'autodrop_submenu' ) ? ' selected="selected" ' : ''; ?>><?php _e( 'Auto drop', THEMENAME ); ?></option>
+                        <option value="drop_to_left" <?php echo ( $value == 'drop_to_left' ) ? ' selected="selected" ' : ''; ?>><?php _e( 'Drop To Left Side', THEMENAME ); ?></option>
+                        <option value="drop_to_right" <?php echo ( $value == 'drop_to_right' ) ? ' selected="selected" ' : ''; ?>><?php _e( 'Drop To Right Side', THEMENAME ); ?></option>
+                        <option value="drop_to_center" <?php echo ( $value == 'drop_to_center' ) ? ' selected="selected" ' : ''; ?>><?php _e( 'Drop To Center', THEMENAME ); ?></option>
+                        <option value="drop_full_width" <?php echo ( $value == 'drop_full_width' ) ? ' selected="selected" ' : ''; ?>><?php _e( 'Full width', THEMENAME ); ?></option>
+                    </select>
+                </label>
+            </p>
+            <?php
+            }
+            if($depth){
+            $title = 'Widget Area';
+            $key = "menu-item-widget_area";
+            $value = $item->widget_area;
+            $sidebars = $GLOBALS['wp_registered_sidebars'];
+            ?>
+            <p class="description description-wide description_width_100 el_widget_area">
+                <?php _e( $title, THEMENAME ); ?><br />
+                <label for="edit-<?php echo ''.$key . '-' . $item_id; ?>">
+                    <select id="edit-<?php echo ''.$key . '-' . $item_id; ?>" class=" <?php echo ''.$key; ?>" name="<?php echo ''.$key . "[" . $item_id . "]"; ?>">
+                        <option value="" <?php echo ( $value == '' ) ? ' selected="selected" ' : ''; ?>><?php _e( 'Select Widget Area', THEMENAME ); ?></option>
+                        <?php
+                        foreach ( $sidebars as $sidebar ) {
+                            echo '<option value="' . $sidebar['id'] . '" ' . ( ( $value == $sidebar['id'] ) ? ' selected="selected" ' : '' ) . '>[' . $sidebar['id'] . '] - ' . $sidebar['name'] . '</option>';
+                        }
+                        ?>
+                    </select>
+                </label>
+            </p>
+            <?php }
+            $title = 'Group';
+            $key = "menu-item-group";
+            $value = $item->group;
+            ?>
+            <p class="description description-wide description_width_100">
+                <?php _e( $title, THEMENAME ); ?><br />
+                <label for="edit-<?php echo ''.$key . '-' . $item_id; ?>">
+                    <select id="edit-<?php echo ''.$key . '-' . $item_id; ?>" class=" <?php echo ''.$key; ?>" name="<?php echo ''.$key . "[" . $item_id . "]"; ?>">
+                        <option value="no_group" <?php echo ( $value == 'no_group' ) ? ' selected="selected" ' : ''; ?>><?php _e( 'No', THEMENAME ); ?></option>
+                        <option value="group" <?php echo ( $value == 'group' ) ? ' selected="selected" ' : ''; ?>><?php _e( 'Yes', THEMENAME ); ?></option>
+                    </select>
+                </label>
+            </p>
+            <?php
+            if($depth){
+            $title = 'Hide title';
+            $key = "menu-item-hide_link";
+            $value = $item->hide_link;
+            ?>
+            <p class="description description-wide description_width_100">
+                <?php _e( $title, THEMENAME ); ?><br />
+                <label for="edit-<?php echo ''.$key . '-' . $item_id; ?>">
+                    <select id="edit-<?php echo ''.$key . '-' . $item_id; ?>" class=" <?php echo ''.$key; ?>" name="<?php echo ''.$key . "[" . $item_id . "]"; ?>">
+                        <option value="0" <?php echo ( $value == '0' ) ? ' selected="selected" ' : ''; ?>><?php _e( 'No', THEMENAME ); ?></option>
+                        <option value="1" <?php echo ( $value == '1' ) ? ' selected="selected" ' : ''; ?>><?php _e( 'Yes', THEMENAME ); ?></option>
+                    </select>
+                </label>
+            </p>
+        <?php }
         $title = 'Menu Icon';
         $key = "menu-item-menu_icon";
         $value = $item->menu_icon;
         ?>
-        <div id="<?php echo $key . '-' . $item_id . '-popup'; ?>" data-item_id="<?php echo $item_id;?>" class="menu_icon_wrap" style="display:none;">
+        <div id="<?php echo ''.$key . '-' . $item_id . '-popup'; ?>" data-item_id="<?php echo ''.$item_id;?>" class="menu_icon_wrap" style="display:none;">
             <?php
             $icons = array( 'adjust', 'adn', 'align-center', 'align-justify', 'align-left', 'align-right', 'ambulance', 'anchor', 'android', 'angle-double-down', 'angle-double-left', 'angle-double-right', 'angle-double-up', 'angle-down', 'angle-left', 'angle-right', 'angle-up', 'apple', 'archive', 'arrow-circle-down', 'arrow-circle-left', 'arrow-circle-o-down', 'arrow-circle-o-left', 'arrow-circle-o-right', 'arrow-circle-o-up', 'arrow-circle-right', 'arrow-circle-up', 'arrow-down', 'arrow-left', 'arrow-right', 'arrow-up', 'arrows', 'arrows-alt', 'arrows-h', 'arrows-v', 'asterisk', 'automobile', 'backward', 'ban', 'bank', 'bar-chart-o', 'barcode', 'bars', 'beer', 'behance', 'behance-square', 'bell', 'bell-o', 'bitbucket', 'bitbucket-square', 'bitcoin', 'bold', 'bolt', 'bomb', 'book', 'bookmark', 'bookmark-o', 'briefcase', 'btc', 'bug', 'building', 'building-o', 'bullhorn', 'bullseye', 'cab', 'calendar', 'calendar-o', 'camera', 'camera-retro', 'car', 'caret-down', 'caret-left', 'caret-right', 'caret-square-o-down', 'caret-square-o-left', 'caret-square-o-right', 'caret-square-o-up', 'caret-up', 'certificate', 'chain', 'chain-broken', 'check', 'check-circle', 'check-circle-o', 'check-square', 'check-square-o', 'chevron-circle-down', 'chevron-circle-left', 'chevron-circle-right', 'chevron-circle-up', 'chevron-down', 'chevron-left', 'chevron-right', 'chevron-up', 'child', 'circle', 'circle-o', 'circle-o-notch', 'circle-thin', 'clipboard', 'clock-o', 'cloud', 'cloud-download', 'cloud-upload', 'cny', 'code', 'code-fork', 'codepen', 'coffee', 'cog', 'cogs', 'columns', 'comment', 'comment-o', 'comments', 'comments-o', 'compass', 'compress', 'copy', 'credit-card', 'crop', 'crosshairs', 'css3', 'cube', 'cubes', 'cut', 'cutlery', 'dashboard', 'database', 'dedent', 'delicious', 'desktop', 'deviantart', 'digg', 'dollar', 'dot-circle-o', 'download', 'dribbble', 'dropbox', 'drupal', 'edit', 'eject', 'ellipsis-h', 'ellipsis-v', 'empire', 'envelope', 'envelope-o', 'envelope-square', 'eraser', 'eur', 'euro', 'exchange', 'exclamation', 'exclamation-circle', 'exclamation-triangle', 'expand', 'external-link', 'external-link-square', 'eye', 'eye-slash', 'facebook', 'facebook-square', 'fast-backward', 'fast-forward', 'fax', 'female', 'fighter-jet', 'file', 'file-archive-o', 'file-audio-o', 'file-code-o', 'file-excel-o', 'file-image-o', 'file-movie-o', 'file-o', 'file-pdf-o', 'file-photo-o', 'file-picture-o', 'file-powerpoint-o', 'file-sound-o', 'file-text', 'file-text-o', 'file-video-o', 'file-word-o', 'file-zip-o', 'files-o', 'film', 'filter', 'fire', 'fire-extinguisher', 'flag', 'flag-checkered', 'flag-o', 'flash', 'flask', 'flickr', 'floppy-o', 'folder', 'folder-o', 'folder-open', 'folder-open-o', 'font', 'forward', 'foursquare', 'frown-o', 'gamepad', 'gavel', 'gbp', 'ge', 'gear', 'gears', 'gift', 'git', 'git-square', 'github', 'github-alt', 'github-square', 'gittip', 'glass', 'globe', 'google', 'google-plus', 'google-plus-square', 'graduation-cap', 'group', 'h-square', 'hacker-news', 'hand-o-down', 'hand-o-left', 'hand-o-right', 'hand-o-up', 'hdd-o', 'header', 'headphones', 'heart', 'heart-o', 'history', 'home', 'hospital-o', 'html5', 'image', 'inbox', 'indent', 'info', 'info-circle', 'inr', 'instagram', 'institution', 'italic', 'joomla', 'jpy', 'jsfiddle', 'key', 'keyboard-o', 'krw', 'language', 'laptop', 'leaf', 'legal', 'lemon-o', 'level-down', 'level-up', 'life-bouy', 'life-ring', 'life-saver', 'lightbulb-o', 'link', 'linkedin', 'linkedin-square', 'linux', 'list', 'list-alt', 'list-ol', 'list-ul', 'location-arrow', 'lock', 'long-arrow-down', 'long-arrow-left', 'long-arrow-right', 'long-arrow-up', 'magic', 'magnet', 'mail-forward', 'mail-reply', 'mail-reply-all', 'male', 'map-marker', 'maxcdn', 'medkit', 'meh-o', 'microphone', 'microphone-slash', 'minus', 'minus-circle', 'minus-square', 'minus-square-o', 'mobile', 'mobile-phone', 'money', 'moon-o', 'mortar-board', 'music', 'navicon', 'openid', 'outdent', 'pagelines', 'paper-plane', 'paper-plane-o', 'paperclip', 'paragraph', 'paste', 'pause', 'paw', 'pencil', 'pencil-square', 'pencil-square-o', 'phone', 'phone-square', 'photo', 'picture-o', 'pied-piper', 'pied-piper-alt', 'pied-piper-square', 'pinterest', 'pinterest-square', 'plane', 'play', 'play-circle', 'play-circle-o', 'plus', 'plus-circle', 'plus-square', 'plus-square-o', 'power-off', 'print', 'puzzle-piece', 'qq', 'qrcode', 'question', 'question-circle', 'quote-left', 'quote-right', 'ra', 'random', 'rebel', 'recycle', 'reddit', 'reddit-square', 'refresh', 'renren', 'reorder', 'repeat', 'reply', 'reply-all', 'retweet', 'rmb', 'road', 'rocket', 'rotate-left', 'rotate-right', 'rouble', 'rss', 'rss-square', 'rub', 'ruble', 'rupee', 'save', 'scissors', 'search', 'search-minus', 'search-plus', 'send', 'send-o', 'share', 'share-alt', 'share-alt-square', 'share-square', 'share-square-o', 'shield', 'shopping-cart', 'sign-in', 'sign-out', 'signal', 'sitemap', 'skype', 'slack', 'sliders', 'smile-o', 'sort', 'sort-alpha-asc', 'sort-alpha-desc', 'sort-amount-asc', 'sort-amount-desc', 'sort-asc', 'sort-desc', 'sort-down', 'sort-numeric-asc', 'sort-numeric-desc', 'sort-up', 'soundcloud', 'space-shuttle', 'spinner', 'spoon', 'spotify', 'square', 'square-o', 'stack-exchange', 'stack-overflow', 'star', 'star-half', 'star-half-empty', 'star-half-full', 'star-half-o', 'star-o', 'steam', 'steam-square', 'step-backward', 'step-forward', 'stethoscope', 'stop', 'strikethrough', 'stumbleupon', 'stumbleupon-circle', 'subscript', 'suitcase', 'sun-o', 'superscript', 'support', 'table', 'tablet', 'tachometer', 'tag', 'tags', 'tasks', 'taxi', 'tencent-weibo', 'terminal', 'text-height', 'text-width', 'th', 'th-large', 'th-list', 'thumb-tack', 'thumbs-down', 'thumbs-o-down', 'thumbs-o-up', 'thumbs-up', 'ticket', 'times', 'times-circle', 'times-circle-o', 'tint', 'toggle-down', 'toggle-left', 'toggle-right', 'toggle-up', 'trash-o', 'tree', 'trello', 'trophy', 'truck', 'try', 'tumblr', 'tumblr-square', 'turkish-lira', 'twitter', 'twitter-square', 'umbrella', 'underline', 'undo', 'university', 'unlink', 'unlock', 'unlock-alt', 'unsorted', 'upload', 'usd', 'user', 'user-md', 'users', 'video-camera', 'vimeo-square', 'vine', 'vk', 'volume-down', 'volume-off', 'volume-up', 'warning', 'wechat', 'weibo', 'weixin', 'wheelchair', 'windows', 'won', 'wordpress', 'wrench', 'xing', 'xing-square', 'yahoo', 'yen', 'youtube', 'youtube-play', 'youtube-square' );
             $html = '<input type="hidden" name="" class="wpb_vc_param_value" value="' . $value . '" id="trace"/> ';
@@ -347,32 +347,32 @@ function start_el( &$output, $item, $depth = 0, $args = array(), $current_object
             }
             $html .= '</ul>';
             $html .= '</div>';
-            echo $html;
+            echo ''.$html;
             ?>
         </div>
         <p class="description description-wide obtheme_checkbox obtheme_mega_menu obtheme_mega_menu_d1">
-            <label for="edit-<?php echo $key . '-' . $item_id; ?>">
-                <?php _e( $title, CSCORE_NAME ); ?><br />
-                <input type="text" value="<?php echo $value; ?>" id="edit-<?php echo $key . '-' . $item_id; ?>" class=" <?php echo $key; ?>" name="<?php echo $key . "[" . $item_id . "]"; ?>" />
-                <input alt="#TB_inline?height=400&width=500&inlineId=<?php echo $key . '-' . $item_id . '-popup'; ?>" title="<?php _e( 'Click to browse icon', CSCORE_NAME ) ?>" class="thickbox button-secondary submit-add-to-menu" type="button" value="<?php _e( 'Browse Icon', CSCORE_NAME ) ?>" />
-				<a class="button btn_clear button-primary" href="javascript: void(0);">Clear</a>
-                <span class="icon-preview  icon-preview<?php echo '-' . $item_id; ?>"><i class=" fa fa-<?php echo $value; ?>"></i></span>
+            <label for="edit-<?php echo ''.$key . '-' . $item_id; ?>">
+                <?php _e( $title, THEMENAME ); ?><br />
+                <input type="text" value="<?php echo ''.$value; ?>" id="edit-<?php echo ''.$key . '-' . $item_id; ?>" class=" <?php echo ''.$key; ?>" name="<?php echo ''.$key . "[" . $item_id . "]"; ?>" />
+                <input alt="#TB_inline?height=400&width=500&inlineId=<?php echo ''.$key . '-' . $item_id . '-popup'; ?>" title="<?php _e( 'Click to browse icon', THEMENAME ) ?>" class="thickbox button-secondary submit-add-to-menu" type="button" value="<?php _e( 'Browse Icon', THEMENAME ) ?>" />
+                <a class="button btn_clear button-primary" href="javascript: void(0);">Clear</a>
+                <span class="icon-preview  icon-preview<?php echo '-' . $item_id; ?>"><i class=" fa fa-<?php echo ''.$value; ?>"></i></span>
             </label>
         </p>
-			<!-- Start background menu -->
+            <!-- Start background menu -->
             <?php
-			if ( ! $depth ) {
+            if ( ! $depth ) {
             $title = 'DropDown Background Image';
             $key = "menu-item-bg_image";
             $value = $item->bg_image;
             ?>
             
             <p class="description description-wide obtheme_checkbox obtheme_mega_menu obtheme_mega_menu_d2">
-                <label for="edit-<?php echo $key . '-' . $item_id; ?>">
-                    <span class='obtheme_long_desc'><?php _e( $title, CSCORE_NAME ); ?></span><br />
-                    <input type="text" value="<?php echo $value; ?>" id="edit-<?php echo $key . '-' . $item_id; ?>" class=" <?php echo $key; ?>" name="<?php echo $key . "[" . $item_id . "]"; ?>" />
-                    <button id="browse-edit-<?php echo $key . '-' . $item_id; ?>" class="set_custom_images button button-secondary submit-add-to-menu"><?php _e( 'Browse Image', CSCORE_NAME ); ?></button>
-					<a class="button btn_clear button-primary" href="javascript: void(0);">Clear</a>
+                <label for="edit-<?php echo ''.$key . '-' . $item_id; ?>">
+                    <span class='obtheme_long_desc'><?php _e( $title, THEMENAME ); ?></span><br />
+                    <input type="text" value="<?php echo ''.$value; ?>" id="edit-<?php echo ''.$key . '-' . $item_id; ?>" class=" <?php echo ''.$key; ?>" name="<?php echo ''.$key . "[" . $item_id . "]"; ?>" />
+                    <button id="browse-edit-<?php echo ''.$key . '-' . $item_id; ?>" class="set_custom_images button button-secondary submit-add-to-menu"><?php _e( 'Browse Image', THEMENAME ); ?></button>
+                    <a class="button btn_clear button-primary" href="javascript: void(0);">Clear</a>
                 </label>
             </p>
             <p class="description description-wide description_width_25">
@@ -381,12 +381,12 @@ function start_el( &$output, $item, $depth = 0, $args = array(), $current_object
                 $value = $item->bg_image_repeat;
                 $options = array( 'repeat', 'no-repeat', 'repeat-x', 'repeat-y' );
                 ?>
-                <label for="edit-<?php echo $key . '-' . $item_id; ?>">
-                    <select id="edit-<?php echo $key . '-' . $item_id; ?>" class=" <?php echo $key; ?>" name="<?php echo $key . "[" . $item_id . "]"; ?>">
+                <label for="edit-<?php echo ''.$key . '-' . $item_id; ?>">
+                    <select id="edit-<?php echo ''.$key . '-' . $item_id; ?>" class=" <?php echo ''.$key; ?>" name="<?php echo ''.$key . "[" . $item_id . "]"; ?>">
                         <?php
                         foreach ( $options as $option ) {
                             ?>
-                            <option value="<?php echo $option; ?>" <?php echo ( $value == $option ) ? ' selected="selected" ' : ''; ?>><?php echo $option; ?></option>
+                            <option value="<?php echo ''.$option; ?>" <?php echo ( $value == $option ) ? ' selected="selected" ' : ''; ?>><?php echo ''.$option; ?></option>
                         <?php
                         }
                         ?>
@@ -397,12 +397,12 @@ function start_el( &$output, $item, $depth = 0, $args = array(), $current_object
                 $value = $item->bg_image_attachment;
                 $options = array( 'scroll', 'fixed' );
                 ?>
-                <label for="edit-<?php echo $key . '-' . $item_id; ?>">
-                    <select id="edit-<?php echo $key . '-' . $item_id; ?>" class=" <?php echo $key; ?>" name="<?php echo $key . "[" . $item_id . "]"; ?>">
+                <label for="edit-<?php echo ''.$key . '-' . $item_id; ?>">
+                    <select id="edit-<?php echo ''.$key . '-' . $item_id; ?>" class=" <?php echo ''.$key; ?>" name="<?php echo ''.$key . "[" . $item_id . "]"; ?>">
                         <?php
                         foreach ( $options as $option ) {
                             ?>
-                            <option value="<?php echo $option; ?>" <?php echo ( $value == $option ) ? ' selected="selected" ' : ''; ?>><?php echo $option; ?></option>
+                            <option value="<?php echo ''.$option; ?>" <?php echo ( $value == $option ) ? ' selected="selected" ' : ''; ?>><?php echo ''.$option; ?></option>
                         <?php
                         }
                         ?>
@@ -414,12 +414,12 @@ function start_el( &$output, $item, $depth = 0, $args = array(), $current_object
                 $value = $item->bg_image_position;
                 $options = array( 'center', 'center left', 'center right', 'top left', 'top center', 'top right', 'bottom left', 'bottom center', 'bottom right' );
                 ?>
-                <label for="edit-<?php echo $key . '-' . $item_id; ?>">
-                    <select id="edit-<?php echo $key . '-' . $item_id; ?>" class=" <?php echo $key; ?>" name="<?php echo $key . "[" . $item_id . "]"; ?>">
+                <label for="edit-<?php echo ''.$key . '-' . $item_id; ?>">
+                    <select id="edit-<?php echo ''.$key . '-' . $item_id; ?>" class=" <?php echo ''.$key; ?>" name="<?php echo ''.$key . "[" . $item_id . "]"; ?>">
                         <?php
                         foreach ( $options as $option ) {
                             ?>
-                            <option value="<?php echo $option; ?>" <?php echo ( $value == $option ) ? ' selected="selected" ' : ''; ?>><?php echo $option; ?></option>
+                            <option value="<?php echo ''.$option; ?>" <?php echo ( $value == $option ) ? ' selected="selected" ' : ''; ?>><?php echo ''.$option; ?></option>
                         <?php
                         }
                         ?>
@@ -435,12 +435,12 @@ function start_el( &$output, $item, $depth = 0, $args = array(), $current_object
                                   "cover"     => "cover",
                                   "contain"   => "contain" );
                 ?>
-                <label for="edit-<?php echo $key . '-' . $item_id; ?>">
-                    <select id="edit-<?php echo $key . '-' . $item_id; ?>" class=" <?php echo $key; ?>" name="<?php echo $key . "[" . $item_id . "]"; ?>">
+                <label for="edit-<?php echo ''.$key . '-' . $item_id; ?>">
+                    <select id="edit-<?php echo ''.$key . '-' . $item_id; ?>" class=" <?php echo ''.$key; ?>" name="<?php echo ''.$key . "[" . $item_id . "]"; ?>">
                         <?php
                         foreach ( $options as $op_value => $op_text ) {
                             ?>
-                            <option value="<?php echo $op_value; ?>" <?php echo ( $value == $op_value ) ? ' selected="selected" ' : ''; ?>><?php echo $op_text; ?></option>
+                            <option value="<?php echo ''.$op_value; ?>" <?php echo ( $value == $op_value ) ? ' selected="selected" ' : ''; ?>><?php echo ''.$op_text; ?></option>
                         <?php
                         }
                         ?>
@@ -452,22 +452,43 @@ function start_el( &$output, $item, $depth = 0, $args = array(), $current_object
             $key = "menu-item-bg_color";
             $value = $item->bg_color;
             ?>
-
             <p class="description description-wide">
-                <label for="edit-<?php echo $key . '-' . $item_id; ?>">
-                    <span class='obtheme_long_desc'><?php _e( $title, CSCORE_NAME ); ?></span><br />
-                    <input type="text" value="<?php echo $value; ?>" id="edit-<?php echo $key . '-' . $item_id; ?>" class=" <?php echo $key; ?>" name="<?php echo $key . "[" . $item_id . "]"; ?>" />
+                <label for="edit-<?php echo ''.$key . '-' . $item_id; ?>">
+                    <span class='obtheme_long_desc'><?php _e( $title, THEMENAME ); ?></span><br />
+                    <input type="text" value="<?php echo ''.$value; ?>" id="edit-<?php echo ''.$key . '-' . $item_id; ?>" class=" <?php echo ''.$key; ?>" name="<?php echo ''.$key . "[" . $item_id . "]"; ?>" />
                 </label>
             </p>
-			<?php } ?>
-			<!-- End background menu -->
+            <?php
+            $title = 'Icon Color';
+            $key = "menu-item-icon_color";
+            $value = $item->icon_color;
+            ?>
+            <p class="description description-wide">
+                <label for="edit-<?php echo ''.$key . '-' . $item_id; ?>">
+                    <span class='obtheme_long_desc'><?php _e( $title, THEMENAME ); ?></span><br />
+                    <input type="text" value="<?php echo ''.$value; ?>" id="edit-<?php echo ''.$key . '-' . $item_id; ?>" class=" <?php echo ''.$key; ?>" name="<?php echo ''.$key . "[" . $item_id . "]"; ?>" />
+                </label>
+            </p>
+            <?php
+            $title = 'Icon Font Size';
+            $key = "menu-item-icon_font_size";
+            $value = $item->icon_font_size;
+            ?>
+            <p class="description description-wide">
+                <label for="edit-<?php echo ''.$key . '-' . $item_id; ?>">
+                    <span class='obtheme_long_desc'><?php _e( $title, THEMENAME ); ?></span><br />
+                    <input type="text" value="<?php echo ''.$value; ?>" id="edit-<?php echo ''.$key . '-' . $item_id; ?>" class=" <?php echo ''.$key; ?>" name="<?php echo ''.$key . "[" . $item_id . "]"; ?>" />
+                </label>
+            </p>
+            <?php } ?>
+            <!-- End background menu -->
             <div class="menu-item-actions description-wide submitbox">
                 <?php if( 'custom' != $item->type && $original_title !== false ) : ?>
                     <p class="link-to-original">
-                        <?php printf( __('Original: %s', CSCORE_NAME), '<a href="' . esc_attr( $item->url ) . '">' . esc_html( $original_title ) . '</a>' ); ?>
+                        <?php printf( __('Original: %s', THEMENAME), '<a href="' . esc_attr( $item->url ) . '">' . esc_html( $original_title ) . '</a>' ); ?>
                     </p>
                 <?php endif; ?>
-                <a class="item-delete submitdelete deletion" id="delete-<?php echo $item_id; ?>" href="<?php
+                <a class="item-delete submitdelete deletion" id="delete-<?php echo ''.$item_id; ?>" href="<?php
                 echo wp_nonce_url(
                     add_query_arg(
                         array(
@@ -477,16 +498,16 @@ function start_el( &$output, $item, $depth = 0, $args = array(), $current_object
                         remove_query_arg($removed_args, admin_url( 'nav-menus.php' ) )
                     ),
                     'delete-menu_item_' . $item_id
-                ); ?>"><?php _e('Remove',CSCORE_NAME); ?></a> <span class="meta-sep"> | </span> <a class="item-cancel submitcancel" id="cancel-<?php echo $item_id; ?>" href="<?php echo esc_url( add_query_arg( array('edit-menu-item' => $item_id, 'cancel' => time()), remove_query_arg( $removed_args, admin_url( 'nav-menus.php' ) ) ) );
-                    ?>#menu-item-settings-<?php echo $item_id; ?>"><?php _e('Cancel',CSCORE_NAME); ?></a>
+                ); ?>"><?php _e('Remove',THEMENAME); ?></a> <span class="meta-sep"> | </span> <a class="item-cancel submitcancel" id="cancel-<?php echo ''.$item_id; ?>" href="<?php echo esc_url( add_query_arg( array('edit-menu-item' => $item_id, 'cancel' => time()), remove_query_arg( $removed_args, admin_url( 'nav-menus.php' ) ) ) );
+                    ?>#menu-item-settings-<?php echo ''.$item_id; ?>"><?php _e('Cancel',THEMENAME); ?></a>
             </div>
 
-            <input class="menu-item-data-db-id" type="hidden" name="menu-item-db-id[<?php echo $item_id; ?>]" value="<?php echo $item_id; ?>" />
-            <input class="menu-item-data-object-id" type="hidden" name="menu-item-object-id[<?php echo $item_id; ?>]" value="<?php echo esc_attr( $item->object_id ); ?>" />
-            <input class="menu-item-data-object" type="hidden" name="menu-item-object[<?php echo $item_id; ?>]" value="<?php echo esc_attr( $item->object ); ?>" />
-            <input class="menu-item-data-parent-id" type="hidden" name="menu-item-parent-id[<?php echo $item_id; ?>]" value="<?php echo esc_attr( $item->menu_item_parent ); ?>" />
-            <input class="menu-item-data-position" type="hidden" name="menu-item-position[<?php echo $item_id; ?>]" value="<?php echo esc_attr( $item->menu_order ); ?>" />
-            <input class="menu-item-data-type" type="hidden" name="menu-item-type[<?php echo $item_id; ?>]" value="<?php echo esc_attr( $item->type ); ?>" />
+            <input class="menu-item-data-db-id" type="hidden" name="menu-item-db-id[<?php echo ''.$item_id; ?>]" value="<?php echo ''.$item_id; ?>" />
+            <input class="menu-item-data-object-id" type="hidden" name="menu-item-object-id[<?php echo ''.$item_id; ?>]" value="<?php echo esc_attr( $item->object_id ); ?>" />
+            <input class="menu-item-data-object" type="hidden" name="menu-item-object[<?php echo ''.$item_id; ?>]" value="<?php echo esc_attr( $item->object ); ?>" />
+            <input class="menu-item-data-parent-id" type="hidden" name="menu-item-parent-id[<?php echo ''.$item_id; ?>]" value="<?php echo esc_attr( $item->menu_item_parent ); ?>" />
+            <input class="menu-item-data-position" type="hidden" name="menu-item-position[<?php echo ''.$item_id; ?>]" value="<?php echo esc_attr( $item->menu_order ); ?>" />
+            <input class="menu-item-data-type" type="hidden" name="menu-item-type[<?php echo ''.$item_id; ?>]" value="<?php echo esc_attr( $item->type ); ?>" />
         </div><!-- .menu-item-settings-->
         <ul class="menu-item-transport"></ul>
     <?php
@@ -513,14 +534,14 @@ class HeroMenuWalker extends Walker_Nav_Menu {
             $b          = $args[0];
             $b->element = $element;
             $b->count_child = count($children_elements[$id]);
-			//$b->mega_child = $element->mega;
+            //$b->mega_child = $element->mega;
             $args[0]    = $b;
             foreach ( $children_elements[$id] as $child ) {
                 if ( ! isset( $newlevel ) ) {
                     $newlevel = true;
                     //start the child delimiter
-					$cb_args = array_merge( array( &$output, $depth ), $args );
-					$cb_args = array_merge( array( &$output, $depth ), $args );
+                    $cb_args = array_merge( array( &$output, $depth ), $args );
+                    $cb_args = array_merge( array( &$output, $depth ), $args );
                     call_user_func_array( array( $this, 'start_lvl' ), $cb_args );
                 }
                 $this->display_element( $child, $children_elements, $max_depth, $depth + 1, $args, $output );
@@ -543,25 +564,26 @@ class HeroMenuWalker extends Walker_Nav_Menu {
         $bg_image        = isset($args->element->bg_image)?$args->element->bg_image:'';
         $column_width        = isset($args->element->column_width)?(!empty($args->element->column_width)?$args->element->column_width:200):200;
         $bg_color        = isset($args->element->bg_color)?$args->element->bg_color:'';
+        $icon_color        = isset($args->element->icon_color)?$args->element->icon_color:'';
         $pos_left        = isset($args->element->pos_left)?$args->element->pos_left:'';
         $pos_right        = isset($args->element->pos_right)?$args->element->pos_right:'';
         $submenu_type        = isset($args->element->submenu_type)?$args->element->submenu_type:'standard';
         $dropdown        = isset($args->element->dropdown)?$args->element->dropdown:'drop_to_left';
-		$class = null;
-		$style = 'style="';
-		$columns = array('columns2'=>2,'columns3'=>3,'columns4'=>4,'columns5'=>5);
-		if($submenu_type != 'standard' && $depth == 0){
-			if(isset($columns[$submenu_type])){				
-				$style = 'style="width:'.($column_width*$columns[$submenu_type]).'px;';				
-				$class = 'multicolumn mega-columns-'.$columns[$submenu_type];
-			}
-			$class = 'multicolumn';
-		}else if($depth == 0){
-			$style = 'style="width:'.($column_width).'px;';
-			$class = 'standar-dropdown';
-		}
-		$class .= ' '.$submenu_type;
-		$class .= ' '.$dropdown;
+        $class = null;
+        $style = 'style="';
+        $columns = array('columns2'=>2,'columns3'=>3,'columns4'=>4,'columns5'=>5);
+        if($submenu_type != 'standard' && $depth == 0){
+            if(isset($columns[$submenu_type])){             
+                $style = 'style="width:'.($column_width*$columns[$submenu_type]).'px;';             
+                $class = 'multicolumn mega-columns-'.$columns[$submenu_type];
+            }
+            $class = 'multicolumn';
+        }else if($depth == 0){
+            $style = 'style="width:'.($column_width).'px;';
+            $class = 'standar-dropdown';
+        }
+        $class .= ' '.$submenu_type;
+        $class .= ' '.$dropdown;
         $class = $bg_image?$class .= ' sub-menu mega-bg-image':$class .= ' sub-menu';
         if ( $bg_image ) {
             $bg_image_repeat     = $args->element->bg_image_repeat;
@@ -589,16 +611,18 @@ class HeroMenuWalker extends Walker_Nav_Menu {
         $indent = ( $depth ) ? str_repeat( "\t", $depth ) : '';
         $class_names = '';
         $menu_icon = isset($item->menu_icon)?$item->menu_icon:'';
+        $icon_color = isset($item->icon_color)?$item->icon_color:'';
+        $icon_font_size = isset($item->icon_color)?$item->icon_font_size:'';
         $dropdown = isset($item->dropdown)?$item->dropdown:'';
         $hide_link = isset($item->hide_link)?$item->hide_link:0;
         $group = isset($item->group)?$item->group:'';
         $el_class = isset($item->el_class)?$item->el_class:'';
         $classes = empty( $item->classes ) ? array() : (array) $item->classes;
-		if($dropdown == "drop_full_width"){
-			$classes[]= 'has_full_width';
-		}
-		$classes[]= $group;
-		$classes[]= $el_class;
+        if($dropdown == "drop_full_width"){
+            $classes[]= 'has_full_width';
+        }
+        $classes[]= $group;
+        $classes[]= $el_class;
         $classes[] = 'menu-item-' . $item->ID;
         $class_names = join( ' ', apply_filters( 'nav_menu_css_class', array_filter( $classes ), $item, $args ) );
         $class_names = $class_names ? ' class="' . esc_attr( $class_names ) . '"' : '';
@@ -617,34 +641,34 @@ class HeroMenuWalker extends Walker_Nav_Menu {
                 $attributes .= ' ' . $attr . '="' . $value . '"';
             }
         }
-		$attr_title  = ! empty( $item->attr_title ) ? $item->attr_title : '';
+        $attr_title  = ! empty( $item->attr_title ) ? $item->attr_title : '';
         $item_output = isset($args->before)?$args->before:'';
         $link_before = isset($args->link_before)?$args->link_before:'';
         $link_after = isset($args->link_after)?$args->link_after:'';
         $after = isset($args->after)?$args->after:'';
-		if(!$hide_link || $hide_link=="0"){
+        if(!$hide_link || $hide_link=="0"){
         $item_output .= '<a'. $attributes .'>';
-		$item_output.='<span class="menu-title">';
         if ( $menu_icon ) {
-            $item_output .= '<i class="fa fa-fw fa-' . $menu_icon . '"></i> ';
+            $item_output .= '<i style="color: '.$icon_color.'; font-size: '.$icon_font_size.'" class="fa fa-fw fa-' . $menu_icon . '"></i> ';
         }
+        $item_output.='<span class="menu-title">';
         $item_output .= $link_before . apply_filters( 'the_title', $item->title, $item->ID ) . $link_after;
-		if ( $attr_title ) {
+        if ( $attr_title ) {
             $item_output .= '<span class="title-attribute">'.$attr_title.'</span> ';
         }
-        $item_output .= '</span></a>';	
-		}
-		$widget_area = $item->widget_area;
-		if ($widget_area && $depth != 0) {
-			ob_start();
-			dynamic_sidebar($widget_area);
-			$content         = ob_get_clean();
-			if ( $content ) {
-				$item_output .= $content;
-			}
-		}
+        $item_output .= '</span></a>';  
+        }
+        $widget_area = $item->widget_area;
+        if ($widget_area && $depth != 0) {
+            ob_start();
+            dynamic_sidebar($widget_area);
+            $content         = ob_get_clean();
+            if ( $content ) {
+                $item_output .= $content;
+            }
+        }
         $item_output .= $after;
-		
+        
         $output .= apply_filters( 'walker_nav_menu_start_el', $item_output, $item, $depth, $args );
     }
 

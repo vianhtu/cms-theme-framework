@@ -215,7 +215,7 @@ class CMS_Base
         $font_part = get_template_directory_uri()."/assets/fonts/".esc_attr($name);
         
         /* load font files. */
-        if(!empty($name)){
+        if($name){
             echo "@font-face {".
                          "font-family: '".esc_attr($name)."';".
                          "src: url('$font_part.eot');"./* IE9 Compat Modes */
@@ -228,8 +228,8 @@ class CMS_Base
                          "font-style: normal;".
                     "}";
             /* add font selecter. */
-            if(!empty($selecter)){
-                echo $selecter."{font-family:'".esc_attr($name)."';}";
+            if($selecter){
+                echo esc_attr($selecter)."{font-family:'".esc_attr($name)."';}";
             }
         }
     }
@@ -242,13 +242,10 @@ class CMS_Base
      */
     public static function setGoogleFont($googlefont = array(), $selecter = ''){
         
-        if(!empty($googlefont['font-family'])){
+        if(isset($googlefont['font-family'])){
             /* add font selecter. */
-            
-            $font_weight =  !empty($googlefont['font-weight']) ? "font-weight:".esc_attr($googlefont['font-weight']).";" : '';
-                
-            if(!empty($selecter)){
-                echo $selecter."{font-family:'".esc_attr($googlefont['font-family'])."';".$font_weight."}";
+            if($selecter){
+                echo esc_attr($selecter)."{font-family:'".esc_attr($googlefont['font-family'])."';}";
             }
         }
     }

@@ -18,10 +18,21 @@ get_header(); ?>
             <div id="primary" class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
                 <div id="content" role="main">
 
-                    <?php while ( have_posts() ) : the_post(); ?>
-                        <?php get_template_part( 'single-templates/content', 'page' ); ?>
-                        <?php comments_template( '', true ); ?>
-                    <?php endwhile; // end of the loop. ?>
+                   <?php
+                        // Start the loop.
+                        while ( have_posts() ) : the_post();
+
+                            // Include the page content template.
+                            get_template_part( 'content', 'page' );
+
+                            // If comments are open or we have at least one comment, load up the comment template.
+                            if ( comments_open() || get_comments_number() ) :
+                                comments_template();
+                            endif;
+
+                        // End the loop.
+                        endwhile;
+                        ?>
 
                 </div><!-- #content -->
             </div><!-- #primary -->

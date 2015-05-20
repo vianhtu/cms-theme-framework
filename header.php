@@ -23,6 +23,7 @@
 </head>
 <body <?php body_class(); ?>>
 <?php global $smof_data; ?>
+<?php cms_get_page_loading(); ?>
 <div id="page" class="<?php cms_page_class(); ?>">
 	<header id="masthead" class="site-header" role="banner">
 		<?php cms_header(); ?>

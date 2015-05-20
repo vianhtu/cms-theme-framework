@@ -1,6 +1,6 @@
 <?php
 /**
- * CMS Theme functions and definitions
+ * Twenty Twelve functions and definitions
  *
  * Sets up the theme and provides some helper functions, which are used
  * in the theme as custom template tags. Others are attached to action and
@@ -34,10 +34,6 @@ define('THEMENAME', $theme->get('Name'));
 /* language. */
 load_theme_textdomain(THEMENAME, get_template_directory().'/languages');
 
-/* Run shortcodes in widget text */
-add_filter('widget_text', 'do_shortcode');
-
-
 /* Add base functions */
 require( get_template_directory() . '/inc/base.class.php' );
 
@@ -61,45 +57,52 @@ if(class_exists('Vc_Manager')){
     
     function cms_vc_elements(){
         if(class_exists('CmsShortCode')){
-            require( get_template_directory() . '/inc/elements/cms_custom.php' );
+            $element = get_template_directory() . '/inc/elements/googlemap';
+            
+            require( $element . '/cms_googlemap.php' );
         }
     }
     
-    /* Add element options. */
     add_action('init', 'cms_vc_params');
-    
     function cms_vc_params() {
         require( get_template_directory() . '/vc_params/vc_rows.php' );
+        require( get_template_directory() . '/vc_params/vc_column.php' );	
+        require( get_template_directory() . '/vc_params/vc_btn.php' );	
+        require( get_template_directory() . '/vc_params/vc_separator.php' );		
+        require( get_template_directory() . '/vc_params/vc_tabs.php' );		
+        require( get_template_directory() . '/vc_params/vc_pie.php' );		
+        require( get_template_directory() . '/vc_params/vc_custom_heading.php' );	
     }
 }
-
+/* Remove Element VC */
+if(class_exists('Vc_Manager')){
+	vc_remove_element( "vc_button" );
+	vc_remove_element( "vc_button2" );
+	vc_remove_element( "vc_cta_button" );
+	vc_remove_element( "vc_cta_button2" );
+}
+/* Remove Element FancyBox CMS */
+add_action('vc_after_init', 'cms_remove_some_element');
+function cms_remove_some_element(){
+ vc_remove_element('cms_fancybox_single');
+}
 /* Add SCSS */
 if(!class_exists('scssc')){
     require( get_template_directory() . '/inc/libs/scss.inc.php' );
 }
 
-/**
- * Admin Loader.
- * require admin files.
- * 
- * @author Fox
- */
+/* Add Meta Core Options */
 if(is_admin()){
-    /* Add Meta Core Options */
+    
     if(!class_exists('CsCoreControl')){
-        
         /* add mete core */
         require( get_template_directory() . '/inc/metacore/core.options.php' );
-        
         /* add meta options */
         require( get_template_directory() . '/inc/options/meta.options.php' );
     }
     
     /* tmp plugins. */
     require( get_template_directory() . '/inc/options/require.plugins.php' );
-    
-    /* add presets */
-    require( get_template_directory() . '/inc/options/presets.php' );
 }
 
 /* Add Template functions */
@@ -118,11 +121,25 @@ if(isset($smof_data['menu_mega']) && $smof_data['menu_mega'] && !class_exists('H
 
 /* Add widgets */
 require( get_template_directory() . '/inc/widgets/cart_search.php' );
+require( get_template_directory() . '/inc/widgets/news_tabs.php' );
+require( get_template_directory() . '/inc/widgets/recent_post_v2.php' );
+require( get_template_directory() . '/inc/widgets/instagram.php' );
 
 // Set up the content width value based on the theme's design and stylesheet.
 if ( ! isset( $content_width ) )
 	$content_width = 625;
-
+/*
+ * Limit Words
+ */
+if (!function_exists('cms_limit_words')) {
+	function cms_limit_words($string, $word_limit) {
+		$words = explode(' ', $string, ($word_limit + 1));
+		if (count($words) > $word_limit) {
+			array_pop($words);
+		}
+		return implode(' ', $words)."";
+	}
+}
 /**
  * Twenty Twelve setup.
  *
@@ -179,11 +196,9 @@ function cms_setup() {
 
 	// This theme uses a custom image size for featured images, displayed on "standard" posts.
 	add_theme_support( 'post-thumbnails' );
-	
-	//add_image_size('demo', 345, 245, true);
-	
-	// Unlimited height, soft crop
-	set_post_thumbnail_size( 624, 9999 );
+	add_image_size('related-img', 50, 50, true);
+	add_image_size('related-img-1', 100, 100, true);
+	set_post_thumbnail_size( 624, 9999 ); // Unlimited height, soft crop
 }
 add_action( 'after_setup_theme', 'cms_setup' );
 
@@ -230,6 +245,7 @@ function cms_scripts_styles() {
 	    'menu_sticky'=> $smof_data['menu_sticky'],
 	    'menu_sticky_tablets'=> $smof_data['menu_sticky_tablets'],
 	    'menu_sticky_mobile'=> $smof_data['menu_sticky_mobile'],
+	    'paralax' => $smof_data['paralax'],
 	    'back_to_top'=> $smof_data['footer_botton_back_to_top']
 	);
 
@@ -243,8 +259,9 @@ function cms_scripts_styles() {
 	wp_enqueue_script('cmssuperheroes-bootstrap', get_template_directory_uri() . '/assets/js/bootstrap.min.js', array( 'jquery' ), '3.3.2');
 	
 	/* Add parallax plugin. */
-	wp_enqueue_script('cmssuperheroes-parallax', get_template_directory_uri() . '/assets/js/jquery.parallax-1.1.3.js', array( 'jquery' ), '1.1.3', true);
-	
+	if($smof_data['paralax']){
+	   wp_enqueue_script('cmssuperheroes-parallax', get_template_directory_uri() . '/assets/js/jquery.parallax-1.1.3.js', array( 'jquery' ), '1.1.3', true);
+	}
 	/* Add smoothscroll plugin */
 	if($smof_data['smoothscroll']){
 	   wp_enqueue_script('cmssuperheroes-smoothscroll', get_template_directory_uri() . '/assets/js/smoothscroll.min.js', array( 'jquery' ), '1.0.0', true);
@@ -258,7 +275,15 @@ function cms_scripts_styles() {
 	wp_enqueue_script('cmssuperheroes-main');
 	/* Add menu.js */
     wp_enqueue_script('cmssuperheroes-menu', get_template_directory_uri() . '/assets/js/menu.js', array( 'jquery' ), '1.0.0', true);
-	
+    /* VC Pie Custom JS */
+    wp_register_script('progressCircle', get_template_directory_uri() . '/assets/js/process_cycle.js', array( 'jquery' ), '1.0.0', true);
+    wp_register_script('vc_pie_custom', get_template_directory_uri() . '/assets/js/vc_pie_custom.js', array( 'jquery' ), '1.0.0', true);
+	include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+	// check for plugin using plugin name
+	if ( is_plugin_active( 'timetable/timetable.php' ) ) {
+		wp_dequeue_script('timetable_main');
+		wp_enqueue_script('timetable_custom', get_template_directory_uri() . '/assets/js/timetable.js', array( 'jquery' ), '1.0.0', true);
+	}
 	/*
 	 * Adds JavaScript to pages with the comment form to support
 	 * sites with threaded comments (when in use).
@@ -275,6 +300,12 @@ function cms_scripts_styles() {
 	
 	/* Loads Bootstrap stylesheet. */
 	wp_enqueue_style('cmssuperheroes-font-awesome', get_template_directory_uri() . '/assets/css/font-awesome.min.css', array(), '4.3.0');
+
+	/* Loads Font Ionicons. */
+	wp_enqueue_style('cmssuperheroes-font-ionicons', get_template_directory_uri() . '/assets/css/ionicons.min.css', array(), '2.0.1');
+
+	/* Loads Pe Icon. */
+	wp_enqueue_style('cmssuperheroes-pe-icon', get_template_directory_uri() . '/assets/css/pe-icon-7-stroke.css', array(), '1.0.1');
 	
 	/** --------------------------custom------------------------------- */
 	
@@ -291,28 +322,9 @@ function cms_scripts_styles() {
 	}
 	
 	/* Load static css*/
-	$static_css = isset($smof_data['presets_color']) && $smof_data['presets_color'] ? "presets-".$smof_data['presets_color'].".css" : "static.css" ;
-	
-	wp_enqueue_style('cmssuperheroes-static', get_template_directory_uri() . "/assets/css/$static_css", array( 'cmssuperheroes-style' ), '1.0.0');
+	wp_enqueue_style('cmssuperheroes-static', get_template_directory_uri() . '/assets/css/static.css', array( 'cmssuperheroes-style' ), '1.0.0');
 }
 add_action( 'wp_enqueue_scripts', 'cms_scripts_styles' );
-
-/**
- * Load ajax url.
- */
-function cms_ajax_url_head() {
-    echo '<script type="text/javascript"> var ajaxurl = "'.admin_url('admin-ajax.php').'"; </script>';
-}
-add_action( 'wp_head', 'cms_ajax_url_head');
-
-/**
- * Load admin ajax url.
- */
-function cms_ajax_url_admin_head() {
-    echo '<script type="text/javascript"> var ajaxurl = "'.admin_url('admin-ajax.php').'"; </script>';
-}
-add_action( 'admin_head', 'cms_ajax_url_admin_head');
-
 
 /**
  * Register sidebars.
@@ -328,7 +340,7 @@ function cms_widgets_init() {
 		'description' => __( 'Appears on posts and pages except the optional Front Page template, which has its own widgets', THEMENAME ),
 		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 		'after_widget' => '</aside>',
-		'before_title' => '<h3 class="widget-title">',
+		'before_title' => '<h3 class="wg-title">',
 		'after_title' => '</h3>',
 	) );
 
@@ -338,7 +350,7 @@ function cms_widgets_init() {
 		'description' => __( 'Appears when using the optional Header with a page set as Header top left', THEMENAME ),
 		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 		'after_widget' => '</aside>',
-		'before_title' => '<h3 class="widget-title">',
+		'before_title' => '<h3 class="wg-title">',
 		'after_title' => '</h3>',
 	) );
 
@@ -348,7 +360,7 @@ function cms_widgets_init() {
 		'description' => __( 'Appears when using the optional Header with a page set as Header top right', THEMENAME ),
 		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 		'after_widget' => '</aside>',
-		'before_title' => '<h3 class="widget-title">',
+		'before_title' => '<h3 class="wg-title">',
 		'after_title' => '</h3>',
 	) );
 	
@@ -358,7 +370,7 @@ function cms_widgets_init() {
     	'description' => __( 'Appears when using the optional Menu with a page set as Menu right', THEMENAME ),
     	'before_widget' => '<aside id="%1$s" class="widget %2$s">',
     	'after_widget' => '</aside>',
-    	'before_title' => '<h3 class="widget-title">',
+    	'before_title' => '<h3 class="wg-title">',
     	'after_title' => '</h3>',
 	) );
 	
@@ -368,7 +380,7 @@ function cms_widgets_init() {
     	'description' => __( 'Appears when using the optional Footer with a page set as Footer Top 1', THEMENAME ),
     	'before_widget' => '<aside id="%1$s" class="widget %2$s">',
     	'after_widget' => '</aside>',
-    	'before_title' => '<h3 class="widget-title">',
+    	'before_title' => '<h3 class="wg-title">',
     	'after_title' => '</h3>',
 	) );
 	
@@ -378,7 +390,7 @@ function cms_widgets_init() {
     	'description' => __( 'Appears when using the optional Footer with a page set as Footer Top 2', THEMENAME ),
     	'before_widget' => '<aside id="%1$s" class="widget %2$s">',
     	'after_widget' => '</aside>',
-    	'before_title' => '<h3 class="widget-title">',
+    	'before_title' => '<h3 class="wg-title">',
     	'after_title' => '</h3>',
 	) );
 	
@@ -386,9 +398,9 @@ function cms_widgets_init() {
     	'name' => __( 'Footer Top 3', THEMENAME ),
     	'id' => 'sidebar-7',
     	'description' => __( 'Appears when using the optional Footer with a page set as Footer Top 3', THEMENAME ),
-    	'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+    	'before_widget' => '<aside class="widget %2$s">',
     	'after_widget' => '</aside>',
-    	'before_title' => '<h3 class="widget-title">',
+    	'before_title' => '<h3 class="wg-title">',
     	'after_title' => '</h3>',
 	) );
 	
@@ -398,7 +410,7 @@ function cms_widgets_init() {
     	'description' => __( 'Appears when using the optional Footer with a page set as Footer Top 4', THEMENAME ),
     	'before_widget' => '<aside id="%1$s" class="widget %2$s">',
     	'after_widget' => '</aside>',
-    	'before_title' => '<h3 class="widget-title">',
+    	'before_title' => '<h3 class="wg-title">',
     	'after_title' => '</h3>',
 	) );
 	
@@ -408,7 +420,7 @@ function cms_widgets_init() {
     	'description' => __( 'Appears when using the optional Footer Boton with a page set as Footer Boton left', THEMENAME ),
     	'before_widget' => '<aside id="%1$s" class="widget %2$s">',
     	'after_widget' => '</aside>',
-    	'before_title' => '<h3 class="widget-title">',
+    	'before_title' => '<h3 class="wg-title">',
     	'after_title' => '</h3>',
 	) );
 	
@@ -418,73 +430,11 @@ function cms_widgets_init() {
     	'description' => __( 'Appears when using the optional Footer Boton with a page set as Footer Boton right', THEMENAME ),
     	'before_widget' => '<aside id="%1$s" class="widget %2$s">',
     	'after_widget' => '</aside>',
-    	'before_title' => '<h3 class="widget-title">',
+    	'before_title' => '<h3 class="wg-title">',
     	'after_title' => '</h3>',
 	) );
 }
-
 add_action( 'widgets_init', 'cms_widgets_init' );
-
-/**
- * Ajax post like.
- * 
- * @since 1.0.0
- */
-function cms_post_like_callback(){
-    global $smof_data;
-    
-    $post_id = isset($_REQUEST['id']) ? $_REQUEST['id'] : null;
-    
-    $likes = null;
-    
-    if($post_id && !isset($_COOKIE['cms_post_like_'. $post_id])){
-        
-        /* get old like. */
-        $likes = get_post_meta($post_id , '_cms_post_likes', true);
-        
-        /* check old like. */
-        $likes = $likes ? $likes : 0 ;
-        
-        $likes++;
-        
-        /* update */
-        update_post_meta($post_id, '_cms_post_likes' , $likes);
-        
-        /* set cookie. */
-        setcookie('cms_post_like_'. $post_id, $post_id, time() * 20, '/');
-    }
-    
-    echo esc_attr($likes);
-    
-    exit();
-}
-
-add_action('wp_ajax_cms_post_like', 'cms_post_like_callback');
-
-/**
- * Count post view.
- * 
- * @since 1.0.0
- */
-function cms_count_view(){
-    global $post, $smof_data;
-    
-    if(is_single() && $smof_data['post_view'] && !empty($post->ID) && !isset($_COOKIE['cms_post_view_'. $post->ID])){
-        
-        $views = get_post_meta($post->ID , '_cms_post_views', true);
-        
-        $views = $views ? $views : 0 ;
-        
-        $views++;
-        
-        update_post_meta($post->ID, '_cms_post_views' , $views);
-        
-        /* set cookie. */
-        setcookie('cms_post_view_'. $post->ID, $post->ID, time() * 20, '/');
-    }
-}
-
-add_action( 'wp', 'cms_count_view' );
 
 /**
  * Filter the page menu arguments.
@@ -500,6 +450,47 @@ function cms_page_menu_args( $args ) {
 }
 add_filter( 'wp_page_menu_args', 'cms_page_menu_args' );
 
+/**
+ * Add field subtitle to post.
+ * 
+ * @since 1.0.0
+ */
+function cms_add_subtitle_field(){
+    global $post, $cms_meta;
+    
+    /* get current_screen. */
+    $screen = get_current_screen();
+    
+    /* show field in post. */
+    if(in_array($screen->id, array('post'))){
+        
+        /* get value. */
+        $value = get_post_meta($post->ID, 'post_subtitle', true);
+        
+        /* html. */
+        echo '<div class="subtitle"><input type="text" name="post_subtitle" value="'.esc_attr($value).'" id="subtitle" placeholder = "'.__('Subtitle', THEMENAME).'" style="width: 100%;margin-top: 4px;"></div>';
+    }
+}
+
+add_action( 'edit_form_after_title', 'cms_add_subtitle_field' );
+
+/**
+ * Save custom theme meta. 
+ * 
+ * @since 1.0.0
+ */
+function cms_save_meta_boxes($post_id) {
+    
+    if(defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
+        return;
+    }
+    /* update field subtitle */
+    if(isset($_POST['post_subtitle'])){
+        update_post_meta($post_id, 'post_subtitle', $_POST['post_subtitle']);
+    }
+}
+
+add_action('save_post', 'cms_save_meta_boxes');
 /**
  * Display navigation to next/previous set of posts when applicable.
  *
@@ -534,14 +525,14 @@ function cms_paging_nav() {
 			'current'  => $paged,
 			'mid_size' => 1,
 			'add_args' => array_map( 'urlencode', $query_args ),
-			'prev_text' => __( '&larr; Previous', THEMENAME ),
-			'next_text' => __( 'Next &rarr;', THEMENAME ),
+			'prev_text' => __( '<i class="fa fa-angle-left"></i>', THEMENAME ),
+			'next_text' => __( '<i class="fa fa-angle-right"></i>', THEMENAME ),
 	) );
 
 	if ( $links ) :
 
 	?>
-	<nav class="navigation paging-navigation" role="navigation">
+	<nav class="navigation paging-navigation clearfix" role="navigation">
 			<div class="pagination loop-pagination">
 				<?php echo ''.$links; ?>
 			</div><!-- .pagination -->
@@ -566,13 +557,65 @@ function cms_post_nav() {
         return;
     ?>
 	<nav class="navigation post-navigation" role="navigation">
-		<h1 class="screen-reader-text"><?php _e( 'Post navigation', THEMENAME ); ?></h1>
-		<div class="nav-links">
+		<div class="nav-links clearfix">
+			<?php
+			$prev_post = get_previous_post();
+			if (!empty( $prev_post )): ?>
+			  <a class="btn btn-default post-prev left" href="<?php echo get_permalink( $prev_post->ID ); ?>"><i class="fa fa-angle-left"></i><?php echo esc_attr($prev_post->post_title); ?></a>
+			<?php endif; ?>
+			<?php
+			$next_post = get_next_post();
+			if ( is_a( $next_post , 'WP_Post' ) ) { ?>
+			  <a class="btn btn-default post-next right" href="<?php echo get_permalink( $next_post->ID ); ?>"><?php echo get_the_title( $next_post->ID ); ?><i class="fa fa-angle-right"></i></a>
+			<?php } ?>
 
-			<?php previous_post_link( '%link', _x( '<span class="meta-nav">&larr;</span>', 'Previous post link', THEMENAME ) ); ?>
-			<?php next_post_link( '%link', _x( '<span class="meta-nav">&rarr;</span>', 'Next post link', THEMENAME ) ); ?>
-
-		</div><!-- .nav-links -->
+			</div><!-- .nav-links -->
 	</nav><!-- .navigation -->
 	<?php
 }
+
+/* Add Custom Comment */
+function cms_comment($comment, $args, $depth) {
+	$GLOBALS['comment'] = $comment;
+	extract($args, EXTR_SKIP);
+
+	if ( 'div' == $args['style'] ) {
+		$tag = 'div';
+		$add_below = 'comment';
+	} else {
+		$tag = 'li';
+		$add_below = 'div-comment';
+	}
+?>
+<<?php echo esc_attr($tag) ?> <?php comment_class( empty( $args['has_children'] ) ? '' : 'parent' ) ?> id="comment-<?php comment_ID() ?>">
+<?php if ( 'div' != $args['style'] ) : ?>
+<div id="div-comment-<?php comment_ID() ?>" class="comment-body clearfix">
+<?php endif; ?>
+<div class="comment-author-image vcard">
+	<?php echo get_avatar( $comment, 109 ); ?>
+	<div class="comment-meta commentmetadata">
+		<?php printf( __( '<span class="comment-author">%s</span>' ), get_comment_author_link() ); ?>
+		<span class="comment-date">
+		<?php
+			echo get_the_date(get_option('date_format', 'Y/m/d'));
+		?>
+		</span>
+	</div>
+</div>
+<?php if ( $comment->comment_approved == '0' ) : ?>
+	<em class="comment-awaiting-moderation"><?php _e( 'Your comment is awaiting moderation.' , THEME_NAME); ?></em>
+<?php endif; ?>
+<div class="comment-main">
+	<div class="comment-content">
+		<?php comment_text(); ?>
+		<div class="reply">
+		<span></span><?php comment_reply_link( array_merge( $args, array( 'add_below' => $add_below, 'depth' => $depth, 'max_depth' => $args['max_depth'] ) ) ); ?>
+		</div>
+	</div>
+</div>
+<?php if ( 'div' != $args['style'] ) : ?>
+</div>
+<?php endif; ?>
+<?php
+}
+/* End Custom Comment */
