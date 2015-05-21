@@ -251,6 +251,32 @@ class CMS_Base
     }
     
     /**
+     * Get lists RevSlider.
+     * 
+     * @author Fox.
+     * @since 4.3
+     */
+    public function buildShortcodeRevSlider() {
+        if ( class_exists( 'RevSlider' ) ) {
+    
+            $slider = new RevSlider();
+            $arrSliders = $slider->getArrSliders();
+    
+            $revsliders = array();
+            if ( $arrSliders ) {
+                foreach ( $arrSliders as $slider ) {
+                    /** @var $slider RevSlider */
+                    $revsliders[ $slider->getTitle() ] = $slider->getAlias();
+                }
+            } else {
+                $revsliders[ __( 'No sliders found', THEMENAME ) ] = 0;
+            }
+            
+            return $revsliders;
+        }
+    }
+    
+    /**
      * minimize CSS styles
      *
      * @since 1.1.0
