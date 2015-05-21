@@ -262,7 +262,7 @@ class CMS_Base
             $slider = new RevSlider();
             $arrSliders = $slider->getArrSliders();
     
-            $revsliders = array();
+            $revsliders = array( ''=>'' );
             if ( $arrSliders ) {
                 foreach ( $arrSliders as $slider ) {
                     /** @var $slider RevSlider */
