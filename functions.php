@@ -557,7 +557,11 @@ function cms_post_nav() {
 	</nav><!-- .navigation -->
 	<?php
 }
-
+/* Remove fancy box */
+add_action('vc_after_init', 'cms_remove_some_element');
+function cms_remove_some_element(){
+	vc_remove_element('cms_fancybox');
+}
 /* Add Custom Comment */
 function cms_comment($comment, $args, $depth) {
 	$GLOBALS['comment'] = $comment;
