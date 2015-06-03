@@ -284,9 +284,4 @@ jQuery(document).ready(function($) {
         }
 	}
 	
-	/* Remove Link Schedule */
-	$('body').on('click', '.tt_timetable .event_container > a',function () {
-		return false;
-	});
-	
 });
