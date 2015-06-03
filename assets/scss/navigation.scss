@@ -1,0 +1,189 @@
+/* Navigation Menu */
+.main-navigation {
+  ul.ping-right {
+    left: auto;
+    right: 100%;
+  }
+  ul.ping-left {
+    left: 100%;
+    right: auto;
+  }
+}
+
+/* Minimum width of 992 pixels. */
+@media screen and (min-width: 992px) {
+  #menu-mobile {
+    display: none;
+  }
+  .main-navigation div.nav-menu > ul {
+    border-bottom: 1px solid #ededed;
+    border-top: 1px solid #ededed;
+    display: inline-block !important;
+    text-align: left;
+    width: 100%;
+  }
+  .main-navigation ul {
+    margin: 0;
+    text-indent: 0;
+  }
+  .main-navigation li a,
+  .main-navigation li {
+    display: inline-block;
+    text-decoration: none;
+  }
+  .main-navigation li a {
+    border-bottom: 0;
+    color: #6a6a6a;
+    line-height: 3.692307692;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  .main-navigation li a:hover,
+  .main-navigation li a:focus {
+    color: #000;
+  }
+  .main-navigation li {
+    margin: 0 40px 0 0;
+    position: relative;
+  }
+  .main-navigation li li {
+    margin: 0;
+  }
+  .main-navigation li ul {
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 100%;
+    z-index: 1;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+    clip: rect(1px, 1px, 1px, 1px);
+  }
+  /**Menu dam vao tuong**/
+  .main-navigation li ul ul {
+    top: 0;
+    left: 100%;
+    &.back {
+      right: 100%;
+      left: auto;
+      ul:not(.back) {
+        right: 100%;
+        left: auto;
+      }
+      ul.back {
+        left: 100%;
+        right: auto;
+        ul:not(.back) {
+          left: 100%;
+          right: auto;
+        }
+        ul.back {
+          right: 100%;
+          left: auto;
+        }
+      }
+    }
+  }
+  /**End menu dam vao tuong**/
+  .main-navigation ul li:hover > ul,
+  .main-navigation ul li:focus > ul,
+  .main-navigation .focus > ul {
+    border-left: 0;
+    clip: inherit;
+    overflow: inherit;
+    height: inherit;
+    width: inherit;
+  }
+  .main-navigation li ul li a:hover,
+  .main-navigation li ul li a:focus {
+    background: #e3e3e3;
+    color: #444;
+  }
+  .main-navigation .current-menu-item > a,
+  .main-navigation .current-menu-ancestor > a,
+  .main-navigation .current_page_item > a,
+  .main-navigation .current_page_ancestor > a {
+    color: #636363;
+    font-weight: bold;
+  }
+
+  /* mega menu */
+  .main-navigation .columns2  > li:nth-of-type(2n+1){clear:left;border-right:0px solid transparent;}
+  .main-navigation  .columns3 > li:nth-child(3n+1){clear:left;border-right:0px solid transparent;}
+  .main-navigation .columns4 > li:nth-child(4n+1){clear:left;border-right:0px solid transparent;}
+  .main-navigation .columns5 > li:nth-child(5n+1){clear:left;border-right:0px solid transparent;}
+  .main-navigation .columns5 > li{width:20% !important;}
+  .main-navigation .columns4 > li{width:25% !important;}
+  .main-navigation .columns3 > li{width:33% !important;}
+  .main-navigation .columns2 > li{width:50% !important;}
+  .main-navigation [class*="columns"]  > li{
+    float: left;
+    > a {
+      width: 100%;
+    }
+  }
+}
+
+/* Minimum width of 992 pixels. */
+@media screen and (max-width: 991px) {
+  .main-navigation div.nav-menu > ul {
+    max-height: 0;
+    overflow: hidden;
+    transition: all 500ms ease;
+  }
+
+  #header-navigation {
+    display: block;
+    background: #ccc;
+    position: absolute;
+	top: 100px;
+    z-index: 9;
+    min-height: 0;
+  }
+  #header-navigation.phones-nav{
+    width: 100%;
+    left: 0;
+  }
+  #header-navigation.tablets-nav{
+    right: 0;
+  }
+  #menu-mobile {
+    display: block;
+    position: absolute;
+    top: 15px;
+    right: 30px;
+    cursor: pointer;
+  }
+  .main-navigation div.nav-menu > ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    li {
+      list-style: none;
+      a {
+        display: block;
+        color: #5e5e5e;
+        &:hover, &:focus {
+          color: #21759b;
+        }
+      }
+    }
+  }
+  .collapse .main-navigation div.nav-menu > ul {
+    display: block;
+    max-height: 2000px;
+  }
+}
+#header-navigation.phones-nav,
+#header-navigation.tablets-nav{
+  display: none;
+  @include transition(all,1s,ease-in-out);
+  .main-navigation {
+    ul.nav-menu {
+      li {display: table;}
+    }
+  }
+}
+#header-navigation.phones-nav.collapse,
+#header-navigation.tablets-nav.collapse{display: block;}

@@ -319,15 +319,7 @@ $this->sections[] = array(
             'type'     => 'background',
             'title'    => __( 'Background', THEMENAME ),
             'subtitle' => __( 'page title background with image, color, etc.', THEMENAME ),
-            'output'   => array('.page-title'),
-            'default'   => array(
-                'background-color'=>'#6e4692',
-                'background-image'=> get_template_directory_uri().'/assets/images/bg-vector-lg.png',
-                'background-repeat'=>'no-repeat',
-                'background-size'=>'cover',
-                'background-attachment'=>'',
-                'background-position'=>'center center'
-            )
+            'output'   => array('.page-title')
         ),
         array(
             'subtitle' => __('in pixels, top right bottom left, ex: 10px 10px 10px 10px', THEMENAME),
@@ -360,17 +352,7 @@ $this->sections[] = array(
             'all_styles' => true,
             'output'  => array('.page-title #page-title-text h1'),
             'units' => 'px',
-            'subtitle' => __('Typography option with title text.', THEMENAME),
-            'default' => array(
-                'color' => '#fff',
-                'font-style' => 'normal',
-                'font-weight' => '700',
-                'font-family' => 'Dosis',
-                'google' => true,
-                'font-size' => '42px',
-                'line-height' => '42px',
-                'text-align' => 'center'
-            )
+            'subtitle' => __('Typography option with title text.', THEMENAME)
         ),
     )
 );
