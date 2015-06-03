@@ -652,17 +652,17 @@ $this->sections[] = array(
             'all_styles' => true,
             'output'  => array('body'),
             'units' => 'px',
-            'default' => array(
-                'color' => '#9c9c9c',
-                'font-style' => 'normal',
-                'font-weight' => '400',
-                'font-family' => 'Dosis',
-                'google' => true,
-                'font-size' => '18px',
-                'line-height' => '26px',
-                'text-align' => ''
-            ),
             'subtitle' => __('Typography option with each property can be called individually.', THEMENAME),
+            'default' => array(
+                'color' => '',
+                'font-style' => '',
+                'font-weight' => '',
+                'font-family' => '',
+                'google' => true,
+                'font-size' => '',
+                'line-height' => '',
+                'text-align' => ''
+            )
         ),
         array(
             'id' => 'font_h1',
@@ -673,16 +673,6 @@ $this->sections[] = array(
             'all_styles' => true,
             'output'  => array('body h1'),
             'units' => 'px',
-            'default' => array(
-                'color' => '#6f4792',
-                'font-style' => 'normal',
-                'font-weight' => '700',
-                'font-family' => 'Amatic SC',
-                'google' => true,
-                'font-size' => '62px',
-                'line-height' => '72px',
-                'text-align' => ''
-            )
         ),
         array(
             'id' => 'font_h2',
@@ -693,16 +683,6 @@ $this->sections[] = array(
             'all_styles' => true,
             'output'  => array('body h2'),
             'units' => 'px',
-            'default' => array(
-                'color' => '#6f4792',
-                'font-style' => 'normal',
-                'font-weight' => '700',
-                'font-family' => 'Amatic SC',
-                'google' => true,
-                'font-size' => '53px',
-                'line-height' => '58px',
-                'text-align' => ''
-            )
         ),
         array(
             'id' => 'font_h3',
@@ -713,16 +693,6 @@ $this->sections[] = array(
             'all_styles' => true,
             'output'  => array('body h3'),
             'units' => 'px',
-            'default' => array(
-                'color' => '#6f4792',
-                'font-style' => 'normal',
-                'font-weight' => '700',
-                'font-family' => 'Amatic SC',
-                'google' => true,
-                'font-size' => '48px',
-                'line-height' => '54px',
-                'text-align' => ''
-            )
         ),
         array(
             'id' => 'font_h4',
@@ -733,16 +703,6 @@ $this->sections[] = array(
             'all_styles' => true,
             'output'  => array('body h4'),
             'units' => 'px',
-            'default' => array(
-                'color' => '',
-                'font-style' => 'normal',
-                'font-weight' => '700',
-                'font-family' => 'Dosis',
-                'google' => true,
-                'font-size' => '34px',
-                'line-height' => '34px',
-                'text-align' => ''
-            )
         ),
         array(
             'id' => 'font_h5',
@@ -753,16 +713,6 @@ $this->sections[] = array(
             'all_styles' => true,
             'output'  => array('body h5'),
             'units' => 'px',
-            'default' => array(
-                'color' => '',
-                'font-style' => 'normal',
-                'font-weight' => '700',
-                'font-family' => 'Dosis',
-                'google' => true,
-                'font-size' => '24px',
-                'line-height' => '26px',
-                'text-align' => ''
-            )
         ),
         array(
             'id' => 'font_h6',
@@ -773,16 +723,6 @@ $this->sections[] = array(
             'all_styles' => true,
             'output'  => array('body h6'),
             'units' => 'px',
-            'default' => array(
-                'color' => '',
-                'font-style' => 'normal',
-                'font-weight' => '700',
-                'font-family' => 'Dosis',
-                'google' => true,
-                'font-size' => '14px',
-                'line-height' => '18px',
-                'text-align' => ''
-            )
         )
     )
 );
@@ -805,10 +745,6 @@ $this->sections[] = array(
             'line-height'=>false,
             'font-size'=> false,
             'subsets'=> false,
-            'default' => array(
-                'font-weight' => '700',
-                'font-family' => 'Dosis'
-            )
         ),
         array(
             'id' => 'google-font-selector-1',
@@ -816,7 +752,7 @@ $this->sections[] = array(
             'title' => __('Selector 1', THEMENAME),
             'subtitle' => __('add html tags ID or class (body,a,.class,#id)', THEMENAME),
             'validate' => 'no_html',
-            'default' => 'body .btn, #secondary .wg-title, #comments .comments-title, #comments .comment-reply-title, .cms-recent-post-wrapper .cms-recent-details .title',
+            'default' => '',
         ),
         array(
             'id' => 'google-font-2',
@@ -830,10 +766,6 @@ $this->sections[] = array(
             'line-height'=>false,
             'font-size'=> false,
             'subsets'=> false,
-            'default' => array(
-                'font-weight' => '700',
-                'font-family' => 'Amatic SC'
-            )
         ),
         array(
             'id' => 'google-font-selector-2',
@@ -841,7 +773,7 @@ $this->sections[] = array(
             'title' => __('Selector 2', THEMENAME),
             'subtitle' => __('add html tags ID or class (body,a,.class,#id)', THEMENAME),
             'validate' => 'no_html',
-            'default' => '#cshero-footer-top .wg-title',
+            'default' => '',
         ),
     )
 );
@@ -865,7 +797,7 @@ $this->sections[] = array(
             'title' => __('Selector 1', THEMENAME),
             'subtitle' => __('add html tags ID or class (body,a,.class,#id)', THEMENAME),
             'validate' => 'no_html',
-            'default' => '.cms-pricing-wrapper .cms-pricing-content ul li span',
+            'default' => '',
             'required' => array(
                 0 => 'local-fonts-1',
                 1 => '!=',
