@@ -33,7 +33,7 @@
 		<!-- .entry-header -->
 
 		<div class="entry-content">
-			<?php echo substr(get_the_excerpt(), 0,300);
+			<?php the_excerpt();
 	    		wp_link_pages( array(
 	        		'before'      => '<div class="pagination loop-pagination"><span class="page-links-title">' . __( 'Pages:',THEMENAME) . '</span>',
 	        		'after'       => '</div>',
