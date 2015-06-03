@@ -28,6 +28,7 @@ if ( post_password_required() ) {
             <ol class="comment-list">
 				<?php wp_list_comments( 'type=comment&callback=cms_comment' ); ?>
 			</ol>
+			<?php cms_comment_nav(); ?>
         </div>
 	<?php endif; // have_comments() ?>
 
