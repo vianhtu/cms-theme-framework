@@ -27,8 +27,6 @@ class CMSMetaOptions
     public function add_meta_boxes()
     {
         $this->add_meta_box('template_page_options', __('Setting', THEMENAME), 'page');
-        $this->add_meta_box('rating_option', __('Testimonial Rating', THEMENAME), 'testimonial');
-        $this->add_meta_box('pricing_option', __('Pricing Option', THEMENAME), 'pricing');
     }
     
     public function add_meta_box($id, $label, $post_type, $context = 'advanced', $priority = 'default')
@@ -60,7 +58,7 @@ class CMSMetaOptions
                 /* header. */
                 cms_options(array(
                     'id' => 'header',
-                    'label' => __('Header',THEMENAME),
+                    'label' => __('Custom',THEMENAME),
                     'type' => 'switch',
                     'options' => array('on'=>'1','off'=>''),
                     'follow' => array('1'=>array('#page_header_enable'))
@@ -131,7 +129,7 @@ class CMSMetaOptions
                 /* page title. */
                 cms_options(array(
                     'id' => 'page_title',
-                    'label' => __('Page Title',THEMENAME),
+                    'label' => __('Custom',THEMENAME),
                     'type' => 'switch',
                     'options' => array('on'=>'1','off'=>''),
                     'follow' => array('1'=>array('#page_title_enable'))
@@ -170,62 +168,6 @@ class CMSMetaOptions
                 </div>
                 </div>
             </div>
-        </div>
-        <?php
-    }
-    /* --------------------- RATING TESTIMONIAL ---------------------- */
-    function rating_option(){
-        ?>
-        <div class="testimonial-rating">
-            <?php
-                cms_options(array(
-                    'id' => 'testimonial_rating',
-                    'label' => __('Rating',THEMENAME),
-                    'type' => 'select',
-                    'options' => array(
-                        ''=>'None',
-                        '1star'=>'1 Start',
-                        '2star'=>'2 Start',
-                        '3star'=>'3 Start',
-                        '4star'=>'4 Start',
-                        '5star'=>'5 Start'
-                    )
-                ));
-            ?>
-        </div>
-        <?php
-    }
-    /* --------------------- PRICING ---------------------- */
-    function pricing_option(){
-        ?>
-        <div class="cms-pricing">
-            <?php
-                cms_options(array(
-                    'id' => 'pricing_year',
-                    'label' => __('Years',THEMENAME),
-                    'type' => 'text',
-                ));
-                cms_options(array(
-                    'id' => 'pricing_button',
-                    'label' => __('Type Item',THEMENAME),
-                    'type' => 'select',
-                    'options' => array(
-                        'blue'=>'Color Blue',
-                        'crimson'=>'Color Crimson',
-                        'green'=>'Color Green'
-                    )
-                ));
-                cms_options(array(
-                    'id' => 'pricing_button_text',
-                    'label' => __('Button Text',THEMENAME),
-                    'type' => 'text',
-                ));
-                cms_options(array(
-                    'id' => 'pricing_button_url',
-                    'label' => __('URL',THEMENAME),
-                    'type' => 'text',
-                ));
-            ?>
         </div>
         <?php
     }
