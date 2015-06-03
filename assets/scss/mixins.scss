@@ -281,21 +281,6 @@
 }
 
 /* ANIMATION */
-@mixin transition($transition) {
-  -webkit-transition: $transition;
-     -moz-transition: $transition;
-      -ms-transition: $transition;
-          transition: $transition;
-}
-@mixin text-shadow($text-shadow) {
-  -webkit-text-shadow: $text-shadow;
-     -moz-text-shadow: $text-shadow;
-      -ms-text-shadow: $text-shadow;
-          text-shadow: $text-shadow;
-}
-@mixin box-shadow($box-shadow) {
-  -webkit-box-shadow: $box-shadow;
-     -moz-box-shadow: $box-shadow;
-      -ms-box-shadow: $box-shadow;
-          box-shadow: $box-shadow;
+@mixin animation($str) {
+  @include css3-prefix('animation', $str);
 }
