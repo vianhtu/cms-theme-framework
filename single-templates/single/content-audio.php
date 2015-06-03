@@ -23,7 +23,7 @@
 		<!-- .entry-header -->
 
 		<div class="entry-content">
-			<?php if($audio){ echo apply_filters('the_content', preg_replace(array('/\[audio(.*)](.*)\[\/audio\]/', '/\[playlist(.*)]/'), '', get_the_content(), 1));} else { the_content(); }
+			<?php if($audio){ echo apply_filters('the_content', preg_replace(array('/\[audio(.*)\](.*)\[\/audio\]/', '/\[audio(.*)\]/', '/\[playlist(.*)\]/'), '', get_the_content(), 1));} else { the_content(); }
 	    		wp_link_pages( array(
 	        		'before'      => '<div class="pagination loop-pagination"><span class="page-links-title">' . __( 'Pages:',THEMENAME) . '</span>',
 	        		'after'       => '</div>',
