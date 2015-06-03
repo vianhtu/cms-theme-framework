@@ -35,17 +35,17 @@ class CS_Instagram_Widget extends WP_Widget {
 	        default:
 	            $span = "col-xs-4 col-sm-4 col-md-4 col-lg-4";
 	    }
-        echo $before_widget;
+        echo ''.$before_widget;
 
         if (!empty($title))
-            echo $before_title . $title . $after_title;
+            echo ''.$before_title . $title . $after_title;
         if ($username != '') {
 
 			$media_array = $this->scrape_instagram($username, $limit);
 
 			if ( is_wp_error($media_array) ) {
 
-			   echo $media_array->get_error_message();
+			   echo ''.$media_array->get_error_message();
 
 			} else {
 
@@ -53,7 +53,7 @@ class CS_Instagram_Widget extends WP_Widget {
 				if ( $images_only = apply_filters( 'cs_images_only', FALSE ) )
 					$media_array = array_filter( $media_array, array( $this, 'images_only' ) );
 
-				?><div class="cs-instagram-pics clearfix <?php echo $extra_class;?>"><?php
+				?><div class="cs-instagram-pics clearfix <?php echo ''.$extra_class;?>"><?php
 				foreach ($media_array as $item) {
 					echo '<div class="instagram-item '.$span.'"><a href="'. esc_url( $item['link'] ) .'" target="'. esc_attr( $target ) .'"><img src="'. esc_url($item[$size]['url']) .'"  alt="'. esc_attr( $item['description'] ) .'" title="'. esc_attr( $item['description'] ).'" style="width:100%; max-width:100%;"/></a></div>';
 				}
@@ -61,9 +61,9 @@ class CS_Instagram_Widget extends WP_Widget {
 			}
 		}
 		if ($link != '') {
-			?><p class="clear"><a href="//instagram.com/<?php echo trim($username); ?>" rel="me" target="<?php echo esc_attr( $target ); ?>"><?php echo $link; ?></a></p><?php
+			?><p class="clear"><a href="//instagram.com/<?php echo trim($username); ?>" rel="me" target="<?php echo esc_attr( $target ); ?>"><?php echo ''.$link; ?></a></p><?php
 		}
-        echo $after_widget;
+        echo ''.$after_widget;
     }         
     
     function update( $new_instance, $old_instance ) {
@@ -91,26 +91,26 @@ class CS_Instagram_Widget extends WP_Widget {
 		$link = esc_attr($instance['link']);
         $extra_class = isset($instance['extra_class']) ? esc_attr($instance['extra_class']) : '';
         ?>
-		<p><label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title', THEMENAME); ?>: <input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo $title; ?>" /></label></p>
-		<p><label for="<?php echo $this->get_field_id('username'); ?>"><?php _e('Username', THEMENAME); ?>: <input class="widefat" id="<?php echo $this->get_field_id('username'); ?>" name="<?php echo $this->get_field_name('username'); ?>" type="text" value="<?php echo $username; ?>" /></label></p>
-		<p><label for="<?php echo $this->get_field_id('number'); ?>"><?php _e('Number of photos', THEMENAME); ?>: <input class="widefat" id="<?php echo $this->get_field_id('number'); ?>" name="<?php echo $this->get_field_name('number'); ?>" type="text" value="<?php echo $number; ?>" /></label></p>
-		<p><label for="<?php echo $this->get_field_id('columns'); ?>"><?php _e('Columns', THEMENAME); ?>: <input class="widefat" id="<?php echo $this->get_field_id('columns'); ?>" name="<?php echo $this->get_field_name('columns'); ?>" type="text" value="<?php echo $columns; ?>" /></label></p>
-		<p><label for="<?php echo $this->get_field_id('size'); ?>"><?php _e('Photo size', THEMENAME); ?>:</label>
-			<select id="<?php echo $this->get_field_id('size'); ?>" name="<?php echo $this->get_field_name('size'); ?>" class="widefat">
+		<p><label for="<?php echo ''.$this->get_field_id('title'); ?>"><?php _e('Title', THEMENAME); ?>: <input class="widefat" id="<?php echo ''.$this->get_field_id('title'); ?>" name="<?php echo ''.$this->get_field_name('title'); ?>" type="text" value="<?php echo ''.$title; ?>" /></label></p>
+		<p><label for="<?php echo ''.$this->get_field_id('username'); ?>"><?php _e('Username', THEMENAME); ?>: <input class="widefat" id="<?php echo ''.$this->get_field_id('username'); ?>" name="<?php echo ''.$this->get_field_name('username'); ?>" type="text" value="<?php echo ''.$username; ?>" /></label></p>
+		<p><label for="<?php echo ''.$this->get_field_id('number'); ?>"><?php _e('Number of photos', THEMENAME); ?>: <input class="widefat" id="<?php echo ''.$this->get_field_id('number'); ?>" name="<?php echo ''.$this->get_field_name('number'); ?>" type="text" value="<?php echo ''.$number; ?>" /></label></p>
+		<p><label for="<?php echo ''.$this->get_field_id('columns'); ?>"><?php _e('Columns', THEMENAME); ?>: <input class="widefat" id="<?php echo ''.$this->get_field_id('columns'); ?>" name="<?php echo ''.$this->get_field_name('columns'); ?>" type="text" value="<?php echo ''.$columns; ?>" /></label></p>
+		<p><label for="<?php echo ''.$this->get_field_id('size'); ?>"><?php _e('Photo size', THEMENAME); ?>:</label>
+			<select id="<?php echo ''.$this->get_field_id('size'); ?>" name="<?php echo ''.$this->get_field_name('size'); ?>" class="widefat">
 				<option value="thumbnail" <?php selected('thumbnail', $size) ?>><?php _e('Thumbnail', THEMENAME); ?></option>
 				<option value="large" <?php selected('large', $size) ?>><?php _e('Large', THEMENAME); ?></option>
 			</select>
 		</p>
-		<p><label for="<?php echo $this->get_field_id('target'); ?>"><?php _e('Open links in', THEMENAME); ?>:</label>
-			<select id="<?php echo $this->get_field_id('target'); ?>" name="<?php echo $this->get_field_name('target'); ?>" class="widefat">
+		<p><label for="<?php echo ''.$this->get_field_id('target'); ?>"><?php _e('Open links in', THEMENAME); ?>:</label>
+			<select id="<?php echo ''.$this->get_field_id('target'); ?>" name="<?php echo ''.$this->get_field_name('target'); ?>" class="widefat">
 				<option value="_self" <?php selected('_self', $target) ?>><?php _e('Current window (_self)', THEMENAME); ?></option>
 				<option value="_blank" <?php selected('_blank', $target) ?>><?php _e('New window (_blank)', THEMENAME); ?></option>
 			</select>
 		</p>
-		<p><label for="<?php echo $this->get_field_id('link'); ?>"><?php _e('Link text', THEMENAME); ?>: <input class="widefat" id="<?php echo $this->get_field_id('link'); ?>" name="<?php echo $this->get_field_name('link'); ?>" type="text" value="<?php echo $link; ?>" /></label></p>
+		<p><label for="<?php echo ''.$this->get_field_id('link'); ?>"><?php _e('Link text', THEMENAME); ?>: <input class="widefat" id="<?php echo ''.$this->get_field_id('link'); ?>" name="<?php echo ''.$this->get_field_name('link'); ?>" type="text" value="<?php echo ''.$link; ?>" /></label></p>
 		<p>
-			<label for="<?php echo $this->get_field_id('extra_class'); ?>">Extra Class:</label>
-			<input class="widefat" type="text" id="<?php echo $this->get_field_id('extra_class'); ?>" name="<?php echo $this->get_field_name('extra_class'); ?>" value="<?php echo $instance['extra_class']; ?>" />
+			<label for="<?php echo ''.$this->get_field_id('extra_class'); ?>">Extra Class:</label>
+			<input class="widefat" type="text" id="<?php echo ''.$this->get_field_id('extra_class'); ?>" name="<?php echo ''.$this->get_field_name('extra_class'); ?>" value="<?php echo ''.$instance['extra_class']; ?>" />
 		</p>
          <?php
          

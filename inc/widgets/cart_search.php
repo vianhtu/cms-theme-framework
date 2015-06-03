@@ -23,7 +23,7 @@ class WC_Widget_Cart_Search extends WP_Widget {
 		echo isset($before_widget)?$before_widget:'';
 		$before_title = isset($before_title)?$before_title:'';
 		$after_title = isset($after_title)?$after_title:'';
-        if ( $title ) echo $before_title . $title . $after_title;
+        if ( $title ) echo ''.$before_title . $title . $after_title;
         $total = 0;
         global $woocommerce;
         ?>
@@ -31,7 +31,7 @@ class WC_Widget_Cart_Search extends WP_Widget {
             <div class="header">
 				<?php if($woocommerce && $show_cart):?>
                 <a href="javascript:void(0)" class="icon_cart_wrap" data-display=".shopping_cart_dropdown" data-no_display=".widget_searchform_content"><i class="fa fa-shopping-cart cart-icon"></i><span class="cart_total"><?php
-					echo $woocommerce?' '.$woocommerce->cart->get_cart_contents_count():'';?></span></a>
+					echo ''.$woocommerce?' '.$woocommerce->cart->get_cart_contents_count():'';?></span></a>
 				<?php endif; ?>
 				<?php if($show_search):?>
 				<a href="javascript:void(0)" class="icon_search_wrap" data-display=".widget_searchform_content" data-no_display=".shopping_cart_dropdown"><i class="fa fa-search search-icon"></i></a>
@@ -66,13 +66,13 @@ class WC_Widget_Cart_Search extends WP_Widget {
                                 <li class="cart-list clearfix">
                                     <a href="<?php echo get_permalink( $cart_item['product_id'] ); ?>">
 
-                                        <?php echo $_product->get_image(); ?>
+                                        <?php echo ''.$_product->get_image(); ?>
 
                                         <?php echo apply_filters('woocommerce_widget_cart_product_title', $_product->get_title(), $_product ); ?>
 
                                     </a>
 
-                                    <?php echo $woocommerce->cart->get_item_data( $cart_item ); ?>
+                                    <?php echo ''.$woocommerce->cart->get_item_data( $cart_item ); ?>
 
                                     <?php echo apply_filters( 'woocommerce_widget_cart_item_quantity', '<span class="quantity">' . sprintf( '%s &times; %s', $cart_item['quantity'], $product_price ) . '</span>', $cart_item, $cart_item_key ); ?>
                                 </li>
@@ -91,8 +91,8 @@ class WC_Widget_Cart_Search extends WP_Widget {
 
                 <?php endif; ?>
 
-                <a href="<?php echo $woocommerce->cart->get_cart_url(); ?>" class="btn btn-primary left wc-forward"><?php _e( 'Cart', 'woocommerce' ); ?></a>
-                <span class="total right"><?php _e( 'Total', 'woocommerce' ); ?>:<span><?php echo $woocommerce->cart->get_cart_subtotal(); ?></span></span>
+                <a href="<?php echo ''.$woocommerce->cart->get_cart_url(); ?>" class="btn btn-primary left wc-forward"><?php _e( 'Cart', 'woocommerce' ); ?></a>
+                <span class="total right"><?php _e( 'Total', 'woocommerce' ); ?>:<span><?php echo ''.$woocommerce->cart->get_cart_subtotal(); ?></span></span>
 
                 <?php if ( sizeof( $woocommerce->cart->get_cart() ) <= 0 ) : ?>
 
@@ -135,14 +135,14 @@ class WC_Widget_Cart_Search extends WP_Widget {
         </p>
 		<p>
             <label for="<?php echo esc_url($this->get_field_id('show_cart')); ?>"><?php _e( 'Show Cart:', THEMENAME ); ?></label>
-			<select id="<?php echo $this->get_field_id('show_cart'); ?>" class="widefat" name="<?php echo $this->get_field_name('show_cart'); ?>">
+			<select id="<?php echo ''.$this->get_field_id('show_cart'); ?>" class="widefat" name="<?php echo ''.$this->get_field_name('show_cart'); ?>">
 				<option value="0" <?php selected($show_cart,0); ?>><?php echo __('No',THEMENAME); ?></option>
 				<option value="1" <?php selected($show_cart,1); ?>><?php echo __('Yes',THEMENAME); ?></option>
 			</select>
         </p>
 		<p>
             <label for="<?php echo esc_attr($this->get_field_id('show_search')); ?>"><?php _e( 'Show Search:', THEMENAME ); ?></label>
-			<select id="<?php echo $this->get_field_id('show_search'); ?>" class="widefat" name="<?php echo $this->get_field_name('show_search'); ?>">
+			<select id="<?php echo ''.$this->get_field_id('show_search'); ?>" class="widefat" name="<?php echo ''.$this->get_field_name('show_search'); ?>">
 				<option value="0" <?php selected($show_search,0); ?>><?php echo __('No',THEMENAME); ?></option>
 				<option value="1" <?php selected($show_search,1); ?>><?php echo __('Yes',THEMENAME); ?></option>
 			</select>
@@ -165,7 +165,7 @@ if(!function_exists('woocommerce_header_add_to_cart_fragment')){
         global $woocommerce;
         ob_start();
         ?>
-        <span class="cart_total"><?php echo $woocommerce->cart->cart_contents_count; ?></span>
+        <span class="cart_total"><?php echo ''.$woocommerce->cart->cart_contents_count; ?></span>
         <?php
         $fragments['span.cart_total'] = ob_get_clean();
         return $fragments;
@@ -204,13 +204,13 @@ if(!function_exists('woocommerce_header_add_to_cart_content')){
                         <li class="cart-list clearfix">
                             <a href="<?php echo get_permalink( $cart_item['product_id'] ); ?>">
 
-                                <?php echo $_product->get_image(); ?>
+                                <?php echo ''.$_product->get_image(); ?>
 
                                 <?php echo apply_filters('woocommerce_widget_cart_product_title', $_product->get_title(), $_product ); ?>
 
                             </a>
 
-                            <?php echo $woocommerce->cart->get_item_data( $cart_item ); ?>
+                            <?php echo ''.$woocommerce->cart->get_item_data( $cart_item ); ?>
 
                             <?php echo apply_filters( 'woocommerce_widget_cart_item_quantity', '<span class="quantity">' . sprintf( '%s &times; %s', $cart_item['quantity'], $product_price ) . '</span>', $cart_item, $cart_item_key ); ?>
                         </li>
@@ -227,8 +227,8 @@ if(!function_exists('woocommerce_header_add_to_cart_content')){
         </div>
         <?php if ( sizeof( $woocommerce->cart->get_cart() ) <= 0 ) : ?>
         <?php endif; ?>
-        <a href="<?php echo $woocommerce->cart->get_cart_url(); ?>" class="btn btn-primary left wc-forward"><?php _e( 'Cart', 'woocommerce' ); ?></a>
-        <span class="total right"><?php _e( 'Total', 'woocommerce' ); ?>:<span><?php echo $woocommerce->cart->get_cart_subtotal(); ?></span></span>
+        <a href="<?php echo ''.$woocommerce->cart->get_cart_url(); ?>" class="btn btn-primary left wc-forward"><?php _e( 'Cart', 'woocommerce' ); ?></a>
+        <span class="total right"><?php _e( 'Total', 'woocommerce' ); ?>:<span><?php echo ''.$woocommerce->cart->get_cart_subtotal(); ?></span></span>
         <?php if ( sizeof( $woocommerce->cart->get_cart() ) <= 0 ) : ?>
 
         <?php endif; ?>

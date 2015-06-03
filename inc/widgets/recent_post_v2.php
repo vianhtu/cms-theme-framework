@@ -49,8 +49,6 @@ class CS_Recent_Post_Widget_V2 extends WP_Widget {
         else {
             $before_widget = str_replace('class="', 'class="'. $extra_class . ' ', $before_widget);
         }
-
-        echo ''.$before_widget;
         ?>
         <?php if ($wp_query->have_posts()){ ?>
                 <div class="cms-recent-post">
@@ -86,8 +84,6 @@ class CS_Recent_Post_Widget_V2 extends WP_Widget {
                 <span class="notfound">No post found!</span>
             <?php
             }
-        echo ''.$after_widget;
-        wp_reset_postdata();
     }
 
     function update($new_instance, $old_instance) {
