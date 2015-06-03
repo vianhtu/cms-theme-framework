@@ -19,6 +19,8 @@ class CMS_Base
                 else :
                     the_title();
                 endif;
+            elseif (is_front_page()):
+                _e('Blog', THEMENAME);
             /* search */
             elseif (is_search()):
                 printf( __( 'Search Results for: %s', THEMENAME ), '<span>' . get_search_query() . '</span>' );
@@ -247,32 +249,6 @@ class CMS_Base
             if($selecter){
                 echo esc_attr($selecter)."{font-family:'".esc_attr($googlefont['font-family'])."';}";
             }
-        }
-    }
-    
-    /**
-     * Get lists RevSlider.
-     * 
-     * @author Fox.
-     * @since 4.3
-     */
-    public function buildShortcodeRevSlider() {
-        if ( class_exists( 'RevSlider' ) ) {
-    
-            $slider = new RevSlider();
-            $arrSliders = $slider->getArrSliders();
-    
-            $revsliders = array( ''=>'' );
-            if ( $arrSliders ) {
-                foreach ( $arrSliders as $slider ) {
-                    /** @var $slider RevSlider */
-                    $revsliders[ $slider->getTitle() ] = $slider->getAlias();
-                }
-            } else {
-                $revsliders[ __( 'No sliders found', THEMENAME ) ] = 0;
-            }
-            
-            return $revsliders;
         }
     }
     
