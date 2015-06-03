@@ -4196,7 +4196,7 @@ class scss_formatter {
 		$inner = $pre = $this->indentStr();
 
 		if (!empty($block->selectors)) {
-			echo $pre .
+			echo ''.$pre .
 				implode($this->tagSeparator, $block->selectors) .
 				$this->open . $this->break;
 			$this->indentLevel++;
@@ -4205,9 +4205,9 @@ class scss_formatter {
 
 		if (!empty($block->lines)) {
 			$glue = $this->break.$inner;
-			echo $inner . implode($glue, $block->lines);
+			echo ''.$inner . implode($glue, $block->lines);
 			if (!empty($block->children)) {
-				echo $this->break;
+				echo ''.$this->break;
 			}
 		}
 
@@ -4217,8 +4217,8 @@ class scss_formatter {
 
 		if (!empty($block->selectors)) {
 			$this->indentLevel--;
-			if (empty($block->children)) echo $this->break;
-			echo $pre . $this->close . $this->break;
+			if (empty($block->children)) echo ''.$this->break;
+			echo ''.$pre . $this->close . $this->break;
 		}
 	}
 
@@ -4283,7 +4283,7 @@ class scss_formatter_nested extends scss_formatter {
 
 		$inner = $pre = $this->indentStr($block->depth - 1);
 		if (!empty($block->selectors)) {
-			echo $pre .
+			echo ''.$pre .
 				implode($this->tagSeparator, $block->selectors) .
 				$this->open . $this->break;
 			$this->indentLevel++;
@@ -4292,20 +4292,20 @@ class scss_formatter_nested extends scss_formatter {
 
 		if (!empty($block->lines)) {
 			$glue = $this->break.$inner;
-			echo $inner . implode($glue, $block->lines);
-			if (!empty($block->children)) echo $this->break;
+			echo ''.$inner . implode($glue, $block->lines);
+			if (!empty($block->children)) echo ''.$this->break;
 		}
 
 		foreach ($block->children as $i => $child) {
 			// echo "*** block: ".$block->depth." child: ".$child->depth."\n";
 			$this->block($child);
 			if ($i < count($block->children) - 1) {
-				echo $this->break;
+				echo ''.$this->break;
 
 				if (isset($block->children[$i + 1])) {
 					$next = $block->children[$i + 1];
 					if ($next->depth == max($block->depth, 1) && $child->depth >= $next->depth) {
-						echo $this->break;
+						echo ''.$this->break;
 					}
 				}
 			}
@@ -4313,11 +4313,11 @@ class scss_formatter_nested extends scss_formatter {
 
 		if (!empty($block->selectors)) {
 			$this->indentLevel--;
-			echo $this->close;
+			echo ''.$this->close;
 		}
 
 		if ($block->type == "root") {
-			echo $this->break;
+			echo ''.$this->break;
 		}
 	}
 }
@@ -4500,7 +4500,7 @@ class scss_server {
 					header('Last-Modified: ' . $lastModified);
 					header('Content-type: text/css');
 
-					echo $css;
+					echo ''.$css;
 
 					return;
 				} catch (Exception $e) {
