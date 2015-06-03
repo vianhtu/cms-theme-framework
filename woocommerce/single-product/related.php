@@ -115,5 +115,3 @@ if ($products->have_posts()) :
         </div>
     </div>
 <?php endif; ?>
-<?php
-wp_reset_postdata();
