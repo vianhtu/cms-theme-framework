@@ -40,52 +40,6 @@ class CMSSuperHeroes_DynamicCss
         global $smof_data, $cms_meta;
         ob_start();
         
-        /* ==========================================================================
-           Start Header
-        ========================================================================== */
-            /* Header Fixed Only Page */
-            if (!empty($cms_meta->_cms_header_fixed_bg_color)) {
-                echo "#cshero-header.header-fixed-page {
-                    background-color: ".esc_attr($cms_meta->_cms_header_fixed_bg_color).";
-                }";
-            }
-            if (!empty($cms_meta->_cms_header_fixed_bg_color)) {
-                echo "#cshero-header.header-fixed-page {
-                    background-color: ".esc_attr($cms_meta->_cms_header_fixed_bg_color).";
-                }";
-            }
-            /* End Header Fixed Only Page */
-
-            /* Menu Fixed Only Page */
-            if (!empty($cms_meta->_cms_header_fixed_menu_color)) {
-                echo "#cshero-header.header-fixed-page #cshero-header-navigation .main-navigation #menu-main-menu > li > a {
-                    color: ".esc_attr($cms_meta->_cms_header_fixed_menu_color).";
-                }";
-            }
-            if (!empty($cms_meta->_cms_header_fixed_menu_color_hover)) {
-                echo "#cshero-header.header-fixed-page #cshero-header-navigation .main-navigation #menu-main-menu > li > a:hover {
-                    color: ".esc_attr($cms_meta->_cms_header_fixed_menu_color_hover).";
-                }";
-            }
-            if (!empty($cms_meta->_cms_header_fixed_menu_color_active)) {
-                echo "#cshero-header.header-fixed-page #cshero-header-navigation .main-navigation #menu-main-menu > li.current-menu-item > a,
-                    #cshero-header.header-fixed-page #cshero-header-navigation .main-navigation #menu-main-menu > li.current-menu-ancestor > a,
-                    #cshero-header.header-fixed-page #cshero-header-navigation .main-navigation #menu-main-menu > li.current_page_item > a,
-                    #cshero-header.header-fixed-page #cshero-header-navigation .main-navigation #menu-main-menu > li.current_page_ancestor > a {
-                    color: ".esc_attr($cms_meta->_cms_header_fixed_menu_color_active).";
-                }";
-            }
-            /* End Menu Fixed Only Page */
-            /* Start Page Title */
-            if (!empty($cms_meta->_cms_page_title_margin)) {
-                echo "body #page .page-title {
-                    margin: ".esc_attr($cms_meta->_cms_page_title_margin).";
-                }";
-            }
-            /* End Page Title */
-        /* ==========================================================================
-           End Header
-        ========================================================================== */
         return ob_get_clean();
     }
 }
