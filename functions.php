@@ -66,7 +66,6 @@ if(class_exists('Vc_Manager')){
     add_action('init', 'cms_vc_params');
     function cms_vc_params() {
         require( get_template_directory() . '/vc_params/vc_rows.php' );
-        require( get_template_directory() . '/vc_params/vc_column.php' );	
     }
 }
 
