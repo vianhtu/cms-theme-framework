@@ -616,12 +616,6 @@ $this->sections[] = array(
             'default' => '#ffdd00'
         ),
         array(
-            'id' => 'kindergarten_color',
-            'type' => 'color',
-            'title' => __('Kindergarten Color', THEMENAME),
-            'default' => '#5fcde3'
-        ),
-        array(
             'subtitle' => __('set color for tags <a></a>.', THEMENAME),
             'id' => 'link_color',
             'type' => 'color',
