@@ -99,7 +99,7 @@ require( get_template_directory() . '/inc/dynamic/static.css.php' );
 require( get_template_directory() . '/inc/dynamic/dynamic.css.php' );
 
 /* Add mega menu */
-if(isset($smof_data['menu_mega']) && $smof_data['menu_mega'] && !class_exists('HeroMenuWalker')){
+if(!class_exists('HeroMenuWalker')){
     require( get_template_directory() . '/inc/megamenu/mega-menu.php' );
 }
 
@@ -112,23 +112,12 @@ require( get_template_directory() . '/inc/widgets/instagram.php' );
 // Set up the content width value based on the theme's design and stylesheet.
 if ( ! isset( $content_width ) )
 	$content_width = 625;
-/*
- * Limit Words
- */
-if (!function_exists('cms_limit_words')) {
-	function cms_limit_words($string, $word_limit) {
-		$words = explode(' ', $string, ($word_limit + 1));
-		if (count($words) > $word_limit) {
-			array_pop($words);
-		}
-		return implode(' ', $words)."";
-	}
-}
+
 /**
- * Twenty Twelve setup.
+ * CMS Theme setup.
  *
  * Sets up theme defaults and registers the various WordPress features that
- * Twenty Twelve supports.
+ * CMS Theme supports.
  *
  * @uses load_theme_textdomain() For translation/localization support.
  * @uses add_editor_style() To add a Visual Editor stylesheet.
@@ -137,7 +126,7 @@ if (!function_exists('cms_limit_words')) {
  * @uses register_nav_menu() To add support for navigation menus.
  * @uses set_post_thumbnail_size() To set a custom post thumbnail size.
  *
- * @since Twenty Twelve 1.0
+ * @since 1.0.0
  */
 function cms_setup() {
 	/*
@@ -184,6 +173,7 @@ function cms_setup() {
 	add_image_size('related-img-1', 100, 100, true);
 	set_post_thumbnail_size( 624, 9999 ); // Unlimited height, soft crop
 }
+
 add_action( 'after_setup_theme', 'cms_setup' );
 
 /**
@@ -258,15 +248,6 @@ function cms_scripts_styles() {
 	wp_enqueue_script('cmssuperheroes-main');
 	/* Add menu.js */
     wp_enqueue_script('cmssuperheroes-menu', get_template_directory_uri() . '/assets/js/menu.js', array( 'jquery' ), '1.0.0', true);
-    /* VC Pie Custom JS */
-    wp_register_script('progressCircle', get_template_directory_uri() . '/assets/js/process_cycle.js', array( 'jquery' ), '1.0.0', true);
-    wp_register_script('vc_pie_custom', get_template_directory_uri() . '/assets/js/vc_pie_custom.js', array( 'jquery' ), '1.0.0', true);
-	include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
-	// check for plugin using plugin name
-	if ( is_plugin_active( 'timetable/timetable.php' ) ) {
-		wp_dequeue_script('timetable_main');
-		wp_enqueue_script('timetable_custom', get_template_directory_uri() . '/assets/js/timetable.js', array( 'jquery' ), '1.0.0', true);
-	}
 	/*
 	 * Adds JavaScript to pages with the comment form to support
 	 * sites with threaded comments (when in use).
@@ -307,6 +288,7 @@ function cms_scripts_styles() {
 	/* Load static css*/
 	wp_enqueue_style('cmssuperheroes-static', get_template_directory_uri() . '/assets/css/static.css', array( 'cmssuperheroes-style' ), '1.0.0');
 }
+
 add_action( 'wp_enqueue_scripts', 'cms_scripts_styles' );
 
 /**
@@ -569,36 +551,50 @@ function cms_comment($comment, $args, $depth) {
 		$tag = 'li';
 		$add_below = 'div-comment';
 	}
-?>
-<<?php echo esc_attr($tag) ?> <?php comment_class( empty( $args['has_children'] ) ? '' : 'parent' ) ?> id="comment-<?php comment_ID() ?>">
-<?php if ( 'div' != $args['style'] ) : ?>
-<div id="div-comment-<?php comment_ID() ?>" class="comment-body clearfix">
-<?php endif; ?>
-<div class="comment-author-image vcard">
-	<?php echo get_avatar( $comment, 109 ); ?>
-	<div class="comment-meta commentmetadata">
-		<?php printf( __( '<span class="comment-author">%s</span>' ), get_comment_author_link() ); ?>
-		<span class="comment-date">
-		<?php
-			echo get_the_date(get_option('date_format', 'Y/m/d'));
-		?>
-		</span>
-	</div>
-</div>
-<?php if ( $comment->comment_approved == '0' ) : ?>
-	<em class="comment-awaiting-moderation"><?php _e( 'Your comment is awaiting moderation.' , THEME_NAME); ?></em>
-<?php endif; ?>
-<div class="comment-main">
-	<div class="comment-content">
-		<?php comment_text(); ?>
-		<div class="reply">
-		<span></span><?php comment_reply_link( array_merge( $args, array( 'add_below' => $add_below, 'depth' => $depth, 'max_depth' => $args['max_depth'] ) ) ); ?>
-		</div>
-	</div>
-</div>
-<?php if ( 'div' != $args['style'] ) : ?>
-</div>
-<?php endif; ?>
-<?php
+    ?>
+    <<?php echo esc_attr($tag) ?> <?php comment_class( empty( $args['has_children'] ) ? '' : 'parent' ) ?> id="comment-<?php comment_ID() ?>">
+    <?php if ( 'div' != $args['style'] ) : ?>
+    <div id="div-comment-<?php comment_ID() ?>" class="comment-body clearfix">
+    <?php endif; ?>
+    <div class="comment-author-image vcard">
+    	<?php echo get_avatar( $comment, 109 ); ?>
+    	<div class="comment-meta commentmetadata">
+    		<?php printf( __( '<span class="comment-author">%s</span>' ), get_comment_author_link() ); ?>
+    		<span class="comment-date">
+    		<?php
+    			echo get_the_date(get_option('date_format', 'Y/m/d'));
+    		?>
+    		</span>
+    	</div>
+    </div>
+    <?php if ( $comment->comment_approved == '0' ) : ?>
+    	<em class="comment-awaiting-moderation"><?php _e( 'Your comment is awaiting moderation.' , THEME_NAME); ?></em>
+    <?php endif; ?>
+    <div class="comment-main">
+    	<div class="comment-content">
+    		<?php comment_text(); ?>
+    		<div class="reply">
+    		<span></span><?php comment_reply_link( array_merge( $args, array( 'add_below' => $add_below, 'depth' => $depth, 'max_depth' => $args['max_depth'] ) ) ); ?>
+    		</div>
+    	</div>
+    </div>
+    <?php if ( 'div' != $args['style'] ) : ?>
+    </div>
+    <?php endif; ?>
+    <?php
 }
-/* End Custom Comment */
+
+/**
+ * limit words
+ * 
+ * @since 1.0.0
+ */
+if (!function_exists('cms_limit_words')) {
+    function cms_limit_words($string, $word_limit) {
+        $words = explode(' ', $string, ($word_limit + 1));
+        if (count($words) > $word_limit) {
+            array_pop($words);
+        }
+        return implode(' ', $words)."";
+    }
+}
