@@ -33,9 +33,9 @@ $this->sections[] = array(
             'subtitle' => '<input type=\'button\' name=\'sample\' id=\'dummy-data\' '.$disabled.' value=\'Import Now\' /><div class=\'cms-dummy-process\'><div  class=\'cms-dummy-process-bar\'></div></div><div id=\'cms-msg\'><span class="cms-status"></span>'.$msg.'</div>',
             'id' => 'theme',
             'icon' => true,
-            'default' => 'kindergarten',
+            'default' => 'cmstheme',
             'options' => array(
-                'kindergarten' => get_template_directory_uri().'/assets/images/dummy/kindergarten.png'
+                'cmstheme' => get_template_directory_uri().'/assets/images/dummy/cmstheme.png'
             ),
             'type' => 'image_select',
             'title' => 'Select Theme'
