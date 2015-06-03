@@ -1086,9 +1086,9 @@
             public function show( $opt_name, $default = '' ) {
                 $option = $this->get( $opt_name );
                 if ( ! is_array( $option ) && $option != '' ) {
-                    echo $option;
+                    echo ''.$option;
                 } elseif ( $default != '' ) {
-                    echo $this->_get_default( $opt_name, $default );
+                    echo ''.$this->_get_default( $opt_name, $default );
                 }
             }
 // show()
@@ -1632,7 +1632,7 @@
                             if ( typeof WebFontConfig === "undefined" ) {
                                 WebFontConfig = new Object();
                             }
-                            WebFontConfig['google'] = {families: [<?php echo $typography->makeGoogleWebfontString ( $this->typography ) ?>]};
+                            WebFontConfig['google'] = {families: [<?php echo ''.$typography->makeGoogleWebfontString ( $this->typography ) ?>]};
 
                             (function() {
                                 var wf = document.createElement( 'script' );
@@ -2734,7 +2734,7 @@
                     $w3_inst = w3_instance( 'W3_ObjectCache' );
                     $w3      = $w3_inst->instance();
                     $key     = $w3->_get_cache_key( $this->args['opt_name'] . '-transients', 'transient' );
-                    //echo $key;
+                    //echo ''.$key;
                     $w3->delete( $key, 'transient', true );
                     //set_transient($this->args['opt_name'].'-transients', $this->transients);
                     //exit();
@@ -3436,7 +3436,7 @@
                         echo '<fieldset id="' . $this->args['opt_name'] . '-' . $field['id'] . '" class="' . $hidden . 'redux-field-container redux-field redux-field-init redux-container-' . $field['type'] . ' ' . $class_string . '" data-id="' . $field['id'] . '" ' . $data_string . ' data-type="' . $field['type'] . '">';
                         //}
 
-                        echo $_render;
+                        echo ''.$_render;
 
                         if ( ! empty ( $field['desc'] ) ) {
                             $field['description'] = $field['desc'];
@@ -3768,7 +3768,7 @@
 
                 if ( ! in_array( $data['parent'], $this->fieldsHidden ) && ( ! isset ( $this->folds[ $field['id'] ] ) || $this->folds[ $field['id'] ] != "hide" ) ) {
                     if ( isset ( $this->options[ $data['parent'] ] ) ) {
-                        //echo $data['parent'];
+                        //echo ''.$data['parent'];
                         $return = $this->compareValueDependencies( $this->options[ $data['parent'] ], $data['checkValue'], $data['operation'] );
                         //$return = $this->compareValueDependencies( $data['parent'], $data['checkValue'], $data['operation'] );
                     }

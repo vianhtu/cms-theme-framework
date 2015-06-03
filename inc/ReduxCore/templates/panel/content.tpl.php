@@ -14,7 +14,7 @@
 
 <!-- Intro Text -->
 <?php if ( isset( $this->parent->args['intro_text'] ) ) { ?>
-	<div id="redux-intro-text"><?php echo $this->parent->args['intro_text']; ?></div>
+	<div id="redux-intro-text"><?php echo ''.$this->parent->args['intro_text']; ?></div>
 <?php } ?>
 
 <?php $this->get_template( 'menu_container.tpl.php' ); ?>

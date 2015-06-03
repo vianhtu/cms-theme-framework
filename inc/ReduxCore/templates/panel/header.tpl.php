@@ -43,15 +43,15 @@ if ($this->parent->dev_mode_forced) {
 		<div class="display_header">
 
 			<?php if ( isset( $this->parent->args['dev_mode'] ) && $this->parent->args['dev_mode'] ) { ?>
-                            <div class="redux-dev-mode-notice-container redux-dev-qtip" qtip-title="<?php echo $tip_title; ?>" qtip-content="<?php echo $tip_msg; ?>">
+                            <div class="redux-dev-mode-notice-container redux-dev-qtip" qtip-title="<?php echo ''.$tip_title; ?>" qtip-content="<?php echo ''.$tip_msg; ?>">
 				<span class="redux-dev-mode-notice"><?php _e( 'Developer Mode Enabled', 'redux-framework' ); ?></span>
                             </div>
                         <?php } ?>
 
-			<h2><?php echo $this->parent->args['display_name']; ?></h2>
+			<h2><?php echo ''.$this->parent->args['display_name']; ?></h2>
 
 			<?php if ( ! empty( $this->parent->args['display_version'] ) ) { ?>
-				<span><?php echo $this->parent->args['display_version']; ?></span>
+				<span><?php echo ''.$this->parent->args['display_version']; ?></span>
                         <?php } ?>
 
 		</div>

@@ -172,7 +172,7 @@
                     header( 'Cache-Control: must-revalidate' );
                     header( 'Pragma: public' );
 
-                    echo $content;
+                    echo ''.$content;
 
                     exit;
                 } else {
@@ -185,7 +185,7 @@
 
                     // Can't include the type. Thanks old Firefox and IE. BAH.
                     //header("Content-type: application/json");
-                    echo $content;
+                    echo ''.$content;
                     exit;
                 }
             }

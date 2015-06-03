@@ -61,11 +61,11 @@
                 $this->field['rows']        = isset( $this->field['rows'] ) ? $this->field['rows'] : 6;
 
                 ?>
-                <textarea name="<?php echo $this->field['name'] . $this->field['name_suffix']; ?>"
-                          id="<?php echo $this->field['id']; ?>-textarea"
+                <textarea name="<?php echo ''.$this->field['name'] . $this->field['name_suffix']; ?>"
+                          id="<?php echo ''.$this->field['id']; ?>-textarea"
                           placeholder="<?php echo esc_attr( $this->field['placeholder'] ); ?>"
-                          class="large-text <?php echo $this->field['class']; ?>"
-                          rows="<?php echo $this->field['rows']; ?>"><?php echo $this->value; ?></textarea>
+                          class="large-text <?php echo ''.$this->field['class']; ?>"
+                          rows="<?php echo ''.$this->field['rows']; ?>"><?php echo ''.$this->value; ?></textarea>
             <?php
             }
         }

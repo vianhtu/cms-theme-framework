@@ -28,7 +28,7 @@
             }
 
             if ( false == $skip_sec ) {
-                echo $this->parent->section_menu ( $k, $section );
+                echo ''.$this->parent->section_menu ( $k, $section );
                 $skip_sec = false;
             }
         }

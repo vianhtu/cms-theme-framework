@@ -308,7 +308,7 @@
                         }
 
                         //$option['id'] = $this->parent->args['opt_name'].'['.$option['id'].']';
-                        //echo $option['id'];
+                        //echo ''.$option['id'];
 
                         if ( ! isset( $option['default'] ) ) {
                             $option['default'] = "";

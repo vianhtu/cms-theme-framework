@@ -228,7 +228,7 @@ if (!function_exists ( 'redux_enqueue_style')) {
                 $path_parts = pathinfo($css_src);
 
                 $filename   = $path_parts['filename'];
-//echo $filename . '<br>';
+//echo ''.$filename . '<br>';
                 $scss_dir = Redux_Helpers::cleanFilePath($scss_dir);
                 $scss_dir = untrailingslashit($scss_dir);
                 

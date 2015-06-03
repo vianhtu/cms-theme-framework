@@ -23,17 +23,17 @@
                     }
                     ?>
 
-                    <a href="<?php echo $link['url'] ?>" title="<?php echo $link['title']; ?>" target="_blank">
+                    <a href="<?php echo ''.$link['url'] ?>" title="<?php echo ''.$link['title']; ?>" target="_blank">
 
                         <?php if ( isset( $link['icon'] ) && ! empty( $link['icon'] ) ) : ?>
                             <i class="<?php
                                 if ( strpos( $link['icon'], 'el-icon' ) !== false && strpos( $link['icon'], 'el ' ) === false ) {
                                     $link['icon'] = 'el ' . $link['icon'];
                                 }
-                                echo $link['icon'];
+                                echo ''.$link['icon'];
                             ?>"></i>
                         <?php else : ?>
-                            <img src="<?php echo $link['img'] ?>"/>
+                            <img src="<?php echo ''.$link['img'] ?>"/>
                         <?php endif; ?>
 
                     </a>
