@@ -34,6 +34,9 @@ define('THEMENAME', $theme->get('Name'));
 /* language. */
 load_theme_textdomain(THEMENAME, get_template_directory().'/languages');
 
+/* Dismiss vc update. */
+if(function_exists('vc_set_as_theme')) vc_set_as_theme( true );
+
 /* Add base functions */
 require( get_template_directory() . '/inc/base.class.php' );
 
