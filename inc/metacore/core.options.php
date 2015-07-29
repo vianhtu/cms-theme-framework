@@ -40,6 +40,10 @@ function cms_options($params = array())
             /* Get cms meta data opject */
             $cms_meta = json_decode(get_post_meta($post->ID, '_cms_meta_data', true));
             
+            foreach ($cms_meta as $key => $meta){
+                $cms_meta->$key = rawurldecode($meta);
+            }
+            
             // Render params id
             $params['id'] = "_cms_".$params['id'];
             // Get value
@@ -528,12 +532,14 @@ class CsCoreControl
         /* find cms meta key. */
 		foreach($_POST as $key => $value) {
 			if(strstr($key, '_cms_')) {
-			    $cms_meta[$key] = $value;
+			    $cms_meta[$key] = rawurlencode($value);
 			}
 		}
 		/* update _cms_meta_data. */
+		$cms_meta = json_encode($cms_meta);
+		
 		if(!empty($cms_meta)){
-		  update_post_meta($post_id, '_cms_meta_data', json_encode($cms_meta));
+		  update_post_meta($post_id, '_cms_meta_data', $cms_meta);
 		}
 	}
 }

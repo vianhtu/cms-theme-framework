@@ -27,12 +27,7 @@
  */
 global $smof_data, $cms_meta, $cms_base;
 
-$theme = wp_get_theme();
-
-define('THEMENAME', $theme->get('Name'));
-
-/* language. */
-load_theme_textdomain(THEMENAME, get_template_directory().'/languages');
+define('THEMENAME', 'cmssuperheroes');
 
 /* Dismiss vc update. */
 if(function_exists('vc_set_as_theme')) vc_set_as_theme( true );
@@ -138,7 +133,7 @@ function cms_setup() {
 	 * If you're building a theme based on Twenty Twelve, use a find and replace
 	 * to change 'twentytwelve' to the name of your theme in all the template files.
 	 */
-	load_theme_textdomain( 'twentytwelve', get_template_directory() . '/languages' );
+	load_theme_textdomain( THEMENAME , get_template_directory() . '/languages' );
 
 	// This theme styles the visual editor with editor-style.css to match the theme style.
 	add_editor_style();
@@ -185,10 +180,15 @@ add_action( 'after_setup_theme', 'cms_setup' );
  */
 function cms_meta_data(){
     global $post, $cms_meta;
-    if(isset($post->ID)){
-        $cms_meta = json_decode(get_post_meta($post->ID, '_cms_meta_data', true));
-    } else {
-        $cms_meta = null;
+    
+    if(!isset($post->ID)) return ;
+    
+    $cms_meta = json_decode(get_post_meta($post->ID, '_cms_meta_data', true));
+    
+    if(empty($cms_meta)) return ;
+    
+    foreach ($cms_meta as $key => $meta){
+        $cms_meta->$key = rawurldecode($meta);
     }
 }
 add_action('wp', 'cms_meta_data');
@@ -200,11 +200,18 @@ add_action('wp', 'cms_meta_data');
  */
 function cms_post_meta_data(){
     global $post;
-    if(isset($post->ID)){
-        return json_decode(get_post_meta($post->ID, '_cms_meta_data', true));
-    } else {
-        return null;
+    
+    if(!isset($post->ID)) return null;
+    
+    $post_meta = json_decode(get_post_meta($post->ID, '_cms_meta_data', true));
+    
+    if(empty($post_meta)) return null;
+    
+    foreach ($post_meta as $key => $meta){
+        $post_meta->$key = rawurldecode($meta);
     }
+    
+    return $post_meta;
 }
 
 /**
