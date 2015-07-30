@@ -255,7 +255,7 @@ function cms_archive_video() {
         
     } elseif ($remote_video) {
         /* view youtobe or vimeo. */
-        echo ''.$wp_embed->run_shortcode($remote_video);
+        echo do_shortcode($wp_embed->run_shortcode($remote_video));
         
         return true;
         
