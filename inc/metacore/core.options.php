@@ -48,13 +48,14 @@ function cms_options($params = array())
             
             // Render params id
             $params['id'] = "_cms_".$params['id'];
+            
             // Get value
-            if(!empty($cms_meta->$params['id'])){
+            if(isset($cms_meta->$params['id'])){
                 $params['value'] = $cms_meta->$params['id'];
-            } else {
+            } elseif (!isset($params['value'])){
                 $params['value'] = null;
             }
-
+            
             $core_options->metabox($params);
         }
     } else {
