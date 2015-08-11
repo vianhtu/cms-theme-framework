@@ -40,8 +40,10 @@ function cms_options($params = array())
             /* Get cms meta data opject */
             $cms_meta = json_decode(get_post_meta($post->ID, '_cms_meta_data', true));
             
-            foreach ($cms_meta as $key => $meta){
-                $cms_meta->$key = rawurldecode($meta);
+            if(!empty($cms_meta)){
+                foreach ($cms_meta as $key => $meta){
+                    $cms_meta->$key = rawurldecode($meta);
+                }
             }
             
             // Render params id
