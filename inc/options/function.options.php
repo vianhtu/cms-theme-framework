@@ -7,16 +7,6 @@ $local_fonts = is_admin() ? $cms_base->getListLocalFontsName() : array() ;
  * 
  * @author Fox
  */
-$this->sections[] = array(
-    'title' => __('Main Options', THEMENAME),
-    'icon' => 'el-icon-dashboard',
-    'fields' => array(
-        array(
-            'id' => 'intro_product',
-            'type' => 'intro_product',
-        )
-    )
-);
 /* Start Dummy Data*/
 include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 $msg = $disabled = '';
@@ -27,7 +17,6 @@ if (!class_exists('WPBakeryVisualComposerAbstract') or !class_exists('Cmssuperhe
 $this->sections[] = array(
     'icon' => 'el-icon-briefcase',
     'title' => __('Demo Content', THEMENAME),
-    'subsection' => true,
     'fields' => array(
         array(
             'subtitle' => '<input type=\'button\' name=\'sample\' id=\'dummy-data\' '.$disabled.' value=\'Import Now\' /><div class=\'cms-dummy-process\'><div  class=\'cms-dummy-process-bar\'></div></div><div id=\'cms-msg\'><span class="cms-status"></span>'.$msg.'</div>',

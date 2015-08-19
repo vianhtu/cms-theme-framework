@@ -119,10 +119,10 @@
 
                 $indent = ( isset( $this->field['sectionIndent'] ) && $this->field['sectionIndent'] ) ? ' form-table-section-indented' : '';
 
-                echo '</td></tr></table><div id="info-' . $this->field['id'] . '" class="' . $this->field['style'] . $this->field['class'] . ' redux-field-' . $this->field['type'] . $indent . '"'.( !empty($this->field['color']) ? ' style="'.$this->field['color'].'"' : '' ).'>';
+                echo '</td></tr></table><div id="info-' . $this->field['id'] . '" class="' . ( isset( $this->field['icon'] ) && ! empty( $this->field['icon'] ) && $this->field['icon'] !== true ? "hasIcon " : "") . $this->field['style'] . ' ' . $this->field['class'] . ' redux-field-' . $this->field['type'] . $indent . '"'.( !empty($this->field['color']) ? ' style="'.$this->field['color'].'"' : '' ).'>';
 
                 if ( ! empty( $this->field['raw_html'] ) && $this->field['raw_html'] ) {
-                    echo ''.$this->field['desc'];
+                    echo $this->field['desc'];
                 } else {
                     if ( isset( $this->field['title'] ) && ! empty( $this->field['title'] ) ) {
                         $this->field['title'] = '<b>' . $this->field['title'] . '</b><br/>';
@@ -133,7 +133,7 @@
                     }
 
                     if ( isset( $this->field['raw'] ) && ! empty( $this->field['raw'] ) ) {
-                        echo ''.$this->field['raw'];
+                        echo $this->field['raw'];
                     }
 
                     if ( ! empty( $this->field['title'] ) || ! empty( $this->field['desc'] ) ) {
