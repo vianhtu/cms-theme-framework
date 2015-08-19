@@ -32,6 +32,27 @@ $this->sections[] = array(
     )
 );
 /* End Dummy Data*/
+
+/**
+ * 
+ */
+$this->sections[] = array(
+    'title' => __('Favicon Icon', THEMENAME),
+    'icon' => 'el-icon-star',
+    'fields' => array(
+        array(
+            'title' => __('Icon', THEMENAME),
+            'subtitle' => __('Select a favicon icon (.png, .jpg).', THEMENAME),
+            'id' => 'favicon_icon',
+            'type' => 'media',
+            'url' => true,
+            'default' => array(
+                'url'=>get_template_directory_uri().'/assets/images/favicon.png'
+            )
+        ),
+    )
+);
+
 /**
  * Header Options
  * 
