@@ -48,14 +48,13 @@ function cms_options($params = array())
             
             // Render params id
             $params['id'] = "_cms_".$params['id'];
-            
             // Get value
-            if(isset($cms_meta->$params['id'])){
+            if(!empty($cms_meta->$params['id'])){
                 $params['value'] = $cms_meta->$params['id'];
-            } elseif (!isset($params['value'])){
+            } else {
                 $params['value'] = null;
             }
-            
+
             $core_options->metabox($params);
         }
     } else {
@@ -539,10 +538,8 @@ class CsCoreControl
 			}
 		}
 		/* update _cms_meta_data. */
-		$cms_meta = json_encode($cms_meta);
-		
 		if(!empty($cms_meta)){
-		  update_post_meta($post_id, '_cms_meta_data', $cms_meta);
+		  update_post_meta($post_id, '_cms_meta_data', json_encode($cms_meta));
 		}
 	}
 }
