@@ -64,7 +64,7 @@
         require_once dirname( __FILE__ ) . '/inc/themecheck/class.redux_themecheck.php';
 
         // Welcome
-        require_once dirname( __FILE__ ) . '/inc/welcome/welcome.php';
+        //require_once dirname( __FILE__ ) . '/inc/welcome/welcome.php';
 
         /**
          * Main ReduxFramework class

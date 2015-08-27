@@ -594,7 +594,7 @@ function cms_comment($comment, $args, $depth) {
     <div class="comment-author-image vcard">
     	<?php echo get_avatar( $comment, 109 ); ?>
     	<div class="comment-meta commentmetadata">
-    		<?php printf( __( '<span class="comment-author">%s</span>' ), get_comment_author_link() ); ?>
+    		<span class="comment-author"><?php echo get_comment_author_link(); ?></span>'
     		<span class="comment-date">
     		<?php
     			echo get_the_date(get_option('date_format', 'Y/m/d'));
