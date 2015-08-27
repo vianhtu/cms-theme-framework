@@ -26,7 +26,7 @@
 		<div class="entry-content">
 			<?php the_content();
 	    		wp_link_pages( array(
-	        		'before'      => '<div class="pagination loop-pagination"><span class="page-links-title">' . __( 'Pages:',THEMENAME) . '</span>',
+	        		'before'      => '<div class="pagination loop-pagination"><span class="page-links-title">' . __( 'Pages:','cms-theme-framework') . '</span>',
 	        		'after'       => '</div>',
 	        		'link_before' => '<span class="page-numbers">',
 	        		'link_after'  => '</span>',

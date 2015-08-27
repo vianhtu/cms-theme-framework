@@ -184,11 +184,11 @@ function cms_single_detail(){
 function cms_archive_detail(){
     ?>
     <ul>
-        <li class="detail-author"><?php _e('By', THEMENAME); ?> <?php the_author_posts_link(); ?></li>
+        <li class="detail-author"><?php _e('By', 'cms-theme-framework'); ?> <?php the_author_posts_link(); ?></li>
         <?php if(has_category()): ?>
         <li class="detail-terms"><?php the_terms( get_the_ID(), 'category', '<i class="fa fa-sitemap"></i>', ' / ' ); ?></li>
         <?php endif; ?>
-        <li class="detail-comment"><i class="fa fa-comments-o"></i><a href="<?php the_permalink(); ?>"><?php echo comments_number('0','1','%'); ?> <?php _e('Comments', THEMENAME); ?></a></li>
+        <li class="detail-comment"><i class="fa fa-comments-o"></i><a href="<?php the_permalink(); ?>"><?php echo comments_number('0','1','%'); ?> <?php _e('Comments', 'cms-theme-framework'); ?></a></li>
         <?php if(has_tag()): ?>
         <li class="detail-tags"><?php the_tags('<i class="fa fa-tags"></i>', ', ' ); ?></li>
         <?php endif; ?>
@@ -203,7 +203,7 @@ function cms_archive_detail(){
  * @since 1.0.0
  */
 function cms_archive_readmore(){
-    echo '<a class="btn btn-default" href="'.get_the_permalink().'" title="'.get_the_title().'" >'.__('Continue Reading', THEMENAME).'</a>';
+    echo '<a class="btn btn-default" href="'.get_the_permalink().'" title="'.get_the_title().'" >'.__('Continue Reading', 'cms-theme-framework').'</a>';
 }
 
 /**
@@ -349,31 +349,31 @@ function cms_archive_quote() {
  * @since 1.0.0
  */
 function cms_archive_post_icon() {
-    $post_icon = array('icon'=>'fa fa-file-text-o','text'=>__('STANDARD', THEMENAME));
+    $post_icon = array('icon'=>'fa fa-file-text-o','text'=>__('STANDARD', 'cms-theme-framework'));
     switch (get_post_format()) {
         case 'gallery':
             $post_icon['icon'] = 'fa fa-camera-retro';
-            $post_icon['text'] = __('GALLERY', THEMENAME);
+            $post_icon['text'] = __('GALLERY', 'cms-theme-framework');
             break;
         case 'link':
             $post_icon['icon'] = 'fa fa-external-link';
-            $post_icon['text'] = __('LINK', THEMENAME);
+            $post_icon['text'] = __('LINK', 'cms-theme-framework');
             break;
         case 'quote':
             $post_icon['icon'] = 'fa fa-quote-left';
-            $post_icon['text'] = __('QUOTE', THEMENAME);
+            $post_icon['text'] = __('QUOTE', 'cms-theme-framework');
             break;
         case 'video':
             $post_icon['icon'] = 'fa  fa-youtube-play';
-            $post_icon['text'] = __('VIDEO', THEMENAME);
+            $post_icon['text'] = __('VIDEO', 'cms-theme-framework');
             break;
         case 'audio':
             $post_icon['icon'] = 'fa fa-volume-up';
-            $post_icon['text'] = __('AUDIO', THEMENAME);
+            $post_icon['text'] = __('AUDIO', 'cms-theme-framework');
             break;
         default:
             $post_icon['icon'] = 'fa fa-image';
-            $post_icon['text'] = __('STANDARD', THEMENAME);
+            $post_icon['text'] = __('STANDARD', 'cms-theme-framework');
             break;
     }
     echo '<i class="'.$post_icon['icon'].'"></i>';

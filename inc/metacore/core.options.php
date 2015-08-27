@@ -58,7 +58,7 @@ function cms_options($params = array())
             $core_options->metabox($params);
         }
     } else {
-        _e('Error', THEMENAME);
+        _e('Error', 'cms-theme-framework');
     }
     wp_enqueue_script('core-options');
 }
@@ -353,14 +353,14 @@ class CsCoreControl
                 $attachment_image = wp_get_attachment_image_src($value,'thumbnail');
                 if (count($attachment_image) > 0):?>
                 <li class="items" data-id="<?php echo esc_attr($value); ?>" style="background-image:url(<?php echo esc_url($attachment_image[0]);?>);background-size:cover;">
-                    <i class="edit dashicons dashicons-plus-alt" title="<?php _e('Replace Image', THEMENAME); ?>"></i>
-                    <i class="remove dashicons dashicons-dismiss" title="<?php _e('Remove Image', THEMENAME); ?>"></i>
+                    <i class="edit dashicons dashicons-plus-alt" title="<?php _e('Replace Image', 'cms-theme-framework'); ?>"></i>
+                    <i class="remove dashicons dashicons-dismiss" title="<?php _e('Remove Image', 'cms-theme-framework'); ?>"></i>
                 </li>
             <?php endif; endforeach; ?>
             <?php if($params['field'] != 'single'): ?>
-                <li class="items" data-id=""><i class="add dashicons dashicons-plus-alt" title="<?php _e('Add Image', THEMENAME); ?>"></i></li>
+                <li class="items" data-id=""><i class="add dashicons dashicons-plus-alt" title="<?php _e('Add Image', 'cms-theme-framework'); ?>"></i></li>
             <?php elseif(count($selected) == 0): ?>
-                <li class="items" data-id=""><i class="add dashicons dashicons-plus-alt" title="<?php _e('Add Image', THEMENAME); ?>"></i></li>
+                <li class="items" data-id=""><i class="add dashicons dashicons-plus-alt" title="<?php _e('Add Image', 'cms-theme-framework'); ?>"></i></li>
             <?php endif; ?>
             </ul>
             <input type="hidden" name="<?php echo esc_attr($params['id']); ?>" id="<?php echo esc_attr($params['id']); ?>" value="<?php echo  implode(",", $selected); ?>"/>

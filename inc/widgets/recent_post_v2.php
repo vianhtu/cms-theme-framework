@@ -9,14 +9,14 @@ class CS_Recent_Post_Widget_V2 extends WP_Widget {
 
     function CS_Recent_Post_Widget_V2() {
         parent::__construct(
-                'cs_recent_post_v2', __('CS Recent Posts',THEMENAME), array('description' => __('Recent Posts Widget.', THEMENAME),)
+                'cs_recent_post_v2', __('CS Recent Posts','cms-theme-framework'), array('description' => __('Recent Posts Widget.', 'cms-theme-framework'),)
         );
     }
 
     function widget($args, $instance) {
         extract($args);
 
-        $title = apply_filters('widget_title', empty($instance['title']) ? __('Recent Posts', THEMENAME ) : $instance['title'], $instance, $this->id_base);
+        $title = apply_filters('widget_title', empty($instance['title']) ? __('Recent Posts', 'cms-theme-framework' ) : $instance['title'], $instance, $this->id_base);
         $show_date = (int) $instance['show_date'];
         $show_decs = (int) $instance['show_decs'];
         $number = (int) $instance['number'];
@@ -110,11 +110,11 @@ class CS_Recent_Post_Widget_V2 extends WP_Widget {
             <input class="widefat" id="<?php echo esc_attr( $this->get_field_id('title') ); ?>" name="<?php echo esc_attr( $this->get_field_name('title') ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" />
         </p>
         <p>
-            <label for="<?php echo ''.$this->get_field_id('show_date'); ?>"><?php _e( 'Show date:', THEMENAME ); ?></label>
+            <label for="<?php echo ''.$this->get_field_id('show_date'); ?>"><?php _e( 'Show date:', 'cms-theme-framework' ); ?></label>
             <input class="widefat" id="<?php echo esc_attr( $this->get_field_id('show_date') ); ?>" name="<?php echo esc_attr( $this->get_field_name('show_date') ); ?>" <?php if($show_date!='') echo 'checked="checked";' ?> type="checkbox" value="1"  />
         </p>
         <p>
-            <label for="<?php echo ''.$this->get_field_id('show_decs'); ?>"><?php _e( 'Show Description:', THEMENAME ); ?></label>
+            <label for="<?php echo ''.$this->get_field_id('show_decs'); ?>"><?php _e( 'Show Description:', 'cms-theme-framework' ); ?></label>
             <input class="widefat" id="<?php echo esc_attr( $this->get_field_id('show_decs') ); ?>" name="<?php echo esc_attr( $this->get_field_name('show_decs') ); ?>" <?php if($show_decs!='') echo 'checked="checked";' ?> type="checkbox" value="1" />
         </p>
         <p>

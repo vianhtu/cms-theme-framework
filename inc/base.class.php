@@ -20,13 +20,13 @@ class CMS_Base
                     the_title();
                 endif;
             elseif (is_front_page()):
-                _e('Blog', THEMENAME);
+                _e('Blog', 'cms-theme-framework');
             /* search */
             elseif (is_search()):
-                printf( __( 'Search Results for: %s', THEMENAME ), '<span>' . get_search_query() . '</span>' );
+                printf( __( 'Search Results for: %s', 'cms-theme-framework' ), '<span>' . get_search_query() . '</span>' );
             /* 404 */ 
             elseif (is_404()):
-                _e( '404', THEMENAME);
+                _e( '404', 'cms-theme-framework');
             /* other */
             else :
                 the_title();
@@ -40,33 +40,33 @@ class CMS_Base
                 single_tag_title();
             /* author. */
             elseif ( is_author() ) :
-                printf( __( 'Author: %s', THEMENAME ), '<span class="vcard">' . get_the_author() . '</span>' );
+                printf( __( 'Author: %s', 'cms-theme-framework' ), '<span class="vcard">' . get_the_author() . '</span>' );
             /* date */
             elseif ( is_day() ) :
-                printf( __( 'Day: %s', THEMENAME ), '<span>' . get_the_date() . '</span>' );
+                printf( __( 'Day: %s', 'cms-theme-framework' ), '<span>' . get_the_date() . '</span>' );
             elseif ( is_month() ) :
-                printf( __( 'Month: %s', THEMENAME ), '<span>' . get_the_date( _x( 'F Y', 'monthly archives date format', THEMENAME ) ) . '</span>' );
+                printf( __( 'Month: %s', 'cms-theme-framework' ), '<span>' . get_the_date( _x( 'F Y', 'monthly archives date format', 'cms-theme-framework' ) ) . '</span>' );
             elseif ( is_year() ) :
-                printf( __( 'Year: %s', THEMENAME ), '<span>' . get_the_date( _x( 'Y', 'yearly archives date format', THEMENAME ) ) . '</span>' );
+                printf( __( 'Year: %s', 'cms-theme-framework' ), '<span>' . get_the_date( _x( 'Y', 'yearly archives date format', 'cms-theme-framework' ) ) . '</span>' );
             /* post format */
             elseif ( is_tax( 'post_format', 'post-format-aside' ) ) :
-                _e( 'Asides', THEMENAME );
+                _e( 'Asides', 'cms-theme-framework' );
             elseif ( is_tax( 'post_format', 'post-format-gallery' ) ) :
-                _e( 'Galleries', THEMENAME);
+                _e( 'Galleries', 'cms-theme-framework');
             elseif ( is_tax( 'post_format', 'post-format-image' ) ) :
-                _e( 'Images', THEMENAME);
+                _e( 'Images', 'cms-theme-framework');
             elseif ( is_tax( 'post_format', 'post-format-video' ) ) :
-                _e( 'Videos', THEMENAME );
+                _e( 'Videos', 'cms-theme-framework' );
             elseif ( is_tax( 'post_format', 'post-format-quote' ) ) :
-                _e( 'Quotes', THEMENAME );
+                _e( 'Quotes', 'cms-theme-framework' );
             elseif ( is_tax( 'post_format', 'post-format-link' ) ) :
-                _e( 'Links', THEMENAME );
+                _e( 'Links', 'cms-theme-framework' );
             elseif ( is_tax( 'post_format', 'post-format-status' ) ) :
-                _e( 'Statuses', THEMENAME );
+                _e( 'Statuses', 'cms-theme-framework' );
             elseif ( is_tax( 'post_format', 'post-format-audio' ) ) :
-                _e( 'Audios', THEMENAME );
+                _e( 'Audios', 'cms-theme-framework' );
             elseif ( is_tax( 'post_format', 'post-format-chat' ) ) :
-                _e( 'Chats', THEMENAME );
+                _e( 'Chats', 'cms-theme-framework' );
             /* woocommerce */
             elseif (class_exists('Woocommerce') && is_woocommerce()):
                 woocommerce_page_title();
@@ -155,12 +155,12 @@ class CMS_Base
         /* tag */
         if( is_tag() ){ echo '<li>'."Tag: ".single_tag_title('',FALSE).'</li>'; }
         /* search */
-        if( is_search() ){ echo '<li>'.__("Search", THEMENAME).'</li>'; }
+        if( is_search() ){ echo '<li>'.__("Search", 'cms-theme-framework').'</li>'; }
         /* date */
         if( is_year() ){ echo '<li>'.get_the_time('Y').'</li>'; }
         /* 404 */
         if( is_404() ) {
-            echo '<li>'.__("404 - Page not Found", THEMENAME).'</li>';
+            echo '<li>'.__("404 - Page not Found", 'cms-theme-framework').'</li>';
         }
         /* archive */
   		if( is_archive() && is_post_type_archive() ) {

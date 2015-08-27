@@ -26,7 +26,7 @@ class CMSMetaOptions
     /* add meta boxs */
     public function add_meta_boxes()
     {
-        $this->add_meta_box('template_page_options', __('Setting', THEMENAME), 'page');
+        $this->add_meta_box('template_page_options', __('Setting', 'cms-theme-framework'), 'page');
     }
     
     public function add_meta_box($id, $label, $post_type, $context = 'advanced', $priority = 'default')
@@ -38,16 +38,16 @@ class CMSMetaOptions
         ?>
         <div class="tab-container clearfix">
 	        <ul class='etabs clearfix'>
-	           <li class="tab"><a href="#tabs-general"><i class="fa fa-server"></i><?php _e('General', THEMENAME); ?></a></li>
-	           <li class="tab"><a href="#tabs-header"><i class="fa fa-diamond"></i><?php _e('Header', THEMENAME); ?></a></li>
-	           <li class="tab"><a href="#tabs-page-title"><i class="fa fa-connectdevelop"></i><?php _e('Page Title', THEMENAME); ?></a></li>
+	           <li class="tab"><a href="#tabs-general"><i class="fa fa-server"></i><?php _e('General', 'cms-theme-framework'); ?></a></li>
+	           <li class="tab"><a href="#tabs-header"><i class="fa fa-diamond"></i><?php _e('Header', 'cms-theme-framework'); ?></a></li>
+	           <li class="tab"><a href="#tabs-page-title"><i class="fa fa-connectdevelop"></i><?php _e('Page Title', 'cms-theme-framework'); ?></a></li>
 	        </ul>
 	        <div class='panel-container'>
                 <div id="tabs-general">
                 <?php
                 cms_options(array(
                     'id' => 'full_width',
-                    'label' => __('Full Width',THEMENAME),
+                    'label' => __('Full Width','cms-theme-framework'),
                     'type' => 'switch',
                     'options' => array('on'=>'1','off'=>''),
                 ));
@@ -58,7 +58,7 @@ class CMSMetaOptions
                 /* header. */
                 cms_options(array(
                     'id' => 'header',
-                    'label' => __('Custom',THEMENAME),
+                    'label' => __('Custom','cms-theme-framework'),
                     'type' => 'switch',
                     'options' => array('on'=>'1','off'=>''),
                     'follow' => array('1'=>array('#page_header_enable'))
@@ -66,7 +66,7 @@ class CMSMetaOptions
                 ?>  <div id="page_header_enable"><?php
                 cms_options(array(
                     'id' => 'header_layout',
-                    'label' => __('Layout',THEMENAME),
+                    'label' => __('Layout','cms-theme-framework'),
                     'type' => 'imegesselect',
                     'options' => array(
                         '' => get_template_directory_uri().'/inc/options/images/header/h-default.png'
@@ -74,7 +74,7 @@ class CMSMetaOptions
                 ));
                 cms_options(array(
                     'id' => 'enable_header_fixed',
-                    'label' => __('Header Fixed',THEMENAME),
+                    'label' => __('Header Fixed','cms-theme-framework'),
                     'type' => 'switch',
                     'options' => array('on'=>'1','off'=>''),
                     'follow' => array('1'=>array('#page_header_fixed_enable'))
@@ -82,26 +82,26 @@ class CMSMetaOptions
                 ?> <div id="page_header_fixed_enable"><?php
                 cms_options(array(
                     'id' => 'header_fixed_bg_color',
-                    'label' => __('Background Color',THEMENAME),
+                    'label' => __('Background Color','cms-theme-framework'),
                     'type' => 'color',
                     'default' => '#fff',
                     'rgba' => true
                 ));
                 cms_options(array(
                     'id' => 'header_fixed_menu_color',
-                    'label' => __('Menu Color - First Level',THEMENAME),
+                    'label' => __('Menu Color - First Level','cms-theme-framework'),
                     'type' => 'color',
                     'default' => ''
                 ));
                 cms_options(array(
                     'id' => 'header_fixed_menu_color_hover',
-                    'label' => __('Menu Color - First Level',THEMENAME),
+                    'label' => __('Menu Color - First Level','cms-theme-framework'),
                     'type' => 'color',
                     'default' => ''
                 ));
                 cms_options(array(
                     'id' => 'header_fixed_menu_color_active',
-                    'label' => __('Menu Active - First Level',THEMENAME),
+                    'label' => __('Menu Active - First Level','cms-theme-framework'),
                     'type' => 'color',
                     'default' => ''
                 ));
@@ -129,7 +129,7 @@ class CMSMetaOptions
                 /* page title. */
                 cms_options(array(
                     'id' => 'page_title',
-                    'label' => __('Custom',THEMENAME),
+                    'label' => __('Custom','cms-theme-framework'),
                     'type' => 'switch',
                     'options' => array('on'=>'1','off'=>''),
                     'follow' => array('1'=>array('#page_title_enable'))
@@ -137,22 +137,22 @@ class CMSMetaOptions
                 ?>  <div id="page_title_enable"><?php
                 cms_options(array(
                     'id' => 'page_title_text',
-                    'label' => __('Title',THEMENAME),
+                    'label' => __('Title','cms-theme-framework'),
                     'type' => 'text',
                 ));
                 cms_options(array(
                     'id' => 'page_title_sub_text',
-                    'label' => __('Sub Title',THEMENAME),
+                    'label' => __('Sub Title','cms-theme-framework'),
                     'type' => 'text',
                 ));
                 cms_options(array(
                     'id' => 'page_title_margin',
-                    'label' => __('Page Title Margin',THEMENAME),
+                    'label' => __('Page Title Margin','cms-theme-framework'),
                     'type' => 'text',
                 ));
                 cms_options(array(
                     'id' => 'page_title_type',
-                    'label' => __('Layout',THEMENAME),
+                    'label' => __('Layout','cms-theme-framework'),
                     'type' => 'imegesselect',
                     'options' => array(
                         '' => get_template_directory_uri().'/inc/options/images/pagetitle/pt-s-0.png',

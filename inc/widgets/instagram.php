@@ -4,8 +4,8 @@ class CS_Instagram_Widget extends WP_Widget {
     function __construct() {
         parent::__construct(
             'cs_instagram_widget', // Base ID
-            __('CS Instagram', THEMENAME), // Name
-            array('description' => __('CS Instagram Widget', THEMENAME),) // Args
+            __('CS Instagram', 'cms-theme-framework'), // Name
+            array('description' => __('CS Instagram Widget', 'cms-theme-framework'),) // Args
         );
     }
     
@@ -81,7 +81,7 @@ class CS_Instagram_Widget extends WP_Widget {
     }
     
     function form( $instance ) {
-        $instance = wp_parse_args( (array) $instance, array( 'title' => __('Instagram', THEMENAME), 'username' => '', 'link' => __('Follow Us', THEMENAME), 'number' => 9,'columns' => 3, 'size' => 'thumbnail', 'target' => '_self') );
+        $instance = wp_parse_args( (array) $instance, array( 'title' => __('Instagram', 'cms-theme-framework'), 'username' => '', 'link' => __('Follow Us', 'cms-theme-framework'), 'number' => 9,'columns' => 3, 'size' => 'thumbnail', 'target' => '_self') );
 		$title = esc_attr($instance['title']);
 		$username = esc_attr($instance['username']);
 		$number = absint($instance['number']);
@@ -91,23 +91,23 @@ class CS_Instagram_Widget extends WP_Widget {
 		$link = esc_attr($instance['link']);
         $extra_class = isset($instance['extra_class']) ? esc_attr($instance['extra_class']) : '';
         ?>
-		<p><label for="<?php echo ''.$this->get_field_id('title'); ?>"><?php _e('Title', THEMENAME); ?>: <input class="widefat" id="<?php echo ''.$this->get_field_id('title'); ?>" name="<?php echo ''.$this->get_field_name('title'); ?>" type="text" value="<?php echo ''.$title; ?>" /></label></p>
-		<p><label for="<?php echo ''.$this->get_field_id('username'); ?>"><?php _e('Username', THEMENAME); ?>: <input class="widefat" id="<?php echo ''.$this->get_field_id('username'); ?>" name="<?php echo ''.$this->get_field_name('username'); ?>" type="text" value="<?php echo ''.$username; ?>" /></label></p>
-		<p><label for="<?php echo ''.$this->get_field_id('number'); ?>"><?php _e('Number of photos', THEMENAME); ?>: <input class="widefat" id="<?php echo ''.$this->get_field_id('number'); ?>" name="<?php echo ''.$this->get_field_name('number'); ?>" type="text" value="<?php echo ''.$number; ?>" /></label></p>
-		<p><label for="<?php echo ''.$this->get_field_id('columns'); ?>"><?php _e('Columns', THEMENAME); ?>: <input class="widefat" id="<?php echo ''.$this->get_field_id('columns'); ?>" name="<?php echo ''.$this->get_field_name('columns'); ?>" type="text" value="<?php echo ''.$columns; ?>" /></label></p>
-		<p><label for="<?php echo ''.$this->get_field_id('size'); ?>"><?php _e('Photo size', THEMENAME); ?>:</label>
+		<p><label for="<?php echo ''.$this->get_field_id('title'); ?>"><?php _e('Title', 'cms-theme-framework'); ?>: <input class="widefat" id="<?php echo ''.$this->get_field_id('title'); ?>" name="<?php echo ''.$this->get_field_name('title'); ?>" type="text" value="<?php echo ''.$title; ?>" /></label></p>
+		<p><label for="<?php echo ''.$this->get_field_id('username'); ?>"><?php _e('Username', 'cms-theme-framework'); ?>: <input class="widefat" id="<?php echo ''.$this->get_field_id('username'); ?>" name="<?php echo ''.$this->get_field_name('username'); ?>" type="text" value="<?php echo ''.$username; ?>" /></label></p>
+		<p><label for="<?php echo ''.$this->get_field_id('number'); ?>"><?php _e('Number of photos', 'cms-theme-framework'); ?>: <input class="widefat" id="<?php echo ''.$this->get_field_id('number'); ?>" name="<?php echo ''.$this->get_field_name('number'); ?>" type="text" value="<?php echo ''.$number; ?>" /></label></p>
+		<p><label for="<?php echo ''.$this->get_field_id('columns'); ?>"><?php _e('Columns', 'cms-theme-framework'); ?>: <input class="widefat" id="<?php echo ''.$this->get_field_id('columns'); ?>" name="<?php echo ''.$this->get_field_name('columns'); ?>" type="text" value="<?php echo ''.$columns; ?>" /></label></p>
+		<p><label for="<?php echo ''.$this->get_field_id('size'); ?>"><?php _e('Photo size', 'cms-theme-framework'); ?>:</label>
 			<select id="<?php echo ''.$this->get_field_id('size'); ?>" name="<?php echo ''.$this->get_field_name('size'); ?>" class="widefat">
-				<option value="thumbnail" <?php selected('thumbnail', $size) ?>><?php _e('Thumbnail', THEMENAME); ?></option>
-				<option value="large" <?php selected('large', $size) ?>><?php _e('Large', THEMENAME); ?></option>
+				<option value="thumbnail" <?php selected('thumbnail', $size) ?>><?php _e('Thumbnail', 'cms-theme-framework'); ?></option>
+				<option value="large" <?php selected('large', $size) ?>><?php _e('Large', 'cms-theme-framework'); ?></option>
 			</select>
 		</p>
-		<p><label for="<?php echo ''.$this->get_field_id('target'); ?>"><?php _e('Open links in', THEMENAME); ?>:</label>
+		<p><label for="<?php echo ''.$this->get_field_id('target'); ?>"><?php _e('Open links in', 'cms-theme-framework'); ?>:</label>
 			<select id="<?php echo ''.$this->get_field_id('target'); ?>" name="<?php echo ''.$this->get_field_name('target'); ?>" class="widefat">
-				<option value="_self" <?php selected('_self', $target) ?>><?php _e('Current window (_self)', THEMENAME); ?></option>
-				<option value="_blank" <?php selected('_blank', $target) ?>><?php _e('New window (_blank)', THEMENAME); ?></option>
+				<option value="_self" <?php selected('_self', $target) ?>><?php _e('Current window (_self)', 'cms-theme-framework'); ?></option>
+				<option value="_blank" <?php selected('_blank', $target) ?>><?php _e('New window (_blank)', 'cms-theme-framework'); ?></option>
 			</select>
 		</p>
-		<p><label for="<?php echo ''.$this->get_field_id('link'); ?>"><?php _e('Link text', THEMENAME); ?>: <input class="widefat" id="<?php echo ''.$this->get_field_id('link'); ?>" name="<?php echo ''.$this->get_field_name('link'); ?>" type="text" value="<?php echo ''.$link; ?>" /></label></p>
+		<p><label for="<?php echo ''.$this->get_field_id('link'); ?>"><?php _e('Link text', 'cms-theme-framework'); ?>: <input class="widefat" id="<?php echo ''.$this->get_field_id('link'); ?>" name="<?php echo ''.$this->get_field_name('link'); ?>" type="text" value="<?php echo ''.$link; ?>" /></label></p>
 		<p>
 			<label for="<?php echo ''.$this->get_field_id('extra_class'); ?>">Extra Class:</label>
 			<input class="widefat" type="text" id="<?php echo ''.$this->get_field_id('extra_class'); ?>" name="<?php echo ''.$this->get_field_name('extra_class'); ?>" value="<?php echo ''.$instance['extra_class']; ?>" />
@@ -122,17 +122,17 @@ class CS_Instagram_Widget extends WP_Widget {
 			$remote = wp_remote_get('http://instagram.com/'.trim($username));
 
 			if (is_wp_error($remote))
-	  			return new WP_Error('site_down', __('Unable to communicate with Instagram.', THEMENAME));
+	  			return new WP_Error('site_down', __('Unable to communicate with Instagram.', 'cms-theme-framework'));
 
   			if ( 200 != wp_remote_retrieve_response_code( $remote ) )
-  				return new WP_Error('invalid_response', __('Instagram did not return a 200.', THEMENAME));
+  				return new WP_Error('invalid_response', __('Instagram did not return a 200.', 'cms-theme-framework'));
 
 			$shards = explode('window._sharedData = ', $remote['body']);
 			$insta_json = explode(';</script>', $shards[1]);
 			$insta_array = json_decode($insta_json[0], TRUE);
 
 			if (!$insta_array)
-	  			return new WP_Error('bad_json', __('Instagram has returned invalid data.', THEMENAME));
+	  			return new WP_Error('bad_json', __('Instagram has returned invalid data.', 'cms-theme-framework'));
 
 			$images = $insta_array['entry_data']['UserProfile'][0]['userMedia'];
 

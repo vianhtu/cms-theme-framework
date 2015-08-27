@@ -27,8 +27,6 @@
  */
 global $smof_data, $cms_meta, $cms_base;
 
-define('THEMENAME', 'cmssuperheroes');
-
 /* Dismiss vc update. */
 if(function_exists('vc_set_as_theme')) vc_set_as_theme( true );
 
@@ -133,7 +131,7 @@ function cms_setup() {
 	 * If you're building a theme based on Twenty Twelve, use a find and replace
 	 * to change 'twentytwelve' to the name of your theme in all the template files.
 	 */
-	load_theme_textdomain( THEMENAME , get_template_directory() . '/languages' );
+	load_theme_textdomain( 'cms-theme-framework' , get_template_directory() . '/languages' );
 
 	// This theme styles the visual editor with editor-style.css to match the theme style.
 	add_editor_style();
@@ -309,9 +307,9 @@ add_action( 'wp_enqueue_scripts', 'cms_scripts_styles' );
  */
 function cms_widgets_init() {
 	register_sidebar( array(
-		'name' => __( 'Main Sidebar', THEMENAME ),
+		'name' => __( 'Main Sidebar', 'cms-theme-framework' ),
 		'id' => 'sidebar-1',
-		'description' => __( 'Appears on posts and pages except the optional Front Page template, which has its own widgets', THEMENAME ),
+		'description' => __( 'Appears on posts and pages except the optional Front Page template, which has its own widgets', 'cms-theme-framework' ),
 		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 		'after_widget' => '</aside>',
 		'before_title' => '<h3 class="wg-title">',
@@ -319,9 +317,9 @@ function cms_widgets_init() {
 	) );
 
 	register_sidebar( array(
-		'name' => __( 'Header Top Left', THEMENAME ),
+		'name' => __( 'Header Top Left', 'cms-theme-framework' ),
 		'id' => 'sidebar-2',
-		'description' => __( 'Appears when using the optional Header with a page set as Header top left', THEMENAME ),
+		'description' => __( 'Appears when using the optional Header with a page set as Header top left', 'cms-theme-framework' ),
 		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 		'after_widget' => '</aside>',
 		'before_title' => '<h3 class="wg-title">',
@@ -329,9 +327,9 @@ function cms_widgets_init() {
 	) );
 
 	register_sidebar( array(
-		'name' => __( 'Header Top Right', THEMENAME ),
+		'name' => __( 'Header Top Right', 'cms-theme-framework' ),
 		'id' => 'sidebar-3',
-		'description' => __( 'Appears when using the optional Header with a page set as Header top right', THEMENAME ),
+		'description' => __( 'Appears when using the optional Header with a page set as Header top right', 'cms-theme-framework' ),
 		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 		'after_widget' => '</aside>',
 		'before_title' => '<h3 class="wg-title">',
@@ -339,9 +337,9 @@ function cms_widgets_init() {
 	) );
 	
 	register_sidebar( array(
-    	'name' => __( 'Menu Right', THEMENAME ),
+    	'name' => __( 'Menu Right', 'cms-theme-framework' ),
     	'id' => 'sidebar-4',
-    	'description' => __( 'Appears when using the optional Menu with a page set as Menu right', THEMENAME ),
+    	'description' => __( 'Appears when using the optional Menu with a page set as Menu right', 'cms-theme-framework' ),
     	'before_widget' => '<aside id="%1$s" class="widget %2$s">',
     	'after_widget' => '</aside>',
     	'before_title' => '<h3 class="wg-title">',
@@ -349,9 +347,9 @@ function cms_widgets_init() {
 	) );
 	
 	register_sidebar( array(
-    	'name' => __( 'Footer Top 1', THEMENAME ),
+    	'name' => __( 'Footer Top 1', 'cms-theme-framework' ),
     	'id' => 'sidebar-5',
-    	'description' => __( 'Appears when using the optional Footer with a page set as Footer Top 1', THEMENAME ),
+    	'description' => __( 'Appears when using the optional Footer with a page set as Footer Top 1', 'cms-theme-framework' ),
     	'before_widget' => '<aside id="%1$s" class="widget %2$s">',
     	'after_widget' => '</aside>',
     	'before_title' => '<h3 class="wg-title">',
@@ -359,9 +357,9 @@ function cms_widgets_init() {
 	) );
 	
 	register_sidebar( array(
-    	'name' => __( 'Footer Top 2', THEMENAME ),
+    	'name' => __( 'Footer Top 2', 'cms-theme-framework' ),
     	'id' => 'sidebar-6',
-    	'description' => __( 'Appears when using the optional Footer with a page set as Footer Top 2', THEMENAME ),
+    	'description' => __( 'Appears when using the optional Footer with a page set as Footer Top 2', 'cms-theme-framework' ),
     	'before_widget' => '<aside id="%1$s" class="widget %2$s">',
     	'after_widget' => '</aside>',
     	'before_title' => '<h3 class="wg-title">',
@@ -369,9 +367,9 @@ function cms_widgets_init() {
 	) );
 	
 	register_sidebar( array(
-    	'name' => __( 'Footer Top 3', THEMENAME ),
+    	'name' => __( 'Footer Top 3', 'cms-theme-framework' ),
     	'id' => 'sidebar-7',
-    	'description' => __( 'Appears when using the optional Footer with a page set as Footer Top 3', THEMENAME ),
+    	'description' => __( 'Appears when using the optional Footer with a page set as Footer Top 3', 'cms-theme-framework' ),
     	'before_widget' => '<aside class="widget %2$s">',
     	'after_widget' => '</aside>',
     	'before_title' => '<h3 class="wg-title">',
@@ -379,9 +377,9 @@ function cms_widgets_init() {
 	) );
 	
 	register_sidebar( array(
-    	'name' => __( 'Footer Top 4', THEMENAME ),
+    	'name' => __( 'Footer Top 4', 'cms-theme-framework' ),
     	'id' => 'sidebar-8',
-    	'description' => __( 'Appears when using the optional Footer with a page set as Footer Top 4', THEMENAME ),
+    	'description' => __( 'Appears when using the optional Footer with a page set as Footer Top 4', 'cms-theme-framework' ),
     	'before_widget' => '<aside id="%1$s" class="widget %2$s">',
     	'after_widget' => '</aside>',
     	'before_title' => '<h3 class="wg-title">',
@@ -389,9 +387,9 @@ function cms_widgets_init() {
 	) );
 	
 	register_sidebar( array(
-    	'name' => __( 'Footer Boton Left', THEMENAME ),
+    	'name' => __( 'Footer Boton Left', 'cms-theme-framework' ),
     	'id' => 'sidebar-9',
-    	'description' => __( 'Appears when using the optional Footer Boton with a page set as Footer Boton left', THEMENAME ),
+    	'description' => __( 'Appears when using the optional Footer Boton with a page set as Footer Boton left', 'cms-theme-framework' ),
     	'before_widget' => '<aside id="%1$s" class="widget %2$s">',
     	'after_widget' => '</aside>',
     	'before_title' => '<h3 class="wg-title">',
@@ -399,9 +397,9 @@ function cms_widgets_init() {
 	) );
 	
 	register_sidebar( array(
-    	'name' => __( 'Footer Boton Right', THEMENAME ),
+    	'name' => __( 'Footer Boton Right', 'cms-theme-framework' ),
     	'id' => 'sidebar-10',
-    	'description' => __( 'Appears when using the optional Footer Boton with a page set as Footer Boton right', THEMENAME ),
+    	'description' => __( 'Appears when using the optional Footer Boton with a page set as Footer Boton right', 'cms-theme-framework' ),
     	'before_widget' => '<aside id="%1$s" class="widget %2$s">',
     	'after_widget' => '</aside>',
     	'before_title' => '<h3 class="wg-title">',
@@ -442,7 +440,7 @@ function cms_add_subtitle_field(){
         $value = get_post_meta($post->ID, 'post_subtitle', true);
         
         /* html. */
-        echo '<div class="subtitle"><input type="text" name="post_subtitle" value="'.esc_attr($value).'" id="subtitle" placeholder = "'.__('Subtitle', THEMENAME).'" style="width: 100%;margin-top: 4px;"></div>';
+        echo '<div class="subtitle"><input type="text" name="post_subtitle" value="'.esc_attr($value).'" id="subtitle" placeholder = "'.__('Subtitle', 'cms-theme-framework').'" style="width: 100%;margin-top: 4px;"></div>';
     }
 }
 
@@ -476,14 +474,14 @@ function cms_comment_nav() {
     if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) :
     ?>
 	<nav class="navigation comment-navigation" role="navigation">
-		<h2 class="screen-reader-text"><?php _e( 'Comment navigation', THEMENAME ); ?></h2>
+		<h2 class="screen-reader-text"><?php _e( 'Comment navigation', 'cms-theme-framework' ); ?></h2>
 		<div class="nav-links">
 			<?php
-				if ( $prev_link = get_previous_comments_link( __( 'Older Comments', THEMENAME ) ) ) :
+				if ( $prev_link = get_previous_comments_link( __( 'Older Comments', 'cms-theme-framework' ) ) ) :
 					printf( '<div class="nav-previous">%s</div>', $prev_link );
 				endif;
 
-				if ( $next_link = get_next_comments_link( __( 'Newer Comments', THEMENAME ) ) ) :
+				if ( $next_link = get_next_comments_link( __( 'Newer Comments', 'cms-theme-framework' ) ) ) :
 					printf( '<div class="nav-next">%s</div>', $next_link );
 				endif;
 			?>
@@ -527,8 +525,8 @@ function cms_paging_nav() {
 			'current'  => $paged,
 			'mid_size' => 1,
 			'add_args' => array_map( 'urlencode', $query_args ),
-			'prev_text' => __( '<i class="fa fa-angle-left"></i>', THEMENAME ),
-			'next_text' => __( '<i class="fa fa-angle-right"></i>', THEMENAME ),
+			'prev_text' => __( '<i class="fa fa-angle-left"></i>', 'cms-theme-framework' ),
+			'next_text' => __( '<i class="fa fa-angle-right"></i>', 'cms-theme-framework' ),
 	) );
 
 	if ( $links ) :
