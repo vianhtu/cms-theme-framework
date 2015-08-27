@@ -330,10 +330,10 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
 
 			// Load class strings.
 			$this->strings = array(
-				'page_title'                      => __( 'Install Required Plugins', 'tgmpa' ),
-				'menu_title'                      => __( 'Install Plugins', 'tgmpa' ),
-				'installing'                      => __( 'Installing Plugin: %s', 'tgmpa' ),
-				'oops'                            => __( 'Something went wrong with the plugin API.', 'tgmpa' ),
+				'page_title'                      => __( 'Install Required Plugins', 'cms-theme-framework' ),
+				'menu_title'                      => __( 'Install Plugins', 'cms-theme-framework' ),
+				'installing'                      => __( 'Installing Plugin: %s', 'cms-theme-framework' ),
+				'oops'                            => __( 'Something went wrong with the plugin API.', 'cms-theme-framework' ),
 				'notice_can_install_required'     => _n_noop(
 					'This theme requires the following plugin: %1$s.',
 					'This theme requires the following plugins: %1$s.',
