@@ -255,7 +255,7 @@ function start_el( &$output, $item, $depth = 0, $args = array(), $current_object
             ?>            
             <p class="description description-wide obtheme_checkbox obtheme_mega_menu obtheme_mega_menu_d2">
                 <label for="edit-<?php echo ''.$key . '-' . $item_id; ?>">
-                    <span class='obtheme_long_desc'><?php _e( $title, 'cms-theme-framework' ); ?></span><br />
+                    <span class='obtheme_long_desc'><?php echo esc_html( $title ); ?></span><br />
                     <input type="text" value="<?php echo ''.$value; ?>" id="edit-<?php echo ''.$key . '-' . $item_id; ?>" class=" <?php echo ''.$key; ?>" name="<?php echo ''.$key . "[" . $item_id . "]"; ?>" />                   
                 </label>
             </p>
