@@ -222,7 +222,7 @@ function start_el( &$output, $item, $depth = 0, $args = array(), $current_object
             ?>
             <p class="description description-wide description_width_100">
                 <label for="edit-<?php echo ''.$key . '-' . $item_id; ?>">
-                    <span class='obtheme_long_desc'><?php _e( $title, 'cms-theme-framework' ); ?></span><br />
+                    <span class='obtheme_long_desc'><?php echo esc_html( $title ); ?></span><br />
                     <input type="text" value="<?php echo ''.$value; ?>" id="edit-<?php echo ''.$key . '-' . $item_id; ?>" class=" <?php echo ''.$key; ?>" name="<?php echo ''.$key . "[" . $item_id . "]"; ?>" />                   
                 </label>
             </p>
@@ -236,7 +236,7 @@ function start_el( &$output, $item, $depth = 0, $args = array(), $current_object
             $value = $item->submenu_type;
             ?>
             <p class="description description-wide description_width_100">
-                <?php _e( $title, 'cms-theme-framework' ); ?><br />
+                <?php echo esc_html( $title ); ?><br />
                 <label for="edit-<?php echo ''.$key . '-' . $item_id; ?>">
                     <select id="edit-<?php echo ''.$key . '-' . $item_id; ?>" class=" <?php echo ''.$key; ?>" name="<?php echo ''.$key . "[" . $item_id . "]"; ?>">
                         <option value="standard" <?php echo ( $value == 'standard' ) ? ' selected="selected" ' : ''; ?>><?php _e( 'Standard Dropdown', 'cms-theme-framework' ); ?></option>
@@ -265,7 +265,7 @@ function start_el( &$output, $item, $depth = 0, $args = array(), $current_object
             $value = $item->dropdown;
             ?>
             <p class="description description-wide description_width_100">
-                <?php _e( $title, 'cms-theme-framework' ); ?><br />
+                <?php echo esc_html( $title ); ?><br />
                 <label for="edit-<?php echo ''.$key . '-' . $item_id; ?>">
                     <select id="edit-<?php echo ''.$key . '-' . $item_id; ?>" class=" <?php echo ''.$key; ?>" name="<?php echo ''.$key . "[" . $item_id . "]"; ?>">
                         <option value="autodrop_submenu" <?php echo ( $value == 'autodrop_submenu' ) ? ' selected="selected" ' : ''; ?>><?php _e( 'Auto drop', 'cms-theme-framework' ); ?></option>
@@ -285,7 +285,7 @@ function start_el( &$output, $item, $depth = 0, $args = array(), $current_object
             $sidebars = $GLOBALS['wp_registered_sidebars'];
             ?>
             <p class="description description-wide description_width_100 el_widget_area">
-                <?php _e( $title, 'cms-theme-framework' ); ?><br />
+                <?php echo esc_html( $title ); ?><br />
                 <label for="edit-<?php echo ''.$key . '-' . $item_id; ?>">
                     <select id="edit-<?php echo ''.$key . '-' . $item_id; ?>" class=" <?php echo ''.$key; ?>" name="<?php echo ''.$key . "[" . $item_id . "]"; ?>">
                         <option value="" <?php echo ( $value == '' ) ? ' selected="selected" ' : ''; ?>><?php _e( 'Select Widget Area', 'cms-theme-framework' ); ?></option>
@@ -303,7 +303,7 @@ function start_el( &$output, $item, $depth = 0, $args = array(), $current_object
             $value = $item->group;
             ?>
             <p class="description description-wide description_width_100">
-                <?php _e( $title, 'cms-theme-framework' ); ?><br />
+                <?php echo esc_html( $title ); ?><br />
                 <label for="edit-<?php echo ''.$key . '-' . $item_id; ?>">
                     <select id="edit-<?php echo ''.$key . '-' . $item_id; ?>" class=" <?php echo ''.$key; ?>" name="<?php echo ''.$key . "[" . $item_id . "]"; ?>">
                         <option value="no_group" <?php echo ( $value == 'no_group' ) ? ' selected="selected" ' : ''; ?>><?php _e( 'No', 'cms-theme-framework' ); ?></option>
@@ -318,7 +318,7 @@ function start_el( &$output, $item, $depth = 0, $args = array(), $current_object
             $value = $item->hide_link;
             ?>
             <p class="description description-wide description_width_100">
-                <?php _e( $title, 'cms-theme-framework' ); ?><br />
+                <?php echo esc_html( $title ); ?><br />
                 <label for="edit-<?php echo ''.$key . '-' . $item_id; ?>">
                     <select id="edit-<?php echo ''.$key . '-' . $item_id; ?>" class=" <?php echo ''.$key; ?>" name="<?php echo ''.$key . "[" . $item_id . "]"; ?>">
                         <option value="0" <?php echo ( $value == '0' ) ? ' selected="selected" ' : ''; ?>><?php _e( 'No', 'cms-theme-framework' ); ?></option>
@@ -352,7 +352,7 @@ function start_el( &$output, $item, $depth = 0, $args = array(), $current_object
         </div>
         <p class="description description-wide obtheme_checkbox obtheme_mega_menu obtheme_mega_menu_d1">
             <label for="edit-<?php echo ''.$key . '-' . $item_id; ?>">
-                <?php _e( $title, 'cms-theme-framework' ); ?><br />
+                <?php echo esc_html( $title ); ?><br />
                 <input type="text" value="<?php echo ''.$value; ?>" id="edit-<?php echo ''.$key . '-' . $item_id; ?>" class=" <?php echo ''.$key; ?>" name="<?php echo ''.$key . "[" . $item_id . "]"; ?>" />
                 <input alt="#TB_inline?height=400&width=500&inlineId=<?php echo ''.$key . '-' . $item_id . '-popup'; ?>" title="<?php _e( 'Click to browse icon', 'cms-theme-framework' ) ?>" class="thickbox button-secondary submit-add-to-menu" type="button" value="<?php _e( 'Browse Icon', 'cms-theme-framework' ) ?>" />
                 <a class="button btn_clear button-primary" href="javascript: void(0);">Clear</a>
@@ -369,7 +369,7 @@ function start_el( &$output, $item, $depth = 0, $args = array(), $current_object
             
             <p class="description description-wide obtheme_checkbox obtheme_mega_menu obtheme_mega_menu_d2">
                 <label for="edit-<?php echo ''.$key . '-' . $item_id; ?>">
-                    <span class='obtheme_long_desc'><?php _e( $title, 'cms-theme-framework' ); ?></span><br />
+                    <span class='obtheme_long_desc'><?php echo esc_html( $title ); ?></span><br />
                     <input type="text" value="<?php echo ''.$value; ?>" id="edit-<?php echo ''.$key . '-' . $item_id; ?>" class=" <?php echo ''.$key; ?>" name="<?php echo ''.$key . "[" . $item_id . "]"; ?>" />
                     <button id="browse-edit-<?php echo ''.$key . '-' . $item_id; ?>" class="set_custom_images button button-secondary submit-add-to-menu"><?php _e( 'Browse Image', 'cms-theme-framework' ); ?></button>
                     <a class="button btn_clear button-primary" href="javascript: void(0);">Clear</a>
@@ -454,7 +454,7 @@ function start_el( &$output, $item, $depth = 0, $args = array(), $current_object
             ?>
             <p class="description description-wide">
                 <label for="edit-<?php echo ''.$key . '-' . $item_id; ?>">
-                    <span class='obtheme_long_desc'><?php _e( $title, 'cms-theme-framework' ); ?></span><br />
+                    <span class='obtheme_long_desc'><?php echo esc_html( $title ); ?></span><br />
                     <input type="text" value="<?php echo ''.$value; ?>" id="edit-<?php echo ''.$key . '-' . $item_id; ?>" class=" <?php echo ''.$key; ?>" name="<?php echo ''.$key . "[" . $item_id . "]"; ?>" />
                 </label>
             </p>
@@ -465,7 +465,7 @@ function start_el( &$output, $item, $depth = 0, $args = array(), $current_object
             ?>
             <p class="description description-wide">
                 <label for="edit-<?php echo ''.$key . '-' . $item_id; ?>">
-                    <span class='obtheme_long_desc'><?php _e( $title, 'cms-theme-framework' ); ?></span><br />
+                    <span class='obtheme_long_desc'><?php echo esc_html( $title ); ?></span><br />
                     <input type="text" value="<?php echo ''.$value; ?>" id="edit-<?php echo ''.$key . '-' . $item_id; ?>" class=" <?php echo ''.$key; ?>" name="<?php echo ''.$key . "[" . $item_id . "]"; ?>" />
                 </label>
             </p>
@@ -476,7 +476,7 @@ function start_el( &$output, $item, $depth = 0, $args = array(), $current_object
             ?>
             <p class="description description-wide">
                 <label for="edit-<?php echo ''.$key . '-' . $item_id; ?>">
-                    <span class='obtheme_long_desc'><?php _e( $title, 'cms-theme-framework' ); ?></span><br />
+                    <span class='obtheme_long_desc'><?php echo esc_html( $title ); ?></span><br />
                     <input type="text" value="<?php echo ''.$value; ?>" id="edit-<?php echo ''.$key . '-' . $item_id; ?>" class=" <?php echo ''.$key; ?>" name="<?php echo ''.$key . "[" . $item_id . "]"; ?>" />
                 </label>
             </p>
