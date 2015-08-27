@@ -129,7 +129,7 @@ function cms_setup() {
 	 *
 	 * Translations can be added to the /languages/ directory.
 	 * If you're building a theme based on Twenty Twelve, use a find and replace
-	 * to change 'twentytwelve' to the name of your theme in all the template files.
+	 * to change 'cms-theme-framework' to the name of your theme in all the template files.
 	 */
 	load_theme_textdomain( 'cms-theme-framework' , get_template_directory() . '/languages' );
 
@@ -152,7 +152,7 @@ function cms_setup() {
 	add_theme_support( 'post-formats', array( 'video', 'audio' , 'gallery', 'link', 'quote',) );
 
 	// This theme uses wp_nav_menu() in one location.
-	register_nav_menu( 'primary', __( 'Primary Menu', 'twentytwelve' ) );
+	register_nav_menu( 'primary', __( 'Primary Menu', 'cms-theme-framework' ) );
 
 	/*
 	 * This theme supports custom background color and image,
