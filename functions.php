@@ -603,7 +603,7 @@ function cms_comment($comment, $args, $depth) {
     	</div>
     </div>
     <?php if ( $comment->comment_approved == '0' ) : ?>
-    	<em class="comment-awaiting-moderation"><?php _e( 'Your comment is awaiting moderation.' , THEME_NAME); ?></em>
+    	<em class="comment-awaiting-moderation"><?php _e( 'Your comment is awaiting moderation.' , 'cms-theme-framework'); ?></em>
     <?php endif; ?>
     <div class="comment-main">
     	<div class="comment-content">
