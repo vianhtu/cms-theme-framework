@@ -207,7 +207,7 @@
                 if ( 'appearance_page_themecheck' == $screen->id ) {
                     wp_enqueue_script( $this->slug . '-admin-script', ReduxFramework::$_url . 'inc/themecheck/js/admin.js', array( 'jquery' ), $this->version );
 
-                    if ( ! isset( $_POST[''cms-theme-framework''] ) ) {
+                    if ( ! isset( $_POST['themename'] ) ) {
 
                         $intro = '';
                         $intro .= '<h2>Redux Theme-Check</h2>';
