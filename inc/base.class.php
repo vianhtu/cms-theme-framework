@@ -87,7 +87,7 @@ class CMS_Base
         /* not front_page */
         if ( !is_front_page() ) {
             echo '<li><a href="';
-            echo esc_url(home_url());
+            echo esc_url(home_url('/'));
             echo '">'.$smof_data['breacrumb_home_prefix'];
             echo "</a></li>";
         }

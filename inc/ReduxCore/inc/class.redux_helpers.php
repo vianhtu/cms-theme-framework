@@ -369,7 +369,7 @@
 
                 $sysinfo = array();
 
-                $sysinfo['home_url']       = home_url();
+                $sysinfo['home_url']       = home_url('/');
                 $sysinfo['site_url']       = site_url();
                 $sysinfo['redux_ver']      = esc_html( ReduxFramework::$_version );
                 $sysinfo['redux_data_dir'] = ReduxFramework::$_upload_dir;
