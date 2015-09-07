@@ -53,9 +53,7 @@ if(class_exists('Vc_Manager')){
     
     function cms_vc_elements(){
         if(class_exists('CmsShortCode')){
-            $element = get_template_directory() . '/inc/elements/googlemap';
-            
-            require( $element . '/cms_googlemap.php' );
+            require( get_template_directory() . '/inc/elements/googlemap/cms_googlemap.php' );
         }
     }
     
