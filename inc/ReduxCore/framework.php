@@ -1400,9 +1400,9 @@
 
                     // No menu to add!
                 } else if ( $this->args['menu_type'] == 'submenu' ) {
-                    $this->add_submenu(
-                        $this->args['page_parent'], $this->args['page_title'], $this->args['menu_title'], $this->args['page_permissions'], $this->args['page_slug']
-                    );
+                    add_theme_page(
+                        $this->args['page_title'], $this->args['menu_title'], $this->args['page_permissions'], $this->args['page_slug']
+                    , array($this, 'generate_panel'));
                 } else {
                     // Theme-Check notice is displayed for WP.org theme devs, informing them to NOT use this.
                     $this->page = call_user_func( 'add_menu_page', $this->args['page_title'], $this->args['menu_title'], $this->args['page_permissions'], $this->args['page_slug'], array(
