@@ -131,9 +131,6 @@ function cms_setup() {
 	 */
 	load_theme_textdomain( 'cms-theme-framework' , get_template_directory() . '/languages' );
 
-	// This theme styles the visual editor with editor-style.css to match the theme style.
-	add_editor_style();
-
 	// Adds title tag
 	add_theme_support( "title-tag" );
 	
