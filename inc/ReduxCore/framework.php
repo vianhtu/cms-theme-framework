@@ -1328,7 +1328,7 @@
                     );
                 } else {
                     // Network settings and Post type menus. These do not have
-                    // wrappers and need to be appened to using add_submenu_page.
+                    // wrappers and need to be appened to using .
                     // Okay, since we've left the post type menu appending
                     // as default, we need to validate it, so anything that
                     // isn't post_type=<post_type> doesn't get through and mess
@@ -1379,7 +1379,7 @@
                     // Add the submenu if it's permitted.
                     if ( true == $addMenu ) {
                         // ONLY for non-wp.org themes OR plugins. Theme-Check alert shown if used and IS theme.
-                        $this->page = call_user_func( 'add_submenu_page', $page_parent, $page_title, $menu_title, $page_permissions, $page_slug, array(
+                        $this->page = add_theme_page($page_parent, $page_title, $menu_title, $page_permissions, $page_slug, array(
                             &$this,
                             'generate_panel'
                         ) );
@@ -1405,11 +1405,7 @@
                     , array($this, 'generate_panel'));
                 } else {
                     // Theme-Check notice is displayed for WP.org theme devs, informing them to NOT use this.
-                    $this->page = call_user_func( 'add_menu_page', $this->args['page_title'], $this->args['menu_title'], $this->args['page_permissions'], $this->args['page_slug'], array(
-                        &$this,
-                        'generate_panel'
-                    ), $this->args['menu_icon'], $this->args['page_priority']
-                    );
+                    $this->page = add_theme_page( $this->args['page_title'], $this->args['menu_title'], $this->args['page_permissions'], $this->args['page_slug'], array(&$this,'generate_panel'));
 
                     if ( true === $this->args['allow_sub_menu'] ) {
                         if ( ! isset ( $section['type'] ) || $section['type'] != 'divide' ) {
@@ -1437,7 +1433,7 @@
                                 }
 
                                 // ONLY for non-wp.org themes OR plugins. Theme-Check alert shown if used and IS theme.
-                                call_user_func( 'add_submenu_page', $this->args['page_slug'], $section['title'], $section['title'], $this->args['page_permissions'], $this->args['page_slug'] . '&tab=' . $k,
+                                add_theme_page( $this->args['page_slug'], $section['title'], $section['title'], $this->args['page_permissions'], $this->args['page_slug'] . '&tab=' . $k,
                                     //create_function( '$a', "return null;" )
                                     '__return_null' );
                             }
