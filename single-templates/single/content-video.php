@@ -15,11 +15,11 @@
 		<div class="entry-header">
 			<div class="entry-date">
 				<div class="arow-date"></div>
-				<?php cms_archive_post_icon(); ?>
+				<?php theme_framework_archive_post_icon(); ?>
 				<span><?php echo get_the_date("F d,Y"); ?></span>
 			</div>
-		    <div class="entry-feature entry-video"><?php $video = cms_archive_video(); ?></div>
-			<div class="entry-meta"><?php cms_archive_detail(); ?></div>
+		    <div class="entry-feature entry-video"><?php $video = theme_framework_archive_video(); ?></div>
+			<div class="entry-meta"><?php theme_framework_archive_detail(); ?></div>
 		</div>
 		<!-- .entry-header -->
 

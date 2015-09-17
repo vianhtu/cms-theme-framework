@@ -14,7 +14,7 @@
  */
 
 get_header(); ?>
-<div id="page-default" class="<?php cms_main_class(); ?>">
+<div id="page-default" class="<?php theme_framework_main_class(); ?>">
 	<div id="primary">
 		<div id="content" role="main">
 

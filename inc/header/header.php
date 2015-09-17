@@ -27,7 +27,7 @@
                     <?php
                     
                     $attr = array(
-                        'menu' =>cms_menu_location(),
+                        'menu' =>theme_framework_menu_location(),
                         'menu_class' => 'nav-menu menu-main-menu',
                     );
                     

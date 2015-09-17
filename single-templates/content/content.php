@@ -15,7 +15,7 @@
 		<div class="entry-header">
 			<div class="entry-date">
 				<div class="arow-date"></div>
-				<?php cms_archive_post_icon(); ?>
+				<?php theme_framework_archive_post_icon(); ?>
 				<span><?php echo get_the_date("F d,Y"); ?></span>
 			</div>
 		    <h2 class="entry-title">
@@ -29,7 +29,7 @@
 		    	</a>
 		    </h2>
 		    <div class="entry-feature entry-feature-image"><?php the_post_thumbnail( 'full' ); ?></div>
-			<div class="entry-meta"><?php cms_archive_detail(); ?></div>
+			<div class="entry-meta"><?php theme_framework_archive_detail(); ?></div>
 		</div>
 		<!-- .entry-header -->
 
@@ -46,7 +46,7 @@
 		<!-- .entry-content -->
 
 		<footer class="entry-footer">
-		    <?php cms_archive_readmore(); ?>
+		    <?php theme_framework_archive_readmore(); ?>
 		    <!-- .readmore link -->
 		</footer>
 		<!-- .entry-footer -->
