@@ -123,7 +123,7 @@
                     // Icon displayed in the admin panel next to your menu_title
                     'page_slug'          => '_options',
                     // Page slug used to denote the panel
-                    'save_defaults'      => true,
+                    'save_defaults'      => false,
                     // On load save the defaults to DB before user clicks save or not
                     'default_show'       => false,
                     // If true, shows the default value next to each field that is not the default value.
@@ -141,10 +141,12 @@
                     // 'footer_credit'     => '',                   // Disable the footer credit of Redux. Please leave if you can help it.
 
                     // FUTURE -> Not in use yet, but reserved or partially implemented. Use at your own risk.
-                    'database'           => '',
+                    'database'           => 'theme_mods',
                     // possible: options, theme_mods, theme_mods_expanded, transient. Not fully functional, warning!
                     'system_info'        => false,
                     // REMOVE
+                    'use_cdn'			 => false,
+                	'customizer_only' 	 => true,
 
                     // HINTS
                     'hints'              => array(
