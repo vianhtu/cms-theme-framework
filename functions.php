@@ -25,7 +25,15 @@
 /**
  * Add global values.
  */
-global $smof_data, $cms_meta, $cms_base;
+global $smof_data, $wp_filesystem, $cms_meta, $cms_base;
+
+/* Add WP_Filesystem. */
+if ( !function_exists('WP_Filesystem') ) {
+	
+	require_once(ABSPATH . 'wp-admin/includes/file.php');
+	
+	WP_Filesystem();
+}
 
 /* Dismiss vc update. */
 if(function_exists('vc_set_as_theme')) vc_set_as_theme( true );
