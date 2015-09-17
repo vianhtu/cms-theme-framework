@@ -1644,12 +1644,15 @@ class scssc {
 	}
 
 	protected function importFile($path, $out) {
+		
+		global $wp_filesystem;
+		
 		// see if tree is cached
 		$realPath = realpath($path);
 		if (isset($this->importCache[$realPath])) {
 			$tree = $this->importCache[$realPath];
 		} else {
-			$code = file_get_contents($path);
+			$code = $wp_filesystem->get_contents($path);
 			$parser = new scss_parser($path, false);
 			$tree = $parser->parse($code);
 			$this->parsedFiles[] = $path;
@@ -4419,6 +4422,9 @@ class scss_server {
 	 * @return boolean True if compile required.
 	 */
 	protected function needsCompile($in, $out) {
+		
+		global $wp_filesystem;
+		
 		if (!is_file($out)) return true;
 
 		$mtime = filemtime($out);
@@ -4427,7 +4433,7 @@ class scss_server {
 		// look for modified imports
 		$icache = $this->importsCacheName($out);
 		if (is_readable($icache)) {
-			$imports = unserialize(file_get_contents($icache));
+			$imports = unserialize($wp_filesystem->get_contents($icache));
 			foreach ($imports as $import) {
 				if (filemtime($import) > $mtime) return true;
 			}
@@ -4464,16 +4470,19 @@ class scss_server {
 	 * @return string
 	 */
 	protected function compile($in, $out) {
+		
+		global $wp_filesystem;
+		
 		$start = microtime(true);
-		$css = $this->scss->compile(file_get_contents($in), $in);
+		$css = $this->scss->compile($wp_filesystem->get_contents($in), $in);
 		$elapsed = round((microtime(true) - $start), 4);
 
 		$v = scssc::$VERSION;
 		$t = @date('r');
 		$css = "/* compiled by scssphp $v on $t (${elapsed}s) */\n\n" . $css;
 
-		file_put_contents($out, $css);
-		file_put_contents($this->importsCacheName($out),
+		$wp_filesystem->put_contents($out, $css);
+		$wp_filesystem->put_contents($this->importsCacheName($out),
 			serialize($this->scss->getParsedFiles()));
 		return $css;
 	}
@@ -4484,6 +4493,9 @@ class scss_server {
 	 * @param string $salt Prefix a string to the filename for creating the cache name hash
 	 */
 	public function serve($salt = '') {
+		
+		global $wp_filesystem;
+		
 		$protocol = isset($_SERVER['SERVER_PROTOCOL'])
 			? $_SERVER['SERVER_PROTOCOL']
 			: 'HTTP/1.0';
@@ -4526,7 +4538,7 @@ class scss_server {
 			$lastModified  = gmdate('D, d M Y H:i:s', $mtime) . ' GMT';
 			header('Last-Modified: ' . $lastModified);
 
-			echo file_get_contents($output);
+			echo $wp_filesystem->get_contents($output);
 
 			return;
 		}
