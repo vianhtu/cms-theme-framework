@@ -169,6 +169,12 @@ function cms_setup() {
 	add_image_size('related-img', 50, 50, true);
 	add_image_size('related-img-1', 100, 100, true);
 	set_post_thumbnail_size( 624, 9999 ); // Unlimited height, soft crop
+	
+	/*
+	 * This theme styles the visual editor to resemble the theme style,
+	 * specifically font, colors, icons, and column width.
+	 */
+	add_editor_style( array( 'assets/css/editor-style.css' ) );
 }
 
 add_action( 'after_setup_theme', 'cms_setup' );
