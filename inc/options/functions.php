@@ -82,7 +82,7 @@
                     // TYPICAL -> Change these values as you need/desire
                     'opt_name'           => 'smof_data',
                     // This is where your data is stored in the database and also becomes your global variable name.
-                    'display_name'       => $theme->get( 'Name' ),
+                    'display_name'       => __('Theme Options', 'cms-theme-framework'),
                     // Name that appears at the top of your panel
                     'display_version'    => 'V'.$theme->get( 'Version' ),
                     // Version that appears at the top of your panel
