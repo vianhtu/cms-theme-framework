@@ -5,7 +5,7 @@
  * @author : Fox
  */
 ?>
-<?php global $smof_data, $cms_meta; ?>
+<?php global $smof_data, $theme_framework_meta; ?>
 <?php if ($smof_data['enable_header_top'] =='1'): ?>
 <div id="cshero-header-top">
     <div class="container">
@@ -16,7 +16,7 @@
     </div>
 </div>
 <?php endif;?>
-<div id="cshero-header" class="cshero-main-header <?php if (!$smof_data['menu_sticky']) {echo 'no-sticky';} ?> <?php if ($smof_data['menu_sticky_tablets']) {echo 'sticky-tablets';} ?> <?php if ($smof_data['menu_sticky_mobile']) {echo 'sticky-mobile';} ?> <?php if (is_page() && !empty($cms_meta->_cms_enable_header_fixed)) {echo 'header-fixed-page';} ?>">
+<div id="cshero-header" class="cshero-main-header <?php if (!$smof_data['menu_sticky']) {echo 'no-sticky';} ?> <?php if ($smof_data['menu_sticky_tablets']) {echo 'sticky-tablets';} ?> <?php if ($smof_data['menu_sticky_mobile']) {echo 'sticky-mobile';} ?> <?php if (is_page() && !empty($theme_framework_meta->_cms_enable_header_fixed)) {echo 'header-fixed-page';} ?>">
     <div class="container">
         <div class="row">
             <div id="cshero-header-logo" class="col-xs-12 col-sm-3 col-md-3 col-lg-3">

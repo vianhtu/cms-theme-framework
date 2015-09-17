@@ -21,10 +21,10 @@ class CMSSuperHeroes_DynamicCss
      */
     public function generate_css()
     {
-        global $smof_data, $cms_base;
+        global $smof_data, $theme_framework_base;
         $css = $this->css_render();
         if (! $smof_data['dev_mode']) {
-            $css = $cms_base->compressCss($css);
+            $css = $theme_framework_base->compressCss($css);
         }
         echo '<style type="text/css" data-type="cms_shortcodes-custom-css">'.$css.'</style>';
     }
@@ -37,7 +37,7 @@ class CMSSuperHeroes_DynamicCss
      */
     public function css_render()
     {
-        global $smof_data, $cms_meta;
+        global $smof_data, $theme_framework_meta;
         ob_start();
         
         return ob_get_clean();

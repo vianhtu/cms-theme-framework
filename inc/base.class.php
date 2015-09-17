@@ -8,14 +8,14 @@ class ThemeFrameworkBase
      * @since 1.0.0
      */
     public static function getPageTitle(){
-        global $cms_meta;
+        global $theme_framework_meta;
         
         if (!is_archive()){
             /* page. */
             if(is_page()) :
                 /* custom title. */
-                if(!empty($cms_meta->_cms_page_title_text) && $cms_meta->_cms_page_title_text):
-                    echo esc_attr($cms_meta->_cms_page_title_text);
+                if(!empty($theme_framework_meta->_cms_page_title_text) && $theme_framework_meta->_cms_page_title_text):
+                    echo esc_attr($theme_framework_meta->_cms_page_title_text);
                 else :
                     the_title();
                 endif;

@@ -1,7 +1,7 @@
 <?php
-global $cms_base;
+global $theme_framework_base;
 /* get local fonts. */
-$local_fonts = is_admin() ? $cms_base->getListLocalFontsName() : array() ;
+$local_fonts = is_admin() ? $theme_framework_base->getListLocalFontsName() : array() ;
 /**
  * Home Options
  * 

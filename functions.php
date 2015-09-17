@@ -25,7 +25,7 @@
 /**
  * Add global values.
  */
-global $smof_data, $wp_filesystem, $cms_meta, $cms_base;
+global $smof_data, $wp_filesystem, $theme_framework_meta, $theme_framework_base;
 
 /* Add WP_Filesystem. */
 if ( !function_exists('WP_Filesystem') ) {
@@ -42,7 +42,7 @@ if(function_exists('vc_set_as_theme')) vc_set_as_theme( true );
 require( get_template_directory() . '/inc/base.class.php' );
 
 if(class_exists("ThemeFrameworkBase")){
-    $cms_base = new ThemeFrameworkBase;
+    $theme_framework_base = new ThemeFrameworkBase;
 }
 
 /* Add ReduxFramework. */
@@ -185,16 +185,16 @@ add_action( 'after_setup_theme', 'theme_framework_setup' );
  * @return mixed|NULL
  */
 function theme_framework_meta_data(){
-    global $post, $cms_meta;
+    global $post, $theme_framework_meta;
     
     if(!isset($post->ID)) return ;
     
-    $cms_meta = json_decode(get_post_meta($post->ID, '_cms_meta_data', true));
+    $theme_framework_meta = json_decode(get_post_meta($post->ID, '_cms_meta_data', true));
     
-    if(empty($cms_meta)) return ;
+    if(empty($theme_framework_meta)) return ;
     
-    foreach ($cms_meta as $key => $meta){
-        $cms_meta->$key = rawurldecode($meta);
+    foreach ($theme_framework_meta as $key => $meta){
+        $theme_framework_meta->$key = rawurldecode($meta);
     }
 }
 add_action('wp', 'theme_framework_meta_data');
@@ -436,7 +436,7 @@ add_filter( 'wp_page_menu_args', 'theme_framework_page_menu_args' );
  * @since 1.0.0
  */
 function theme_framework_add_subtitle_field(){
-    global $post, $cms_meta;
+    global $post, $theme_framework_meta;
     
     /* get current_screen. */
     $screen = get_current_screen();

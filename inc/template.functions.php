@@ -5,12 +5,12 @@
  * @author Fox
  */
 function theme_framework_page_title(){
-    global $smof_data, $cms_meta, $cms_base;
+    global $smof_data, $theme_framework_meta, $theme_framework_base;
     
     /* page options */
-    if(is_page() && isset($cms_meta->_cms_page_title) && $cms_meta->_cms_page_title){
-        if(isset($cms_meta->_cms_page_title_type)){
-            $smof_data['page_title_layout'] = $cms_meta->_cms_page_title_type;
+    if(is_page() && isset($theme_framework_meta->_cms_page_title) && $theme_framework_meta->_cms_page_title){
+        if(isset($theme_framework_meta->_cms_page_title_type)){
+            $smof_data['page_title_layout'] = $theme_framework_meta->_cms_page_title_type;
         }
     }
     
@@ -22,36 +22,36 @@ function theme_framework_page_title(){
             <?php switch ($smof_data['page_title_layout']){
                 case '1':
                     ?>
-                    <div id="page-title-text" class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><h1><?php $cms_base->getPageTitle(); ?></h1><?php theme_framework_page_sub_title(); ?></div>
-                    <div id="breadcrumb-text" class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><?php $cms_base->getBreadCrumb(); ?></div>
+                    <div id="page-title-text" class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><h1><?php $theme_framework_base->getPageTitle(); ?></h1><?php theme_framework_page_sub_title(); ?></div>
+                    <div id="breadcrumb-text" class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><?php $theme_framework_base->getBreadCrumb(); ?></div>
                     <?php
                     break;
                 case '2':
                     ?>
-                    <div id="breadcrumb-text" class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><?php $cms_base->getBreadCrumb(); ?></div>
-                    <div id="page-title-text" class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><h1><?php $cms_base->getPageTitle(); ?></h1><?php theme_framework_page_sub_title(); ?></div>
+                    <div id="breadcrumb-text" class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><?php $theme_framework_base->getBreadCrumb(); ?></div>
+                    <div id="page-title-text" class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><h1><?php $theme_framework_base->getPageTitle(); ?></h1><?php theme_framework_page_sub_title(); ?></div>
                     <?php          
                     break;
                 case '3':
                     ?>
-                    <div id="page-title-text" class="col-xs-12 col-sm-6 col-md-6 col-lg-6"><h1><?php $cms_base->getPageTitle(); ?></h1><?php theme_framework_page_sub_title(); ?></div>
-                    <div id="breadcrumb-text" class="col-xs-12 col-sm-6 col-md-6 col-lg-6"><?php $cms_base->getBreadCrumb(); ?></div>
+                    <div id="page-title-text" class="col-xs-12 col-sm-6 col-md-6 col-lg-6"><h1><?php $theme_framework_base->getPageTitle(); ?></h1><?php theme_framework_page_sub_title(); ?></div>
+                    <div id="breadcrumb-text" class="col-xs-12 col-sm-6 col-md-6 col-lg-6"><?php $theme_framework_base->getBreadCrumb(); ?></div>
                     <?php
                     break;
                 case '4':
                     ?>
-                    <div id="breadcrumb-text" class="col-xs-12 col-sm-6 col-md-6 col-lg-6"><?php $cms_base->getBreadCrumb(); ?></div>
-                    <div id="page-title-text" class="col-xs-12 col-sm-6 col-md-6 col-lg-6"><h1><?php $cms_base->getPageTitle(); ?></h1><?php theme_framework_page_sub_title(); ?></div>
+                    <div id="breadcrumb-text" class="col-xs-12 col-sm-6 col-md-6 col-lg-6"><?php $theme_framework_base->getBreadCrumb(); ?></div>
+                    <div id="page-title-text" class="col-xs-12 col-sm-6 col-md-6 col-lg-6"><h1><?php $theme_framework_base->getPageTitle(); ?></h1><?php theme_framework_page_sub_title(); ?></div>
                     <?php
                     break;
                 case '5':
                     ?>
-                    <div id="page-title-text" class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><h1><?php $cms_base->getPageTitle(); ?></h1><?php theme_framework_page_sub_title(); ?></div>
+                    <div id="page-title-text" class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><h1><?php $theme_framework_base->getPageTitle(); ?></h1><?php theme_framework_page_sub_title(); ?></div>
                     <?php
                     break;
                 case '6':
                     ?>
-                    <div id="breadcrumb-text" class="col-xs-12 col-sm-6 col-md-6 col-lg-6"><?php $cms_base->getBreadCrumb(); ?></div>
+                    <div id="breadcrumb-text" class="col-xs-12 col-sm-6 col-md-6 col-lg-6"><?php $theme_framework_base->getBreadCrumb(); ?></div>
                     <?php
                     break;
             } ?>
@@ -68,10 +68,10 @@ function theme_framework_page_title(){
  * @author Fox
  */
 function theme_framework_page_sub_title(){
-    global $cms_meta, $post;
+    global $theme_framework_meta, $post;
 
-    if(!empty($cms_meta->_cms_page_title_sub_text)){
-        echo '<div class="page-sub-title">'.esc_attr($cms_meta->_cms_page_title_sub_text).'</div>';
+    if(!empty($theme_framework_meta->_cms_page_title_sub_text)){
+        echo '<div class="page-sub-title">'.esc_attr($theme_framework_meta->_cms_page_title_sub_text).'</div>';
     } elseif (!empty($post->ID) && get_post_meta($post->ID, 'post_subtitle', true)){
         echo '<div class="page-sub-title">'.esc_attr(get_post_meta($post->ID, 'post_subtitle', true)).'</div>';
     }
@@ -83,11 +83,11 @@ function theme_framework_page_sub_title(){
  * @author Fox
  */
 function theme_framework_header(){
-    global $smof_data, $cms_meta;
+    global $smof_data, $theme_framework_meta;
     /* header for page */
-    if(isset($cms_meta->_cms_header) && $cms_meta->_cms_header){
-        if(isset($cms_meta->_cms_header_layout)){
-            $smof_data['header_layout'] = $cms_meta->_cms_header_layout;
+    if(isset($theme_framework_meta->_cms_header) && $theme_framework_meta->_cms_header){
+        if(isset($theme_framework_meta->_cms_header_layout)){
+            $smof_data['header_layout'] = $theme_framework_meta->_cms_header_layout;
         }
     }
     /* load template. */
@@ -101,9 +101,9 @@ function theme_framework_header(){
  * @return NULL
  */
 function theme_framework_menu_location($option = '_cms_primary'){
-    global $cms_meta;
+    global $theme_framework_meta;
     /* get menu id from page setting */
-    return (isset($cms_meta->$option) && $cms_meta->$option) ? $cms_meta->$option : null ;
+    return (isset($theme_framework_meta->$option) && $theme_framework_meta->$option) ? $theme_framework_meta->$option : null ;
 }
 
 function theme_framework_get_page_loading() {
@@ -150,11 +150,11 @@ function theme_framework_page_class(){
  * @since 1.0.0
  */
 function theme_framework_main_class(){
-    global $cms_meta;
+    global $theme_framework_meta;
     
     $main_class = '';
     /* chect content full width */
-    if(is_page() && isset($cms_meta->_cms_full_width) && $cms_meta->_cms_full_width){
+    if(is_page() && isset($theme_framework_meta->_cms_full_width) && $theme_framework_meta->_cms_full_width){
         /* full width */
         $main_class = "no-container";
     } else {
@@ -203,9 +203,9 @@ function theme_framework_archive_readmore(){
  * @param string $after
  */
 function theme_framework_archive_audio() {
-	global $cms_base;
+	global $theme_framework_base;
     /* get shortcode audio. */
-    $shortcode = $cms_base->getShortcodeFromContent('audio', get_the_content());
+    $shortcode = $theme_framework_base->getShortcodeFromContent('audio', get_the_content());
     
     if($shortcode != ''){
         echo do_shortcode($shortcode);
@@ -230,12 +230,12 @@ function theme_framework_archive_audio() {
  */
 function theme_framework_archive_video() {
     
-    global $wp_embed, $cms_base;
+    global $wp_embed, $theme_framework_base;
     /* Get Local Video */
-    $local_video = $cms_base->getShortcodeFromContent('video', get_the_content());
+    $local_video = $theme_framework_base->getShortcodeFromContent('video', get_the_content());
     
     /* Get Youtobe or Vimeo */
-    $remote_video = $cms_base->getShortcodeFromContent('embed', get_the_content());
+    $remote_video = $theme_framework_base->getShortcodeFromContent('embed', get_the_content());
     
     if($local_video){
         /* view local. */
@@ -265,9 +265,9 @@ function theme_framework_archive_video() {
  * @since 1.0.0
  */
 function theme_framework_archive_gallery(){
-	global $cms_base;
+	global $theme_framework_base;
     /* get shortcode gallery. */
-    $shortcode = $cms_base->getShortcodeFromContent('gallery', get_the_content());
+    $shortcode = $theme_framework_base->getShortcodeFromContent('gallery', get_the_content());
     
     if($shortcode != ''){
         preg_match('/\[gallery.*ids=.(.*).\]/', $shortcode, $ids);

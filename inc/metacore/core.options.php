@@ -38,19 +38,19 @@ function cms_options($params = array())
         elseif ($pagenow=='post-new.php' || $pagenow=='post.php'){
             global $post;
             /* Get cms meta data opject */
-            $cms_meta = json_decode(get_post_meta($post->ID, '_cms_meta_data', true));
+            $theme_framework_meta = json_decode(get_post_meta($post->ID, '_cms_meta_data', true));
             
-            if(!empty($cms_meta)){
-                foreach ($cms_meta as $key => $meta){
-                    $cms_meta->$key = rawurldecode($meta);
+            if(!empty($theme_framework_meta)){
+                foreach ($theme_framework_meta as $key => $meta){
+                    $theme_framework_meta->$key = rawurldecode($meta);
                 }
             }
             
             // Render params id
             $params['id'] = "_cms_".$params['id'];
             // Get value
-            if(!empty($cms_meta->$params['id'])){
-                $params['value'] = $cms_meta->$params['id'];
+            if(!empty($theme_framework_meta->$params['id'])){
+                $params['value'] = $theme_framework_meta->$params['id'];
             } else {
                 $params['value'] = null;
             }
@@ -529,17 +529,17 @@ class CsCoreControl
 			return;
 		}
 		/* array cms meta */
-        $cms_meta = array();
+        $theme_framework_meta = array();
         
         /* find cms meta key. */
 		foreach($_POST as $key => $value) {
 			if(strstr($key, '_cms_')) {
-			    $cms_meta[$key] = rawurlencode($value);
+			    $theme_framework_meta[$key] = rawurlencode($value);
 			}
 		}
 		/* update _cms_meta_data. */
-		if(!empty($cms_meta)){
-		  update_post_meta($post_id, '_cms_meta_data', json_encode($cms_meta));
+		if(!empty($theme_framework_meta)){
+		  update_post_meta($post_id, '_cms_meta_data', json_encode($theme_framework_meta));
 		}
 	}
 }
