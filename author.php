@@ -39,7 +39,7 @@ get_header(); ?>
 				rewind_posts();
 			?>
 
-			<?php cms_paging_nav(); ?>
+			<?php theme_framework_paging_nav(); ?>
 
 			<?php
 			// If a user has filled out their description, show a bio on their entries.
@@ -70,7 +70,7 @@ get_header(); ?>
 				<?php get_template_part( 'single-templates/content/content', get_post_format() ); ?>
 			<?php endwhile; ?>
 
-			<?php cms_paging_nav(); ?>
+			<?php theme_framework_paging_nav(); ?>
 
 		<?php else : ?>
 			<?php get_template_part( 'single-templates/content', 'none' ); ?>

@@ -73,7 +73,7 @@ class CS_Recent_Post_Widget_V2 extends WP_Widget {
                                     </div>
                                     <?php }?>   
                                     <?php if ($show_decs) { ?>
-                                        <div class="description"><?php echo cms_limit_words( strip_tags( get_the_excerpt() ),10)."..."; ?></div>
+                                        <div class="description"><?php echo theme_framework_limit_words( strip_tags( get_the_excerpt() ),10)."..."; ?></div>
                                     <?php  } ?>
                                 </div>
                             </li>

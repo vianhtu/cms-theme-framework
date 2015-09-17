@@ -17,7 +17,7 @@ get_header(); ?>
 
                     <?php get_template_part( 'single-templates/single/content', get_post_format() ); ?>
 
-                    <?php cms_post_nav(); ?>
+                    <?php theme_framework_post_nav(); ?>
 
                     <?php comments_template( '', true ); ?>
 

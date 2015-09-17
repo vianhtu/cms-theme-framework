@@ -28,7 +28,7 @@ get_header(); ?>
                         get_template_part( 'single-templates/content/content', get_post_format() );
                     endwhile; // end of the loop.?>
                     
-                    <?php cms_paging_nav(); ?>
+                    <?php theme_framework_paging_nav(); ?>
                     
                 <?php else : ?>
                     <?php get_template_part( 'single-templates/content', 'none' ); ?>

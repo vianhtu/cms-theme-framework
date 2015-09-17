@@ -1,6 +1,6 @@
 <?php
 
-class CMS_Base
+class ThemeFrameworkBase
 {
     /**
      * Page title

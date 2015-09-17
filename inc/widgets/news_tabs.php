@@ -77,7 +77,7 @@ class WW_News_Tabs_Widget extends WP_Widget {
 
                                             <div class="cs-details table-cell">
                                                 <h4><?php the_title(); ?></h4>
-                                                <div class="description"><?php echo cms_limit_words( strip_tags( get_the_excerpt() ),10)."..."; ?></div>
+                                                <div class="description"><?php echo theme_framework_limit_words( strip_tags( get_the_excerpt() ),10)."..."; ?></div>
                                                 <div class="readmore">
                                                     <a href="<?php the_permalink(); ?>"><?php echo __('Read More...','cms-theme-framework') ?></a>
                                                 </div>
@@ -113,7 +113,7 @@ class WW_News_Tabs_Widget extends WP_Widget {
 
                                             <div class="cs-details table-cell">
                                                 <h4><?php the_title(); ?></h4>
-                                                <div class="description"><?php echo cms_limit_words( strip_tags( get_the_excerpt() ),10)."..."; ?></div>
+                                                <div class="description"><?php echo theme_framework_limit_words( strip_tags( get_the_excerpt() ),10)."..."; ?></div>
                                                 <div class="readmore">
                                                     <a href="<?php the_permalink(); ?>"><?php echo __('Read More...','cms-theme-framework') ?></a>
                                                 </div>
@@ -143,7 +143,7 @@ class WW_News_Tabs_Widget extends WP_Widget {
                                         <div class="post-holder table-cell">
                                             <p><?php echo strip_tags($comment->comment_author); ?> says:</p>
                                             <div class="meta">
-                                                <a class="comment-text-side" href="<?php echo get_permalink($comment->ID); ?>#comment-<?php echo ''.$comment->comment_ID; ?>" title="<?php echo strip_tags($comment->comment_author); ?> on <?php echo ''.$comment->post_title; ?>"><?php echo cms_limit_words(strip_tags($comment->com_excerpt), 12); ?>...</a>
+                                                <a class="comment-text-side" href="<?php echo get_permalink($comment->ID); ?>#comment-<?php echo ''.$comment->comment_ID; ?>" title="<?php echo strip_tags($comment->comment_author); ?> on <?php echo ''.$comment->post_title; ?>"><?php echo theme_framework_limit_words(strip_tags($comment->com_excerpt), 12); ?>...</a>
                                             </div>
                                         </div>
                                     </li>

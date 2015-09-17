@@ -37,7 +37,7 @@ get_header(); ?>
 
                 endwhile;
 
-                cms_paging_nav();
+                theme_framework_paging_nav();
                 ?>
 
             <?php else : ?>

@@ -20,7 +20,7 @@ get_header(); ?>
                     <?php get_template_part( 'single-templates/content/content' ); ?>
                 <?php endwhile; ?>
 
-                <?php cms_paging_nav(); ?>
+                <?php theme_framework_paging_nav(); ?>
 
             <?php else : ?>
 

@@ -41,8 +41,8 @@ if(function_exists('vc_set_as_theme')) vc_set_as_theme( true );
 /* Add base functions */
 require( get_template_directory() . '/inc/base.class.php' );
 
-if(class_exists("CMS_Base")){
-    $cms_base = new CMS_Base();
+if(class_exists("ThemeFrameworkBase")){
+    $cms_base = new ThemeFrameworkBase;
 }
 
 /* Add ReduxFramework. */
@@ -57,16 +57,16 @@ require( get_template_directory() . '/inc/options/functions.php' );
 if(class_exists('Vc_Manager')){
     
     /* Add theme elements */
-    add_action('vc_before_init', 'cms_vc_elements');
+    add_action('vc_before_init', 'theme_framework_vc_elements');
     
-    function cms_vc_elements(){
+    function theme_framework_vc_elements(){
         if(class_exists('CmsShortCode')){
             require( get_template_directory() . '/inc/elements/googlemap/cms_googlemap.php' );
         }
     }
     
-    add_action('init', 'cms_vc_params');
-    function cms_vc_params() {
+    add_action('init', 'theme_framework_vc_params');
+    function theme_framework_vc_params() {
         require( get_template_directory() . '/vc_params/vc_rows.php' );
     }
 }
@@ -128,7 +128,7 @@ if ( ! isset( $content_width ) )
  *
  * @since 1.0.0
  */
-function cms_setup() {
+function theme_framework_setup() {
 	/*
 	 * Makes Twenty Twelve available for translation.
 	 *
@@ -177,14 +177,14 @@ function cms_setup() {
 	add_editor_style( array( 'assets/css/editor-style.css' ) );
 }
 
-add_action( 'after_setup_theme', 'cms_setup' );
+add_action( 'after_setup_theme', 'theme_framework_setup' );
 
 /**
  * Get meta data.
  * @author Fox
  * @return mixed|NULL
  */
-function cms_meta_data(){
+function theme_framework_meta_data(){
     global $post, $cms_meta;
     
     if(!isset($post->ID)) return ;
@@ -197,14 +197,14 @@ function cms_meta_data(){
         $cms_meta->$key = rawurldecode($meta);
     }
 }
-add_action('wp', 'cms_meta_data');
+add_action('wp', 'theme_framework_meta_data');
 
 /**
  * Get post meta data.
  * @author Fox
  * @return mixed|NULL
  */
-function cms_post_meta_data(){
+function theme_framework_post_meta_data(){
     global $post;
     
     if(!isset($post->ID)) return null;
@@ -225,7 +225,7 @@ function cms_post_meta_data(){
  * @author Fox
  * @since CMS SuperHeroes 1.0
  */
-function cms_scripts_styles() {
+function theme_framework_scripts_styles() {
     
 	global $smof_data, $wp_styles;
 	
@@ -304,7 +304,7 @@ function cms_scripts_styles() {
 	wp_enqueue_style('cmssuperheroes-static', get_template_directory_uri() . '/assets/css/static.css', array( 'cmssuperheroes-style' ), '1.0.0');
 }
 
-add_action( 'wp_enqueue_scripts', 'cms_scripts_styles' );
+add_action( 'wp_enqueue_scripts', 'theme_framework_scripts_styles' );
 
 /**
  * Register sidebars.
@@ -313,7 +313,7 @@ add_action( 'wp_enqueue_scripts', 'cms_scripts_styles' );
  *
  * @since Fox
  */
-function cms_widgets_init() {
+function theme_framework_widgets_init() {
 	register_sidebar( array(
 		'name' => __( 'Main Sidebar', 'cms-theme-framework' ),
 		'id' => 'sidebar-1',
@@ -414,7 +414,7 @@ function cms_widgets_init() {
     	'after_title' => '</h3>',
 	) );
 }
-add_action( 'widgets_init', 'cms_widgets_init' );
+add_action( 'widgets_init', 'theme_framework_widgets_init' );
 
 /**
  * Filter the page menu arguments.
@@ -423,19 +423,19 @@ add_action( 'widgets_init', 'cms_widgets_init' );
  *
  * @since 1.0.0
  */
-function cms_page_menu_args( $args ) {
+function theme_framework_page_menu_args( $args ) {
     if ( ! isset( $args['show_home'] ) )
         $args['show_home'] = true;
     return $args;
 }
-add_filter( 'wp_page_menu_args', 'cms_page_menu_args' );
+add_filter( 'wp_page_menu_args', 'theme_framework_page_menu_args' );
 
 /**
  * Add field subtitle to post.
  * 
  * @since 1.0.0
  */
-function cms_add_subtitle_field(){
+function theme_framework_add_subtitle_field(){
     global $post, $cms_meta;
     
     /* get current_screen. */
@@ -452,14 +452,14 @@ function cms_add_subtitle_field(){
     }
 }
 
-add_action( 'edit_form_after_title', 'cms_add_subtitle_field' );
+add_action( 'edit_form_after_title', 'theme_framework_add_subtitle_field' );
 
 /**
  * Save custom theme meta. 
  * 
  * @since 1.0.0
  */
-function cms_save_meta_boxes($post_id) {
+function theme_framework_save_meta_boxes($post_id) {
     
     if(defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
         return;
@@ -470,14 +470,14 @@ function cms_save_meta_boxes($post_id) {
     }
 }
 
-add_action('save_post', 'cms_save_meta_boxes');
+add_action('save_post', 'theme_framework_save_meta_boxes');
 
 /**
  * Display navigation to next/previous comments when applicable.
  *
  * @since 1.0.0
  */
-function cms_comment_nav() {
+function theme_framework_comment_nav() {
     // Are there comments to navigate through?
     if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) :
     ?>
@@ -504,7 +504,7 @@ function cms_comment_nav() {
  *
  * @since 1.0.0
  */
-function cms_paging_nav() {
+function theme_framework_paging_nav() {
     // Don't print empty markup if there's only one page.
 	if ( $GLOBALS['wp_query']->max_num_pages < 2 ) {
 		return;
@@ -554,7 +554,7 @@ function cms_paging_nav() {
 *
 * @since 1.0.0
 */
-function cms_post_nav() {
+function theme_framework_post_nav() {
     global $post;
 
     // Don't print empty markup if there's nowhere to navigate.
@@ -583,7 +583,7 @@ function cms_post_nav() {
 }
 
 /* Add Custom Comment */
-function cms_comment($comment, $args, $depth) {
+function theme_framework_comment($comment, $args, $depth) {
 	$GLOBALS['comment'] = $comment;
 	extract($args, EXTR_SKIP);
 
@@ -632,8 +632,8 @@ function cms_comment($comment, $args, $depth) {
  * 
  * @since 1.0.0
  */
-if (!function_exists('cms_limit_words')) {
-    function cms_limit_words($string, $word_limit) {
+if (!function_exists('theme_framework_limit_words')) {
+    function theme_framework_limit_words($string, $word_limit) {
         $words = explode(' ', $string, ($word_limit + 1));
         if (count($words) > $word_limit) {
             array_pop($words);
