@@ -629,6 +629,9 @@ class scssc {
 
 	// return a value to halt execution
 	protected function compileChild($child, $out) {
+		
+		global $wp_filesystem;
+		
 		$this->sourcePos = isset($child[-1]) ? $child[-1] : -1;
 		$this->sourceParser = isset($child[-2]) ? $child[-2] : $this->parser;
 
@@ -827,7 +830,7 @@ class scssc {
 			list(,$value, $pos) = $child;
 			$line = $this->parser->getLineNo($pos);
 			$value = $this->compileValue($this->reduce($value, true));
-			fwrite(STDERR, "Line $line DEBUG: $value\n");
+			$wp_filesystem->put_contents(STDERR, "Line $line DEBUG: $value\n");
 			break;
 		default:
 			$this->throwError("unknown child type: $child[0]");
