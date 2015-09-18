@@ -28,7 +28,7 @@
 global $smof_data, $wp_filesystem, $theme_framework_meta, $theme_framework_base;
 
 /* Add WP_Filesystem. */
-if ( !function_exists('WP_Filesystem') ) {
+if ( !class_exists('WP_Filesystem') ) {
 	
 	require_once(ABSPATH . 'wp-admin/includes/file.php');
 	
