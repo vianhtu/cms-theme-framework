@@ -44,7 +44,7 @@ class CMSSuperHeroes_StaticCss
         if (! empty($smof_data)) {
             
             /* write options to scss file */
-            $wp_filesystem->put_contents(get_template_directory() . '/assets/scss/options.scss', $this->css_render(), LOCK_EX); // Save it
+            $wp_filesystem->put_contents(get_template_directory() . '/assets/scss/options.scss', $this->css_render(), FS_CHMOD_FILE); // Save it
             
             /* minimize CSS styles */
             if (!$smof_data['dev_mode']) {
@@ -61,7 +61,7 @@ class CMSSuperHeroes_StaticCss
             }
             
             /* write static.css file */
-            $wp_filesystem->put_contents(get_template_directory() . '/assets/css/' . $file, $css, LOCK_EX); // Save it
+            $wp_filesystem->put_contents(get_template_directory() . '/assets/css/' . $file, $css, FS_CHMOD_FILE); // Save it
         }
     }
     
