@@ -96,13 +96,6 @@ class CMSSuperHeroes_StaticCss
         if(isset($smof_data['google-font-2'])){
             $theme_framework_base->setGoogleFont($smof_data['google-font-2'], $smof_data['google-font-selector-2']);
         }
-        /* local fonts. */
-        if(isset($smof_data['local-fonts-1'])){
-            $theme_framework_base->setFontFace($smof_data['local-fonts-1'], $smof_data['local-fonts-selector-1']);
-        }
-        if(isset($smof_data['local-fonts-2'])){
-            $theme_framework_base->setFontFace($smof_data['local-fonts-2'], $smof_data['local-fonts-selector-2']);
-        }
         /* forward options to scss. */
         
         if(!empty($smof_data['primary_color'])){

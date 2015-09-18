@@ -185,58 +185,6 @@ class ThemeFrameworkBase
     }
     
     /**
-     * Get list name local fonts.
-     * 
-     * @return multitype:unknown Ambigous <string, mixed>
-     * @since 1.0.0
-     */
-    public static function getListLocalFontsName(){
-        
-        /* array fonts. */
-        $localfonts = array();
-        
-        /* folder fonts. */
-        $font_path = get_template_directory() . "/assets/fonts";
-        
-        if (!$handle = opendir($font_path)) {
-        } else {
-            while (false !== ($file = readdir($handle))) {
-                if (strpos($file, ".ttf") !== false || strpos($file, ".eot") !== false || strpos($file, ".svg") !== false || strpos($file, ".woff") !== false) {
-                    $file = str_replace(array('.ttf', '.eot', '.svg', '.woff'), '', $file);
-                    $localfonts[$file] = $file;
-                }
-            }
-        }
-        closedir($handle);
-        
-        return $localfonts;
-    }
-    
-    public static function setFontFace($name = '' , $selecter = ''){
-        
-        $font_part = get_template_directory_uri()."/assets/fonts/".esc_attr($name);
-        
-        /* load font files. */
-        if($name){
-            echo "@font-face {".
-                         "font-family: '".esc_attr($name)."';".
-                         "src: url('$font_part.eot');"./* IE9 Compat Modes */
-                         "src:". 
-                             "url('$font_part.eot?#iefix') format('embedded-opentype'),"./* IE6-IE8 */
-                             "url('$font_part.woff') format('woff'),"./* Pretty Modern Browsers */
-                             "url('$font_part.ttf') format('truetype'),"./* Safari, Android, iOS */
-                             "url('$font_part.svg#".esc_attr($name)."') format('svg');"./* Legacy iOS */
-                         "font-weight: normal;".
-                         "font-style: normal;".
-                    "}";
-            /* add font selecter. */
-            if($selecter){
-                echo esc_attr($selecter)."{font-family:'".esc_attr($name)."';}";
-            }
-        }
-    }
-    
-    /**
      * set google font for selecter.
      * 
      * @param array $googlefont

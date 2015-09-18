@@ -1,7 +1,5 @@
 <?php
 global $theme_framework_base;
-/* get local fonts. */
-$local_fonts = is_admin() ? $theme_framework_base->getListLocalFontsName() : array() ;
 /**
  * Home Options
  * 
@@ -679,55 +677,6 @@ $this->sections[] = array(
             'validate' => 'no_html',
             'default' => '',
         ),
-    )
-);
-
-/* local fonts. */
-$this->sections[] = array(
-    'title' => __('Local Fonts', 'cms-theme-framework'),
-    'icon' => 'el-icon-bookmark',
-    'subsection' => true,
-    'fields' => array(
-        array(
-            'id'       => 'local-fonts-1',
-            'type'     => 'select',
-            'title'    => __( 'Fonts 1', 'cms-theme-framework' ),
-            'options'  => $local_fonts,
-            'default'  => 'MyriadPro-Semibold',
-        ),
-        array(
-            'id' => 'local-fonts-selector-1',
-            'type' => 'textarea',
-            'title' => __('Selector 1', 'cms-theme-framework'),
-            'subtitle' => __('add html tags ID or class (body,a,.class,#id)', 'cms-theme-framework'),
-            'validate' => 'no_html',
-            'default' => '',
-            'required' => array(
-                0 => 'local-fonts-1',
-                1 => '!=',
-                2 => ''
-            )
-        ),
-        array(
-            'id'       => 'local-fonts-2',
-            'type'     => 'select',
-            'title'    => __( 'Fonts 2', 'cms-theme-framework' ),
-            'options'  => $local_fonts,
-            'default'  => '',
-        ),
-        array(
-            'id' => 'local-fonts-selector-2',
-            'type' => 'textarea',
-            'title' => __('Selector 2', 'cms-theme-framework'),
-            'subtitle' => __('add html tags ID or class (body,a,.class,#id)', 'cms-theme-framework'),
-            'validate' => 'no_html',
-            'default' => '',
-            'required' => array(
-                0 => 'local-fonts-2',
-                1 => '!=',
-                2 => ''
-            )
-        )
     )
 );
 
