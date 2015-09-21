@@ -26,7 +26,7 @@ if ( post_password_required() ) {
                 <span><?php comments_number(__('Comments','cms-theme-framework'),__('1 Comments','cms-theme-framework'),__('% Comments','cms-theme-framework')); ?></span>
             </h4>
             <ol class="comment-list">
-				<?php wp_list_comments( 'type=comment&callback=cms_comment' ); ?>
+				<?php wp_list_comments( 'type=comment&callback=theme_framework_comment' ); ?>
 			</ol>
 			<?php theme_framework_comment_nav(); ?>
         </div>
