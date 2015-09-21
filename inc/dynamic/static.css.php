@@ -11,9 +11,7 @@ class CMSSuperHeroes_StaticCss
     public $scss;
     
     function __construct()
-    {
-        global $smof_data;
-        
+    {   
         /* scss */
         $this->scss = new scssc();
         
@@ -21,17 +19,25 @@ class CMSSuperHeroes_StaticCss
         $this->scss->setImportPaths(get_template_directory() . '/assets/scss/');
              
         /* generate css over time */
-        if (isset($smof_data['dev_mode']) && $smof_data['dev_mode']) {
-            $this->generate_file();
-        } else {
-            /* save option generate css */
-            add_action("redux/options/smof_data/saved", array(
-                $this,
-                'generate_file'
-            ));
-        }
+		add_action('init', array($this, 'generate_over_time'));
+        
+        /* save option generate css */
+       	add_action("redux/options/smof_data/saved", array(
+            $this,
+            'generate_file'
+        ));
     }
-
+	
+    public function generate_over_time(){
+    	
+    	global $smof_data;
+    	
+    	if (!isset($smof_data['dev_mode'])) return ;
+    	
+    	if (!$smof_data['dev_mode']) return ;
+    		
+    	$this->generate_file();
+    }
     /**
      * generate css file.
      *
@@ -43,8 +49,13 @@ class CMSSuperHeroes_StaticCss
         
         if (! empty($smof_data)) {
             
+        	$options_scss = get_template_directory() . '/assets/scss/options.scss';
+        	
+        	/* delete files options.scss */
+        	$wp_filesystem->delete($options_scss);
+        	
             /* write options to scss file */
-            $wp_filesystem->put_contents(get_template_directory() . '/assets/scss/options.scss', $this->css_render(), FS_CHMOD_FILE); // Save it
+            $wp_filesystem->put_contents($options_scss, $this->css_render(), FS_CHMOD_FILE); // Save it
             
             /* minimize CSS styles */
             if (!$smof_data['dev_mode']) {
@@ -60,8 +71,13 @@ class CMSSuperHeroes_StaticCss
                 $file = "presets-".$smof_data['presets_color'].".css";
             }
             
+            $file = get_template_directory() . '/assets/css/' . $file;
+            
+            /* delete files static.css */
+            $wp_filesystem->delete($file);
+            
             /* write static.css file */
-            $wp_filesystem->put_contents(get_template_directory() . '/assets/css/' . $file, $css, FS_CHMOD_FILE); // Save it
+            $wp_filesystem->put_contents($file, $css, FS_CHMOD_FILE); // Save it
         }
     }
     
