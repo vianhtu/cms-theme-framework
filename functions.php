@@ -67,7 +67,7 @@ if(class_exists('Vc_Manager')){
     
     add_action('init', 'theme_framework_vc_params');
     function theme_framework_vc_params() {
-        require( get_template_directory() . '/vc_params/vc_rows.php' );
+        //require( get_template_directory() . '/vc_params/vc_rows.php' );
     }
 }
 
