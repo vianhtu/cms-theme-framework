@@ -292,8 +292,8 @@ function theme_framework_scripts_styles() {
 	wp_enqueue_style( 'cmssuperheroes-style', get_stylesheet_uri(), array( 'cmssuperheroes-bootstrap' ));
 
 	/* Loads the Internet Explorer specific stylesheet. */
-	wp_enqueue_style( 'twentytwelve-ie', get_template_directory_uri() . '/assets/css/ie.css', array( 'cmssuperheroes-style' ), '20121010' );
-	$wp_styles->add_data( 'twentytwelve-ie', 'conditional', 'lt IE 9' );
+	wp_enqueue_style( 'cmssuperheroes-ie', get_template_directory_uri() . '/assets/css/ie.css', array( 'cmssuperheroes-style' ), '20121010' );
+	$wp_styles->add_data( 'cmssuperheroes-ie', 'conditional', 'lt IE 9' );
 	
 	/* WooCommerce */
 	if(class_exists('WooCommerce')){
