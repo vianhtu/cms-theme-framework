@@ -25,7 +25,7 @@
 /**
  * Add global values.
  */
-global $smof_data, $wp_filesystem, $theme_framework_meta, $theme_framework_base;
+global $smof_data, $wp_filesystem, $theme_framework_base;
 
 /* Add WP_Filesystem. */
 if ( !class_exists('WP_Filesystem') ) {
@@ -178,47 +178,6 @@ function theme_framework_setup() {
 }
 
 add_action( 'after_setup_theme', 'theme_framework_setup' );
-
-/**
- * Get meta data.
- * @author Fox
- * @return mixed|NULL
- */
-function theme_framework_meta_data(){
-    global $post, $theme_framework_meta;
-    
-    if(!isset($post->ID)) return ;
-    
-    $theme_framework_meta = json_decode(get_post_meta($post->ID, '_cms_meta_data', true));
-    
-    if(empty($theme_framework_meta)) return ;
-    
-    foreach ($theme_framework_meta as $key => $meta){
-        $theme_framework_meta->$key = rawurldecode($meta);
-    }
-}
-add_action('wp', 'theme_framework_meta_data');
-
-/**
- * Get post meta data.
- * @author Fox
- * @return mixed|NULL
- */
-function theme_framework_post_meta_data(){
-    global $post;
-    
-    if(!isset($post->ID)) return null;
-    
-    $post_meta = json_decode(get_post_meta($post->ID, '_cms_meta_data', true));
-    
-    if(empty($post_meta)) return null;
-    
-    foreach ($post_meta as $key => $meta){
-        $post_meta->$key = rawurldecode($meta);
-    }
-    
-    return $post_meta;
-}
 
 /**
  * Enqueue scripts and styles for front-end.
@@ -429,48 +388,6 @@ function theme_framework_page_menu_args( $args ) {
     return $args;
 }
 add_filter( 'wp_page_menu_args', 'theme_framework_page_menu_args' );
-
-/**
- * Add field subtitle to post.
- * 
- * @since 1.0.0
- */
-function theme_framework_add_subtitle_field(){
-    global $post, $theme_framework_meta;
-    
-    /* get current_screen. */
-    $screen = get_current_screen();
-    
-    /* show field in post. */
-    if(in_array($screen->id, array('post'))){
-        
-        /* get value. */
-        $value = get_post_meta($post->ID, 'post_subtitle', true);
-        
-        /* html. */
-        echo '<div class="subtitle"><input type="text" name="post_subtitle" value="'.esc_attr($value).'" id="subtitle" placeholder = "'.esc_html__('Subtitle', 'cms-theme-framework').'" style="width: 100%;margin-top: 4px;"></div>';
-    }
-}
-
-add_action( 'edit_form_after_title', 'theme_framework_add_subtitle_field' );
-
-/**
- * Save custom theme meta. 
- * 
- * @since 1.0.0
- */
-function theme_framework_save_meta_boxes($post_id) {
-    
-    if(defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
-        return;
-    }
-    /* update field subtitle */
-    if(isset($_POST['post_subtitle'])){
-        update_post_meta($post_id, 'post_subtitle', $_POST['post_subtitle']);
-    }
-}
-
-add_action('save_post', 'theme_framework_save_meta_boxes');
 
 /**
  * Display navigation to next/previous comments when applicable.
