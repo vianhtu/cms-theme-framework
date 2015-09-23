@@ -1,91 +1,5 @@
 <?php
 /**
- * Meta Options Core
- * 
- * text, color, switch, icon, image, file, textarea, select, slider, datetime, number, editor.
- * 
- * @author Fox
- * @version 1.0.1
- */
-
-global $core_options;
-
-if(class_exists('MetaFramework')){
-	
-	$core_options = new MetaFramework();
-}
-
-/**
- * meta options.
- * 
- * get options from array.
- * 
- * @author FOX
- * @package MetaFramework
- * @version 1.0.1
- */
-if(!function_exists('cms_options')){
-
-	function cms_options($params = array())
-	{
-	    global $pagenow, $core_options;
-	
-	    wp_enqueue_style('core-options');
-	
-	    $tem_div = array('div','span','div');
-	    $tem_table = array('tr','th','td');
-	    
-	    /* Find Type */
-	    if (is_admin() && !empty($params['id']) && isset($core_options)) {
-	    	
-	        /* Taxonomys */
-	        if($pagenow == 'edit-tags.php'){
-	            global $tag;
-	
-	            $t_id = $tag->term_id;
-	            $cat_meta = get_option("category_$t_id");
-	            // get value
-	            if(!empty($cat_meta[$params['id']])){
-	                $params['value'] = $cat_meta[$params['id']];
-	            }
-	            // render id
-	            $params['id'] = "Cat_meta[".$params['id']."]";
-	
-	            $core_options->taxonomy($params);
-	        }
-	        
-	        /* Post or Page */
-	        elseif ($pagenow=='post-new.php' || $pagenow=='post.php'){
-	            global $post;
-	            
-	            // Render params id
-	            $params['id'] = "_cms_".$params['id'];
-	            
-	            $theme_framework_meta = get_post_meta($post->ID, $params['id'], true);
-	            
-	            // Get value
-	            if(isset($theme_framework_meta)){
-	            	
-	                $params['value'] = $theme_framework_meta;
-	            } else {
-	            	
-	                $params['value'] = null;
-	            }
-	
-	            $core_options->metabox($params);
-	        }
-	        
-	    } else {
-	    	
-	        esc_html_e('Error', 'cms-theme-framework');
-	    }
-	    
-	    wp_enqueue_script('core-options');
-	}
-
-}
-
-/**
  * Class MetaFramework.
  * 
  * options framework for metabox, taxonomys.
@@ -94,6 +8,9 @@ if(!function_exists('cms_options')){
  * @package MetaFramework
  * @version 1.0.1
  */
+
+global $core_options;
+
 if(!class_exists('MetaFramework')){
 
 	class MetaFramework
@@ -700,14 +617,87 @@ if(!class_exists('MetaFramework')){
 			/* OK, it's safe for us to save the data now. */
 			foreach($_POST as $key => $value) {
 				
-				if(strstr($key, '_cms_')) continue;
+				if(strstr($key, '_cms_')) {
 			
 				// Sanitize user input.
 				$value = sanitize_text_field( $value );
 				
 				// Update the meta field in the database.
 				update_post_meta( $post_id, $key, $value );
+				
+				}
 			}
 		}
+	}
+}
+
+$core_options = new MetaFramework();
+
+/**
+ * meta options.
+ *
+ * get options from array.
+ *
+ * @author FOX
+ * @package MetaFramework
+ * @version 1.0.1
+ */
+if(!function_exists('cms_options')){
+
+	function cms_options($params = array())
+	{
+		global $pagenow, $core_options;
+
+		wp_enqueue_style('core-options');
+
+		$tem_div = array('div','span','div');
+		$tem_table = array('tr','th','td');
+	  
+		/* Find Type */
+		if (is_admin() && !empty($params['id']) && isset($core_options)) {
+
+			/* Taxonomys */
+			if($pagenow == 'edit-tags.php'){
+				global $tag;
+
+				$t_id = $tag->term_id;
+				$cat_meta = get_option("category_$t_id");
+				// get value
+				if(!empty($cat_meta[$params['id']])){
+					$params['value'] = $cat_meta[$params['id']];
+				}
+				// render id
+				$params['id'] = "Cat_meta[".$params['id']."]";
+
+				$core_options->taxonomy($params);
+			}
+			 
+			/* Post or Page */
+			elseif ($pagenow=='post-new.php' || $pagenow=='post.php'){
+				global $post;
+				 
+				// Render params id
+				$params['id'] = "_cms_".$params['id'];
+				 
+				$theme_framework_meta = get_post_meta($post->ID, $params['id'], true);
+				 
+				// Get value
+				if(isset($theme_framework_meta)){
+
+					$params['value'] = $theme_framework_meta;
+				} else {
+
+					$params['value'] = null;
+				}
+				
+				$core_options->metabox($params);
+			}
+			 
+		} else {
+
+			esc_html_e('Error', 'cms-theme-framework');
+		}
+	  
+		wp_enqueue_script('core-options');
 	}
 }
