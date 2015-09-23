@@ -72,40 +72,7 @@ class CMSMetaOptions
                         '' => get_template_directory_uri().'/inc/options/images/header/h-default.png'
                     )
                 ));
-                cms_options(array(
-                    'id' => 'enable_header_fixed',
-                    'label' => esc_html__('Header Fixed','cms-theme-framework'),
-                    'type' => 'switch',
-                    'options' => array('on'=>'1','off'=>''),
-                    'follow' => array('1'=>array('#page_header_fixed_enable'))
-                ));
-                ?> <div id="page_header_fixed_enable"><?php
-                cms_options(array(
-                    'id' => 'header_fixed_bg_color',
-                    'label' => esc_html__('Background Color','cms-theme-framework'),
-                    'type' => 'color',
-                    'default' => '#fff',
-                    'rgba' => true
-                ));
-                cms_options(array(
-                    'id' => 'header_fixed_menu_color',
-                    'label' => esc_html__('Menu Color - First Level','cms-theme-framework'),
-                    'type' => 'color',
-                    'default' => ''
-                ));
-                cms_options(array(
-                    'id' => 'header_fixed_menu_color_hover',
-                    'label' => esc_html__('Menu Color - First Level','cms-theme-framework'),
-                    'type' => 'color',
-                    'default' => ''
-                ));
-                cms_options(array(
-                    'id' => 'header_fixed_menu_color_active',
-                    'label' => esc_html__('Menu Active - First Level','cms-theme-framework'),
-                    'type' => 'color',
-                    'default' => ''
-                ));
-                ?> </div><?php
+                
                 $menus = array();
                 $menus[''] = 'Default';
                 $obj_menus = wp_get_nav_menus();
