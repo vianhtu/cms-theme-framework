@@ -7,7 +7,7 @@
  */
 global $core_options;
 
-$core_options = new CsCoreControl();
+$core_options = new MetaFramework();
 
 function cms_options($params = array())
 {
@@ -37,21 +37,18 @@ function cms_options($params = array())
         /* Post or Page */
         elseif ($pagenow=='post-new.php' || $pagenow=='post.php'){
             global $post;
-            /* Get cms meta data opject */
-            $theme_framework_meta = json_decode(get_post_meta($post->ID, '_cms_meta_data', true));
-            
-            if(!empty($theme_framework_meta)){
-                foreach ($theme_framework_meta as $key => $meta){
-                    $theme_framework_meta->$key = rawurldecode($meta);
-                }
-            }
             
             // Render params id
             $params['id'] = "_cms_".$params['id'];
+            
+            $theme_framework_meta = get_post_meta($post->ID, $params['id'], true);
+            
             // Get value
-            if(!empty($theme_framework_meta->$params['id'])){
-                $params['value'] = $theme_framework_meta->$params['id'];
+            if(isset($theme_framework_meta)){
+            	
+                $params['value'] = $theme_framework_meta;
             } else {
+            	
                 $params['value'] = null;
             }
 
@@ -60,10 +57,11 @@ function cms_options($params = array())
     } else {
         esc_html_e('Error', 'cms-theme-framework');
     }
+    
     wp_enqueue_script('core-options');
 }
 
-class CsCoreControl
+class MetaFramework
 {
 
     function __construct()
@@ -524,22 +522,40 @@ class CsCoreControl
      */
     public function save_meta_boxes($post_id)
 	{
-	    /* doing save. */
-		if(defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
+		/*
+		 * We need to verify this came from our screen and with proper authorization,
+		 * because the save_post action can be triggered at other times.
+		 */
+		
+		// If this is an autosave, our form has not been submitted, so we don't want to do anything.
+		if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
 			return;
 		}
-		/* array cms meta */
-        $theme_framework_meta = array();
-        
-        /* find cms meta key. */
-		foreach($_POST as $key => $value) {
-			if(strstr($key, '_cms_')) {
-			    $theme_framework_meta[$key] = rawurlencode($value);
+		
+		// Check the user's permissions.
+		if ( isset( $_POST['post_type'] ) && 'page' == $_POST['post_type'] ) {
+		
+			if ( ! current_user_can( 'edit_page', $post_id ) ) {
+				return;
+			}
+		
+		} else {
+		
+			if ( ! current_user_can( 'edit_post', $post_id ) ) {
+				return;
 			}
 		}
-		/* update _cms_meta_data. */
-		if(!empty($theme_framework_meta)){
-		  update_post_meta($post_id, '_cms_meta_data', json_encode($theme_framework_meta));
+		
+		/* OK, it's safe for us to save the data now. */
+		foreach($_POST as $key => $value) {
+			
+			if(strstr($key, '_cms_')) continue;
+		
+			// Sanitize user input.
+			$value = sanitize_text_field( $value );
+			
+			// Update the meta field in the database.
+			update_post_meta( $post_id, $key, $value );
 		}
 	}
 }
