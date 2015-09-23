@@ -86,7 +86,7 @@
                             ),
                         ) );
                     ?>
-                    <span class="screen-reader-text"><?php _e( 'Press return or enter to open this panel', 'redux-framework' ); ?></span>
+                    <span class="screen-reader-text"><?php esc_html_e( 'Press return or enter to open this panel', 'redux-framework' ); ?></span>
                 </h3>
                 <ul class="accordion-sub-container control-panel-content">
                     <table class="form-table">
@@ -135,7 +135,7 @@
             ?>
             <li class="panel-meta customize-info redux-panel accordion-section <# if ( ! data.description ) { #> cannot-expand<# } #>">
                 <button class="customize-panel-back" tabindex="-1">
-                    <span class="screen-reader-text"><?php _e( 'Back', 'redux-framework' ); ?></span></button>
+                    <span class="screen-reader-text"><?php esc_html_e( 'Back', 'redux-framework' ); ?></span></button>
                 <div class="accordion-section-title">
 				<span class="preview-notice"><?php
                         /* translators: %s is the site/panel title in the Customizer */
@@ -143,7 +143,7 @@
                     ?></span>
                     <# if ( data.description ) { #>
                         <button class="customize-help-toggle dashicons dashicons-editor-help" tabindex="0" aria-expanded="false">
-                            <span class="screen-reader-text"><?php _e( 'Help', 'redux-framework' ); ?></span></button>
+                            <span class="screen-reader-text"><?php esc_html_e( 'Help', 'redux-framework' ); ?></span></button>
                         <# } #>
                 </div>
                 <# if ( data.description ) { #>

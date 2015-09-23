@@ -81,7 +81,7 @@ class WC_Widget_Cart_Search extends WP_Widget {
 
                         <?php else : ?>
 
-                            <li class="cart-list clearfix"><?php _e( 'No products in the cart.', 'woocommerce' ); ?></li>
+                            <li class="cart-list clearfix"><?php esc_html_e( 'No products in the cart.', 'woocommerce' ); ?></li>
 
                         <?php endif; ?>
 
@@ -91,8 +91,8 @@ class WC_Widget_Cart_Search extends WP_Widget {
 
                 <?php endif; ?>
 
-                <a href="<?php echo ''.$woocommerce->cart->get_cart_url(); ?>" class="btn btn-primary left wc-forward"><?php _e( 'Cart', 'woocommerce' ); ?></a>
-                <span class="total right"><?php _e( 'Total', 'woocommerce' ); ?>:<span><?php echo ''.$woocommerce->cart->get_cart_subtotal(); ?></span></span>
+                <a href="<?php echo ''.$woocommerce->cart->get_cart_url(); ?>" class="btn btn-primary left wc-forward"><?php esc_html_e( 'Cart', 'woocommerce' ); ?></a>
+                <span class="total right"><?php esc_html_e( 'Total', 'woocommerce' ); ?>:<span><?php echo ''.$woocommerce->cart->get_cart_subtotal(); ?></span></span>
 
                 <?php if ( sizeof( $woocommerce->cart->get_cart() ) <= 0 ) : ?>
 
@@ -130,18 +130,18 @@ class WC_Widget_Cart_Search extends WP_Widget {
         $show_search = isset($instance['show_search']) ? $instance['show_search'] : 1;
         ?>
         <p>
-            <label for="<?php echo esc_attr($this->get_field_id('title')); ?>"><?php _e( 'Title:', 'cms-theme-framework' ); ?></label>
+            <label for="<?php echo esc_attr($this->get_field_id('title')); ?>"><?php esc_html_e( 'Title:', 'cms-theme-framework' ); ?></label>
             <input id="<?php echo esc_attr( $this->get_field_id('title') ); ?>" name="<?php echo esc_attr( $this->get_field_name('title') ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" />
         </p>
 		<p>
-            <label for="<?php echo esc_url($this->get_field_id('show_cart')); ?>"><?php _e( 'Show Cart:', 'cms-theme-framework' ); ?></label>
+            <label for="<?php echo esc_url($this->get_field_id('show_cart')); ?>"><?php esc_html_e( 'Show Cart:', 'cms-theme-framework' ); ?></label>
 			<select id="<?php echo ''.$this->get_field_id('show_cart'); ?>" class="widefat" name="<?php echo ''.$this->get_field_name('show_cart'); ?>">
 				<option value="0" <?php selected($show_cart,0); ?>><?php echo esc_html__('No','cms-theme-framework'); ?></option>
 				<option value="1" <?php selected($show_cart,1); ?>><?php echo esc_html__('Yes','cms-theme-framework'); ?></option>
 			</select>
         </p>
 		<p>
-            <label for="<?php echo esc_attr($this->get_field_id('show_search')); ?>"><?php _e( 'Show Search:', 'cms-theme-framework' ); ?></label>
+            <label for="<?php echo esc_attr($this->get_field_id('show_search')); ?>"><?php esc_html_e( 'Show Search:', 'cms-theme-framework' ); ?></label>
 			<select id="<?php echo ''.$this->get_field_id('show_search'); ?>" class="widefat" name="<?php echo ''.$this->get_field_name('show_search'); ?>">
 				<option value="0" <?php selected($show_search,0); ?>><?php echo esc_html__('No','cms-theme-framework'); ?></option>
 				<option value="1" <?php selected($show_search,1); ?>><?php echo esc_html__('Yes','cms-theme-framework'); ?></option>
@@ -219,7 +219,7 @@ if(!function_exists('woocommerce_header_add_to_cart_content')){
 
                 <?php else : ?>
 
-                    <li class="cart-list clearfix"><?php _e( 'No products in the cart.', 'woocommerce' ); ?></li>
+                    <li class="cart-list clearfix"><?php esc_html_e( 'No products in the cart.', 'woocommerce' ); ?></li>
 
                 <?php endif; ?>
 
@@ -227,8 +227,8 @@ if(!function_exists('woocommerce_header_add_to_cart_content')){
         </div>
         <?php if ( sizeof( $woocommerce->cart->get_cart() ) <= 0 ) : ?>
         <?php endif; ?>
-        <a href="<?php echo ''.$woocommerce->cart->get_cart_url(); ?>" class="btn btn-primary left wc-forward"><?php _e( 'Cart', 'woocommerce' ); ?></a>
-        <span class="total right"><?php _e( 'Total', 'woocommerce' ); ?>:<span><?php echo ''.$woocommerce->cart->get_cart_subtotal(); ?></span></span>
+        <a href="<?php echo ''.$woocommerce->cart->get_cart_url(); ?>" class="btn btn-primary left wc-forward"><?php esc_html_e( 'Cart', 'woocommerce' ); ?></a>
+        <span class="total right"><?php esc_html_e( 'Total', 'woocommerce' ); ?>:<span><?php echo ''.$woocommerce->cart->get_cart_subtotal(); ?></span></span>
         <?php if ( sizeof( $woocommerce->cart->get_cart() ) <= 0 ) : ?>
 
         <?php endif; ?>

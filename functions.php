@@ -482,7 +482,7 @@ function theme_framework_comment_nav() {
     if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) :
     ?>
 	<nav class="navigation comment-navigation" role="navigation">
-		<h2 class="screen-reader-text"><?php _e( 'Comment navigation', 'cms-theme-framework' ); ?></h2>
+		<h2 class="screen-reader-text"><?php esc_html_e( 'Comment navigation', 'cms-theme-framework' ); ?></h2>
 		<div class="nav-links">
 			<?php
 				if ( $prev_link = get_previous_comments_link( esc_html__( 'Older Comments', 'cms-theme-framework' ) ) ) :
@@ -611,7 +611,7 @@ function theme_framework_comment($comment, $args, $depth) {
     	</div>
     </div>
     <?php if ( $comment->comment_approved == '0' ) : ?>
-    	<em class="comment-awaiting-moderation"><?php _e( 'Your comment is awaiting moderation.' , 'cms-theme-framework'); ?></em>
+    	<em class="comment-awaiting-moderation"><?php esc_html_e( 'Your comment is awaiting moderation.' , 'cms-theme-framework'); ?></em>
     <?php endif; ?>
     <div class="comment-main">
     	<div class="comment-content">

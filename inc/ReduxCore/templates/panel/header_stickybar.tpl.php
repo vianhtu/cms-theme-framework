@@ -12,7 +12,7 @@
     <div id="info_bar">
 
         <a href="javascript:void(0);"
-           class="expand_options<?php echo ( $this->parent->args['open_expanded'] ) ? ' expanded' : ''; ?>"<?php echo $this->parent->args['hide_expand'] ? ' style="display: none;"' : '' ?>><?php _e( 'Expand', 'redux-framework' ); ?></a>
+           class="expand_options<?php echo ( $this->parent->args['open_expanded'] ) ? ' expanded' : ''; ?>"<?php echo $this->parent->args['hide_expand'] ? ' style="display: none;"' : '' ?>><?php esc_html_e( 'Expand', 'redux-framework' ); ?></a>
 
         <div class="redux-action_bar">
             <span class="spinner"></span>
@@ -25,7 +25,7 @@
                 <?php submit_button( esc_html__( 'Reset All', 'redux-framework' ), 'secondary', $this->parent->args['opt_name'] . '[defaults]', false, array( 'id' => 'redux-defaults' ) ); ?>
             <?php endif; ?>
         </div>
-        <div class="redux-ajax-loading" alt="<?php _e( 'Working...', 'redux-framework' ) ?>">&nbsp;</div>
+        <div class="redux-ajax-loading" alt="<?php esc_html_e( 'Working...', 'redux-framework' ) ?>">&nbsp;</div>
         <div class="clear"></div>
     </div>
 

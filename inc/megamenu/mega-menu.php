@@ -144,7 +144,7 @@ function start_el( &$output, $item, $depth = 0, $args = array(), $current_object
                                 ),
                                 'move-menu_item'
                             );
-                        ?>" class="item-move-up"><abbr title="<?php esc_attr_e('Move up','cms-theme-framework'); ?>">&#8593;</abbr></a>
+                        ?>" class="item-move-up"><abbr title="<?php esc_attresc_html_e('Move up','cms-theme-framework'); ?>">&#8593;</abbr></a>
                         |
                         <a href="<?php
                             echo wp_nonce_url(
@@ -157,11 +157,11 @@ function start_el( &$output, $item, $depth = 0, $args = array(), $current_object
                                 ),
                                 'move-menu_item'
                             );
-                        ?>" class="item-move-down"><abbr title="<?php esc_attr_e('Move down','cms-theme-framework'); ?>">&#8595;</abbr></a>
+                        ?>" class="item-move-down"><abbr title="<?php esc_attresc_html_e('Move down','cms-theme-framework'); ?>">&#8595;</abbr></a>
                     </span>
-                    <a class="item-edit" id="edit-<?php echo ''.$item_id; ?>" title="<?php esc_attr_e('Edit Menu Item','cms-theme-framework'); ?>" href="<?php
+                    <a class="item-edit" id="edit-<?php echo ''.$item_id; ?>" title="<?php esc_attresc_html_e('Edit Menu Item','cms-theme-framework'); ?>" href="<?php
                         echo ( isset( $_GET['edit-menu-item'] ) && $item_id == $_GET['edit-menu-item'] ) ? admin_url( 'nav-menus.php' ) : add_query_arg( 'edit-menu-item', $item_id, remove_query_arg( $removed_args, admin_url( 'nav-menus.php#menu-item-settings-' . $item_id ) ) );
-                    ?>"><?php _e( 'Edit Menu Item' ,'cms-theme-framework'); ?></a>
+                    ?>"><?php esc_html_e( 'Edit Menu Item' ,'cms-theme-framework'); ?></a>
                 </span>
             </dt>
         </dl>
@@ -170,46 +170,46 @@ function start_el( &$output, $item, $depth = 0, $args = array(), $current_object
             <?php if( 'custom' == $item->type ) : ?>
                 <p class="field-url description description-wide">
                     <label for="edit-menu-item-url-<?php echo ''.$item_id; ?>">
-                        <?php _e( 'URL' ,'cms-theme-framework'); ?><br />
+                        <?php esc_html_e( 'URL' ,'cms-theme-framework'); ?><br />
                         <input type="text" id="edit-menu-item-url-<?php echo ''.$item_id; ?>" class="widefat code edit-menu-item-url" name="menu-item-url[<?php echo ''.$item_id; ?>]" value="<?php echo esc_attr( $item->url ); ?>" />
                     </label>
                 </p>
             <?php endif; ?>
             <p class="description description-thin">
                 <label for="edit-menu-item-title-<?php echo ''.$item_id; ?>">
-                    <?php _e( 'Navigation Label' ,'cms-theme-framework'); ?><br />
+                    <?php esc_html_e( 'Navigation Label' ,'cms-theme-framework'); ?><br />
                     <input type="text" id="edit-menu-item-title-<?php echo ''.$item_id; ?>" class="widefat edit-menu-item-title" name="menu-item-title[<?php echo ''.$item_id; ?>]" value="<?php echo esc_attr( $item->title ); ?>" />
                 </label>
             </p>
             <p class="description description-thin">
                 <label for="edit-menu-item-attr-title-<?php echo ''.$item_id; ?>">
-                    <?php _e( 'Title Attribute','cms-theme-framework' ); ?><br />
+                    <?php esc_html_e( 'Title Attribute','cms-theme-framework' ); ?><br />
                     <input type="text" id="edit-menu-item-attr-title-<?php echo ''.$item_id; ?>" class="widefat edit-menu-item-attr-title" name="menu-item-attr-title[<?php echo ''.$item_id; ?>]" value="<?php echo esc_attr( $item->post_excerpt ); ?>" />
                 </label>
             </p>
             <p class="field-link-target description">
                 <label for="edit-menu-item-target-<?php echo ''.$item_id; ?>">
                     <input type="checkbox" id="edit-menu-item-target-<?php echo ''.$item_id; ?>" value="_blank" name="menu-item-target[<?php echo ''.$item_id; ?>]"<?php checked( $item->target, '_blank' ); ?> />
-                    <?php _e( 'Open link in a new window/tab' ,'cms-theme-framework'); ?>
+                    <?php esc_html_e( 'Open link in a new window/tab' ,'cms-theme-framework'); ?>
                 </label>
             </p>
             <p class="field-css-classes description description-thin">
                 <label for="edit-menu-item-classes-<?php echo ''.$item_id; ?>">
-                    <?php _e( 'CSS Classes (optional)' ,'cms-theme-framework'); ?><br />
+                    <?php esc_html_e( 'CSS Classes (optional)' ,'cms-theme-framework'); ?><br />
                     <input type="text" id="edit-menu-item-classes-<?php echo ''.$item_id; ?>" class="widefat code edit-menu-item-classes" name="menu-item-classes[<?php echo ''.$item_id; ?>]" value="<?php echo esc_attr( implode(' ', $item->classes ) ); ?>" />
                 </label>
             </p>
             <p class="field-xfn description description-thin">
                 <label for="edit-menu-item-xfn-<?php echo ''.$item_id; ?>">
-                    <?php _e( 'Link Relationship (XFN)' ,'cms-theme-framework'); ?><br />
+                    <?php esc_html_e( 'Link Relationship (XFN)' ,'cms-theme-framework'); ?><br />
                     <input type="text" id="edit-menu-item-xfn-<?php echo ''.$item_id; ?>" class="widefat code edit-menu-item-xfn" name="menu-item-xfn[<?php echo ''.$item_id; ?>]" value="<?php echo esc_attr( $item->xfn ); ?>" />
                 </label>
             </p>
             <p class="field-description description description-wide">
                 <label for="edit-menu-item-description-<?php echo ''.$item_id; ?>">
-                    <?php _e( 'Description' ,'cms-theme-framework'); ?><br />
+                    <?php esc_html_e( 'Description' ,'cms-theme-framework'); ?><br />
                     <textarea id="edit-menu-item-description-<?php echo ''.$item_id; ?>" class="widefat edit-menu-item-description" rows="3" cols="20" name="menu-item-description[<?php echo ''.$item_id; ?>]"><?php echo esc_html( $item->description ); ?></textarea>
-                    <span class="description"><?php _e('The description will be displayed in the menu if the current theme supports it.','cms-theme-framework'); ?></span>
+                    <span class="description"><?php esc_html_e('The description will be displayed in the menu if the current theme supports it.','cms-theme-framework'); ?></span>
                 </label>
             </p>
             <?php
@@ -239,12 +239,12 @@ function start_el( &$output, $item, $depth = 0, $args = array(), $current_object
                 <?php echo esc_html( $title ); ?><br />
                 <label for="edit-<?php echo ''.$key . '-' . $item_id; ?>">
                     <select id="edit-<?php echo ''.$key . '-' . $item_id; ?>" class=" <?php echo ''.$key; ?>" name="<?php echo ''.$key . "[" . $item_id . "]"; ?>">
-                        <option value="standard" <?php echo ( $value == 'standard' ) ? ' selected="selected" ' : ''; ?>><?php _e( 'Standard Dropdown', 'cms-theme-framework' ); ?></option>
-                        <option value="columns2" <?php echo ( $value == 'columns2' ) ? ' selected="selected" ' : ''; ?>><?php _e( '2 columns dropdown', 'cms-theme-framework' ); ?></option>
-                        <option value="columns3" <?php echo ( $value == 'columns3' ) ? ' selected="selected" ' : ''; ?>><?php _e( '3 columns dropdown', 'cms-theme-framework' ); ?>
+                        <option value="standard" <?php echo ( $value == 'standard' ) ? ' selected="selected" ' : ''; ?>><?php esc_html_e( 'Standard Dropdown', 'cms-theme-framework' ); ?></option>
+                        <option value="columns2" <?php echo ( $value == 'columns2' ) ? ' selected="selected" ' : ''; ?>><?php esc_html_e( '2 columns dropdown', 'cms-theme-framework' ); ?></option>
+                        <option value="columns3" <?php echo ( $value == 'columns3' ) ? ' selected="selected" ' : ''; ?>><?php esc_html_e( '3 columns dropdown', 'cms-theme-framework' ); ?>
                         </option>
-                        <option value="columns4" <?php echo ( $value == 'columns4' ) ? ' selected="selected" ' : ''; ?>><?php _e( '4 columns dropdown', 'cms-theme-framework' ); ?></option>
-                        <option value="columns5" <?php echo ( $value == 'columns5' ) ? ' selected="selected" ' : ''; ?>><?php _e( '5 columns dropdown', 'cms-theme-framework' ); ?></option>
+                        <option value="columns4" <?php echo ( $value == 'columns4' ) ? ' selected="selected" ' : ''; ?>><?php esc_html_e( '4 columns dropdown', 'cms-theme-framework' ); ?></option>
+                        <option value="columns5" <?php echo ( $value == 'columns5' ) ? ' selected="selected" ' : ''; ?>><?php esc_html_e( '5 columns dropdown', 'cms-theme-framework' ); ?></option>
                     </select>
                 </label>
             </p>
@@ -268,11 +268,11 @@ function start_el( &$output, $item, $depth = 0, $args = array(), $current_object
                 <?php echo esc_html( $title ); ?><br />
                 <label for="edit-<?php echo ''.$key . '-' . $item_id; ?>">
                     <select id="edit-<?php echo ''.$key . '-' . $item_id; ?>" class=" <?php echo ''.$key; ?>" name="<?php echo ''.$key . "[" . $item_id . "]"; ?>">
-                        <option value="autodrop_submenu" <?php echo ( $value == 'autodrop_submenu' ) ? ' selected="selected" ' : ''; ?>><?php _e( 'Auto drop', 'cms-theme-framework' ); ?></option>
-                        <option value="drop_to_left" <?php echo ( $value == 'drop_to_left' ) ? ' selected="selected" ' : ''; ?>><?php _e( 'Drop To Left Side', 'cms-theme-framework' ); ?></option>
-                        <option value="drop_to_right" <?php echo ( $value == 'drop_to_right' ) ? ' selected="selected" ' : ''; ?>><?php _e( 'Drop To Right Side', 'cms-theme-framework' ); ?></option>
-                        <option value="drop_to_center" <?php echo ( $value == 'drop_to_center' ) ? ' selected="selected" ' : ''; ?>><?php _e( 'Drop To Center', 'cms-theme-framework' ); ?></option>
-                        <option value="drop_full_width" <?php echo ( $value == 'drop_full_width' ) ? ' selected="selected" ' : ''; ?>><?php _e( 'Full width', 'cms-theme-framework' ); ?></option>
+                        <option value="autodrop_submenu" <?php echo ( $value == 'autodrop_submenu' ) ? ' selected="selected" ' : ''; ?>><?php esc_html_e( 'Auto drop', 'cms-theme-framework' ); ?></option>
+                        <option value="drop_to_left" <?php echo ( $value == 'drop_to_left' ) ? ' selected="selected" ' : ''; ?>><?php esc_html_e( 'Drop To Left Side', 'cms-theme-framework' ); ?></option>
+                        <option value="drop_to_right" <?php echo ( $value == 'drop_to_right' ) ? ' selected="selected" ' : ''; ?>><?php esc_html_e( 'Drop To Right Side', 'cms-theme-framework' ); ?></option>
+                        <option value="drop_to_center" <?php echo ( $value == 'drop_to_center' ) ? ' selected="selected" ' : ''; ?>><?php esc_html_e( 'Drop To Center', 'cms-theme-framework' ); ?></option>
+                        <option value="drop_full_width" <?php echo ( $value == 'drop_full_width' ) ? ' selected="selected" ' : ''; ?>><?php esc_html_e( 'Full width', 'cms-theme-framework' ); ?></option>
                     </select>
                 </label>
             </p>
@@ -288,7 +288,7 @@ function start_el( &$output, $item, $depth = 0, $args = array(), $current_object
                 <?php echo esc_html( $title ); ?><br />
                 <label for="edit-<?php echo ''.$key . '-' . $item_id; ?>">
                     <select id="edit-<?php echo ''.$key . '-' . $item_id; ?>" class=" <?php echo ''.$key; ?>" name="<?php echo ''.$key . "[" . $item_id . "]"; ?>">
-                        <option value="" <?php echo ( $value == '' ) ? ' selected="selected" ' : ''; ?>><?php _e( 'Select Widget Area', 'cms-theme-framework' ); ?></option>
+                        <option value="" <?php echo ( $value == '' ) ? ' selected="selected" ' : ''; ?>><?php esc_html_e( 'Select Widget Area', 'cms-theme-framework' ); ?></option>
                         <?php
                         foreach ( $sidebars as $sidebar ) {
                             echo '<option value="' . $sidebar['id'] . '" ' . ( ( $value == $sidebar['id'] ) ? ' selected="selected" ' : '' ) . '>[' . $sidebar['id'] . '] - ' . $sidebar['name'] . '</option>';
@@ -306,8 +306,8 @@ function start_el( &$output, $item, $depth = 0, $args = array(), $current_object
                 <?php echo esc_html( $title ); ?><br />
                 <label for="edit-<?php echo ''.$key . '-' . $item_id; ?>">
                     <select id="edit-<?php echo ''.$key . '-' . $item_id; ?>" class=" <?php echo ''.$key; ?>" name="<?php echo ''.$key . "[" . $item_id . "]"; ?>">
-                        <option value="no_group" <?php echo ( $value == 'no_group' ) ? ' selected="selected" ' : ''; ?>><?php _e( 'No', 'cms-theme-framework' ); ?></option>
-                        <option value="group" <?php echo ( $value == 'group' ) ? ' selected="selected" ' : ''; ?>><?php _e( 'Yes', 'cms-theme-framework' ); ?></option>
+                        <option value="no_group" <?php echo ( $value == 'no_group' ) ? ' selected="selected" ' : ''; ?>><?php esc_html_e( 'No', 'cms-theme-framework' ); ?></option>
+                        <option value="group" <?php echo ( $value == 'group' ) ? ' selected="selected" ' : ''; ?>><?php esc_html_e( 'Yes', 'cms-theme-framework' ); ?></option>
                     </select>
                 </label>
             </p>
@@ -321,8 +321,8 @@ function start_el( &$output, $item, $depth = 0, $args = array(), $current_object
                 <?php echo esc_html( $title ); ?><br />
                 <label for="edit-<?php echo ''.$key . '-' . $item_id; ?>">
                     <select id="edit-<?php echo ''.$key . '-' . $item_id; ?>" class=" <?php echo ''.$key; ?>" name="<?php echo ''.$key . "[" . $item_id . "]"; ?>">
-                        <option value="0" <?php echo ( $value == '0' ) ? ' selected="selected" ' : ''; ?>><?php _e( 'No', 'cms-theme-framework' ); ?></option>
-                        <option value="1" <?php echo ( $value == '1' ) ? ' selected="selected" ' : ''; ?>><?php _e( 'Yes', 'cms-theme-framework' ); ?></option>
+                        <option value="0" <?php echo ( $value == '0' ) ? ' selected="selected" ' : ''; ?>><?php esc_html_e( 'No', 'cms-theme-framework' ); ?></option>
+                        <option value="1" <?php echo ( $value == '1' ) ? ' selected="selected" ' : ''; ?>><?php esc_html_e( 'Yes', 'cms-theme-framework' ); ?></option>
                     </select>
                 </label>
             </p>
@@ -354,7 +354,7 @@ function start_el( &$output, $item, $depth = 0, $args = array(), $current_object
             <label for="edit-<?php echo ''.$key . '-' . $item_id; ?>">
                 <?php echo esc_html( $title ); ?><br />
                 <input type="text" value="<?php echo ''.$value; ?>" id="edit-<?php echo ''.$key . '-' . $item_id; ?>" class=" <?php echo ''.$key; ?>" name="<?php echo ''.$key . "[" . $item_id . "]"; ?>" />
-                <input alt="#TB_inline?height=400&width=500&inlineId=<?php echo ''.$key . '-' . $item_id . '-popup'; ?>" title="<?php _e( 'Click to browse icon', 'cms-theme-framework' ) ?>" class="thickbox button-secondary submit-add-to-menu" type="button" value="<?php _e( 'Browse Icon', 'cms-theme-framework' ) ?>" />
+                <input alt="#TB_inline?height=400&width=500&inlineId=<?php echo ''.$key . '-' . $item_id . '-popup'; ?>" title="<?php esc_html_e( 'Click to browse icon', 'cms-theme-framework' ) ?>" class="thickbox button-secondary submit-add-to-menu" type="button" value="<?php esc_html_e( 'Browse Icon', 'cms-theme-framework' ) ?>" />
                 <a class="button btn_clear button-primary" href="javascript: void(0);">Clear</a>
                 <span class="icon-preview  icon-preview<?php echo '-' . $item_id; ?>"><i class=" fa fa-<?php echo ''.$value; ?>"></i></span>
             </label>
@@ -371,7 +371,7 @@ function start_el( &$output, $item, $depth = 0, $args = array(), $current_object
                 <label for="edit-<?php echo ''.$key . '-' . $item_id; ?>">
                     <span class='obtheme_long_desc'><?php echo esc_html( $title ); ?></span><br />
                     <input type="text" value="<?php echo ''.$value; ?>" id="edit-<?php echo ''.$key . '-' . $item_id; ?>" class=" <?php echo ''.$key; ?>" name="<?php echo ''.$key . "[" . $item_id . "]"; ?>" />
-                    <button id="browse-edit-<?php echo ''.$key . '-' . $item_id; ?>" class="set_custom_images button button-secondary submit-add-to-menu"><?php _e( 'Browse Image', 'cms-theme-framework' ); ?></button>
+                    <button id="browse-edit-<?php echo ''.$key . '-' . $item_id; ?>" class="set_custom_images button button-secondary submit-add-to-menu"><?php esc_html_e( 'Browse Image', 'cms-theme-framework' ); ?></button>
                     <a class="button btn_clear button-primary" href="javascript: void(0);">Clear</a>
                 </label>
             </p>
@@ -498,8 +498,8 @@ function start_el( &$output, $item, $depth = 0, $args = array(), $current_object
                         remove_query_arg($removed_args, admin_url( 'nav-menus.php' ) )
                     ),
                     'delete-menu_item_' . $item_id
-                ); ?>"><?php _e('Remove','cms-theme-framework'); ?></a> <span class="meta-sep"> | </span> <a class="item-cancel submitcancel" id="cancel-<?php echo ''.$item_id; ?>" href="<?php echo esc_url( add_query_arg( array('edit-menu-item' => $item_id, 'cancel' => time()), remove_query_arg( $removed_args, admin_url( 'nav-menus.php' ) ) ) );
-                    ?>#menu-item-settings-<?php echo ''.$item_id; ?>"><?php _e('Cancel','cms-theme-framework'); ?></a>
+                ); ?>"><?php esc_html_e('Remove','cms-theme-framework'); ?></a> <span class="meta-sep"> | </span> <a class="item-cancel submitcancel" id="cancel-<?php echo ''.$item_id; ?>" href="<?php echo esc_url( add_query_arg( array('edit-menu-item' => $item_id, 'cancel' => time()), remove_query_arg( $removed_args, admin_url( 'nav-menus.php' ) ) ) );
+                    ?>#menu-item-settings-<?php echo ''.$item_id; ?>"><?php esc_html_e('Cancel','cms-theme-framework'); ?></a>
             </div>
 
             <input class="menu-item-data-db-id" type="hidden" name="menu-item-db-id[<?php echo ''.$item_id; ?>]" value="<?php echo ''.$item_id; ?>" />

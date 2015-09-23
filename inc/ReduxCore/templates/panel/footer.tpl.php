@@ -57,7 +57,7 @@
 
         </div>
 
-        <div class="redux-ajax-loading" alt="<?php _e( 'Working...', 'redux-framework' ) ?>">&nbsp;</div>
+        <div class="redux-ajax-loading" alt="<?php esc_html_e( 'Working...', 'redux-framework' ) ?>">&nbsp;</div>
         <div class="clear"></div>
 
     </div>

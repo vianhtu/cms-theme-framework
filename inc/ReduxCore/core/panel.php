@@ -309,7 +309,7 @@
                         if ( $core_version && $developer_version && version_compare( $developer_version, $core_version, '<' ) ) {
                             ?>
                             <div id="message" class="error redux-message">
-                                <p><?php _e( '<strong>Your panel has bundled outdated copies of Redux Framework template files</strong> &#8211; if you encounter functionality issues this could be the reason. Ensure you update or remove them.', 'redux-framework' ); ?></p>
+                                <p><?php esc_html_e( '<strong>Your panel has bundled outdated copies of Redux Framework template files</strong> &#8211; if you encounter functionality issues this could be the reason. Ensure you update or remove them.', 'redux-framework' ); ?></p>
                             </div>
                             <?php
                             return;

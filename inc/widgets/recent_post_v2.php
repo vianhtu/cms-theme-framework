@@ -106,19 +106,19 @@ class CS_Recent_Post_Widget_V2 extends WP_Widget {
                      $number = 5;
         ?>
         <p>
-            <label for="<?php echo ''.$this->get_field_id('title'); ?>"><?php _e( 'Title:', 'woocommerce' ); ?></label>
+            <label for="<?php echo ''.$this->get_field_id('title'); ?>"><?php esc_html_e( 'Title:', 'woocommerce' ); ?></label>
             <input class="widefat" id="<?php echo esc_attr( $this->get_field_id('title') ); ?>" name="<?php echo esc_attr( $this->get_field_name('title') ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" />
         </p>
         <p>
-            <label for="<?php echo ''.$this->get_field_id('show_date'); ?>"><?php _e( 'Show date:', 'cms-theme-framework' ); ?></label>
+            <label for="<?php echo ''.$this->get_field_id('show_date'); ?>"><?php esc_html_e( 'Show date:', 'cms-theme-framework' ); ?></label>
             <input class="widefat" id="<?php echo esc_attr( $this->get_field_id('show_date') ); ?>" name="<?php echo esc_attr( $this->get_field_name('show_date') ); ?>" <?php if($show_date!='') echo 'checked="checked";' ?> type="checkbox" value="1"  />
         </p>
         <p>
-            <label for="<?php echo ''.$this->get_field_id('show_decs'); ?>"><?php _e( 'Show Description:', 'cms-theme-framework' ); ?></label>
+            <label for="<?php echo ''.$this->get_field_id('show_decs'); ?>"><?php esc_html_e( 'Show Description:', 'cms-theme-framework' ); ?></label>
             <input class="widefat" id="<?php echo esc_attr( $this->get_field_id('show_decs') ); ?>" name="<?php echo esc_attr( $this->get_field_name('show_decs') ); ?>" <?php if($show_decs!='') echo 'checked="checked";' ?> type="checkbox" value="1" />
         </p>
         <p>
-            <label for="<?php echo ''.$this->get_field_id('number'); ?>"><?php _e( 'Number of products to show:', 'woocommerce' ); ?></label>
+            <label for="<?php echo ''.$this->get_field_id('number'); ?>"><?php esc_html_e( 'Number of products to show:', 'woocommerce' ); ?></label>
             <input id="<?php echo esc_attr( $this->get_field_id('number') ); ?>" name="<?php echo esc_attr( $this->get_field_name('number') ); ?>" type="text" value="<?php echo esc_attr( $number ); ?>" size="3" />
         </p>
         <p>

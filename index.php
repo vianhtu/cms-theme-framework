@@ -36,7 +36,7 @@ get_header(); ?>
                                 // Show a different message to a logged-in user who can add posts.
                                 ?>
                                 <header class="entry-header">
-                                    <h1 class="entry-title"><?php _e( 'No posts to display', 'cms-theme-framework' ); ?></h1>
+                                    <h1 class="entry-title"><?php esc_html_e( 'No posts to display', 'cms-theme-framework' ); ?></h1>
                                 </header>
 
                                 <div class="entry-content">
@@ -47,11 +47,11 @@ get_header(); ?>
                                 // Show the default message to everyone else.
                                 ?>
                                 <header class="entry-header">
-                                    <h1 class="entry-title"><?php _e( 'Nothing Found', 'cms-theme-framework' ); ?></h1>
+                                    <h1 class="entry-title"><?php esc_html_e( 'Nothing Found', 'cms-theme-framework' ); ?></h1>
                                 </header>
 
                                 <div class="entry-content">
-                                    <p><?php _e( 'Apologies, but no results were found. Perhaps searching will help find a related post.', 'cms-theme-framework' ); ?></p>
+                                    <p><?php esc_html_e( 'Apologies, but no results were found. Perhaps searching will help find a related post.', 'cms-theme-framework' ); ?></p>
                                     <?php get_search_form(); ?>
                                 </div><!-- .entry-content -->
                             <?php endif; // end current_user_can() check ?>

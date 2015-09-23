@@ -174,11 +174,11 @@ function theme_framework_main_class(){
 function theme_framework_archive_detail(){
     ?>
     <ul>
-        <li class="detail-author"><?php _e('By', 'cms-theme-framework'); ?> <?php the_author_posts_link(); ?></li>
+        <li class="detail-author"><?php esc_html_e('By', 'cms-theme-framework'); ?> <?php the_author_posts_link(); ?></li>
         <?php if(has_category()): ?>
         <li class="detail-terms"><?php the_terms( get_the_ID(), 'category', '<i class="fa fa-sitemap"></i>', ' / ' ); ?></li>
         <?php endif; ?>
-        <li class="detail-comment"><i class="fa fa-comments-o"></i><a href="<?php the_permalink(); ?>"><?php echo comments_number('0','1','%'); ?> <?php _e('Comments', 'cms-theme-framework'); ?></a></li>
+        <li class="detail-comment"><i class="fa fa-comments-o"></i><a href="<?php the_permalink(); ?>"><?php echo comments_number('0','1','%'); ?> <?php esc_html_e('Comments', 'cms-theme-framework'); ?></a></li>
         <?php if(has_tag()): ?>
         <li class="detail-tags"><?php the_tags('<i class="fa fa-tags"></i>', ', ' ); ?></li>
         <?php endif; ?>

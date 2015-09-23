@@ -20,13 +20,13 @@ class ThemeFrameworkBase
                     the_title();
                 endif;
             elseif (is_front_page()):
-                _e('Blog', 'cms-theme-framework');
+                esc_html_e('Blog', 'cms-theme-framework');
             /* search */
             elseif (is_search()):
                 printf( esc_html__( 'Search Results for: %s', 'cms-theme-framework' ), '<span>' . get_search_query() . '</span>' );
             /* 404 */ 
             elseif (is_404()):
-                _e( '404', 'cms-theme-framework');
+                esc_html_e( '404', 'cms-theme-framework');
             /* other */
             else :
                 the_title();
@@ -50,23 +50,23 @@ class ThemeFrameworkBase
                 printf( esc_html__( 'Year: %s', 'cms-theme-framework' ), '<span>' . get_the_date( _x( 'Y', 'yearly archives date format', 'cms-theme-framework' ) ) . '</span>' );
             /* post format */
             elseif ( is_tax( 'post_format', 'post-format-aside' ) ) :
-                _e( 'Asides', 'cms-theme-framework' );
+                esc_html_e( 'Asides', 'cms-theme-framework' );
             elseif ( is_tax( 'post_format', 'post-format-gallery' ) ) :
-                _e( 'Galleries', 'cms-theme-framework');
+                esc_html_e( 'Galleries', 'cms-theme-framework');
             elseif ( is_tax( 'post_format', 'post-format-image' ) ) :
-                _e( 'Images', 'cms-theme-framework');
+                esc_html_e( 'Images', 'cms-theme-framework');
             elseif ( is_tax( 'post_format', 'post-format-video' ) ) :
-                _e( 'Videos', 'cms-theme-framework' );
+                esc_html_e( 'Videos', 'cms-theme-framework' );
             elseif ( is_tax( 'post_format', 'post-format-quote' ) ) :
-                _e( 'Quotes', 'cms-theme-framework' );
+                esc_html_e( 'Quotes', 'cms-theme-framework' );
             elseif ( is_tax( 'post_format', 'post-format-link' ) ) :
-                _e( 'Links', 'cms-theme-framework' );
+                esc_html_e( 'Links', 'cms-theme-framework' );
             elseif ( is_tax( 'post_format', 'post-format-status' ) ) :
-                _e( 'Statuses', 'cms-theme-framework' );
+                esc_html_e( 'Statuses', 'cms-theme-framework' );
             elseif ( is_tax( 'post_format', 'post-format-audio' ) ) :
-                _e( 'Audios', 'cms-theme-framework' );
+                esc_html_e( 'Audios', 'cms-theme-framework' );
             elseif ( is_tax( 'post_format', 'post-format-chat' ) ) :
-                _e( 'Chats', 'cms-theme-framework' );
+                esc_html_e( 'Chats', 'cms-theme-framework' );
             /* woocommerce */
             elseif (class_exists('Woocommerce') && is_woocommerce()):
                 woocommerce_page_title();
