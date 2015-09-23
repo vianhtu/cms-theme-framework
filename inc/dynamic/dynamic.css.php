@@ -37,7 +37,7 @@ class CMSSuperHeroes_DynamicCss
      */
     public function css_render()
     {
-        global $smof_data, $theme_framework_meta;
+        global $smof_data;
         ob_start();
         
         return ob_get_clean();

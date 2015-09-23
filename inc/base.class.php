@@ -8,8 +8,6 @@ class ThemeFrameworkBase
      * @since 1.0.0
      */
     public static function getPageTitle(){
-        global $theme_framework_meta;
-        
         if (!is_archive()){
             /* page. */
             if(is_page()) :

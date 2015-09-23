@@ -66,6 +66,7 @@ if(class_exists('Vc_Manager')){
     }
     
     add_action('init', 'theme_framework_vc_params');
+    
     function theme_framework_vc_params() {
         //require( get_template_directory() . '/vc_params/vc_rows.php' );
     }
@@ -376,6 +377,36 @@ function theme_framework_widgets_init() {
 add_action( 'widgets_init', 'theme_framework_widgets_init' );
 
 /**
+ * Get meta data.
+ * 
+ * @param string $key
+ * @param string $default
+ */
+function theme_framework_get_post_meta($key, $default = '', $post_id = NULL){
+	
+	global $post;
+	
+	/* key null. */
+	if(!$key) return $default;
+	
+	$key = '_cms_' . $key;
+	
+	/* post ID null. */
+	if(!$post_id && empty($post->ID)) return $default;
+	
+	/* set post ID */
+	if(!$post_id) $post_id = $post->ID;
+	
+	/* get meta. */
+	$meta = get_post_meta($post_id, $key, true);
+	
+	/* meta null. */
+	if(empty($meta)) return $default;
+	
+	return $meta;
+}
+
+/**
  * Filter the page menu arguments.
  *
  * Makes our wp_nav_menu() fallback -- wp_page_menu() -- show a home link.
@@ -387,6 +418,7 @@ function theme_framework_page_menu_args( $args ) {
         $args['show_home'] = true;
     return $args;
 }
+
 add_filter( 'wp_page_menu_args', 'theme_framework_page_menu_args' );
 
 /**

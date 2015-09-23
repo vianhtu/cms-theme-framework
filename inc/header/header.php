@@ -5,7 +5,7 @@
  * @author : Fox
  */
 ?>
-<?php global $smof_data, $theme_framework_meta; ?>
+<?php global $smof_data; ?>
 <?php if ($smof_data['enable_header_top'] =='1'): ?>
 <div id="cshero-header-top">
     <div class="container">
