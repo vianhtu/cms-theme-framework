@@ -122,12 +122,12 @@ class ThemeFrameworkBase
             if ( $params["link_none"] )
                 $parents[]  = get_the_title( $page->ID );
             else
-                $parents[]  = '<li><a href="' . get_permalink( $page->ID ) . '" title="' . get_the_title( $page->ID ) . '">' . get_the_title( $page->ID ) . '</a></li>' . $separator;
+                $parents[]  = '<li><a href="' . esc_url(get_permalink( $page->ID )) . '" title="' . esc_attr(get_the_title( $page->ID )) . '">' . esc_html(get_the_title( $page->ID )) . '</a></li>' . $separator;
             $parent_id  = $page->post_parent;
             endwhile;
             $parents = array_reverse( $parents );
             echo join( '', $parents );
-            echo '<li>'.get_the_title().'</li>';
+            echo '<li>'.esc_html(get_the_title()).'</li>';
         }
         /* single */
         if(is_single()) {
@@ -145,7 +145,7 @@ class ThemeFrameworkBase
                 ));
                 if ( $categories ) :
                 foreach ( $categories as $cat ) :
-                $cats[] = '<li><a href="' . get_category_link( $cat->term_id ) . '" title="' . $cat->name . '">' . $cat->name . '</a></li>';
+                $cats[] = '<li><a href="' . esc_url(get_category_link( $cat->term_id )) . '" title="' . esc_attr($cat->name) . '">' . esc_html($cat->name) . '</a></li>';
                 endforeach;
                 echo join( '', $cats );
                 endif;
