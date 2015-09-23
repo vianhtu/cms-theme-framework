@@ -8,7 +8,7 @@
      * @version:    3.5.4.18
      */
 
-    $tip_title = __( 'Developer Mode Enabled', 'redux-framework' );
+    $tip_title = esc_html__( 'Developer Mode Enabled', 'redux-framework' );
 
     if ( $this->parent->dev_mode_forced ) {
         $is_debug     = false;
@@ -17,23 +17,23 @@
         $debug_bit = '';
         if ( Redux_Helpers::isWpDebug() ) {
             $is_debug  = true;
-            $debug_bit = __( 'WP_DEBUG is enabled', 'redux-framework' );
+            $debug_bit = esc_html__( 'WP_DEBUG is enabled', 'redux-framework' );
         }
 
         $localhost_bit = '';
         if ( Redux_Helpers::isLocalHost() ) {
             $is_localhost  = true;
-            $localhost_bit = __( 'you are working in a localhost environment', 'redux-framework' );
+            $localhost_bit = esc_html__( 'you are working in a localhost environment', 'redux-framework' );
         }
 
         $conjunction_bit = '';
         if ( $is_localhost && $is_debug ) {
-            $conjunction_bit = ' ' . __( 'and', 'redux-framework' ) . ' ';
+            $conjunction_bit = ' ' . esc_html__( 'and', 'redux-framework' ) . ' ';
         }
 
-        $tip_msg = __( 'This has been automatically enabled because', 'redux-framework' ) . ' ' . $debug_bit . $conjunction_bit . $localhost_bit . '.';
+        $tip_msg = esc_html__( 'This has been automatically enabled because', 'redux-framework' ) . ' ' . $debug_bit . $conjunction_bit . $localhost_bit . '.';
     } else {
-        $tip_msg = __( 'If you are not a developer, your theme/plugin author shipped with developer mode enabled. Contact them directly to fix it.', 'redux-framework' );
+        $tip_msg = esc_html__( 'If you are not a developer, your theme/plugin author shipped with developer mode enabled. Contact them directly to fix it.', 'redux-framework' );
     }
 
 ?>

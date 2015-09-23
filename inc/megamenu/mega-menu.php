@@ -116,11 +116,11 @@ function start_el( &$output, $item, $depth = 0, $args = array(), $current_object
     if ( ! empty( $item->_invalid ) ) {
         $classes[] = 'menu-item-invalid';
         /* translators: %s: title of menu item which is invalid */
-        $title = sprintf( __( '%s (Invalid)', 'cms-theme-framework'), $item->title );
+        $title = sprintf( esc_html__( '%s (Invalid)', 'cms-theme-framework'), $item->title );
     } elseif ( isset( $item->post_status ) && 'draft' == $item->post_status ) {
         $classes[] = 'pending';
         /* translators: %s: title of menu item in draft status */
-        $title = sprintf( __('%s (Pending)', 'cms-theme-framework'), $item->title );
+        $title = sprintf( esc_html__('%s (Pending)', 'cms-theme-framework'), $item->title );
     }
 
     $title = empty( $item->label ) ? $title : $item->label;
@@ -485,7 +485,7 @@ function start_el( &$output, $item, $depth = 0, $args = array(), $current_object
             <div class="menu-item-actions description-wide submitbox">
                 <?php if( 'custom' != $item->type && $original_title !== false ) : ?>
                     <p class="link-to-original">
-                        <?php printf( __('Original: %s', 'cms-theme-framework'), '<a href="' . esc_attr( $item->url ) . '">' . esc_html( $original_title ) . '</a>' ); ?>
+                        <?php printf( esc_html__('Original: %s', 'cms-theme-framework'), '<a href="' . esc_attr( $item->url ) . '">' . esc_html( $original_title ) . '</a>' ); ?>
                     </p>
                 <?php endif; ?>
                 <a class="item-delete submitdelete deletion" id="delete-<?php echo ''.$item_id; ?>" href="<?php

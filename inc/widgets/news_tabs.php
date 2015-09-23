@@ -9,7 +9,7 @@ class WW_News_Tabs_Widget extends WP_Widget {
 
     function WW_News_Tabs_Widget() {
         parent::__construct(
-                'ww_news_tabs', __('CS News Tab Widget', 'cms-theme-framework'), array('description' => __('Popular post, recent post and comments.', 'cms-theme-framework'),)
+                'ww_news_tabs', esc_html__('CS News Tab Widget', 'cms-theme-framework'), array('description' => esc_html__('Popular post, recent post and comments.', 'cms-theme-framework'),)
         );
     }
 
@@ -42,13 +42,13 @@ class WW_News_Tabs_Widget extends WP_Widget {
             <div class="tab-hold tabs-wrapper">
                 <ul id="tabs" class="nav nav-tabs clearfix">
                     <?php if ($show_popular_posts == 'true'): ?>
-                        <li class="active"><a href="#tab1" data-toggle="tab"><?php echo __('Popular', 'cms-theme-framework'); ?></a></li>
+                        <li class="active"><a href="#tab1" data-toggle="tab"><?php echo esc_html__('Popular', 'cms-theme-framework'); ?></a></li>
                     <?php endif; ?>
                     <?php if ($show_recent_posts == 'true'): ?>
-                        <li><a href="#tab2" data-toggle="tab"><?php echo __('Recent', 'cms-theme-framework'); ?></a></li>
+                        <li><a href="#tab2" data-toggle="tab"><?php echo esc_html__('Recent', 'cms-theme-framework'); ?></a></li>
                     <?php endif; ?>
                     <?php if ($show_comments == 'true'): ?>
-                        <li><a href="#tab3" data-toggle="tab"><?php echo __('Comments', 'cms-theme-framework'); ?></a></li>
+                        <li><a href="#tab3" data-toggle="tab"><?php echo esc_html__('Comments', 'cms-theme-framework'); ?></a></li>
                     <?php endif; ?>
                 </ul>
                 <div class="tab-content">
@@ -79,7 +79,7 @@ class WW_News_Tabs_Widget extends WP_Widget {
                                                 <h4><?php the_title(); ?></h4>
                                                 <div class="description"><?php echo theme_framework_limit_words( strip_tags( get_the_excerpt() ),10)."..."; ?></div>
                                                 <div class="readmore">
-                                                    <a href="<?php the_permalink(); ?>"><?php echo __('Read More...','cms-theme-framework') ?></a>
+                                                    <a href="<?php the_permalink(); ?>"><?php echo esc_html__('Read More...','cms-theme-framework') ?></a>
                                                 </div>
                                             </div>
                                         </li>
@@ -115,7 +115,7 @@ class WW_News_Tabs_Widget extends WP_Widget {
                                                 <h4><?php the_title(); ?></h4>
                                                 <div class="description"><?php echo theme_framework_limit_words( strip_tags( get_the_excerpt() ),10)."..."; ?></div>
                                                 <div class="readmore">
-                                                    <a href="<?php the_permalink(); ?>"><?php echo __('Read More...','cms-theme-framework') ?></a>
+                                                    <a href="<?php the_permalink(); ?>"><?php echo esc_html__('Read More...','cms-theme-framework') ?></a>
                                                 </div>
                                             </div>
                                         </li>

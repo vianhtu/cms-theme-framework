@@ -40,7 +40,7 @@ get_header(); ?>
                                 </header>
 
                                 <div class="entry-content">
-                                    <p><?php printf( __( 'Ready to publish your first post? <a href="%s">Get started here</a>.', 'cms-theme-framework' ), admin_url( 'post-new.php' ) ); ?></p>
+                                    <p><?php printf( esc_html__( 'Ready to publish your first post? <a href="%s">Get started here</a>.', 'cms-theme-framework' ), admin_url( 'post-new.php' ) ); ?></p>
                                 </div><!-- .entry-content -->
 
                             <?php else :

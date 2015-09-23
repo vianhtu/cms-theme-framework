@@ -62,7 +62,7 @@
                 echo '<div class="wrap">';
 
                 // Do we support JS?
-                echo '<noscript><div class="no-js">' . __( 'Warning- This options panel will not work properly without javascript!', 'redux-framework' ) . '</div></noscript>';
+                echo '<noscript><div class="no-js">' . esc_html__( 'Warning- This options panel will not work properly without javascript!', 'redux-framework' ) . '</div></noscript>';
 
                 // Security is vital!
                 echo '<input type="hidden" id="ajaxsecurity" name="security" value="' . wp_create_nonce( 'redux_ajax_nonce' . $this->parent->args['opt_name'] ) . '" />';
@@ -138,7 +138,7 @@
                          *
                          * @param string  translated "settings imported" text
                          */
-                        echo '<div class="admin-notice notice-blue saved_notice"><strong>' . apply_filters( "redux-imported-text-{$this->parent->args['opt_name']}", __( 'Settings Imported!', 'redux-framework' ) ) . '</strong></div>';
+                        echo '<div class="admin-notice notice-blue saved_notice"><strong>' . apply_filters( "redux-imported-text-{$this->parent->args['opt_name']}", esc_html__( 'Settings Imported!', 'redux-framework' ) ) . '</strong></div>';
                         //exit();
                     } else if ( $this->parent->transients['last_save_mode'] == "defaults" ) {
                         /**
@@ -153,7 +153,7 @@
                          *
                          * @param string  translated "settings imported" text
                          */
-                        echo '<div class="saved_notice admin-notice notice-yellow"><strong>' . apply_filters( "redux-defaults-text-{$this->parent->args['opt_name']}", __( 'All Defaults Restored!', 'redux-framework' ) ) . '</strong></div>';
+                        echo '<div class="saved_notice admin-notice notice-yellow"><strong>' . apply_filters( "redux-defaults-text-{$this->parent->args['opt_name']}", esc_html__( 'All Defaults Restored!', 'redux-framework' ) ) . '</strong></div>';
                     } else if ( $this->parent->transients['last_save_mode'] == "defaults_section" ) {
                         /**
                          * action 'redux/options/{opt_name}/section/reset'
@@ -167,7 +167,7 @@
                          *
                          * @param string  translated "settings imported" text
                          */
-                        echo '<div class="saved_notice admin-notice notice-yellow"><strong>' . apply_filters( "redux-defaults-section-text-{$this->parent->args['opt_name']}", __( 'Section Defaults Restored!', 'redux-framework' ) ) . '</strong></div>';
+                        echo '<div class="saved_notice admin-notice notice-yellow"><strong>' . apply_filters( "redux-defaults-section-text-{$this->parent->args['opt_name']}", esc_html__( 'Section Defaults Restored!', 'redux-framework' ) ) . '</strong></div>';
                     } else if ( $this->parent->transients['last_save_mode'] == "normal" ) {
                         /**
                          * action 'redux/options/{opt_name}/saved'
@@ -181,7 +181,7 @@
                          *
                          * @param string translated "settings saved" text
                          */
-                        echo '<div class="saved_notice admin-notice notice-green">' . apply_filters( "redux-saved-text-{$this->parent->args['opt_name']}", '<strong>'.__( 'Settings Saved!', 'redux-framework' ) ).'</strong>' . '</div>';
+                        echo '<div class="saved_notice admin-notice notice-green">' . apply_filters( "redux-saved-text-{$this->parent->args['opt_name']}", '<strong>'.esc_html__( 'Settings Saved!', 'redux-framework' ) ).'</strong>' . '</div>';
                     }
 
                     unset( $this->parent->transients['last_save_mode'] );
@@ -201,7 +201,7 @@
                  *
                  * @param string translated "settings have changed" text
                  */
-                echo '<div class="redux-save-warn notice-yellow"><strong>' . apply_filters( "redux-changed-text-{$this->parent->args['opt_name']}", __( 'Settings have changed, you should save them!', 'redux-framework' ) ) . '</strong></div>';
+                echo '<div class="redux-save-warn notice-yellow"><strong>' . apply_filters( "redux-changed-text-{$this->parent->args['opt_name']}", esc_html__( 'Settings have changed, you should save them!', 'redux-framework' ) ) . '</strong></div>';
 
                 /**
                  * action 'redux/options/{opt_name}/errors'
@@ -209,7 +209,7 @@
                  * @param array $this ->errors error information
                  */
                 do_action( "redux/options/{$this->parent->args['opt_name']}/errors", $this->parent->errors );
-                echo '<div class="redux-field-errors notice-red"><strong><span></span> ' . __( 'error(s) were found!', 'redux-framework' ) . '</strong></div>';
+                echo '<div class="redux-field-errors notice-red"><strong><span></span> ' . esc_html__( 'error(s) were found!', 'redux-framework' ) . '</strong></div>';
 
                 /**
                  * action 'redux/options/{opt_name}/warnings'
@@ -217,7 +217,7 @@
                  * @param array $this ->warnings warning information
                  */
                 do_action( "redux/options/{$this->parent->args['opt_name']}/warnings", $this->parent->warnings );
-                echo '<div class="redux-field-warnings notice-yellow"><strong><span></span> ' . __( 'warning(s) were found!', 'redux-framework' ) . '</strong></div>';
+                echo '<div class="redux-field-warnings notice-yellow"><strong><span></span> ' . esc_html__( 'warning(s) were found!', 'redux-framework' ) . '</strong></div>';
 
             }
 

@@ -26,7 +26,7 @@
 		<div class="entry-content">
 			<?php if($video) { echo apply_filters('the_content', preg_replace(array('/\[embed(.*)](.*)\[\/embed\]/', '/\[video(.*)](.*)\[\/video\]/'), '', get_the_content(), 1)); } else { the_content(); }
 	    		wp_link_pages( array(
-	        		'before'      => '<div class="pagination loop-pagination"><span class="page-links-title">' . __( 'Pages:','cms-theme-framework') . '</span>',
+	        		'before'      => '<div class="pagination loop-pagination"><span class="page-links-title">' . esc_html__( 'Pages:','cms-theme-framework') . '</span>',
 	        		'after'       => '</div>',
 	        		'link_before' => '<span class="page-numbers">',
 	        		'link_after'  => '</span>',

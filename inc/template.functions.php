@@ -193,7 +193,7 @@ function theme_framework_archive_detail(){
  * @since 1.0.0
  */
 function theme_framework_archive_readmore(){
-    echo '<a class="btn btn-default" href="'.get_the_permalink().'" title="'.get_the_title().'" >'.__('Continue Reading', 'cms-theme-framework').'</a>';
+    echo '<a class="btn btn-default" href="'.get_the_permalink().'" title="'.get_the_title().'" >'.esc_html__('Continue Reading', 'cms-theme-framework').'</a>';
 }
 
 /**
@@ -339,31 +339,31 @@ function theme_framework_archive_quote() {
  * @since 1.0.0
  */
 function theme_framework_archive_post_icon() {
-    $post_icon = array('icon'=>'fa fa-file-text-o','text'=>__('STANDARD', 'cms-theme-framework'));
+    $post_icon = array('icon'=>'fa fa-file-text-o','text'=>esc_html__('STANDARD', 'cms-theme-framework'));
     switch (get_post_format()) {
         case 'gallery':
             $post_icon['icon'] = 'fa fa-camera-retro';
-            $post_icon['text'] = __('GALLERY', 'cms-theme-framework');
+            $post_icon['text'] = esc_html__('GALLERY', 'cms-theme-framework');
             break;
         case 'link':
             $post_icon['icon'] = 'fa fa-external-link';
-            $post_icon['text'] = __('LINK', 'cms-theme-framework');
+            $post_icon['text'] = esc_html__('LINK', 'cms-theme-framework');
             break;
         case 'quote':
             $post_icon['icon'] = 'fa fa-quote-left';
-            $post_icon['text'] = __('QUOTE', 'cms-theme-framework');
+            $post_icon['text'] = esc_html__('QUOTE', 'cms-theme-framework');
             break;
         case 'video':
             $post_icon['icon'] = 'fa  fa-youtube-play';
-            $post_icon['text'] = __('VIDEO', 'cms-theme-framework');
+            $post_icon['text'] = esc_html__('VIDEO', 'cms-theme-framework');
             break;
         case 'audio':
             $post_icon['icon'] = 'fa fa-volume-up';
-            $post_icon['text'] = __('AUDIO', 'cms-theme-framework');
+            $post_icon['text'] = esc_html__('AUDIO', 'cms-theme-framework');
             break;
         default:
             $post_icon['icon'] = 'fa fa-image';
-            $post_icon['text'] = __('STANDARD', 'cms-theme-framework');
+            $post_icon['text'] = esc_html__('STANDARD', 'cms-theme-framework');
             break;
     }
     echo '<i class="'.$post_icon['icon'].'"></i>';

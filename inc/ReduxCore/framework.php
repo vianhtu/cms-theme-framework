@@ -223,15 +223,15 @@
                 }
 
                 if ( empty ( $this->args['footer_credit'] ) ) {
-                    $this->args['footer_credit'] = '<span id="footer-thankyou">' . sprintf( __( 'Options panel created using %1$s', 'redux-framework' ), '<a href="' . esc_url( $this->framework_url ) . '" target="_blank">' . __( 'Redux Framework', 'redux-framework' ) . '</a> v' . self::$_version ) . '</span>';
+                    $this->args['footer_credit'] = '<span id="footer-thankyou">' . sprintf( esc_html__( 'Options panel created using %1$s', 'redux-framework' ), '<a href="' . esc_url( $this->framework_url ) . '" target="_blank">' . esc_html__( 'Redux Framework', 'redux-framework' ) . '</a> v' . self::$_version ) . '</span>';
                 }
 
                 if ( empty ( $this->args['menu_title'] ) ) {
-                    $this->args['menu_title'] = __( 'Options', 'redux-framework' );
+                    $this->args['menu_title'] = esc_html__( 'Options', 'redux-framework' );
                 }
 
                 if ( empty ( $this->args['page_title'] ) ) {
-                    $this->args['page_title'] = __( 'Options', 'redux-framework' );
+                    $this->args['page_title'] = esc_html__( 'Options', 'redux-framework' );
                 }
 
                 $this->old_opt_name = $this->args['opt_name'];
@@ -1532,7 +1532,7 @@
                     $nodeargs = array(
                         'id'    => $this->args["page_slug"],
                         'title' => $title,
-                        // $theme_data->get( 'Name' ) . " " . __( 'Options', 'redux-framework-demo' ),
+                        // $theme_data->get( 'Name' ) . " " . esc_html__( 'Options', 'redux-framework-demo' ),
                         'href'  => admin_url( 'admin.php?page=' . $this->args["page_slug"] ),
                         'meta'  => array()
                     );
@@ -1724,29 +1724,29 @@
 
                     // Default url values for enabling hints.
                     $dismiss = 'true';
-                    $s       = __( 'Enable', 'redux-framework' );
+                    $s       = esc_html__( 'Enable', 'redux-framework' );
 
                     // Values for disabling hints.
                     if ( 'true' == $hint_status ) {
                         $dismiss = 'false';
-                        $s       = __( 'Disable', 'redux-framework' );
+                        $s       = esc_html__( 'Disable', 'redux-framework' );
                     }
 
                     // Make URL
                     $url = '<a class="redux_hint_status" href="?dismiss=' . $dismiss . '&amp;id=hints&amp;page=' . $curPage . '&amp;tab=' . $curTab . '">' . $s . ' hints</a>';
 
-                    $event = __( 'moving the mouse over', 'redux-framework' );
+                    $event = esc_html__( 'moving the mouse over', 'redux-framework' );
                     if ( 'click' == $this->args['hints']['tip_effect']['show']['event'] ) {
-                        $event = __( 'clicking', 'redux-framework' );
+                        $event = esc_html__( 'clicking', 'redux-framework' );
                     }
 
                     // Construct message
-                    $msg = sprintf( __( 'Hints are tooltips that popup when %d the hint icon, offering addition information about the field in which they appear.  They can be %d d by using the link below.', 'redux-framework' ), $event, strtolower( $s ) ) . '<br/><br/>' . $url;
+                    $msg = sprintf( esc_html__( 'Hints are tooltips that popup when %d the hint icon, offering addition information about the field in which they appear.  They can be %d d by using the link below.', 'redux-framework' ), $event, strtolower( $s ) ) . '<br/><br/>' . $url;
 
                     // Construct hint tab
                     $tab = array(
                         'id'      => 'redux-hint-tab',
-                        'title'   => __( 'Hints', 'redux-framework' ),
+                        'title'   => esc_html__( 'Hints', 'redux-framework' ),
                         'content' => '<p>' . $msg . '</p>'
                     );
 
@@ -1873,7 +1873,7 @@
                 }
 
                 if ( ! empty ( $default_output ) ) {
-                    $default_output = __( 'Default', 'redux-framework' ) . ": " . substr( $default_output, 0, - 2 );
+                    $default_output = esc_html__( 'Default', 'redux-framework' ) . ": " . substr( $default_output, 0, - 2 );
                 }
 
                 if ( ! empty ( $default_output ) ) {
@@ -2752,7 +2752,7 @@
             public function ajax_save() {
                 if ( ! wp_verify_nonce( $_REQUEST['nonce'], "redux_ajax_nonce" . $this->args['opt_name'] ) ) {
                     echo json_encode( array(
-                        'status' => __( 'Invalid security credential.  Please reload the page and try again.', 'redux-framework' ),
+                        'status' => esc_html__( 'Invalid security credential.  Please reload the page and try again.', 'redux-framework' ),
                         'action' => ''
                     ) );
                     
@@ -2761,7 +2761,7 @@
                 
                 if (!current_user_can ( $this->args['page_permissions'] )) {
                     echo json_encode( array(
-                        'status' => __( 'Invalid user capability.  Please reload the page and try again.', 'redux-framework' ),
+                        'status' => esc_html__( 'Invalid user capability.  Please reload the page and try again.', 'redux-framework' ),
                         'action' => ''
                     ) );
                     
@@ -2850,7 +2850,7 @@
                             $return_array = array( 'status' => $e->getMessage() );
                         }
                     } else {
-                        echo json_encode( array( 'status' => __( 'Your panel has no fields. Nothing to save.', 'redux-framework' ) ) );
+                        echo json_encode( array( 'status' => esc_html__( 'Your panel has no fields. Nothing to save.', 'redux-framework' ) ) );
                     }
                 }
                 if ( isset ( $this->transients['run_compiler'] ) && $this->transients['run_compiler'] ) {

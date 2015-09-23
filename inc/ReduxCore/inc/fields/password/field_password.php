@@ -59,8 +59,8 @@
                     'username'    => '',
                     'password'    => '',
                     'placeholder' => array(
-                        'password' => __( 'Password', 'redux-framework' ),
-                        'username' => __( 'Username', 'redux-framework' )
+                        'password' => esc_html__( 'Password', 'redux-framework' ),
+                        'username' => esc_html__( 'Username', 'redux-framework' )
                     )
                 );
 

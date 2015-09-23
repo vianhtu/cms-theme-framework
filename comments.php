@@ -23,7 +23,7 @@ if ( post_password_required() ) {
 	<?php if ( have_comments() ) : ?>
         <div class="st-comments-wrap clearfix">
             <h4 class="comments-title">
-                <span><?php comments_number(__('Comments','cms-theme-framework'),__('1 Comments','cms-theme-framework'),__('% Comments','cms-theme-framework')); ?></span>
+                <span><?php comments_number(esc_html__('Comments','cms-theme-framework'),esc_html__('1 Comments','cms-theme-framework'),esc_html__('% Comments','cms-theme-framework')); ?></span>
             </h4>
             <ol class="comment-list">
 				<?php wp_list_comments( 'type=comment&callback=theme_framework_comment' ); ?>
@@ -39,25 +39,25 @@ if ( post_password_required() ) {
 	$args = array(
 			'id_form'           => 'commentform',
 			'id_submit'         => 'submit',
-			'title_reply'       => __( '<span>Leave Your Reply</span>','cms-theme-framework'),
-			'title_reply_to'    => __( 'Leave A Reply To %s','cms-theme-framework'),
-			'cancel_reply_link' => __( 'Cancel Reply','cms-theme-framework'),
-			'label_submit'      => __( 'SUBMIT','cms-theme-framework'),
+			'title_reply'       => esc_html__( '<span>Leave Your Reply</span>','cms-theme-framework'),
+			'title_reply_to'    => esc_html__( 'Leave A Reply To %s','cms-theme-framework'),
+			'cancel_reply_link' => esc_html__( 'Cancel Reply','cms-theme-framework'),
+			'label_submit'      => esc_html__( 'SUBMIT','cms-theme-framework'),
 			'comment_notes_before' => '',
 			'fields' => apply_filters( 'comment_form_default_fields', array(
 
 					'author' =>
 					'<p class="comment-form-author">'.
 					'<input id="author" name="author" type="text" value="' . esc_attr( $commenter['comment_author'] ) .
-					'" size="30"' . $aria_req . ' placeholder="'.__('Name','cms-theme-framework').'"/></p>',
+					'" size="30"' . $aria_req . ' placeholder="'.esc_html__('Name','cms-theme-framework').'"/></p>',
 
 					'email' =>
 					'<p class="comment-form-email">'.
 					'<input id="email" name="email" type="text" value="' . esc_attr(  $commenter['comment_author_email'] ) .
-					'" size="30"' . $aria_req . ' placeholder="'.__('Email','cms-theme-framework').'"/></p>',
+					'" size="30"' . $aria_req . ' placeholder="'.esc_html__('Email','cms-theme-framework').'"/></p>',
 			)
 			),
-			'comment_field' =>  '<p class="comment-form-comment"><textarea id="comment" name="comment" cols="45" rows="8" placeholder="'.__('Comment','cms-theme-framework').'" aria-required="true">' .
+			'comment_field' =>  '<p class="comment-form-comment"><textarea id="comment" name="comment" cols="45" rows="8" placeholder="'.esc_html__('Comment','cms-theme-framework').'" aria-required="true">' .
 			'</textarea></p>',
 	);
 	comment_form($args);

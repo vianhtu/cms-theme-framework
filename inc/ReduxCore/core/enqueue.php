@@ -448,7 +448,7 @@
                  *
                  * @param       string        save_pending string
                  */
-                $save_pending = apply_filters( "redux/{$this->parent->args['opt_name']}/localize/save_pending", __( 'You have changes that are not saved. Would you like to save them now?', 'redux-framework' ) );
+                $save_pending = apply_filters( "redux/{$this->parent->args['opt_name']}/localize/save_pending", esc_html__( 'You have changes that are not saved. Would you like to save them now?', 'redux-framework' ) );
 
                 /**
                  * Reset all string
@@ -456,7 +456,7 @@
                  *
                  * @param       string        reset all string
                  */
-                $reset_all = apply_filters( "redux/{$this->parent->args['opt_name']}/localize/reset", __( 'Are you sure? Resetting will lose all custom values.', 'redux-framework' ) );
+                $reset_all = apply_filters( "redux/{$this->parent->args['opt_name']}/localize/reset", esc_html__( 'Are you sure? Resetting will lose all custom values.', 'redux-framework' ) );
 
                 /**
                  * Reset section string
@@ -464,7 +464,7 @@
                  *
                  * @param       string        reset section string
                  */
-                $reset_section = apply_filters( "redux/{$this->parent->args['opt_name']}/localize/reset_section", __( 'Are you sure? Resetting will lose all custom values in this section.', 'redux-framework' ) );
+                $reset_section = apply_filters( "redux/{$this->parent->args['opt_name']}/localize/reset_section", esc_html__( 'Are you sure? Resetting will lose all custom values in this section.', 'redux-framework' ) );
 
                 /**
                  * Preset confirm string
@@ -472,14 +472,14 @@
                  *
                  * @param       string        preset confirm string
                  */
-                $preset_confirm = apply_filters( "redux/{$this->parent->args['opt_name']}/localize/preset", __( 'Your current options will be replaced with the values of this preset. Would you like to proceed?', 'redux-framework' ) );
+                $preset_confirm = apply_filters( "redux/{$this->parent->args['opt_name']}/localize/preset", esc_html__( 'Your current options will be replaced with the values of this preset. Would you like to proceed?', 'redux-framework' ) );
                 global $pagenow;
                 $this->parent->localize_data['args'] = array(
                     'save_pending'          => $save_pending,
                     'reset_confirm'         => $reset_all,
                     'reset_section_confirm' => $reset_section,
                     'preset_confirm'        => $preset_confirm,
-                    'please_wait'           => __( 'Please Wait', 'redux-framework' ),
+                    'please_wait'           => esc_html__( 'Please Wait', 'redux-framework' ),
                     'opt_name'              => $this->parent->args['opt_name'],
                     'slug'                  => $this->parent->args['page_slug'],
                     'hints'                 => $this->parent->args['hints'],
@@ -490,8 +490,8 @@
                 );
 
                 $this->parent->localize_data['ajax'] = array(
-                    'console' => __( 'There was an error saving. Here is the result of your action:', 'redux-framework' ),
-                    'alert'   => __( 'There was a problem with your action. Please try again or reload the page.', 'redux-framework' ),
+                    'console' => esc_html__( 'There was an error saving. Here is the result of your action:', 'redux-framework' ),
+                    'alert'   => esc_html__( 'There was a problem with your action. Please try again or reload the page.', 'redux-framework' ),
                 );
 
 

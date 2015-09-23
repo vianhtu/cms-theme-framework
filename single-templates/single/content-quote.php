@@ -26,7 +26,7 @@
 		<div class="entry-content">
 		    <?php if($quote){ echo apply_filters('the_content', preg_replace('/<blockquote>(.*)<\/blockquote>/', '', get_the_content()));} else { the_content(); }
 	    		wp_link_pages( array(
-	        		'before'      => '<div class="pagination loop-pagination"><span class="page-links-title">' . __( 'Pages:','cms-theme-framework') . '</span>',
+	        		'before'      => '<div class="pagination loop-pagination"><span class="page-links-title">' . esc_html__( 'Pages:','cms-theme-framework') . '</span>',
 	        		'after'       => '</div>',
 	        		'link_before' => '<span class="page-numbers">',
 	        		'link_after'  => '</span>',

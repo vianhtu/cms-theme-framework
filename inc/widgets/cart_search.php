@@ -3,8 +3,8 @@ class WC_Widget_Cart_Search extends WP_Widget {
     public function __construct() {
         parent::__construct(
             'widget_cart_search', // Base ID
-            __('Cart & Search', 'cms-theme-framework'), // Name
-            array('description' => __("Display the user's Cart and Search form in the sidebar.", 'cms-theme-framework'),) // Args
+            esc_html__('Cart & Search', 'cms-theme-framework'), // Name
+            array('description' => esc_html__("Display the user's Cart and Search form in the sidebar.", 'cms-theme-framework'),) // Args
         );
         add_action('wp_enqueue_scripts', array($this, 'widget_scripts'));
     }
@@ -103,7 +103,7 @@ class WC_Widget_Cart_Search extends WP_Widget {
             <div class="widget_searchform_content">
                 <form role="search" method="get" action="<?php echo esc_url( home_url( '/'  ) );?>">
                     <input type="text" value="<?php echo get_search_query();?>" name="s" placeholder="Search" />
-                    <input type="submit" value="<?php echo esc_attr__( 'Search', 'woocommerce' )?>" />
+                    <input type="submit" value="<?php echo esc_attresc_html__( 'Search', 'woocommerce' )?>" />
 					<?php if($woocommerce):?>
 						<?php if(is_woocommerce()):?>
 						<input type="hidden" name="post_type" value="product" />
@@ -136,15 +136,15 @@ class WC_Widget_Cart_Search extends WP_Widget {
 		<p>
             <label for="<?php echo esc_url($this->get_field_id('show_cart')); ?>"><?php _e( 'Show Cart:', 'cms-theme-framework' ); ?></label>
 			<select id="<?php echo ''.$this->get_field_id('show_cart'); ?>" class="widefat" name="<?php echo ''.$this->get_field_name('show_cart'); ?>">
-				<option value="0" <?php selected($show_cart,0); ?>><?php echo __('No','cms-theme-framework'); ?></option>
-				<option value="1" <?php selected($show_cart,1); ?>><?php echo __('Yes','cms-theme-framework'); ?></option>
+				<option value="0" <?php selected($show_cart,0); ?>><?php echo esc_html__('No','cms-theme-framework'); ?></option>
+				<option value="1" <?php selected($show_cart,1); ?>><?php echo esc_html__('Yes','cms-theme-framework'); ?></option>
 			</select>
         </p>
 		<p>
             <label for="<?php echo esc_attr($this->get_field_id('show_search')); ?>"><?php _e( 'Show Search:', 'cms-theme-framework' ); ?></label>
 			<select id="<?php echo ''.$this->get_field_id('show_search'); ?>" class="widefat" name="<?php echo ''.$this->get_field_name('show_search'); ?>">
-				<option value="0" <?php selected($show_search,0); ?>><?php echo __('No','cms-theme-framework'); ?></option>
-				<option value="1" <?php selected($show_search,1); ?>><?php echo __('Yes','cms-theme-framework'); ?></option>
+				<option value="0" <?php selected($show_search,0); ?>><?php echo esc_html__('No','cms-theme-framework'); ?></option>
+				<option value="1" <?php selected($show_search,1); ?>><?php echo esc_html__('Yes','cms-theme-framework'); ?></option>
 			</select>
         </p>
     <?php

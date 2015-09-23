@@ -9,14 +9,14 @@ class CS_Recent_Post_Widget_V2 extends WP_Widget {
 
     function CS_Recent_Post_Widget_V2() {
         parent::__construct(
-                'cs_recent_post_v2', __('CS Recent Posts','cms-theme-framework'), array('description' => __('Recent Posts Widget.', 'cms-theme-framework'),)
+                'cs_recent_post_v2', esc_html__('CS Recent Posts','cms-theme-framework'), array('description' => esc_html__('Recent Posts Widget.', 'cms-theme-framework'),)
         );
     }
 
     function widget($args, $instance) {
         extract($args);
 
-        $title = apply_filters('widget_title', empty($instance['title']) ? __('Recent Posts', 'cms-theme-framework' ) : $instance['title'], $instance, $this->id_base);
+        $title = apply_filters('widget_title', empty($instance['title']) ? esc_html__('Recent Posts', 'cms-theme-framework' ) : $instance['title'], $instance, $this->id_base);
         $show_date = (int) $instance['show_date'];
         $show_decs = (int) $instance['show_decs'];
         $number = (int) $instance['number'];

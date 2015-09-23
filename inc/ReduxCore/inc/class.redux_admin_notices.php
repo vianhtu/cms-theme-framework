@@ -94,7 +94,7 @@
                                     $output .= "</div> \n";
                                     echo $output;
                                 } else {
-                                    echo '<div ' . $add_style . ' class="' . $notice['type'] . ' notice is-dismissable"><p>' . $notice['msg'] . '&nbsp;&nbsp;<a href="?dismiss=true&amp;id=' . $notice['id'] . $pageName . $curTab . '">' . __( 'Dismiss', 'redux-framework' ) . '</a>.</p></div>';
+                                    echo '<div ' . $add_style . ' class="' . $notice['type'] . ' notice is-dismissable"><p>' . $notice['msg'] . '&nbsp;&nbsp;<a href="?dismiss=true&amp;id=' . $notice['id'] . $pageName . $curTab . '">' . esc_html__( 'Dismiss', 'redux-framework' ) . '</a>.</p></div>';
                                 }
                             }
                         } else {

@@ -117,7 +117,7 @@
             public function add_section() {
                 $this->parent->sections[] = array(
                     'id'         => 'import/export',
-                    'title'      => __( 'Import / Export', 'redux-framework' ),
+                    'title'      => esc_html__( 'Import / Export', 'redux-framework' ),
                     'heading'    => '',
                     'icon'       => 'el el-refresh',
                     'customizer' => false,
