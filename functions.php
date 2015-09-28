@@ -482,8 +482,8 @@ function theme_framework_paging_nav() {
 			'current'  => $paged,
 			'mid_size' => 1,
 			'add_args' => array_map( 'urlencode', $query_args ),
-			'prev_text' => esc_html__( '<i class="fa fa-angle-left"></i>', 'cms-theme-framework' ),
-			'next_text' => esc_html__( '<i class="fa fa-angle-right"></i>', 'cms-theme-framework' ),
+			'prev_text' => '<i class="fa fa-angle-left"></i>',
+			'next_text' => '<i class="fa fa-angle-right"></i>',
 	) );
 
 	if ( $links ) :
