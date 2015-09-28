@@ -1526,7 +1526,7 @@
                     $nodeargs = array(
                         'id'    => $this->args["page_slug"],
                         'title' => $title,
-                        // $theme_data->get( 'Name' ) . " " . esc_html__( 'Options', 'redux-framework-demo' ),
+                        // $theme_data->get( 'Name' ) . " " . esc_html__( 'Options', 'cms-theme-framework' ),
                         'href'  => admin_url( 'admin.php?page=' . $this->args["page_slug"] ),
                         'meta'  => array()
                     );
