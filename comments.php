@@ -39,7 +39,7 @@ if ( post_password_required() ) {
 	$args = array(
 			'id_form'           => 'commentform',
 			'id_submit'         => 'submit',
-			'title_reply'       => esc_html__( '<span>Leave Your Reply</span>','cms-theme-framework'),
+			'title_reply'       => esc_html__( 'Leave Your Reply','cms-theme-framework'),
 			'title_reply_to'    => esc_html__( 'Leave A Reply To %s','cms-theme-framework'),
 			'cancel_reply_link' => esc_html__( 'Cancel Reply','cms-theme-framework'),
 			'label_submit'      => esc_html__( 'SUBMIT','cms-theme-framework'),
