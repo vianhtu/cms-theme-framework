@@ -24,19 +24,6 @@ function cms_theme_register_required_plugins() {
      * If the source is NOT from the .org repo, then source is also required.
      */
     $plugins = array(
-
-        /* This is an example of how to include a plugin pre-packaged with a theme.
-        array(
-            'name'               => 'TGM Example Plugin', // The plugin name.
-            'slug'               => 'tgm-example-plugin', // The plugin slug (typically the folder name).
-            'source'             => get_stylesheet_directory() . '/lib/plugins/tgm-example-plugin.zip', // The plugin source.
-            'required'           => true, // If false, the plugin is only 'recommended' instead of required.
-            'version'            => '', // E.g. 1.0.0. If set, the active plugin must be this version or higher.
-            'force_activation'   => false, // If true, plugin is activated upon theme activation and cannot be deactivated until theme switch.
-            'force_deactivation' => false, // If true, plugin is deactivated upon theme switch, useful for theme-specific plugins.
-            'external_url'       => '', // If set, overrides default API URL and points to an external URL.
-        ), */
-
         array(
             'name'               => 'CMSSuperHeroes',
             'slug'               => 'cmssuperheroes',
@@ -64,12 +51,6 @@ function cms_theme_register_required_plugins() {
             'name'               => 'Essential Grid',
             'slug'               => 'essential-grid',
             'source'             => 'http://cmssuperheroes.com/plugins/essential-grid.zip',
-            'required'           => false,
-        ),
-        array(
-            'name'               => 'Time Table',
-            'slug'               => 'timetable',
-            'source'             => 'http://cmssuperheroes.com/plugins/timetable.zip',
             'required'           => false,
         ),
         array(
