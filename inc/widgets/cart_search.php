@@ -81,7 +81,7 @@ class WC_Widget_Cart_Search extends WP_Widget {
 
                         <?php else : ?>
 
-                            <li class="cart-list clearfix"><?php esc_html_e( 'No products in the cart.', 'woocommerce' ); ?></li>
+                            <li class="cart-list clearfix"><?php esc_html_e( 'No products in the cart.', 'cms-theme-framework' ); ?></li>
 
                         <?php endif; ?>
 
@@ -91,8 +91,8 @@ class WC_Widget_Cart_Search extends WP_Widget {
 
                 <?php endif; ?>
 
-                <a href="<?php echo ''.$woocommerce->cart->get_cart_url(); ?>" class="btn btn-primary left wc-forward"><?php esc_html_e( 'Cart', 'woocommerce' ); ?></a>
-                <span class="total right"><?php esc_html_e( 'Total', 'woocommerce' ); ?>:<span><?php echo ''.$woocommerce->cart->get_cart_subtotal(); ?></span></span>
+                <a href="<?php echo ''.$woocommerce->cart->get_cart_url(); ?>" class="btn btn-primary left wc-forward"><?php esc_html_e( 'Cart', 'cms-theme-framework' ); ?></a>
+                <span class="total right"><?php esc_html_e( 'Total', 'cms-theme-framework' ); ?>:<span><?php echo ''.$woocommerce->cart->get_cart_subtotal(); ?></span></span>
 
                 <?php if ( sizeof( $woocommerce->cart->get_cart() ) <= 0 ) : ?>
 
@@ -103,7 +103,7 @@ class WC_Widget_Cart_Search extends WP_Widget {
             <div class="widget_searchform_content">
                 <form role="search" method="get" action="<?php echo esc_url( home_url( '/'  ) );?>">
                     <input type="text" value="<?php echo get_search_query();?>" name="s" placeholder="Search" />
-                    <input type="submit" value="<?php echo esc_attresc_html__( 'Search', 'woocommerce' )?>" />
+                    <input type="submit" value="<?php echo esc_attresc_html__( 'Search', 'cms-theme-framework' )?>" />
 					<?php if($woocommerce):?>
 						<?php if(is_woocommerce()):?>
 						<input type="hidden" name="post_type" value="product" />
@@ -219,7 +219,7 @@ if(!function_exists('woocommerce_header_add_to_cart_content')){
 
                 <?php else : ?>
 
-                    <li class="cart-list clearfix"><?php esc_html_e( 'No products in the cart.', 'woocommerce' ); ?></li>
+                    <li class="cart-list clearfix"><?php esc_html_e( 'No products in the cart.', 'cms-theme-framework' ); ?></li>
 
                 <?php endif; ?>
 
@@ -227,8 +227,8 @@ if(!function_exists('woocommerce_header_add_to_cart_content')){
         </div>
         <?php if ( sizeof( $woocommerce->cart->get_cart() ) <= 0 ) : ?>
         <?php endif; ?>
-        <a href="<?php echo ''.$woocommerce->cart->get_cart_url(); ?>" class="btn btn-primary left wc-forward"><?php esc_html_e( 'Cart', 'woocommerce' ); ?></a>
-        <span class="total right"><?php esc_html_e( 'Total', 'woocommerce' ); ?>:<span><?php echo ''.$woocommerce->cart->get_cart_subtotal(); ?></span></span>
+        <a href="<?php echo ''.$woocommerce->cart->get_cart_url(); ?>" class="btn btn-primary left wc-forward"><?php esc_html_e( 'Cart', 'cms-theme-framework' ); ?></a>
+        <span class="total right"><?php esc_html_e( 'Total', 'cms-theme-framework' ); ?>:<span><?php echo ''.$woocommerce->cart->get_cart_subtotal(); ?></span></span>
         <?php if ( sizeof( $woocommerce->cart->get_cart() ) <= 0 ) : ?>
 
         <?php endif; ?>
