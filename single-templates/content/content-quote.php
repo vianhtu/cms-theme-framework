@@ -34,7 +34,7 @@
 		<!-- .entry-header -->
 
 		<div class="entry-content">
-		    <?php echo apply_filters('get_the_excerpt', preg_match('/<blockquote>(.*)<\/blockquote>/', '', get_the_content()));
+		    <?php the_excerpt();
 	    		wp_link_pages( array(
 	        		'before'      => '<div class="pagination loop-pagination"><span class="page-links-title">' . esc_html__( 'Pages:','cms-theme-framework') . '</span>',
 	        		'after'       => '</div>',
