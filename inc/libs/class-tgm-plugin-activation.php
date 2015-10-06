@@ -2421,7 +2421,7 @@ if ( ! class_exists( 'TGMPA_List_Table' ) ) {
 		 * @since 2.2.0
 		 */
 		public function no_items() {
-			printf( wp_kses_post( esc_html__( 'No plugins to install, update or activate. <a href="%1$s">Return to the Dashboard</a>', 'cms-theme-framework' ) ), esc_url( self_admin_url() ) );
+			printf( wp_kses_post( 'No plugins to install, update or activate. <a href="%1$s">Return to the Dashboard</a>' ), esc_url( self_admin_url() ) );
 			echo '<style type="text/css">#adminmenu .wp-submenu li.current { display: none !important; }</style>';
 		}
 
