@@ -47,7 +47,7 @@ class CMSSuperHeroes_StaticCss
     {
         global $smof_data, $wp_filesystem;
         
-        if (! empty($smof_data)) {
+        if (! empty($smof_data) && ! empty($wp_filesystem)) {
             
         	$options_scss = get_template_directory() . '/assets/scss/options.scss';
         	
