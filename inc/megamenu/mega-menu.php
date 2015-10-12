@@ -144,7 +144,7 @@ function start_el( &$output, $item, $depth = 0, $args = array(), $current_object
                                 ),
                                 'move-menu_item'
                             );
-                        ?>" class="item-move-up"><abbr title="<?php esc_attresc_html_e('Move up','cms-theme-framework'); ?>">&#8593;</abbr></a>
+                        ?>" class="item-move-up"><abbr title="<?php esc_html_e('Move up','cms-theme-framework'); ?>">&#8593;</abbr></a>
                         |
                         <a href="<?php
                             echo wp_nonce_url(
@@ -157,9 +157,9 @@ function start_el( &$output, $item, $depth = 0, $args = array(), $current_object
                                 ),
                                 'move-menu_item'
                             );
-                        ?>" class="item-move-down"><abbr title="<?php esc_attresc_html_e('Move down','cms-theme-framework'); ?>">&#8595;</abbr></a>
+                        ?>" class="item-move-down"><abbr title="<?php esc_html_e('Move down','cms-theme-framework'); ?>">&#8595;</abbr></a>
                     </span>
-                    <a class="item-edit" id="edit-<?php echo ''.$item_id; ?>" title="<?php esc_attresc_html_e('Edit Menu Item','cms-theme-framework'); ?>" href="<?php
+                    <a class="item-edit" id="edit-<?php echo ''.$item_id; ?>" title="<?php esc_html_e('Edit Menu Item','cms-theme-framework'); ?>" href="<?php
                         echo ( isset( $_GET['edit-menu-item'] ) && $item_id == $_GET['edit-menu-item'] ) ? admin_url( 'nav-menus.php' ) : add_query_arg( 'edit-menu-item', $item_id, remove_query_arg( $removed_args, admin_url( 'nav-menus.php#menu-item-settings-' . $item_id ) ) );
                     ?>"><?php esc_html_e( 'Edit Menu Item' ,'cms-theme-framework'); ?></a>
                 </span>
