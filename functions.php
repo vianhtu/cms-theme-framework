@@ -105,11 +105,6 @@ if(!class_exists('HeroMenuWalker')){
     require( get_template_directory() . '/inc/megamenu/mega-menu.php' );
 }
 
-/* Add widgets */
-require( get_template_directory() . '/inc/widgets/cart_search.php' );
-require( get_template_directory() . '/inc/widgets/news_tabs.php' );
-require( get_template_directory() . '/inc/widgets/recent_post_v2.php' );
-
 // Set up the content width value based on the theme's design and stylesheet.
 if ( ! isset( $content_width ) )
 	$content_width = 625;
