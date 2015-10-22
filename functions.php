@@ -585,3 +585,17 @@ if (!function_exists('theme_framework_limit_words')) {
         return implode(' ', $words)."";
     }
 }
+
+/**
+ * Set home page.
+ *
+ * get home title and update options.
+ *
+ * @return Home page title.
+ * @author FOX
+ */
+function theme_framework_set_home_page(){
+    return 'Home';
+}
+
+add_filter('wordpress_importer_home_page_title', 'theme_framework_set_home_page');
