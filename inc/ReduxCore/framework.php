@@ -360,7 +360,7 @@
                     }
 
                     // Display admin notices
-                    add_action( 'admin_notices', array( $this, '_admin_notices' ), 99 );
+                    //add_action( 'admin_notices', array( $this, '_admin_notices' ), 99 );
 
                     // Check for dismissed admin notices.
                     add_action( 'admin_init', array( $this, '_dismiss_admin_notice' ), 9 );
