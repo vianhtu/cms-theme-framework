@@ -101,7 +101,7 @@ require( get_template_directory() . '/inc/dynamic/static.css.php' );
 require( get_template_directory() . '/inc/dynamic/dynamic.css.php' );
 
 /* Add mega menu */
-if(!class_exists('HeroMenuWalker')){
+if(!class_exists('HeroMenuWalker') && wp_get_nav_menus()){
     require( get_template_directory() . '/inc/megamenu/mega-menu.php' );
 }
 
