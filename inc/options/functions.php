@@ -48,7 +48,7 @@
             }
 
             public function setSections() {
-                require_once 'function.options.php';
+                require_once get_template_directory() . '/inc/options/function.options.php';
             }
 
             public function setHelpTabs() {

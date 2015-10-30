@@ -27,14 +27,6 @@
  */
 global $smof_data, $wp_filesystem, $theme_framework_base;
 
-/* Add WP_Filesystem. */
-if ( !class_exists('WP_Filesystem') ) {
-	
-	require_once(ABSPATH . 'wp-admin/includes/file.php');
-	
-	WP_Filesystem();
-}
-
 /* Dismiss vc update. */
 if(function_exists('vc_set_as_theme')) vc_set_as_theme( true );
 
