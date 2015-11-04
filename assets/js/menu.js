@@ -18,7 +18,7 @@
         });
         /* Menu drop down*/
         $('.nav-menu li.menu-item-has-children').append('<span class="cs-menu-toggle"><i class="fa fa-angle-down"></i></span>');
-        $('.cs-menu-toggle').click(function(){
+        $('.cs-menu-toggle').on('click', function(){
             $(this).prev().toggleClass('submenu-open');
         });
         /* Page Fixed Menu */
