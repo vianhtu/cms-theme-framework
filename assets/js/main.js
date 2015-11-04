@@ -21,7 +21,7 @@ jQuery(document).ready(function($) {
 	 * Bind an event handler to the "load" JavaScript event.
 	 * @author Fox
 	 */
-	$(window).load(function() {
+	$(window).on('load', function() {
 		
 		/** current scroll */
 		scroll_top = $(window).scrollTop();
@@ -73,7 +73,7 @@ jQuery(document).ready(function($) {
 	 * Bind an event handler to the "resize" JavaScript event, or trigger that event on an element.
 	 * @author Fox
 	 */
-	$(window).resize(function(event, ui) {
+	$(window).on('resize', function(event, ui) {
 		/** current window width */
 		window_width = $(event.target).width();
 		
@@ -103,7 +103,7 @@ jQuery(document).ready(function($) {
 	 */
 	var lastScrollTop = 0;
 	
-	$(window).scroll(function() {
+	$(window).on('scroll', function() {
 		/** current scroll */
 		scroll_top = $(window).scrollTop();
 		/** check scroll up or down. */
