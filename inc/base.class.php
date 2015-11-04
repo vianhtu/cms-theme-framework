@@ -7,7 +7,7 @@ class ThemeFrameworkBase
      * 
      * @since 1.0.0
      */
-    public static function getPageTitle(){
+    public static function theme_framework_get_page_title(){
         if (!is_archive()){
             /* page. */
             if(is_page()) :
@@ -79,7 +79,7 @@ class ThemeFrameworkBase
      * 
      * @since 1.0.0
      */
-    public static function getBreadCrumb($separator = '') {
+    public static function theme_framework_get_bread_crumb($separator = '') {
         global $smof_data, $post;
         echo '<ul class="breadcrumbs">';
         /* not front_page */
@@ -175,7 +175,7 @@ class ThemeFrameworkBase
      * @param string $content
      * @return unknown
      */
-    public static function getShortcodeFromContent($shortcode = '', $content = ''){
+    public static function theme_framework_get_shortcode_from_content($shortcode = '', $content = ''){
         
         preg_match("/\[".$shortcode."(.*)/", $content , $matches);
         
@@ -188,7 +188,7 @@ class ThemeFrameworkBase
      * @param array $googlefont
      * @param string $selecter
      */
-    public static function setGoogleFont($googlefont = array(), $selecter = ''){
+    public static function theme_framework_set_google_font($googlefont = array(), $selecter = ''){
         
         if(isset($googlefont['font-family'])){
             /* add font selecter. */
@@ -203,7 +203,7 @@ class ThemeFrameworkBase
      *
      * @since 1.1.0
      */
-    public static function compressCss($buffer){
+    public static function theme_framework_compress_css($buffer){
     
         /* remove comments */
         $buffer = preg_replace("!/\*[^*]*\*+([^/][^*]*\*+)*/!", "", $buffer);

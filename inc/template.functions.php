@@ -22,36 +22,36 @@ function theme_framework_page_title(){
             <?php switch ($smof_data['page_title_layout']){
                 case '1':
                     ?>
-                    <div id="page-title-text" class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><h1><?php $theme_framework_base->getPageTitle(); ?></h1><?php theme_framework_page_sub_title(); ?></div>
-                    <div id="breadcrumb-text" class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><?php $theme_framework_base->getBreadCrumb(); ?></div>
+                    <div id="page-title-text" class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><h1><?php $theme_framework_base->theme_framework_get_page_title(); ?></h1><?php theme_framework_page_sub_title(); ?></div>
+                    <div id="breadcrumb-text" class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><?php $theme_framework_base->theme_framework_get_bread_crumb(); ?></div>
                     <?php
                     break;
                 case '2':
                     ?>
-                    <div id="breadcrumb-text" class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><?php $theme_framework_base->getBreadCrumb(); ?></div>
-                    <div id="page-title-text" class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><h1><?php $theme_framework_base->getPageTitle(); ?></h1><?php theme_framework_page_sub_title(); ?></div>
+                    <div id="breadcrumb-text" class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><?php $theme_framework_base->theme_framework_get_bread_crumb(); ?></div>
+                    <div id="page-title-text" class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><h1><?php $theme_framework_base->theme_framework_get_page_title(); ?></h1><?php theme_framework_page_sub_title(); ?></div>
                     <?php          
                     break;
                 case '3':
                     ?>
-                    <div id="page-title-text" class="col-xs-12 col-sm-6 col-md-6 col-lg-6"><h1><?php $theme_framework_base->getPageTitle(); ?></h1><?php theme_framework_page_sub_title(); ?></div>
-                    <div id="breadcrumb-text" class="col-xs-12 col-sm-6 col-md-6 col-lg-6"><?php $theme_framework_base->getBreadCrumb(); ?></div>
+                    <div id="page-title-text" class="col-xs-12 col-sm-6 col-md-6 col-lg-6"><h1><?php $theme_framework_base->theme_framework_get_page_title(); ?></h1><?php theme_framework_page_sub_title(); ?></div>
+                    <div id="breadcrumb-text" class="col-xs-12 col-sm-6 col-md-6 col-lg-6"><?php $theme_framework_base->theme_framework_get_bread_crumb(); ?></div>
                     <?php
                     break;
                 case '4':
                     ?>
-                    <div id="breadcrumb-text" class="col-xs-12 col-sm-6 col-md-6 col-lg-6"><?php $theme_framework_base->getBreadCrumb(); ?></div>
-                    <div id="page-title-text" class="col-xs-12 col-sm-6 col-md-6 col-lg-6"><h1><?php $theme_framework_base->getPageTitle(); ?></h1><?php theme_framework_page_sub_title(); ?></div>
+                    <div id="breadcrumb-text" class="col-xs-12 col-sm-6 col-md-6 col-lg-6"><?php $theme_framework_base->theme_framework_get_bread_crumb(); ?></div>
+                    <div id="page-title-text" class="col-xs-12 col-sm-6 col-md-6 col-lg-6"><h1><?php $theme_framework_base->theme_framework_get_page_title(); ?></h1><?php theme_framework_page_sub_title(); ?></div>
                     <?php
                     break;
                 case '5':
                     ?>
-                    <div id="page-title-text" class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><h1><?php $theme_framework_base->getPageTitle(); ?></h1><?php theme_framework_page_sub_title(); ?></div>
+                    <div id="page-title-text" class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><h1><?php $theme_framework_base->theme_framework_get_page_title(); ?></h1><?php theme_framework_page_sub_title(); ?></div>
                     <?php
                     break;
                 case '6':
                     ?>
-                    <div id="breadcrumb-text" class="col-xs-12 col-sm-6 col-md-6 col-lg-6"><?php $theme_framework_base->getBreadCrumb(); ?></div>
+                    <div id="breadcrumb-text" class="col-xs-12 col-sm-6 col-md-6 col-lg-6"><?php $theme_framework_base->theme_framework_get_bread_crumb(); ?></div>
                     <?php
                     break;
             } ?>
@@ -207,7 +207,7 @@ function theme_framework_archive_readmore(){
 function theme_framework_archive_audio() {
 	global $theme_framework_base;
     /* get shortcode audio. */
-    $shortcode = $theme_framework_base->getShortcodeFromContent('audio', get_the_content());
+    $shortcode = $theme_framework_base->theme_framework_get_shortcode_from_content('audio', get_the_content());
     
     if($shortcode != ''){
         echo do_shortcode($shortcode);
@@ -234,10 +234,10 @@ function theme_framework_archive_video() {
     
     global $wp_embed, $theme_framework_base;
     /* Get Local Video */
-    $local_video = $theme_framework_base->getShortcodeFromContent('video', get_the_content());
+    $local_video = $theme_framework_base->theme_framework_get_shortcode_from_content('video', get_the_content());
     
     /* Get Youtobe or Vimeo */
-    $remote_video = $theme_framework_base->getShortcodeFromContent('embed', get_the_content());
+    $remote_video = $theme_framework_base->theme_framework_get_shortcode_from_content('embed', get_the_content());
     
     if($local_video){
         /* view local. */
@@ -269,7 +269,7 @@ function theme_framework_archive_video() {
 function theme_framework_archive_gallery(){
 	global $theme_framework_base;
     /* get shortcode gallery. */
-    $shortcode = $theme_framework_base->getShortcodeFromContent('gallery', get_the_content());
+    $shortcode = $theme_framework_base->theme_framework_get_shortcode_from_content('gallery', get_the_content());
     
     if($shortcode != ''){
         preg_match('/\[gallery.*ids=.(.*).\]/', $shortcode, $ids);

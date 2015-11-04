@@ -24,7 +24,7 @@ class CMSSuperHeroes_DynamicCss
         global $smof_data, $theme_framework_base;
         $css = $this->css_render();
         if (! $smof_data['dev_mode']) {
-            $css = $theme_framework_base->compressCss($css);
+            $css = $theme_framework_base->theme_framework_compress_css($css);
         }
         echo '<style type="text/css" data-type="cms_shortcodes-custom-css">'.$css.'</style>';
     }

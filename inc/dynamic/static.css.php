@@ -107,10 +107,10 @@ class CMSSuperHeroes_StaticCss
         echo esc_attr($smof_data['custom_css']);
         /* google fonts. */
         if(isset($smof_data['google-font-1'])){
-            $theme_framework_base->setGoogleFont($smof_data['google-font-1'], $smof_data['google-font-selector-1']);
+            $theme_framework_base->theme_framework_set_google_font($smof_data['google-font-1'], $smof_data['google-font-selector-1']);
         }
         if(isset($smof_data['google-font-2'])){
-            $theme_framework_base->setGoogleFont($smof_data['google-font-2'], $smof_data['google-font-selector-2']);
+            $theme_framework_base->theme_framework_set_google_font($smof_data['google-font-2'], $smof_data['google-font-selector-2']);
         }
         /* forward options to scss. */
         
