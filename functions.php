@@ -584,7 +584,7 @@ if (!function_exists('theme_framework_limit_words')) {
  * @return Home page title.
  * @author FOX
  */
-function wp_maxclean_set_home_page(){
+function theme_framework_set_home_page(){
     
     $home_page = 'Home';
     
@@ -597,7 +597,7 @@ function wp_maxclean_set_home_page(){
     update_option('page_on_front', $page->ID);
 }
 
-add_action('import_end', 'wp_maxclean_set_home_page');
+add_action('cms_import_finish', 'theme_framework_set_home_page');
 
 /**
  * Set menu locations.
@@ -607,7 +607,7 @@ add_action('import_end', 'wp_maxclean_set_home_page');
  * @return string[]
  * @author FOX
  */
-function wp_maxclean_set_menu_location(){
+function theme_framework_set_menu_location(){
     
     $setting = array(
         'Footer menu' => 'second',
@@ -632,4 +632,4 @@ function wp_maxclean_set_menu_location(){
     set_theme_mod('nav_menu_locations', $new_setting);
 }
 
-add_action('import_end', 'wp_maxclean_set_menu_location');
+add_action('cms_import_finish', 'theme_framework_set_menu_location');
