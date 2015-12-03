@@ -103,8 +103,7 @@ class CMSSuperHeroes_StaticCss
         global $smof_data, $theme_framework_base;
         
         ob_start();
-        /* custom css. */
-        echo esc_attr($smof_data['custom_css']);
+        
         /* google fonts. */
         if(isset($smof_data['google-font-1'])){
             $theme_framework_base->theme_framework_set_google_font($smof_data['google-font-1'], $smof_data['google-font-selector-1']);

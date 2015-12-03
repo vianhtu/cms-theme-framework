@@ -633,3 +633,16 @@ function theme_framework_set_menu_location(){
 }
 
 add_action('cms_import_finish', 'theme_framework_set_menu_location');
+
+
+function theme_framework_custom_css($param) {
+    
+    global $smof_data;
+    
+    if(empty($smof_data['custom_css']))
+        return ;
+    /* custom css. */
+    echo '<style type="text/css">' . esc_html($smof_data['custom_css']) . '</style>';
+}
+
+add_action('wp_head', 'theme_framework_custom_css');
