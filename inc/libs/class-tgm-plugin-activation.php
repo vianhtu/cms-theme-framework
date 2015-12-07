@@ -3363,7 +3363,7 @@ if ( ! function_exists( 'tgmpa_load_bulk_installer' ) ) {
 							parent::add_strings();
 							$this->upgrader->strings['skin_before_update_header'] = esc_html__( 'Updating Plugin %1$s (%2$d/%3$d)', 'cms-theme-framework' );
 						} else {
-							$this->upgrader->strings['skin_update_failed_error'] = esc_html__( 'An error occurred while installing %1$s: <strong>%2$s</strong>.', 'cms-theme-framework' );
+							$this->upgrader->strings['skin_update_failed_error'] = esc_html__( 'An error occurred while installing %1$s: %2$s.', 'cms-theme-framework' );
 							$this->upgrader->strings['skin_update_failed']       = esc_html__( 'The installation of %1$s failed.', 'cms-theme-framework' );
 
 							if ( $this->tgmpa->is_automatic ) {
