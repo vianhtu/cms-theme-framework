@@ -25,6 +25,11 @@
 /* Dismiss vc update. */
 if(function_exists('vc_set_as_theme')) vc_set_as_theme( true );
 
+/* Add base functions */
+if(!class_exists("ThemeFrameworkBase")){
+    require( get_template_directory() . '/inc/base.class.php' );
+}
+
 /* Add ReduxFramework. */
 if(!class_exists('ReduxFramework')){
     require( get_template_directory() . '/inc/ReduxCore/framework.php' );
@@ -98,12 +103,7 @@ function theme_framework_base_class(){
     
     $GLOBALS['theme_framework_base'];
 
-    /* Add base functions */
-    require( get_template_directory() . '/inc/base.class.php' );
-
-    if(class_exists("ThemeFrameworkBase")){
-        $GLOBALS['theme_framework_base'] = new ThemeFrameworkBase;
-    }
+    $GLOBALS['theme_framework_base'] = new ThemeFrameworkBase;
 }
 	
 /**
