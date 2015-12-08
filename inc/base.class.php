@@ -12,7 +12,7 @@ class ThemeFrameworkBase
             /* page. */
             if(is_page()) :
             
-                $custom_title = theme_framework_get_post_meta('_cms_page_title_text');
+                $custom_title = theme_framework_get_post_meta('page_title_text');
                 
                 /* custom title. */
                 if($custom_title):
