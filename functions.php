@@ -205,10 +205,7 @@ function theme_framework_scripts_styles() {
 	
 	/* Adds JavaScript Bootstrap. */
 	wp_enqueue_script('cmssuperheroes-bootstrap', get_template_directory_uri() . '/assets/js/bootstrap.min.js', array( 'jquery' ), '3.3.2');
-	
-	/* Add parallax plugin. */
-	wp_enqueue_script('cmssuperheroes-parallax', get_template_directory_uri() . '/assets/js/jquery.parallax-1.1.3.js', array( 'jquery' ), '1.1.3', true);
-	
+		
 	/* Add smoothscroll plugin */
 	if($smof_data['smoothscroll']){
 	   wp_enqueue_script('cmssuperheroes-smoothscroll', get_template_directory_uri() . '/assets/js/smoothscroll.min.js', array( 'jquery' ), '1.0.0', true);
@@ -238,12 +235,6 @@ function theme_framework_scripts_styles() {
 	
 	/* Loads Bootstrap stylesheet. */
 	wp_enqueue_style('cmssuperheroes-font-awesome', get_template_directory_uri() . '/assets/css/font-awesome.min.css', array(), '4.3.0');
-
-	/* Loads Font Ionicons. */
-	wp_enqueue_style('cmssuperheroes-font-ionicons', get_template_directory_uri() . '/assets/css/ionicons.min.css', array(), '2.0.1');
-
-	/* Loads Pe Icon. */
-	wp_enqueue_style('cmssuperheroes-pe-icon', get_template_directory_uri() . '/assets/css/pe-icon-7-stroke.css', array(), '1.0.1');
 	
 	/** --------------------------custom------------------------------- */
 	
@@ -253,11 +244,6 @@ function theme_framework_scripts_styles() {
 	/* Loads the Internet Explorer specific stylesheet. */
 	wp_enqueue_style( 'cmssuperheroes-ie', get_template_directory_uri() . '/assets/css/ie.css', array( 'cmssuperheroes-style' ), '20121010' );
 	$wp_styles->add_data( 'cmssuperheroes-ie', 'conditional', 'lt IE 9' );
-	
-	/* WooCommerce */
-	if(class_exists('WooCommerce')){
-	    wp_enqueue_style( 'woocommerce', get_template_directory_uri() . "/assets/css/woocommerce.css", array(), '1.0.0');
-	}
 	
 	/* Load static css*/
 	wp_enqueue_style('cmssuperheroes-static', get_template_directory_uri() . '/assets/css/static.css', array( 'cmssuperheroes-style' ), '1.0.0');
