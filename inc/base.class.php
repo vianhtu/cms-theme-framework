@@ -11,9 +11,12 @@ class ThemeFrameworkBase
         if (!is_archive()){
             /* page. */
             if(is_page()) :
+            
+                $custom_title = theme_framework_get_post_meta('_cms_page_title_text');
+                
                 /* custom title. */
-                if(!empty($theme_framework_meta->_cms_page_title_text) && $theme_framework_meta->_cms_page_title_text):
-                    echo esc_attr($theme_framework_meta->_cms_page_title_text);
+                if($custom_title):
+                    echo esc_attr($custom_title);
                 else :
                     the_title();
                 endif;
