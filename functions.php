@@ -22,20 +22,8 @@
  * @since 1.0.0
  */
 
-/**
- * Add global values.
- */
-global $smof_data, $wp_filesystem, $theme_framework_base;
-
 /* Dismiss vc update. */
 if(function_exists('vc_set_as_theme')) vc_set_as_theme( true );
-
-/* Add base functions */
-require( get_template_directory() . '/inc/base.class.php' );
-
-if(class_exists("ThemeFrameworkBase")){
-    $theme_framework_base = new ThemeFrameworkBase;
-}
 
 /* Add ReduxFramework. */
 if(!class_exists('ReduxFramework')){
@@ -101,6 +89,23 @@ if(!class_exists('HeroMenuWalker') && wp_get_nav_menus()){
 if ( ! isset( $content_width ) )
 	$content_width = 625;
 
+/**
+ * add base class.
+ */
+add_action('init', 'theme_framework_base_class');
+	
+function theme_framework_base_class(){
+    
+    global $theme_framework_base;
+
+    /* Add base functions */
+    require( get_template_directory() . '/inc/base.class.php' );
+
+    if(class_exists("ThemeFrameworkBase")){
+        $theme_framework_base = new ThemeFrameworkBase;
+    }
+}
+	
 /**
  * CMS Theme setup.
  *
