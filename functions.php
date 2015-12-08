@@ -38,23 +38,32 @@ if(!class_exists('ReduxFramework')){
 /* Add theme options. */
 require( get_template_directory() . '/inc/options/functions.php' );
 
-/* Add custom vc params. */
-if(class_exists('Vc_Manager')){
+/**
+ * vc_elements
+ */
+add_action('vc_before_init', 'theme_framework_vc_elements');
+
+function theme_framework_vc_elements(){
     
-    /* Add theme elements */
-    add_action('vc_before_init', 'theme_framework_vc_elements');
+    if(!class_exists('Vc_Manager'))
+        return ;
     
-    function theme_framework_vc_elements(){
-        if(class_exists('CmsShortCode')){
-            require( get_template_directory() . '/inc/elements/googlemap/cms_googlemap.php' );
-        }
+    if(class_exists('CmsShortCode')){
+        require( get_template_directory() . '/inc/elements/googlemap/cms_googlemap.php' );
     }
+}
+
+/**
+ * vc params.
+ */
+add_action('init', 'theme_framework_vc_params');
+
+function theme_framework_vc_params() {
     
-    add_action('init', 'theme_framework_vc_params');
+    if(!class_exists('Vc_Manager'))
+        return ;
     
-    function theme_framework_vc_params() {
-        //require( get_template_directory() . '/vc_params/vc_rows.php' );
-    }
+    //require( get_template_directory() . '/vc_params/vc_rows.php' );
 }
 
 /* Add SCSS */
