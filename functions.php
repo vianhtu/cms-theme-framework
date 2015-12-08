@@ -96,13 +96,13 @@ add_action('init', 'theme_framework_base_class');
 	
 function theme_framework_base_class(){
     
-    global $theme_framework_base;
+    $GLOBALS['theme_framework_base'];
 
     /* Add base functions */
     require( get_template_directory() . '/inc/base.class.php' );
 
     if(class_exists("ThemeFrameworkBase")){
-        $theme_framework_base = new ThemeFrameworkBase;
+        $GLOBALS['theme_framework_base'] = new ThemeFrameworkBase;
     }
 }
 	
