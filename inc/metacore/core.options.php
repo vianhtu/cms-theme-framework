@@ -23,6 +23,8 @@ if(!class_exists('MetaFramework')){
 	            'Scripts'
 	        ));
 	        add_action('save_post', array($this, 'save_meta_boxes'));
+	        
+	        add_action('admin_footer', array($this, '_admin_footer'));
 	    }
 	    
 	    /**
@@ -39,7 +41,6 @@ if(!class_exists('MetaFramework')){
 	        wp_enqueue_script('thickbox');
 	
 	        wp_register_style('font-awesome', get_template_directory_uri().'/css/font-awesome.min.css', array(), '4.1.0');
-	        wp_register_style('font-ionicons', get_template_directory_uri().'/css/ionicons.min.css', array(), '1.5.2');
 	        wp_register_style('jquery-datetimepicker', get_template_directory_uri().'/inc/metacore/assets/css/jquery.datetimepicker.css');
 	        wp_register_style('jquery-minicolors', get_template_directory_uri() . '/inc/metacore/assets/css/jquery.minicolors.css');
 	        wp_register_style('core-options', get_template_directory_uri() . '/inc/metacore/assets/css/core.options.css');
@@ -72,9 +73,6 @@ if(!class_exists('MetaFramework')){
 	                    break;
 	                case 'switch':
 	                    return $this->xswitch($params);
-	                    break;
-	                case 'icon':
-	                    return $this->icon($params);
 	                    break;
 	                case 'image':
 	                    $params['field'] = 'single';
@@ -334,31 +332,6 @@ if(!class_exists('MetaFramework')){
 	        <div class="switch-field csfield<?php if($params['value'] == $options['on']){ echo ' on'; } else { echo ' off'; } ?>"<?php echo implode(' ', $data); ?>>
 	            <span></span>
 	            <input type="hidden" name="<?php echo esc_attr($params['id']); ?>" id="<?php echo esc_attr($params['id']); ?>" class="xvalue" value="<?php echo esc_attr($params['value']); ?>"/>
-	        </div>
-	        <?php
-	        return ob_get_clean();
-	    }
-	    
-	    /**
-	     * icon field.
-	     *
-	     * @param array $params
-	     * @return html
-	     */
-	    private function icon($params){
-	        add_thickbox();
-	        wp_enqueue_style('font-awesome');
-	        wp_enqueue_style('font-ionicons');
-	        wp_enqueue_script('icons-class');
-	        ob_start();
-	        ?>
-	        <div class="icon-field">
-	            <input type="text" style="width: 170px;" class="thickbox" alt="#TB_inline?amp;inlineId=field_icon" title=""
-	            name="<?php echo esc_attr($params['id']); ?>"
-	            id="<?php echo esc_attr($params['id']); ?>"
-	            value="<?php if(isset($params['value'])){ echo esc_attr($params['value']);} ?>"
-	            placeholder="<?php if(isset($params['placeholder'])){ echo esc_attr($params['placeholder']);} ?>" />
-	            <i class="<?php echo esc_attr($params['value']); ?>"></i>
 	        </div>
 	        <?php
 	        return ob_get_clean();
@@ -627,6 +600,10 @@ if(!class_exists('MetaFramework')){
 				
 				}
 			}
+		}
+		
+		function _admin_footer(){
+		    echo '<div id="field_icon"></div>';
 		}
 	}
 }

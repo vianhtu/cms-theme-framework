@@ -39,29 +39,28 @@ if(!class_exists('ReduxFramework')){
 require( get_template_directory() . '/inc/options/functions.php' );
 
 /**
- * vc_elements
+ * Add new elements for VC
+ * 
+ * @author FOX
  */
-add_action('vc_before_init', 'theme_framework_vc_elements');
+add_action('vc_before_init', 'theme_framework_vc_before');
 
-function theme_framework_vc_elements(){
+function theme_framework_vc_before(){
     
-    if(!class_exists('Vc_Manager'))
+    if(!class_exists('CmsShortCode'))
         return ;
     
-    if(class_exists('CmsShortCode')){
-        require( get_template_directory() . '/inc/elements/googlemap/cms_googlemap.php' );
-    }
+    require( get_template_directory() . '/inc/elements/googlemap/cms_googlemap.php' );
 }
 
 /**
- * vc params.
+ * Custom params & remove VC Elements.
+ * 
+ * @author FOX
  */
-add_action('init', 'theme_framework_vc_params');
+add_action('vc_after_init', 'theme_framework_vc_after');
 
-function theme_framework_vc_params() {
-    
-    if(!class_exists('Vc_Manager'))
-        return ;
+function theme_framework_vc_after() {
     
     //require( get_template_directory() . '/vc_params/vc_rows.php' );
 }

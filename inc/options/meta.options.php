@@ -46,6 +46,12 @@ class CMSMetaOptions
                 <div id="tabs-general">
                 <?php
                 cms_options(array(
+                    'id' => 'icon',
+                    'label' => esc_html__('Full Width','cms-theme-framework'),
+                    'type' => 'icon',
+                    'options' => array('on'=>'1','off'=>''),
+                ));
+                cms_options(array(
                     'id' => 'full_width',
                     'label' => esc_html__('Full Width','cms-theme-framework'),
                     'type' => 'switch',
