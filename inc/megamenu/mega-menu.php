@@ -35,7 +35,7 @@ add_action( 'admin_enqueue_scripts','add_js_mega_menu');
 function add_js_mega_menu(){
     wp_enqueue_script( 'set_background', get_template_directory_uri() . '/inc/megamenu/js/set_background.js', array( 'jquery', 'jquery-ui-sortable' ), false, true );
     wp_enqueue_style( 'css_backend_megamenu', get_template_directory_uri() . '/inc/megamenu/css/backend.css' );
-    wp_enqueue_style( 'font-awesome');
+    wp_enqueue_style( 'theme_framework-font-awesome');
     wp_enqueue_media();
     add_thickbox();
 }
