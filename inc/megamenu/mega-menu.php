@@ -335,14 +335,14 @@ function start_el( &$output, $item, $depth = 0, $args = array(), $current_object
             <?php
             $icons = apply_filters('theme/menu/icons', theme_framework_font_awesome());
             $html = '<input type="hidden" name="" class="wpb_vc_param_value" value="' . $value . '" id="trace"/> ';
-            $html .= '<div class="icon-preview icon-preview-' . $item_id . '"><i class=" fa fa-' . $value . '"></i></div>';
+            $html .= '<div class="icon-preview icon-preview-' . $item_id . '"><i class="' . $value . '"></i></div>';
             $html .= '<div id="' . $key . '-' . $item_id . '-icon-dropdown" >';
             $html .= '<ul class="icon-list">';
             $n = 1;
             foreach ( $icons as $icon ) {
                 $selected = ( $icon == $value ) ? 'class="selected"' : '';
                 $id       = 'icon-' . $n;
-                $html .= '<li ' . $selected . ' data-icon="' . $icon . '"><i class="icon fa fa-' . $icon . '"></i></li>';
+                $html .= '<li ' . $selected . ' data-icon="' . $icon . '"><i class="icon ' . $icon . '"></i></li>';
                 $n ++;
             }
             $html .= '</ul>';
