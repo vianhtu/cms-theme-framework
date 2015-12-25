@@ -22,18 +22,31 @@
  * @since 1.0.0
  */
 
+/**
+ * scss lib.
+ *
+ * @author FOX
+ */
+if(!class_exists('scssc'))
+    require( get_template_directory() . '/inc/libs/scss.inc.php' );
+
+/**
+ * load font-awesome icons class.
+ *
+ * @author FOX
+ */
+require_once get_template_directory() . '/inc/libs/font-awesome.php';
+
 /* Dismiss vc update. */
 if(function_exists('vc_set_as_theme')) vc_set_as_theme( true );
 
 /* Add base functions */
-if(!class_exists("ThemeFrameworkBase")){
+if(!class_exists("ThemeFrameworkBase"))
     require( get_template_directory() . '/inc/base.class.php' );
-}
 
 /* Add ReduxFramework. */
-if(!class_exists('ReduxFramework')){
+if(!class_exists('ReduxFramework'))
     require( get_template_directory() . '/inc/ReduxCore/framework.php' );
-}
 
 /* Add theme options. */
 require( get_template_directory() . '/inc/options/functions.php' );
@@ -63,11 +76,6 @@ add_action('vc_after_init', 'theme_framework_vc_after');
 function theme_framework_vc_after() {
     
     //require( get_template_directory() . '/vc_params/vc_rows.php' );
-}
-
-/* Add SCSS */
-if(!class_exists('scssc')){
-    require( get_template_directory() . '/inc/libs/scss.inc.php' );
 }
 
 /* Add Meta Core Options */
