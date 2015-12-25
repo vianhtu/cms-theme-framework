@@ -35,7 +35,6 @@ add_action( 'admin_enqueue_scripts','add_js_mega_menu');
 function add_js_mega_menu(){
     wp_enqueue_script( 'set_background', get_template_directory_uri() . '/inc/megamenu/js/set_background.js', array( 'jquery', 'jquery-ui-sortable' ), false, true );
     wp_enqueue_style( 'css_backend_megamenu', get_template_directory_uri() . '/inc/megamenu/css/backend.css' );
-    wp_enqueue_style( 'theme_framework-font-awesome');
     wp_enqueue_media();
     add_thickbox();
 }
@@ -354,7 +353,7 @@ function start_el( &$output, $item, $depth = 0, $args = array(), $current_object
             <label for="edit-<?php echo ''.$key . '-' . $item_id; ?>">
                 <?php echo esc_html( $title ); ?><br />
                 <input type="text" value="<?php echo ''.$value; ?>" id="edit-<?php echo ''.$key . '-' . $item_id; ?>" class=" <?php echo ''.$key; ?>" name="<?php echo ''.$key . "[" . $item_id . "]"; ?>" />
-                <input alt="#TB_inline?height=400&width=500&inlineId=<?php echo ''.$key . '-' . $item_id . '-popup'; ?>" title="<?php esc_html_e( 'Click to browse icon', 'cms-theme-framework' ) ?>" class="thickbox button-secondary submit-add-to-menu" type="button" value="<?php esc_html_e( 'Browse Icon', 'cms-theme-framework' ) ?>" />
+                <input alt="#TB_inline?height=auto&width=auto&inlineId=<?php echo ''.$key . '-' . $item_id . '-popup'; ?>" title="<?php esc_html_e( 'Click to browse icon', 'cms-theme-framework' ) ?>" class="thickbox button-secondary submit-add-to-menu" type="button" value="<?php esc_html_e( 'Browse Icon', 'cms-theme-framework' ) ?>" />
                 <a class="button btn_clear button-primary" href="javascript: void(0);">Clear</a>
                 <span class="icon-preview  icon-preview<?php echo '-' . $item_id; ?>"><i class=" fa fa-<?php echo ''.$value; ?>"></i></span>
             </label>
@@ -649,7 +648,7 @@ class HeroMenuWalker extends Walker_Nav_Menu {
         if(!$hide_link || $hide_link=="0"){
         $item_output .= '<a'. $attributes .'>';
         if ( $menu_icon ) {
-            $item_output .= '<i style="color: '.$icon_color.'; font-size: '.$icon_font_size.'" class="fa fa-fw fa-' . $menu_icon . '"></i> ';
+            $item_output .= '<i style="color: '.$icon_color.'; font-size: '.$icon_font_size.'" class="' . $menu_icon . '"></i> ';
         }
         $item_output.='<span class="menu-title">';
         $item_output .= $link_before . apply_filters( 'the_title', $item->title, $item->ID ) . $link_after;

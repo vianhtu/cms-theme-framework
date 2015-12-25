@@ -187,11 +187,39 @@ function theme_framework_setup() {
 add_action( 'after_setup_theme', 'theme_framework_setup' );
 
 /**
+ * register_scripts
+ * 
+ * @author FOX
+ */
+function theme_framework_register_scripts(){
+    
+    /* Loads Bootstrap stylesheet. */
+    wp_register_style('theme_framework-bootstrap', get_template_directory_uri() . '/assets/css/bootstrap.min.css', array(), '3.3.2');
+    
+    /* Loads awesome stylesheet. */
+    wp_register_style('theme_framework-font-awesome', get_template_directory_uri() . '/assets/css/font-awesome.min.css', array(), '4.3.0');
+    
+    /** Load JavaScript Bootstrap. */
+    wp_register_script('theme_framework-bootstrap', get_template_directory_uri() . '/assets/js/bootstrap.min.js', array( 'jquery' ), '3.3.2');
+    
+    /** Add smoothscroll plugin */
+    wp_register_script('theme_framework-smoothscroll', get_template_directory_uri() . '/assets/js/smoothscroll.min.js', array( 'jquery' ), '1.0.0', true);
+    
+    /** Load menu script */
+    wp_register_script('theme_framework-menu', get_template_directory_uri() . '/assets/js/menu.js', array( 'jquery' ), '1.0.0', true);
+    
+    /** main theme */
+    wp_register_script('theme_framework-main', get_template_directory_uri() . '/assets/js/main.js', array( 'jquery' ), '1.0.0', true);
+}
+
+add_action('init', 'theme_framework_register_scripts');
+
+/**
  * Enqueue scripts and styles for front-end.
  * @author Fox
  * @since CMS SuperHeroes 1.0
  */
-function theme_framework_scripts_styles() {
+function theme_framework_front_end_scripts() {
     
 	global $smof_data, $wp_styles;
 	
@@ -203,60 +231,56 @@ function theme_framework_scripts_styles() {
 	    'paralax' => 1,
 	    'back_to_top'=> $smof_data['footer_botton_back_to_top']
 	);
-
-	/*------------------------------------- JavaScript ---------------------------------------*/
-	
-	
-	/** --------------------------libs--------------------------------- */
-	
 	
 	/* Adds JavaScript Bootstrap. */
-	wp_enqueue_script('theme_framework-bootstrap', get_template_directory_uri() . '/assets/js/bootstrap.min.js', array( 'jquery' ), '3.3.2');
+	wp_enqueue_script('theme_framework-bootstrap');
 		
 	/* Add smoothscroll plugin */
-	if($smof_data['smoothscroll']){
-	   wp_enqueue_script('theme_framework-smoothscroll', get_template_directory_uri() . '/assets/js/smoothscroll.min.js', array( 'jquery' ), '1.0.0', true);
-	}
-	
-	/** --------------------------custom------------------------------- */
-	
+	if($smof_data['smoothscroll'])
+	   wp_enqueue_script('theme_framework-smoothscroll');
+		
 	/* Add main.js */
-	wp_register_script('theme_framework-main', get_template_directory_uri() . '/assets/js/main.js', array( 'jquery' ), '1.0.0', true);
 	wp_localize_script('theme_framework-main', 'CMSOptions', $script_options);
 	wp_enqueue_script('theme_framework-main');
+	
 	/* Add menu.js */
-    wp_enqueue_script('theme_framework-menu', get_template_directory_uri() . '/assets/js/menu.js', array( 'jquery' ), '1.0.0', true);
-	/*
-	 * Adds JavaScript to pages with the comment form to support
-	 * sites with threaded comments (when in use).
-	 */
+    wp_enqueue_script('theme_framework-menu');
+    
+	/* Comment */
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) )
-		wp_enqueue_script( 'comment-reply' );
-
-    /*------------------------------------- Stylesheet ---------------------------------------*/
-	
-	/** --------------------------libs--------------------------------- */
+		wp_enqueue_script( 'comment-reply' );	
 	
 	/* Loads Bootstrap stylesheet. */
-	wp_enqueue_style('theme_framework-bootstrap', get_template_directory_uri() . '/assets/css/bootstrap.min.css', array(), '3.3.2');
+	wp_enqueue_style('theme_framework-bootstrap');
 	
 	/* Loads Bootstrap stylesheet. */
-	wp_enqueue_style('theme_framework-font-awesome', get_template_directory_uri() . '/assets/css/font-awesome.min.css', array(), '4.3.0');
-	
-	/** --------------------------custom------------------------------- */
-	
+	wp_enqueue_style('theme_framework-font-awesome');
+		
 	/* Loads our main stylesheet. */
 	wp_enqueue_style( 'theme_framework-style', get_stylesheet_uri(), array( 'theme_framework-bootstrap' ));
 
 	/* Loads the Internet Explorer specific stylesheet. */
 	wp_enqueue_style( 'theme_framework-ie', get_template_directory_uri() . '/assets/css/ie.css', array( 'theme_framework-style' ), '20121010' );
+	
+	/* ie */
 	$wp_styles->add_data( 'theme_framework-ie', 'conditional', 'lt IE 9' );
 	
 	/* Load static css*/
 	wp_enqueue_style('theme_framework-static', get_template_directory_uri() . '/assets/css/static.css', array( 'theme_framework-style' ), '1.0.0');
 }
 
-add_action( 'wp_enqueue_scripts', 'theme_framework_scripts_styles' );
+add_action( 'wp_enqueue_scripts', 'theme_framework_front_end_scripts' );
+
+/**
+ * load admin scripts.
+ * 
+ * @author FOX
+ */
+function theme_framework_admin_scripts(){
+    wp_enqueue_style('theme_framework-font-awesome');
+}
+
+add_action( 'admin_enqueue_scripts', 'theme_framework_admin_scripts' );
 
 /**
  * Register sidebars.
