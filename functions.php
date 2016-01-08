@@ -393,6 +393,19 @@ function theme_framework_widgets_init() {
 add_action( 'widgets_init', 'theme_framework_widgets_init' );
 
 /**
+ * site_icon
+ */
+function theme_framework_site_icon(){
+    
+    global $smof_data;
+    
+    if ( ! function_exists( 'has_site_icon' ) || ! has_site_icon() )
+        echo '<link rel="icon" type="image/png" href="'.esc_url($smof_data['favicon_icon']['url']).'"/>';
+}
+
+add_action('wp_head', 'theme_framework_site_icon');
+
+/**
  * Get meta data.
  * 
  * @param string $key
