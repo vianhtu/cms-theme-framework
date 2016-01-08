@@ -8,9 +8,6 @@
  * @package MetaFramework
  * @version 1.0.1
  */
-
-global $core_options;
-
 if(!class_exists('MetaFramework')){
 
 	class MetaFramework
@@ -608,7 +605,14 @@ if(!class_exists('MetaFramework')){
 	}
 }
 
-$core_options = new MetaFramework();
+if(!function_exists('cms_core')){
+    function cms_core(){
+        global $core_options;
+        $core_options = new MetaFramework();
+    }
+}
+
+cms_core();
 
 /**
  * meta options.
