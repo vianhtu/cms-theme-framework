@@ -1,8 +1,12 @@
 <?php
 
-global $theme_framework_base;
+theme_framework_base();
 
-$theme_framework_base = new ThemeFrameworkBase;
+function theme_framework_base(){
+    global $theme_framework_base;
+    
+    $theme_framework_base = new ThemeFrameworkBase;
+}
 
 class ThemeFrameworkBase
 {
