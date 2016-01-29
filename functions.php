@@ -500,13 +500,9 @@ function theme_framework_paging_nav() {
 	$pagenum_link = remove_query_arg( array_keys( $query_args ), $pagenum_link );
 	$pagenum_link = trailingslashit( $pagenum_link ) . '%_%';
 
-	$format  = $GLOBALS['wp_rewrite']->using_index_permalinks() && ! strpos( $pagenum_link, 'index.php' ) ? 'index.php/' : '';
-	$format .= $GLOBALS['wp_rewrite']->using_permalinks() ? user_trailingslashit( 'page/%#%', 'paged' ) : '?paged=%#%';
-
 	// Set up paginated links.
 	$links = paginate_links( array(
 			'base'     => $pagenum_link,
-			'format'   => $format,
 			'total'    => $GLOBALS['wp_query']->max_num_pages,
 			'current'  => $paged,
 			'mid_size' => 1,
