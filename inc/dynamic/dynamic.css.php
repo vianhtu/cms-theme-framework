@@ -22,7 +22,9 @@ class CMSSuperHeroes_DynamicCss
     public function generate_css()
     {
         global $smof_data, $theme_framework_base;
+
         $css = $this->css_render();
+
         if (! $smof_data['dev_mode']) {
             $css = $theme_framework_base->theme_framework_compress_css($css);
         }

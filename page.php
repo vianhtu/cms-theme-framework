@@ -14,16 +14,30 @@
  */
 
 get_header(); ?>
-<div id="page-default" class="<?php theme_framework_main_class(); ?>">
-	<div id="primary">
-		<div id="content" role="main">
 
-			<?php while ( have_posts() ) : the_post(); ?>
-				<?php get_template_part( 'single-templates/content', 'page' ); ?>
-				<?php comments_template( '', true ); ?>
-			<?php endwhile; // end of the loop. ?>
+<div id="primary" class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <main id="main" class="site-main" role="main">
 
-		</div><!-- #content -->
-	</div><!-- #primary -->
-</div>
+                <?php
+                // Start the loop.
+                while ( have_posts() ) : the_post();
+
+                    // Include the page content template.
+                    get_template_part( 'single-templates/content', 'page' );
+
+                    // If comments are open or we have at least one comment, load up the comment template.
+                    if ( comments_open() || get_comments_number() ) :
+                        comments_template();
+                    endif;
+                    // End the loop.
+                endwhile;
+                ?>
+
+            </main><!-- .site-main -->
+        </div>
+    </div>
+</div><!-- .content-area -->
+
 <?php get_footer(); ?>

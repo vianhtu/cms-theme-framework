@@ -12,72 +12,37 @@
  */
 
 get_header(); ?>
-	<section id="primary" class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-		<div id="content" role="main">
 
-		<?php if ( have_posts() ) : ?>
+<section id="primary" class="container">
+	<div class="row">
+		<div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
+			<main id="main" class="site-main" role="main">
 
-			<?php
-				/* Queue the first post, that way we know
-				 * what author we're dealing with (if that is the case).
-				 *
-				 * We reset this later so we can run the loop
-				 * properly with a call to rewind_posts().
-				 */
-				the_post();
-			?>
+				<?php
+				if ( have_posts() ) :
+					while ( have_posts() ) : the_post();
 
-			<header class="archive-header">
-				<h1 class="archive-title"><?php printf( esc_html__( 'Author Archives: %s', 'cms-theme-framework' ), '<span class="vcard"><a class="url fn n" href="' . esc_url( get_author_posts_url( get_the_author_meta( "ID" ) ) ) . '" title="' . esc_attr( get_the_author() ) . '" rel="me">' . get_the_author() . '</a></span>' ); ?></h1>
-			</header><!-- .archive-header -->
+						get_template_part( 'single-templates/content/content', get_post_format() );
 
-			<?php
-				/* Since we called the_post() above, we need to
-				 * rewind the loop back to the beginning that way
-				 * we can run the loop properly, in full.
-				 */
-				rewind_posts();
-			?>
+					endwhile; // end of the loop.
 
-			<?php theme_framework_paging_nav(); ?>
+					/* blog nav. */
+					theme_framework_paging_nav();
 
-			<?php
-			// If a user has filled out their description, show a bio on their entries.
-			if ( get_the_author_meta( 'description' ) ) : ?>
-			<div class="author-info">
-				<div class="author-avatar">
-					<?php
-					/**
-					 * Filter the author bio avatar size.
-					 *
-					 * @since Twenty Twelve 1.0
-					 *
-					 * @param int $size The height and width of the avatar in pixels.
-					 */
-					echo get_avatar( get_the_author_meta( 'user_email' ), 75 );
-					?>
-				</div><!-- .author-avatar -->
-				<div class="author-description">
-					<h2><?php printf( esc_html__( 'About %s', 'cms-theme-framework' ), get_the_author() ); ?></h2>
-					<p><?php the_author_meta( 'description' ); ?></p>
-				</div><!-- .author-description	-->
-			</div><!-- .author-info -->
-			<?php endif; ?>
+				else :
+					/* content none. */
+					get_template_part( 'single-templates/content', 'none' );
 
-			<?php /* Start the Loop */ ?>
-			<?php while ( have_posts() ) : the_post(); ?>
-				<?php get_template_part( 'single-templates/content/content', get_post_format() ); ?>
-			<?php endwhile; ?>
+				endif; ?>
 
-			<?php theme_framework_paging_nav(); ?>
+			</main><!-- #content -->
+		</div>
+		<div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
 
-		<?php else : ?>
-			<?php get_template_part( 'single-templates/content', 'none' ); ?>
-		<?php endif; ?>
+			<?php get_sidebar(); ?>
 
-		</div><!-- #content -->
-	</section><!-- #primary -->
-    <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
-    <?php get_sidebar(); ?>
-    </div>
+		</div><!-- #sidebar -->
+	</div>
+</section><!-- #primary -->
+
 <?php get_footer(); ?>

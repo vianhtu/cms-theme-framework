@@ -39,33 +39,6 @@ if(!class_exists("ThemeFrameworkBase"))
 /* Add theme options. */
 require( get_template_directory() . '/inc/options/functions.php' );
 
-/**
- * Add new elements for VC
- * 
- * @author FOX
- */
-add_action('vc_before_init', 'theme_framework_vc_before');
-
-function theme_framework_vc_before(){
-    
-    if(!class_exists('CmsShortCode'))
-        return ;
-    
-    require( get_template_directory() . '/inc/elements/googlemap/cms_googlemap.php' );
-}
-
-/**
- * Custom params & remove VC Elements.
- * 
- * @author FOX
- */
-add_action('vc_after_init', 'theme_framework_vc_after');
-
-function theme_framework_vc_after() {
-    
-    //require( get_template_directory() . '/vc_params/vc_rows.php' );
-}
-
 /* Add Meta Core Options */
 if(is_admin()){
     /* tmp plugins. */
@@ -118,13 +91,8 @@ function theme_framework_base_class(){
  * @since 1.0.0
  */
 function theme_framework_setup() {
-	/*
-	 * Makes Twenty Twelve available for translation.
-	 *
-	 * Translations can be added to the /languages/ directory.
-	 * If you're building a theme based on Twenty Twelve, use a find and replace
-	 * to change 'cms-theme-framework' to the name of your theme in all the template files.
-	 */
+
+	// load language.
 	load_theme_textdomain( 'cms-theme-framework' , get_template_directory() . '/languages' );
 
 	// Adds title tag
@@ -140,7 +108,7 @@ function theme_framework_setup() {
 	add_theme_support( 'automatic-feed-links' );
 
 	// This theme supports a variety of post formats.
-	add_theme_support( 'post-formats', array( 'video', 'audio' , 'gallery', 'link', 'quote',) );
+	add_theme_support( 'post-formats', array( 'video', 'audio' , 'gallery', 'quote') );
 
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menu( 'primary', esc_html__( 'Primary Menu', 'cms-theme-framework' ) );
@@ -149,9 +117,7 @@ function theme_framework_setup() {
 	 * This theme supports custom background color and image,
 	 * and here we also set up the default background color.
 	 */
-	add_theme_support( 'custom-background', array(
-		'default-color' => 'e6e6e6',
-	) );
+	add_theme_support( 'custom-background', array('default-color' => 'e6e6e6',) );
 
 	// This theme uses a custom image size for featured images, displayed on "standard" posts.
 	add_theme_support( 'post-thumbnails' );
@@ -181,10 +147,7 @@ function theme_framework_register_scripts(){
     
     /** Load JavaScript Bootstrap. */
     wp_register_script('bootstrap', get_template_directory_uri() . '/assets/js/bootstrap.min.js', array( 'jquery' ), '3.3.2');
-    
-    /** Add smoothscroll plugin */
-    wp_register_script('smoothscroll', get_template_directory_uri() . '/assets/js/smoothscroll.min.js', array( 'jquery' ), '1.0.0', true);
-    
+
     /** Load menu script */
     wp_register_script('theme_framework-menu', get_template_directory_uri() . '/assets/js/menu.js', array( 'jquery' ), '1.0.0', true);
     
@@ -214,10 +177,6 @@ function theme_framework_front_end_scripts() {
 	
 	/* Adds JavaScript Bootstrap. */
 	wp_enqueue_script('bootstrap');
-		
-	/* Add smoothscroll plugin */
-	if($smof_data['smoothscroll'])
-	   wp_enqueue_script('smoothscroll');
 		
 	/* Add main.js */
 	wp_localize_script('theme_framework-main', 'CMSOptions', $script_options);
@@ -279,111 +238,8 @@ function theme_framework_widgets_init() {
 		'before_title' => '<h3 class="wg-title">',
 		'after_title' => '</h3>',
 	) );
-
-	register_sidebar( array(
-		'name' => esc_html__( 'Header Top Left', 'cms-theme-framework' ),
-		'id' => 'sidebar-2',
-		'description' => esc_html__( 'Appears when using the optional Header with a page set as Header top left', 'cms-theme-framework' ),
-		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
-		'after_widget' => '</aside>',
-		'before_title' => '<h3 class="wg-title">',
-		'after_title' => '</h3>',
-	) );
-
-	register_sidebar( array(
-		'name' => esc_html__( 'Header Top Right', 'cms-theme-framework' ),
-		'id' => 'sidebar-3',
-		'description' => esc_html__( 'Appears when using the optional Header with a page set as Header top right', 'cms-theme-framework' ),
-		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
-		'after_widget' => '</aside>',
-		'before_title' => '<h3 class="wg-title">',
-		'after_title' => '</h3>',
-	) );
-	
-	register_sidebar( array(
-    	'name' => esc_html__( 'Menu Right', 'cms-theme-framework' ),
-    	'id' => 'sidebar-4',
-    	'description' => esc_html__( 'Appears when using the optional Menu with a page set as Menu right', 'cms-theme-framework' ),
-    	'before_widget' => '<aside id="%1$s" class="widget %2$s">',
-    	'after_widget' => '</aside>',
-    	'before_title' => '<h3 class="wg-title">',
-    	'after_title' => '</h3>',
-	) );
-	
-	register_sidebar( array(
-    	'name' => esc_html__( 'Footer Top 1', 'cms-theme-framework' ),
-    	'id' => 'sidebar-5',
-    	'description' => esc_html__( 'Appears when using the optional Footer with a page set as Footer Top 1', 'cms-theme-framework' ),
-    	'before_widget' => '<aside id="%1$s" class="widget %2$s">',
-    	'after_widget' => '</aside>',
-    	'before_title' => '<h3 class="wg-title">',
-    	'after_title' => '</h3>',
-	) );
-	
-	register_sidebar( array(
-    	'name' => esc_html__( 'Footer Top 2', 'cms-theme-framework' ),
-    	'id' => 'sidebar-6',
-    	'description' => esc_html__( 'Appears when using the optional Footer with a page set as Footer Top 2', 'cms-theme-framework' ),
-    	'before_widget' => '<aside id="%1$s" class="widget %2$s">',
-    	'after_widget' => '</aside>',
-    	'before_title' => '<h3 class="wg-title">',
-    	'after_title' => '</h3>',
-	) );
-	
-	register_sidebar( array(
-    	'name' => esc_html__( 'Footer Top 3', 'cms-theme-framework' ),
-    	'id' => 'sidebar-7',
-    	'description' => esc_html__( 'Appears when using the optional Footer with a page set as Footer Top 3', 'cms-theme-framework' ),
-    	'before_widget' => '<aside class="widget %2$s">',
-    	'after_widget' => '</aside>',
-    	'before_title' => '<h3 class="wg-title">',
-    	'after_title' => '</h3>',
-	) );
-	
-	register_sidebar( array(
-    	'name' => esc_html__( 'Footer Top 4', 'cms-theme-framework' ),
-    	'id' => 'sidebar-8',
-    	'description' => esc_html__( 'Appears when using the optional Footer with a page set as Footer Top 4', 'cms-theme-framework' ),
-    	'before_widget' => '<aside id="%1$s" class="widget %2$s">',
-    	'after_widget' => '</aside>',
-    	'before_title' => '<h3 class="wg-title">',
-    	'after_title' => '</h3>',
-	) );
-	
-	register_sidebar( array(
-    	'name' => esc_html__( 'Footer Boton Left', 'cms-theme-framework' ),
-    	'id' => 'sidebar-9',
-    	'description' => esc_html__( 'Appears when using the optional Footer Boton with a page set as Footer Boton left', 'cms-theme-framework' ),
-    	'before_widget' => '<aside id="%1$s" class="widget %2$s">',
-    	'after_widget' => '</aside>',
-    	'before_title' => '<h3 class="wg-title">',
-    	'after_title' => '</h3>',
-	) );
-	
-	register_sidebar( array(
-    	'name' => esc_html__( 'Footer Boton Right', 'cms-theme-framework' ),
-    	'id' => 'sidebar-10',
-    	'description' => esc_html__( 'Appears when using the optional Footer Boton with a page set as Footer Boton right', 'cms-theme-framework' ),
-    	'before_widget' => '<aside id="%1$s" class="widget %2$s">',
-    	'after_widget' => '</aside>',
-    	'before_title' => '<h3 class="wg-title">',
-    	'after_title' => '</h3>',
-	) );
 }
 add_action( 'widgets_init', 'theme_framework_widgets_init' );
-
-/**
- * site_icon
- */
-function theme_framework_site_icon(){
-    
-    global $smof_data;
-    
-    if ( ! function_exists( 'has_site_icon' ) || ! has_site_icon() )
-        echo '<link rel="icon" type="image/png" href="'.esc_url($smof_data['favicon_icon']['url']).'"/>';
-}
-
-add_action('wp_head', 'theme_framework_site_icon');
 
 /**
  * Get meta data.

@@ -15,56 +15,37 @@
  */
 
 get_header(); ?>
-    <div class="<?php theme_framework_main_class(); ?>">
-        <div class="row">
-            <div id="primary" class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-                <div id="content" role="main">
-                    <?php if ( have_posts() ) : ?>
 
-                        <?php /* Start the Loop */ ?>
-                        <?php while ( have_posts() ) : the_post(); ?>
-                            <?php get_template_part( 'single-templates/content/content', get_post_format() ); ?>
-                        <?php endwhile; ?>
-                        
-                        <?php theme_framework_paging_nav(); ?>
+<section id="primary" class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
+            <main id="main" class="site-main" role="main">
 
-                    <?php else : ?>
+                <?php
+                if ( have_posts() ) :
+                    while ( have_posts() ) : the_post();
 
-                        <article id="post-0" class="post no-results not-found">
+                        get_template_part( 'single-templates/content/content', get_post_format() );
 
-                            <?php if ( current_user_can( 'edit_posts' ) ) :
-                                // Show a different message to a logged-in user who can add posts.
-                                ?>
-                                <header class="entry-header">
-                                    <h1 class="entry-title"><?php esc_html_e( 'No posts to display', 'cms-theme-framework' ); ?></h1>
-                                </header>
+                    endwhile; // end of the loop.
 
-                                <div class="entry-content">
-                                    <p><?php printf( esc_html__( 'Ready to publish your first post? <a href="%s">Get started here</a>.', 'cms-theme-framework' ), admin_url( 'post-new.php' ) ); ?></p>
-                                </div><!-- .entry-content -->
+                    /* blog nav. */
+                    theme_framework_paging_nav();
 
-                            <?php else :
-                                // Show the default message to everyone else.
-                                ?>
-                                <header class="entry-header">
-                                    <h1 class="entry-title"><?php esc_html_e( 'Nothing Found', 'cms-theme-framework' ); ?></h1>
-                                </header>
+                else :
+                    /* content none. */
+                    get_template_part( 'single-templates/content', 'none' );
 
-                                <div class="entry-content">
-                                    <p><?php esc_html_e( 'Apologies, but no results were found. Perhaps searching will help find a related post.', 'cms-theme-framework' ); ?></p>
-                                    <?php get_search_form(); ?>
-                                </div><!-- .entry-content -->
-                            <?php endif; // end current_user_can() check ?>
+                endif; ?>
 
-                        </article><!-- #post-0 -->
-
-                    <?php endif; // end have_posts() check ?>
-
-                </div><!-- #content -->
-            </div><!-- #primary -->
-            <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
-                <?php get_sidebar(); ?>
-            </div>
+            </main><!-- #content -->
         </div>
+        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+
+            <?php get_sidebar(); ?>
+
+        </div><!-- #sidebar -->
     </div>
+</section><!-- #primary -->
+
 <?php get_footer(); ?>

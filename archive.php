@@ -18,37 +18,37 @@
  */
 
 get_header(); ?>
-<div class="container">
+
+<section id="primary" class="container">
     <div class="row">
-        <section id="primary" class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-            <div id="content" role="main">
+        <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
+            <main id="main" class="site-main" role="main">
 
-            <?php if ( have_posts() ) : ?>
-            
                 <?php
-                /* Start the Loop */
-                while ( have_posts() ) : the_post();
+                if ( have_posts() ) :
+                    while ( have_posts() ) : the_post();
 
-                    /* Include the post format-specific template for the content. If you want to
-                     * this in a child theme then include a file called called content-___.php
-                     * (where ___ is the post format) and that will be used instead.
-                     */
-                    get_template_part( 'single-templates/content/content', get_post_format() );
+                        get_template_part( 'single-templates/content/content', get_post_format() );
 
-                endwhile;
+                    endwhile; // end of the loop.
 
-                theme_framework_paging_nav();
-                ?>
+                    /* blog nav. */
+                    theme_framework_paging_nav();
 
-            <?php else : ?>
-                <?php get_template_part( 'single-templates/content', 'none' ); ?>
-            <?php endif; ?>
+                else :
+                    /* content none. */
+                    get_template_part( 'single-templates/content', 'none' );
 
-            </div><!-- #content -->
-        </section><!-- #primary -->
-        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
-            <?php get_sidebar(); ?>
+                endif; ?>
+
+            </main><!-- #content -->
         </div>
-    </div>
-</div>
+        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+
+            <?php get_sidebar(); ?>
+
+        </div><!-- #sidebar -->
+    </div><!-- #primary -->
+</section>
+
 <?php get_footer(); ?>

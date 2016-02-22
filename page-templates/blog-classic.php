@@ -9,37 +9,43 @@
  */
 
 get_header(); ?>
-<div id="page-front-page">
-    <div class="container">
-        <div class="row">
-            <div id="primary" class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-                <div id="content" role="main">
 
-                <?php global $wp_query, $paged; ?>
+<section id="primary" class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
+            <main id="main" class="site-main" role="main">
+
+                <?php global $wp_query, $paged;
                 
-                <?php $wp_query->query('post_type=post&showposts='.get_option('posts_per_page').'&paged='.$paged); ?>
+                $wp_query->query('post_type=post&showposts='.get_option('posts_per_page').'&paged='.$paged);
                 
-                <?php if ( have_posts() ) : ?>
-                    <?php while ( have_posts() ) : the_post();
-                        /* Include the post format-specific template for the content. If you want to
-                         * this in a child theme then include a file called called content-___.php
-                         * (where ___ is the post format) and that will be used instead.
-                         */
+                if ( have_posts() ) :
+                    while ( have_posts() ) : the_post();
+
                         get_template_part( 'single-templates/content/content', get_post_format() );
-                    endwhile; // end of the loop.?>
+
+                    endwhile; // end of the loop.
+
+                    /* blog nav. */
+                    theme_framework_paging_nav();
+
+                    /* reset custom postdata. */
+                    wp_reset_postdata();
                     
-                    <?php theme_framework_paging_nav(); ?>
-                    
-                <?php else : ?>
-                    <?php get_template_part( 'single-templates/content', 'none' ); ?>
-                <?php endif; ?> 
+                else :
+                    /* content none. */
+                    get_template_part( 'single-templates/content', 'none' );
+
+                endif; ?>
                 
-                </div><!-- #content -->
-            </div><!-- #primary -->
-            <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
-                <?php get_sidebar(); ?>
-            </div>
+            </main><!-- #content -->
         </div>
+        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+
+            <?php get_sidebar(); ?>
+
+        </div><!-- #sidebar -->
     </div>
-</div>
+</section><!-- #primary -->
+
 <?php get_footer(); ?>
