@@ -23,14 +23,6 @@
  */
 
 /**
- * scss lib.
- *
- * @author FOX
- */
-if(!class_exists('scssc'))
-    require( get_template_directory() . '/inc/libs/scss.inc.php' );
-
-/**
  * load font-awesome icons class.
  *
  * @author FOX
@@ -43,10 +35,6 @@ if(function_exists('vc_set_as_theme')) vc_set_as_theme( true );
 /* Add base functions */
 if(!class_exists("ThemeFrameworkBase"))
     require( get_template_directory() . '/inc/base.class.php' );
-
-/* Add ReduxFramework. */
-if(!class_exists('ReduxFramework'))
-    require( get_template_directory() . '/inc/ReduxCore/framework.php' );
 
 /* Add theme options. */
 require( get_template_directory() . '/inc/options/functions.php' );
