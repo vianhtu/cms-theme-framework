@@ -25,38 +25,16 @@ function cms_theme_register_required_plugins() {
      */
     $plugins = array(
         array(
-            'name'               => 'CMSSuperHeroes',
+            'name'               => 'EF3 Framework',
+            'slug'               => 'ef3-framework',
+            'source'             => 'http://cmssuperheroes.com/plugins/EF3-Framework.zip',
+            'required'           => true,
+        ),
+        array(
+            'name'               => 'Shortcodes',
             'slug'               => 'cmssuperheroes',
             'source'             => 'http://cmssuperheroes.com/plugins/cmssuperheroesv2.zip',
             'required'           => true,
-        ),
-        array(
-            'name'               => 'Visual Composer',
-            'slug'               => 'js_composer',
-            'source'             => 'http://cmssuperheroes.com/plugins/js_composer.zip',
-            'required'           => true,
-        ),
-        array(
-            'name'      => 'Custom Post Type UI',
-            'slug'      => 'custom-post-type-ui',
-            'required'  => true,
-        ),
-        array(
-            'name'               => 'Revolution Slider',
-            'slug'               => 'revslider',
-            'source'             => 'http://cmssuperheroes.com/plugins/revslider.zip',
-            'required'           => false,
-        ),
-        array(
-            'name'               => 'Essential Grid',
-            'slug'               => 'essential-grid',
-            'source'             => 'http://cmssuperheroes.com/plugins/essential-grid.zip',
-            'required'           => false,
-        ),
-        array(
-            'name'               => 'Contact Form 7',
-            'slug'               => 'contact-form-7',
-            'required'           => false,
         ),
     );
 

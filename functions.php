@@ -68,14 +68,6 @@ function theme_framework_vc_after() {
 
 /* Add Meta Core Options */
 if(is_admin()){
-    
-    if(!class_exists('CsCoreControl')){
-        /* add mete core */
-        require( get_template_directory() . '/inc/metacore/core.options.php' );
-        /* add meta options */
-        require( get_template_directory() . '/inc/options/meta.options.php' );
-    }
-    
     /* tmp plugins. */
     require( get_template_directory() . '/inc/options/require.plugins.php' );
 }
