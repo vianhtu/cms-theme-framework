@@ -22,7 +22,6 @@
 <?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?>>
-<?php theme_framework_get_page_loading(); ?>
 <div id="page" class="hfeed site">
 	<header id="masthead" class="site-header" role="banner">
 		<?php theme_framework_header(); ?>

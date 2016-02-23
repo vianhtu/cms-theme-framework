@@ -29,15 +29,10 @@
  */
 require_once get_template_directory() . '/inc/libs/font-awesome.php';
 
-/* Dismiss vc update. */
-if(function_exists('vc_set_as_theme')) vc_set_as_theme( true );
-
-/* Add base functions */
-if(!class_exists("ThemeFrameworkBase"))
-    require( get_template_directory() . '/inc/base.class.php' );
-
 /* Add theme options. */
 require( get_template_directory() . '/inc/options/functions.php' );
+
+require( get_template_directory() . '/inc/options/meta-options.php' );
 
 /* Add Meta Core Options */
 if(is_admin()){
@@ -62,18 +57,6 @@ if(!class_exists('HeroMenuWalker') && wp_get_nav_menus()){
 // Set up the content width value based on the theme's design and stylesheet.
 if ( ! isset( $content_width ) )
 	$content_width = 625;
-
-/**
- * add base class.
- */
-add_action('init', 'theme_framework_base_class');
-	
-function theme_framework_base_class(){
-    
-    $GLOBALS['theme_framework_base'];
-
-    $GLOBALS['theme_framework_base'] = new ThemeFrameworkBase;
-}
 	
 /**
  * CMS Theme setup.
@@ -216,7 +199,16 @@ add_action( 'wp_enqueue_scripts', 'theme_framework_front_end_scripts' );
  * @author FOX
  */
 function theme_framework_admin_scripts(){
+
     wp_enqueue_style('font-awesome');
+
+	$screen = get_current_screen();
+
+	/* load js for edit post. */
+	if($screen->post_type == 'post'){
+		/* post format select. */
+		wp_enqueue_script('post-format', get_template_directory_uri() . '/assets/js/post-format.js');
+	}
 }
 
 add_action( 'admin_enqueue_scripts', 'theme_framework_admin_scripts' );
@@ -240,36 +232,6 @@ function theme_framework_widgets_init() {
 	) );
 }
 add_action( 'widgets_init', 'theme_framework_widgets_init' );
-
-/**
- * Get meta data.
- * 
- * @param string $key
- * @param string $default
- */
-function theme_framework_get_post_meta($key, $default = '', $post_id = NULL){
-	
-	global $post;
-	
-	/* key null. */
-	if(!$key) return $default;
-	
-	$key = '_cms_' . $key;
-	
-	/* post ID null. */
-	if(!$post_id && empty($post->ID)) return $default;
-	
-	/* set post ID */
-	if(!$post_id) $post_id = $post->ID;
-	
-	/* get meta. */
-	$meta = get_post_meta($post_id, $key, true);
-	
-	/* meta null. */
-	if(empty($meta)) return $default;
-	
-	return $meta;
-}
 
 /**
  * Filter the page menu arguments.
@@ -451,21 +413,6 @@ function theme_framework_custom_css() {
 }
 
 add_action('wp_head', 'theme_framework_custom_css');
-
-/**
- * limit words
- * 
- * @since 1.0.0
- */
-if (!function_exists('theme_framework_limit_words')) {
-    function theme_framework_limit_words($string, $word_limit) {
-        $words = explode(' ', $string, ($word_limit + 1));
-        if (count($words) > $word_limit) {
-            array_pop($words);
-        }
-        return implode(' ', $words)."";
-    }
-}
 
 /**
  * Set home page.

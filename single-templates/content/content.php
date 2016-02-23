@@ -11,46 +11,36 @@
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-	<div class="entry-blog">
-		<div class="entry-header">
-			<div class="entry-date">
-				<div class="arow-date"></div>
-				<?php theme_framework_archive_post_icon(); ?>
-				<span><?php echo get_the_date("F d,Y"); ?></span>
-			</div>
-		    <h2 class="entry-title">
-		    	<a href="<?php the_permalink(); ?>">
-		    		<?php
-			    		if(is_sticky()){
-			                echo "<i class='fa fa-thumb-tack'></i>";
-			            }
-			    	?>
-		    		<?php the_title(); ?>
-		    	</a>
-		    </h2>
-		    <div class="entry-feature entry-feature-image"><?php the_post_thumbnail( 'full' ); ?></div>
-			<div class="entry-meta"><?php theme_framework_archive_detail(); ?></div>
-		</div>
-		<!-- .entry-header -->
 
-		<div class="entry-content">
-			<?php the_excerpt();
-	    		wp_link_pages( array(
-	        		'before'      => '<div class="pagination loop-pagination"><span class="page-links-title">' . esc_html__( 'Pages:','cms-theme-framework') . '</span>',
-	        		'after'       => '</div>',
-	        		'link_before' => '<span class="page-numbers">',
-	        		'link_after'  => '</span>',
-	    		) );
-			?>
-		</div>
-		<!-- .entry-content -->
+	<?php theme_framework_post_thumbnail(); ?>
 
-		<footer class="entry-footer">
-		    <?php theme_framework_archive_readmore(); ?>
-		    <!-- .readmore link -->
-		</footer>
-		<!-- .entry-footer -->
-	</div>
-	<!-- .entry-blog -->
-</article>
-<!-- #post -->
+	<header class="entry-header">
+
+		<?php the_title( '<h1 class="entry-title"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">', '</a></h1>' ); ?>
+
+		<div class="entry-meta">
+
+			<?php theme_framework_post_detail(); ?>
+
+		</div><!-- .entry-meta -->
+	</header><!-- .entry-header -->
+
+
+	<div class="entry-content">
+		<?php
+		/* translators: %s: Name of current post */
+		the_excerpt();
+
+		wp_link_pages( array(
+			'before'      => '<div class="page-links"><span class="page-links-title">' . __( 'Pages:', 'cms-theme-framework' ) . '</span>',
+			'after'       => '</div>',
+			'link_before' => '<span>',
+			'link_after'  => '</span>',
+		) );
+		?>
+	</div><!-- .entry-content -->
+
+	<footer class="entry-footer">
+		<a href="<?php the_permalink(); ?>"><?php esc_html_e('Read More:', 'cms-theme-framework') ?></a>
+	</footer><!-- .entry-footer -->
+</article><!-- #post-## -->
