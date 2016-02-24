@@ -30,7 +30,7 @@
 require_once get_template_directory() . '/inc/libs/font-awesome.php';
 
 /* Add theme options. */
-require( get_template_directory() . '/inc/options/functions.php' );
+require( get_template_directory() . '/inc/options/function.options.php' );
 
 require( get_template_directory() . '/inc/options/meta-options.php' );
 
@@ -398,21 +398,6 @@ function theme_framework_comment($comment, $args, $depth) {
     <?php endif; ?>
     <?php
 }
-
-/**
- * custom css.
- */
-function theme_framework_custom_css() {
-
-    global $smof_data;
-
-    if(empty($smof_data['custom_css']))
-        return ;
-        /* custom css. */
-        echo '<style type="text/css">' . esc_html($smof_data['custom_css']) . '</style>';
-}
-
-add_action('wp_head', 'theme_framework_custom_css');
 
 /**
  * Set home page.

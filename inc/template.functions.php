@@ -3,66 +3,126 @@
  * get header layout.
  */
 function theme_framework_header(){
+    global $opt_theme_options;
 
-    global $smof_data;
-
-    /* load template. */
-    get_template_part('inc/header/header', $smof_data['header_layout']);
+    if(!isset($opt_theme_options)){
+        get_template_part('inc/header/header');
+        return;
+    }
+    /* load custom header template. */
+    get_template_part('inc/header/header', $opt_theme_options['header_layout']);
 }
 
 /**
- * page title template
+ * get theme logo.
+ */
+function theme_framework_header_logo(){
+    global $opt_theme_options;
+
+    if(!isset($opt_theme_options))
+        return;
+
+    echo '<a href="'.esc_url(home_url('/')).'"><img alt="'.esc_html__('Logo', 'cms-theme-framework').'" src="'.esc_url($opt_theme_options['main_logo']['url']).'"></a>';
+}
+
+/**
+ * get header class.
+ */
+function theme_framework_header_class($class = ''){
+    global $opt_theme_options;
+
+    if(!isset($opt_theme_options)){
+        echo $class;
+        return;
+    }
+
+    if($opt_theme_options['menu_sticky'])
+        $class .= ' sticky-desktop';
+
+    if($opt_theme_options['menu_sticky_tablets'])
+        $class .= ' sticky-tablets';
+
+    if($opt_theme_options['menu_sticky_mobile'])
+        $class .= ' sticky-mobile';
+
+    echo $class;
+}
+
+/**
+ * main navigation.
+ */
+function theme_framework_header_navigation(){
+
+    $attr = array(
+        'menu' => 0,
+        'menu_class' => 'nav-menu menu-main-menu',
+        'theme_location' => 'primary'
+    );
+
+    /* enable mega menu. */
+    if(class_exists('HeroMenuWalker')){ $attr['walker'] = new HeroMenuWalker(); }
+
+    /* main nav. */
+    wp_nav_menu( $attr );
+}
+
+/**
+ * get page title layout
  */
 function theme_framework_page_title(){
 	
-    global $smof_data;
-    
-    if($smof_data['page_title_layout']){
-        ?>
-        <div id="page-title" class="page-title">
-            <div class="container">
-            <div class="row">
-            <?php switch ($smof_data['page_title_layout']){
-                case '1':
-                    ?>
-                    <div id="page-title-text" class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><h1><?php theme_framework_get_page_title(); ?></h1></div>
-                    <div id="breadcrumb-text" class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><?php theme_framework_get_bread_crumb(); ?></div>
-                    <?php
-                    break;
-                case '2':
-                    ?>
-                    <div id="breadcrumb-text" class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><?php theme_framework_get_bread_crumb(); ?></div>
-                    <div id="page-title-text" class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><h1><?php theme_framework_get_page_title(); ?></h1></div>
-                    <?php          
-                    break;
-                case '3':
-                    ?>
-                    <div id="page-title-text" class="col-xs-12 col-sm-6 col-md-6 col-lg-6"><h1><?php theme_framework_get_page_title(); ?></h1></div>
-                    <div id="breadcrumb-text" class="col-xs-12 col-sm-6 col-md-6 col-lg-6"><?php theme_framework_get_bread_crumb(); ?></div>
-                    <?php
-                    break;
-                case '4':
-                    ?>
-                    <div id="breadcrumb-text" class="col-xs-12 col-sm-6 col-md-6 col-lg-6"><?php theme_framework_get_bread_crumb(); ?></div>
-                    <div id="page-title-text" class="col-xs-12 col-sm-6 col-md-6 col-lg-6"><h1><?php theme_framework_get_page_title(); ?></h1></div>
-                    <?php
-                    break;
-                case '5':
-                    ?>
-                    <div id="page-title-text" class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><h1><?php theme_framework_get_page_title(); ?></h1></div>
-                    <?php
-                    break;
-                case '6':
-                    ?>
-                    <div id="breadcrumb-text" class="col-xs-12 col-sm-6 col-md-6 col-lg-6"><?php theme_framework_get_bread_crumb(); ?></div>
-                    <?php
-                    break;
-            } ?>
-            </div>
-            </div>
-        </div><!-- #page-title -->
-        <?php
+    global $opt_theme_options;
+
+    $layout = '5';
+
+    if(isset($opt_theme_options['page_title_layout'])) {
+        $layout = $opt_theme_options['page_title_layout'];
     }
+
+    ?>
+    <div id="page-title" class="page-title">
+        <div class="container">
+        <div class="row">
+        <?php switch ($layout){
+            case '1':
+                ?>
+                <div id="page-title-text" class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><h1><?php theme_framework_get_page_title(); ?></h1></div>
+                <div id="breadcrumb-text" class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><?php theme_framework_get_bread_crumb(); ?></div>
+                <?php
+                break;
+            case '2':
+                ?>
+                <div id="breadcrumb-text" class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><?php theme_framework_get_bread_crumb(); ?></div>
+                <div id="page-title-text" class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><h1><?php theme_framework_get_page_title(); ?></h1></div>
+                <?php
+                break;
+            case '3':
+                ?>
+                <div id="page-title-text" class="col-xs-12 col-sm-6 col-md-6 col-lg-6"><h1><?php theme_framework_get_page_title(); ?></h1></div>
+                <div id="breadcrumb-text" class="col-xs-12 col-sm-6 col-md-6 col-lg-6"><?php theme_framework_get_bread_crumb(); ?></div>
+                <?php
+                break;
+            case '4':
+                ?>
+                <div id="breadcrumb-text" class="col-xs-12 col-sm-6 col-md-6 col-lg-6"><?php theme_framework_get_bread_crumb(); ?></div>
+                <div id="page-title-text" class="col-xs-12 col-sm-6 col-md-6 col-lg-6"><h1><?php theme_framework_get_page_title(); ?></h1></div>
+                <?php
+                break;
+            case '5':
+                ?>
+                <div id="page-title-text" class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><h1><?php theme_framework_get_page_title(); ?></h1></div>
+                <?php
+                break;
+            case '6':
+                ?>
+                <div id="breadcrumb-text" class="col-xs-12 col-sm-6 col-md-6 col-lg-6"><?php theme_framework_get_bread_crumb(); ?></div>
+                <?php
+                break;
+        } ?>
+        </div>
+        </div>
+    </div><!-- #page-title -->
+    <?php
 }
 
 /**
@@ -145,13 +205,15 @@ function theme_framework_get_page_title(){
  * @since 1.0.0
  */
 function theme_framework_get_bread_crumb($separator = '') {
-    global $smof_data, $post;
+    global $opt_theme_options, $post;
+
     echo '<ul class="breadcrumbs">';
     /* not front_page */
     if ( !is_front_page() ) {
         echo '<li><a href="';
         echo esc_url(home_url('/'));
-        echo '">'.esc_html($smof_data['breacrumb_home_prefix']);
+        echo '">';
+        echo isset($opt_theme_options['breacrumb_home_prefix']) ? esc_html($opt_theme_options['breacrumb_home_prefix']) : esc_html__('Home', 'cms-theme-framework');
         echo "</a></li>";
     }
 
