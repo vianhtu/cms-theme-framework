@@ -48,28 +48,64 @@ MetaFramework::setMetabox(array(
     'open_expanded' => false,
     'sections' => array(
         array(
-            'title' => __('Color', 'cms-theme-framework'),
-            'id' => 'color-Color',
-            'icon' => 'el el-laptop',
+            'title' => __('Header', 'cms-theme-framework'),
+            'id' => 'tab-page-header',
+            'icon' => 'el el-credit-card',
             'fields' => array(
                 array(
-                    'id' => 'opt-title-text',
-                    'type' => 'media',
-                    'title' => __('Site Title Color', 'cms-theme-framework'),
-                    'subtitle' => __('Pick a title color for the theme (default: #000).', 'cms-theme-framework'),
+                    'id' => 'header_layout',
+                    'title' => esc_html__('Layouts', 'cms-theme-framework'),
+                    'subtitle' => esc_html__('select a layout for header', 'cms-theme-framework'),
+                    'default' => '',
+                    'type' => 'image_select',
+                    'options' => array(
+                        '' => get_template_directory_uri().'/assets/images/header/h-default.png',
+                        'top' => get_template_directory_uri().'/assets/images/header/h-style-1.png'
+                    )
                 )
             )
         ),
         array(
-            'title' => __('Sorter', 'cms-theme-framework'),
-            'id' => 'additional-sorter',
+            'title' => __('Page Title & BC', 'cms-theme-framework'),
+            'id' => 'tab-page-title-bc',
+            'icon' => 'el el-map-marker',
             'fields' => array(
+                array(
+                    'id' => 'page_title_layout',
+                    'title' => esc_html__('Layouts', 'cms-theme-framework'),
+                    'subtitle' => esc_html__('select a layout for page title', 'cms-theme-framework'),
+                    'default' => '5',
+                    'type' => 'image_select',
+                    'options' => array(
+                        '0' => get_template_directory_uri().'/assets/images/pagetitle/pt-s-0.png',
+                        '1' => get_template_directory_uri().'/assets/images/pagetitle/pt-s-1.png',
+                        '2' => get_template_directory_uri().'/assets/images/pagetitle/pt-s-2.png',
+                        '3' => get_template_directory_uri().'/assets/images/pagetitle/pt-s-3.png',
+                        '4' => get_template_directory_uri().'/assets/images/pagetitle/pt-s-4.png',
+                        '5' => get_template_directory_uri().'/assets/images/pagetitle/pt-s-5.png',
+                        '6' => get_template_directory_uri().'/assets/images/pagetitle/pt-s-6.png',
+                    )
+                ),
+                array(
+                    'id' => 'page_title_text',
+                    'type' => 'text',
+                    'title' => esc_html__('Custom Title', 'cms-theme-framework'),
+                    'subtitle' => esc_html__('Custom current page title.', 'cms-theme-framework')
+                )
             )
         ),
         array(
-            'title' => __('Sorter', 'cms-theme-framework'),
-            'id' => 'additional-sorter-2',
+            'title' => __('One Page', 'cms-theme-framework'),
+            'id' => 'tab-one-page',
+            'icon' => 'el el-download-alt',
             'fields' => array(
+                array(
+                    'subtitle' => esc_html__('Enable one page mode for current page.', 'cms-theme-framework'),
+                    'id' => 'page_one_page',
+                    'type' => 'switch',
+                    'title' => esc_html__('Enable', 'cms-theme-framework'),
+                    'default' => false,
+                )
             )
         )
     )
