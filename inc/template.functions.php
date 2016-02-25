@@ -3,12 +3,16 @@
  * get header layout.
  */
 function theme_framework_header(){
-    global $opt_theme_options;
+    global $opt_theme_options, $opt_meta_options;
 
     if(!isset($opt_theme_options)){
         get_template_part('inc/header/header');
         return;
     }
+
+    if(is_page() && !empty($opt_meta_options['header_layout']))
+        $opt_theme_options['header_layout'] = $opt_meta_options['header_layout'];
+
     /* load custom header template. */
     get_template_part('inc/header/header', $opt_theme_options['header_layout']);
 }
@@ -53,11 +57,15 @@ function theme_framework_header_class($class = ''){
  */
 function theme_framework_header_navigation(){
 
+    global $opt_meta_options;
+
     $attr = array(
-        'menu' => 0,
         'menu_class' => 'nav-menu menu-main-menu',
         'theme_location' => 'primary'
     );
+
+    if(is_page() && !empty($opt_meta_options['header_menu']))
+        $attr['menu'] = $opt_meta_options['header_menu'];
 
     /* enable mega menu. */
     if(class_exists('HeroMenuWalker')){ $attr['walker'] = new HeroMenuWalker(); }
@@ -70,50 +78,54 @@ function theme_framework_header_navigation(){
  * get page title layout
  */
 function theme_framework_page_title(){
-	
-    global $opt_theme_options;
+    global $opt_theme_options, $opt_meta_options;
 
+    /* default. */
     $layout = '5';
 
-    if(isset($opt_theme_options['page_title_layout'])) {
+    /* get theme options */
+    if(isset($opt_theme_options['page_title_layout']))
         $layout = $opt_theme_options['page_title_layout'];
-    }
+
+    /* custom layout from page. */
+    if(is_page() && !empty($opt_meta_options['page_title_layout']))
+        $layout = $opt_meta_options['page_title_layout'];
 
     ?>
     <div id="page-title" class="page-title">
         <div class="container">
         <div class="row">
         <?php switch ($layout){
-            case '1':
-                ?>
-                <div id="page-title-text" class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><h1><?php theme_framework_get_page_title(); ?></h1></div>
-                <div id="breadcrumb-text" class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><?php theme_framework_get_bread_crumb(); ?></div>
-                <?php
-                break;
             case '2':
                 ?>
-                <div id="breadcrumb-text" class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><?php theme_framework_get_bread_crumb(); ?></div>
                 <div id="page-title-text" class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><h1><?php theme_framework_get_page_title(); ?></h1></div>
+                <div id="breadcrumb-text" class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><?php theme_framework_get_bread_crumb(); ?></div>
                 <?php
                 break;
             case '3':
                 ?>
-                <div id="page-title-text" class="col-xs-12 col-sm-6 col-md-6 col-lg-6"><h1><?php theme_framework_get_page_title(); ?></h1></div>
-                <div id="breadcrumb-text" class="col-xs-12 col-sm-6 col-md-6 col-lg-6"><?php theme_framework_get_bread_crumb(); ?></div>
+                <div id="breadcrumb-text" class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><?php theme_framework_get_bread_crumb(); ?></div>
+                <div id="page-title-text" class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><h1><?php theme_framework_get_page_title(); ?></h1></div>
                 <?php
                 break;
             case '4':
                 ?>
-                <div id="breadcrumb-text" class="col-xs-12 col-sm-6 col-md-6 col-lg-6"><?php theme_framework_get_bread_crumb(); ?></div>
                 <div id="page-title-text" class="col-xs-12 col-sm-6 col-md-6 col-lg-6"><h1><?php theme_framework_get_page_title(); ?></h1></div>
+                <div id="breadcrumb-text" class="col-xs-12 col-sm-6 col-md-6 col-lg-6"><?php theme_framework_get_bread_crumb(); ?></div>
                 <?php
                 break;
             case '5':
                 ?>
-                <div id="page-title-text" class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><h1><?php theme_framework_get_page_title(); ?></h1></div>
+                <div id="breadcrumb-text" class="col-xs-12 col-sm-6 col-md-6 col-lg-6"><?php theme_framework_get_bread_crumb(); ?></div>
+                <div id="page-title-text" class="col-xs-12 col-sm-6 col-md-6 col-lg-6"><h1><?php theme_framework_get_page_title(); ?></h1></div>
                 <?php
                 break;
             case '6':
+                ?>
+                <div id="page-title-text" class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><h1><?php theme_framework_get_page_title(); ?></h1></div>
+                <?php
+                break;
+            case '7':
                 ?>
                 <div id="breadcrumb-text" class="col-xs-12 col-sm-6 col-md-6 col-lg-6"><?php theme_framework_get_bread_crumb(); ?></div>
                 <?php
@@ -129,15 +141,15 @@ function theme_framework_page_title(){
  * page title
  */
 function theme_framework_get_page_title(){
+
+    global $opt_meta_options;
+
     if (!is_archive()){
         /* page. */
         if(is_page()) :
-
-            $custom_title = theme_framework_get_post_meta('page_title_text');
-
             /* custom title. */
-            if($custom_title):
-                echo esc_attr($custom_title);
+            if(!empty($opt_meta_options['page_title_text'])):
+                echo esc_html($opt_meta_options['page_title_text']);
             else :
                 the_title();
             endif;
@@ -318,27 +330,27 @@ function theme_framework_post_detail(){
  */
 function theme_framework_post_video() {
 
-    global $opt_meta, $wp_embed;
+    global $opt_meta_options, $wp_embed;
 
     /* no video. */
-    if(empty($opt_meta['opt-video-type'])) {
+    if(empty($opt_meta_options['opt-video-type'])) {
         theme_framework_post_thumbnail();
         return;
     }
 
-    if($opt_meta['opt-video-type'] == 'local' && !empty($opt_meta['otp-video-local']['id'])){
+    if($opt_meta_options['opt-video-type'] == 'local' && !empty($opt_meta_options['otp-video-local']['id'])){
 
-        $video = wp_get_attachment_metadata($opt_meta['otp-video-local']['id']);
+        $video = wp_get_attachment_metadata($opt_meta_options['otp-video-local']['id']);
 
-        echo do_shortcode('[video width="'.esc_attr($opt_meta['otp-video-local']['width']).'" height="'.esc_attr($opt_meta['otp-video-local']['height']).'" '.$video['fileformat'].'="'.esc_url($opt_meta['otp-video-local']['url']).'" poster="'.esc_url($opt_meta['otp-video-thumb']['url']).'"][/video]');
+        echo do_shortcode('[video width="'.esc_attr($opt_meta_options['otp-video-local']['width']).'" height="'.esc_attr($opt_meta_options['otp-video-local']['height']).'" '.$video['fileformat'].'="'.esc_url($opt_meta_options['otp-video-local']['url']).'" poster="'.esc_url($opt_meta_options['otp-video-thumb']['url']).'"][/video]');
 
-    } elseif($opt_meta['opt-video-type'] == 'youtube' && !empty($opt_meta['opt-video-youtube'])) {
+    } elseif($opt_meta_options['opt-video-type'] == 'youtube' && !empty($opt_meta_options['opt-video-youtube'])) {
 
-        echo do_shortcode($wp_embed->run_shortcode('[embed]'.esc_url($opt_meta['opt-video-youtube']).'[/embed]'));
+        echo do_shortcode($wp_embed->run_shortcode('[embed]'.esc_url($opt_meta_options['opt-video-youtube']).'[/embed]'));
 
-    } elseif($opt_meta['opt-video-type'] == 'vimeo' && !empty($opt_meta['opt-video-vimeo'])) {
+    } elseif($opt_meta_options['opt-video-type'] == 'vimeo' && !empty($opt_meta_options['opt-video-vimeo'])) {
 
-        echo do_shortcode($wp_embed->run_shortcode('[embed]'.esc_url($opt_meta['opt-video-vimeo']).'[/embed]'));
+        echo do_shortcode($wp_embed->run_shortcode('[embed]'.esc_url($opt_meta_options['opt-video-vimeo']).'[/embed]'));
 
     }
 }
@@ -347,32 +359,32 @@ function theme_framework_post_video() {
  * Display an optional post audio.
  */
 function theme_framework_post_audio() {
-    global $opt_meta;
+    global $opt_meta_options;
 
     /* no audio. */
-    if(empty($opt_meta['otp-audio']['id'])) {
+    if(empty($opt_meta_options['otp-audio']['id'])) {
         theme_framework_post_thumbnail();
         return;
     }
 
-    $audio = wp_get_attachment_metadata($opt_meta['otp-audio']['id']);
+    $audio = wp_get_attachment_metadata($opt_meta_options['otp-audio']['id']);
 
-    echo do_shortcode('[audio '.$audio['fileformat'].'="'.esc_url($opt_meta['otp-audio']['url']).'"][/audio]');
+    echo do_shortcode('[audio '.$audio['fileformat'].'="'.esc_url($opt_meta_options['otp-audio']['url']).'"][/audio]');
 }
 
 /**
  * Display an optional post gallery.
  */
 function theme_framework_post_gallery(){
-    global $opt_meta;
+    global $opt_meta_options;
 
     /* no audio. */
-    if(empty($opt_meta['opt-gallery'])) {
+    if(empty($opt_meta_options['opt-gallery'])) {
         theme_framework_post_thumbnail();
         return;
     }
 
-    $array_id = explode(",", $opt_meta['opt-gallery']);
+    $array_id = explode(",", $opt_meta_options['opt-gallery']);
 
     ?>
     <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
@@ -402,16 +414,16 @@ function theme_framework_post_gallery(){
  * Display an optional post quote.
  */
 function theme_framework_post_quote() {
-    global $opt_meta;
+    global $opt_meta_options;
 
-    if(empty($opt_meta['opt-quote-content'])){
+    if(empty($opt_meta_options_options['opt-quote-content'])){
         theme_framework_post_thumbnail();
         return;
     }
 
-    $opt_meta['opt-quote-title'] = !empty($opt_meta['opt-quote-title']) ? '<span>'.esc_html($opt_meta['opt-quote-title']).'</span>' : '' ;
+    $opt_meta_options_options['opt-quote-title'] = !empty($opt_meta_options_options['opt-quote-title']) ? '<span>'.esc_html($opt_meta_options_options['opt-quote-title']).'</span>' : '' ;
 
-    echo '<blockquote>'.esc_html($opt_meta['opt-quote-content']).wp_kses_post($opt_meta['opt-quote-title']).'</blockquote>';
+    echo '<blockquote>'.esc_html($opt_meta_options_options['opt-quote-content']).wp_kses_post($opt_meta_options_options['opt-quote-title']).'</blockquote>';
 }
 
 /**

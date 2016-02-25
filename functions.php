@@ -22,38 +22,6 @@
  * @since 1.0.0
  */
 
-/**
- * load font-awesome icons class.
- *
- * @author FOX
- */
-require_once get_template_directory() . '/inc/libs/font-awesome.php';
-
-/* Add theme options. */
-require( get_template_directory() . '/inc/options/function.options.php' );
-
-require( get_template_directory() . '/inc/options/meta-options.php' );
-
-/* Add Meta Core Options */
-if(is_admin()){
-    /* tmp plugins. */
-    require( get_template_directory() . '/inc/options/require.plugins.php' );
-}
-
-/* Add Template functions */
-require( get_template_directory() . '/inc/template.functions.php' );
-
-/* Static css. */
-require( get_template_directory() . '/inc/dynamic/static.css.php' );
-
-/* Dynamic css*/
-require( get_template_directory() . '/inc/dynamic/dynamic.css.php' );
-
-/* Add mega menu */
-if(!class_exists('HeroMenuWalker') && wp_get_nav_menus()){
-    require( get_template_directory() . '/inc/megamenu/mega-menu.php' );
-}
-
 // Set up the content width value based on the theme's design and stylesheet.
 if ( ! isset( $content_width ) )
 	$content_width = 625;
@@ -116,67 +84,37 @@ function theme_framework_setup() {
 add_action( 'after_setup_theme', 'theme_framework_setup' );
 
 /**
- * register_scripts
- * 
- * @author FOX
- */
-function theme_framework_register_scripts(){
-    
-    /* Loads Bootstrap stylesheet. */
-    wp_register_style('bootstrap', get_template_directory_uri() . '/assets/css/bootstrap.min.css', array(), '3.3.2');
-    
-    /* Loads awesome stylesheet. */
-    wp_register_style('font-awesome', get_template_directory_uri() . '/assets/css/font-awesome.min.css', array(), '4.3.0');
-    
-    /** Load JavaScript Bootstrap. */
-    wp_register_script('bootstrap', get_template_directory_uri() . '/assets/js/bootstrap.min.js', array( 'jquery' ), '3.3.2');
-
-    /** Load menu script */
-    wp_register_script('theme_framework-menu', get_template_directory_uri() . '/assets/js/menu.js', array( 'jquery' ), '1.0.0', true);
-    
-    /** main theme */
-    wp_register_script('theme_framework-main', get_template_directory_uri() . '/assets/js/main.js', array( 'jquery' ), '1.0.0', true);
-}
-
-add_action('init', 'theme_framework_register_scripts');
-
-/**
  * Enqueue scripts and styles for front-end.
  * @author Fox
  * @since CMS SuperHeroes 1.0
  */
 function theme_framework_front_end_scripts() {
     
-	global $smof_data, $wp_styles;
-	
-	/** theme options. */
-	$script_options = array(
-	    'menu_sticky'=> $smof_data['menu_sticky'],
-	    'menu_sticky_tablets'=> $smof_data['menu_sticky_tablets'],
-	    'menu_sticky_mobile'=> $smof_data['menu_sticky_mobile'],
-	    'paralax' => 1,
-	    'back_to_top'=> $smof_data['footer_botton_back_to_top']
-	);
+	global $wp_styles;
+
+	/* jquery */
+	wp_enqueue_script('jquery');
 	
 	/* Adds JavaScript Bootstrap. */
-	wp_enqueue_script('bootstrap');
+	wp_enqueue_script('bootstrap', get_template_directory_uri() . '/assets/js/bootstrap.min.js', array(), '3.3.2');
 		
 	/* Add main.js */
-	wp_localize_script('theme_framework-main', 'CMSOptions', $script_options);
-	wp_enqueue_script('theme_framework-main');
+	wp_enqueue_script('theme_framework-main', get_template_directory_uri() . '/assets/js/main.js', array(), '1.0.0', true);
 	
 	/* Add menu.js */
-    wp_enqueue_script('theme_framework-menu');
+	wp_enqueue_script('theme_framework-menu', get_template_directory_uri() . '/assets/js/menu.js', array(), '1.0.0', true);
     
 	/* Comment */
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) )
-		wp_enqueue_script( 'comment-reply' );	
+		wp_enqueue_script( 'comment-reply' );
+
+	/** ----------------------------------------------------------------------------------- */
 	
 	/* Loads Bootstrap stylesheet. */
-	wp_enqueue_style('bootstrap');
+	wp_enqueue_style('bootstrap', get_template_directory_uri() . '/assets/css/bootstrap.min.css', array(), '3.3.2');
 	
 	/* Loads Bootstrap stylesheet. */
-	wp_enqueue_style('font-awesome');
+	wp_enqueue_style('font-awesome', get_template_directory_uri() . '/assets/css/font-awesome.min.css', array(), '4.3.0');
 		
 	/* Loads our main stylesheet. */
 	wp_enqueue_style( 'theme_framework-style', get_stylesheet_uri(), array( 'bootstrap' ));
@@ -200,14 +138,15 @@ add_action( 'wp_enqueue_scripts', 'theme_framework_front_end_scripts' );
  */
 function theme_framework_admin_scripts(){
 
-    wp_enqueue_style('font-awesome');
+	/* Loads Bootstrap stylesheet. */
+	wp_enqueue_style('font-awesome', get_template_directory_uri() . '/assets/css/font-awesome.min.css', array(), '4.3.0');
 
 	$screen = get_current_screen();
 
 	/* load js for edit post. */
 	if($screen->post_type == 'post'){
 		/* post format select. */
-		wp_enqueue_script('post-format', get_template_directory_uri() . '/assets/js/post-format.js');
+		wp_enqueue_script('post-format', get_template_directory_uri() . '/assets/js/post-format.js', array(), '1.0.0', true);
 	}
 }
 
@@ -314,7 +253,7 @@ function theme_framework_paging_nav() {
 	?>
 	<nav class="navigation paging-navigation clearfix" role="navigation">
 			<div class="pagination loop-pagination">
-				<?php echo ''.$links; ?>
+				<?php echo wp_kses_post($links); ?>
 			</div><!-- .pagination -->
 	</nav><!-- .navigation -->
 	<?php
@@ -399,60 +338,5 @@ function theme_framework_comment($comment, $args, $depth) {
     <?php
 }
 
-/**
- * Set home page.
- * 
- * get home title and update options.
- * 
- * @return Home page title.
- * @author FOX
- */
-function theme_framework_set_home_page(){
-    
-    $home_page = 'Home';
-    
-    $page = get_page_by_title($home_page);
-    
-    if(!isset($page->ID))
-        return ;
-    	
-    update_option('show_on_front', 'page');
-    update_option('page_on_front', $page->ID);
-}
-
-add_action('cms_import_finish', 'theme_framework_set_home_page');
-
-/**
- * Set menu locations.
- * 
- * get locations and menu name and update options.
- * 
- * @return string[]
- * @author FOX
- */
-function theme_framework_set_menu_location(){
-    
-    $setting = array(
-        'Footer menu' => 'second',
-        'Main menu' => 'primary'
-    );
-    
-    $navs = wp_get_nav_menus();
-    
-    $new_setting = array();
-    
-    foreach ($navs as $nav){
-        
-        if(!isset($setting[$nav->name]))
-            continue;
-        
-        $id = $nav->term_id;
-        $location = $setting[$nav->name];
-        
-        $new_setting[$location] = $id;
-    }
-    
-    set_theme_mod('nav_menu_locations', $new_setting);
-}
-
-add_action('cms_import_finish', 'theme_framework_set_menu_location');
+/* core functions. */
+require_once( get_template_directory() . '/inc/functions.php' );

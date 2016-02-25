@@ -7,8 +7,6 @@ if (! class_exists('Redux')) {
     return;
 }
 
-global $opt_theme_options;
-
 // This line is only for altering the demo. Can be easily removed.
 $opt_name = apply_filters('opt_name', 'opt_theme_options');
 
@@ -138,11 +136,11 @@ Redux::setSection($opt_name, array(
             'id' => 'header_layout',
             'title' => esc_html__('Layouts', 'cms-theme-framework'),
             'subtitle' => esc_html__('select a layout for header', 'cms-theme-framework'),
-            'default' => '',
+            'default' => 'default',
             'type' => 'image_select',
             'options' => array(
-                '' => get_template_directory_uri().'/assets/images/header/h-default.png',
-                'top' => get_template_directory_uri().'/assets/images/header/h-style-1.png'
+                'default' => get_template_directory_uri().'/assets/images/header/h-style-1.png',
+                'top' => get_template_directory_uri().'/assets/images/header/h-style-2.png'
             )
         ),
         array(
@@ -206,12 +204,12 @@ Redux::setSection($opt_name, array(
             'default' => '5',
             'type' => 'image_select',
             'options' => array(
-                '1' => get_template_directory_uri().'/assets/images/pagetitle/pt-s-1.png',
-                '2' => get_template_directory_uri().'/assets/images/pagetitle/pt-s-2.png',
-                '3' => get_template_directory_uri().'/assets/images/pagetitle/pt-s-3.png',
-                '4' => get_template_directory_uri().'/assets/images/pagetitle/pt-s-4.png',
-                '5' => get_template_directory_uri().'/assets/images/pagetitle/pt-s-5.png',
-                '6' => get_template_directory_uri().'/assets/images/pagetitle/pt-s-6.png',
+                '2' => get_template_directory_uri().'/assets/images/pagetitle/pt-s-1.png',
+                '3' => get_template_directory_uri().'/assets/images/pagetitle/pt-s-2.png',
+                '4' => get_template_directory_uri().'/assets/images/pagetitle/pt-s-3.png',
+                '5' => get_template_directory_uri().'/assets/images/pagetitle/pt-s-4.png',
+                '6' => get_template_directory_uri().'/assets/images/pagetitle/pt-s-5.png',
+                '7' => get_template_directory_uri().'/assets/images/pagetitle/pt-s-6.png',
             )
         )
     )

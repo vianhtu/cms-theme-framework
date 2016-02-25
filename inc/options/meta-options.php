@@ -6,9 +6,28 @@ if (! class_exists('MetaFramework')) {
     return;
 }
 
+/**
+ * get list menu.
+ * @return array
+ */
+function theme_framework_get_nav_menu(){
+
+    $menus = array(
+        '' => esc_html__('Default', 'cms-theme-framework')
+    );
+
+    $obj_menus = wp_get_nav_menus();
+
+    foreach ($obj_menus as $obj_menu){
+        $menus[$obj_menu->term_id] = $obj_menu->name;
+    }
+
+    return $menus;
+}
+
 $args = array(
     // TYPICAL -> Change these values as you need/desire
-    'opt_name' => apply_filters('opt_meta', 'opt_meta'),
+    'opt_name' => apply_filters('opt_meta', 'opt_meta_options'),
     // Set a different name for your global variable other than the opt_name
     'dev_mode' => false,
     // Allow you to start the panel in an expanded way initially.
@@ -60,9 +79,18 @@ MetaFramework::setMetabox(array(
                     'type' => 'image_select',
                     'options' => array(
                         '' => get_template_directory_uri().'/assets/images/header/h-default.png',
-                        'top' => get_template_directory_uri().'/assets/images/header/h-style-1.png'
-                    )
-                )
+                        'default' => get_template_directory_uri().'/assets/images/header/h-style-1.png',
+                        'top' => get_template_directory_uri().'/assets/images/header/h-style-2.png'
+                    ),
+                ),
+                array(
+                    'id'       => 'header_menu',
+                    'type'     => 'select',
+                    'title'    => __( 'Select Menu', 'cms-theme-framework' ),
+                    'subtitle' => __( 'custom menu for current page', 'cms-theme-framework' ),
+                    'options'  => theme_framework_get_nav_menu(),
+                    'default' => '',
+                ),
             )
         ),
         array(
@@ -77,20 +105,21 @@ MetaFramework::setMetabox(array(
                     'default' => '5',
                     'type' => 'image_select',
                     'options' => array(
-                        '0' => get_template_directory_uri().'/assets/images/pagetitle/pt-s-0.png',
-                        '1' => get_template_directory_uri().'/assets/images/pagetitle/pt-s-1.png',
-                        '2' => get_template_directory_uri().'/assets/images/pagetitle/pt-s-2.png',
-                        '3' => get_template_directory_uri().'/assets/images/pagetitle/pt-s-3.png',
-                        '4' => get_template_directory_uri().'/assets/images/pagetitle/pt-s-4.png',
-                        '5' => get_template_directory_uri().'/assets/images/pagetitle/pt-s-5.png',
-                        '6' => get_template_directory_uri().'/assets/images/pagetitle/pt-s-6.png',
-                    )
+                        '' => get_template_directory_uri().'/assets/images/pagetitle/pt-s-default.png',
+                        '1' => get_template_directory_uri().'/assets/images/pagetitle/pt-s-0.png',
+                        '2' => get_template_directory_uri().'/assets/images/pagetitle/pt-s-1.png',
+                        '3' => get_template_directory_uri().'/assets/images/pagetitle/pt-s-2.png',
+                        '4' => get_template_directory_uri().'/assets/images/pagetitle/pt-s-3.png',
+                        '5' => get_template_directory_uri().'/assets/images/pagetitle/pt-s-4.png',
+                        '6' => get_template_directory_uri().'/assets/images/pagetitle/pt-s-5.png',
+                        '7' => get_template_directory_uri().'/assets/images/pagetitle/pt-s-6.png',
+                    ),
                 ),
                 array(
                     'id' => 'page_title_text',
                     'type' => 'text',
                     'title' => esc_html__('Custom Title', 'cms-theme-framework'),
-                    'subtitle' => esc_html__('Custom current page title.', 'cms-theme-framework')
+                    'subtitle' => esc_html__('Custom current page title.', 'cms-theme-framework'),
                 )
             )
         ),
