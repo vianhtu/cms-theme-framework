@@ -12,9 +12,7 @@ class CMSSuperHeroes_StaticCss
     
     function __construct()
     {
-        global $opt_theme_options;
-
-        if(!class_exists('scssc') && !isset($opt_theme_options))
+        if(!class_exists('scssc'))
             return;
 
         /* scss */
@@ -24,7 +22,7 @@ class CMSSuperHeroes_StaticCss
         $this->scss->setImportPaths(get_template_directory() . '/assets/scss/');
              
         /* generate css over time */
-		add_action('init', array($this, 'generate_over_time'));
+		add_action('wp', array($this, 'generate_over_time'));
         
         /* save option generate css */
        	add_action("redux/options/smof_data/saved", array($this,'generate_file'));
@@ -34,9 +32,9 @@ class CMSSuperHeroes_StaticCss
     	
     	global $opt_theme_options;
 
-    	if (!$opt_theme_options['dev_mode']) return ;
-    		
-    	$this->generate_file();
+    	if (isset($opt_theme_options) && $opt_theme_options['dev_mode']){
+    	    $this->generate_file();
+    	}
     }
     /**
      * generate css file.
@@ -47,7 +45,7 @@ class CMSSuperHeroes_StaticCss
     {
         global $opt_theme_options, $wp_filesystem;
         
-        if (empty($wp_filesystem))
+        if (empty($wp_filesystem) || !isset($opt_theme_options))
             return;
             
         $options_scss = get_template_directory() . '/assets/scss/options.scss';
@@ -100,8 +98,8 @@ class CMSSuperHeroes_StaticCss
         ob_start();
 
         /* forward options to scss. */
-        if(!empty($smof_data['primary_color']))
-            echo '$primary_color:'.esc_attr($smof_data['primary_color']).';';
+        if(!empty($opt_theme_options['primary_color']))
+            echo '$primary_color:'.esc_attr($opt_theme_options['primary_color']).';';
         
         return ob_get_clean();
     }
