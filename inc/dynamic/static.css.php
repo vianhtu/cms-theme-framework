@@ -14,7 +14,7 @@ class CMSSuperHeroes_StaticCss
     {
         global $opt_theme_options;
 
-        if(class_exists('scssc') && !isset($opt_theme_options))
+        if(!class_exists('scssc') && !isset($opt_theme_options))
             return;
 
         /* scss */
