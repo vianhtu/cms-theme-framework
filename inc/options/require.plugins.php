@@ -25,14 +25,14 @@ function cms_theme_register_required_plugins() {
      */
     $plugins = array(
         array(
-            'name'               => 'EF3 Framework',
-            'slug'               => 'ef3-framework',
+            'name'               => 'EF3-Framework',
+            'slug'               => 'EF3-Framework',
             'source'             => 'http://cmssuperheroes.com/plugins/EF3-Framework.zip',
             'required'           => true,
         ),
         array(
-            'name'               => 'Shortcodes',
-            'slug'               => 'cmssuperheroes',
+            'name'               => 'Cmssuperheroes',
+            'slug'               => 'cmssuperheroesv2',
             'source'             => 'http://cmssuperheroes.com/plugins/cmssuperheroesv2.zip',
             'required'           => true,
         ),
