@@ -6,7 +6,7 @@ function theme_framework_header(){
     global $opt_theme_options, $opt_meta_options;
 
     if(!isset($opt_theme_options)){
-        get_template_part('inc/header/header');
+        get_template_part('inc/header/header', 'default');
         return;
     }
 
@@ -23,10 +23,13 @@ function theme_framework_header(){
 function theme_framework_header_logo(){
     global $opt_theme_options;
 
-    if(!isset($opt_theme_options))
-        return;
-
-    echo '<a href="'.esc_url(home_url('/')).'"><img alt="'.esc_html__('Logo', 'cms-theme-framework').'" src="'.esc_url($opt_theme_options['main_logo']['url']).'"></a>';
+    if(isset($opt_theme_options)) {
+        echo '<a href="' . esc_url(home_url('/')) . '"><img alt="' . esc_html__('Logo', 'cms-theme-framework') . '" src="' . esc_url($opt_theme_options['main_logo']['url']) . '"></a>';
+    } else {
+        echo '<a href="' . esc_url( home_url( '/' )) . '" rel="home">';
+            bloginfo( 'name' );
+        echo '</a>';
+    }
 }
 
 /**
