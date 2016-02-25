@@ -39,7 +39,7 @@ function theme_framework_header_class($class = ''){
     global $opt_theme_options;
 
     if(!isset($opt_theme_options)){
-        echo $class;
+        echo esc_attr($class);
         return;
     }
 
@@ -52,7 +52,7 @@ function theme_framework_header_class($class = ''){
     if($opt_theme_options['menu_sticky_mobile'])
         $class .= ' sticky-mobile';
 
-    echo $class;
+    echo esc_attr($class);
 }
 
 /**
