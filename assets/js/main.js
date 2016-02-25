@@ -87,7 +87,7 @@ jQuery(document).ready(function($) {
 			navigation.removeClass('collapse');
 		}
 	});
-	
+
 	/* check mobile screen. */
 	function cms_mobile_menu() {
 		var menu = $('#cshero-header-navigation');

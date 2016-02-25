@@ -1,6 +1,4 @@
 <?php
-if(class_exists('HeroMenuWalker'))
-    return;
 /*
  * Saves new field to postmeta for navigation
  */
