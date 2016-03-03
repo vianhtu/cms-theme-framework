@@ -91,7 +91,7 @@ jQuery(document).ready(function($) {
 	 * @since 1.0.0
 	 */
 	function cms_stiky_menu() {
-		if (header_top < scroll_top && window_width > 991) {
+		if (header.hasClass('sticky-desktop') && header_top < scroll_top && window_width > 991) {
 			header.addClass('header-fixed');
 			$('body').addClass('hd-fixed');
 		} else {
