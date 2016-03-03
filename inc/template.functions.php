@@ -46,12 +46,6 @@ function et3_theme_framework_header_class($class = ''){
     if($opt_theme_options['menu_sticky'])
         $class .= ' sticky-desktop';
 
-    if($opt_theme_options['menu_sticky_tablets'])
-        $class .= ' sticky-tablets';
-
-    if($opt_theme_options['menu_sticky_mobile'])
-        $class .= ' sticky-mobile';
-
     echo esc_attr($class);
 }
 

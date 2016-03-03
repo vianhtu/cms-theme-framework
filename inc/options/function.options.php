@@ -149,22 +149,6 @@ Redux::setSection($opt_name, array(
             'type' => 'switch',
             'title' => esc_html__('Sticky Header', 'cms-theme-framework'),
             'default' => false,
-        ),
-        array(
-            'subtitle' => esc_html__('enable sticky mode for menu Tablets.', 'cms-theme-framework'),
-            'id' => 'menu_sticky_tablets',
-            'type' => 'switch',
-            'title' => esc_html__('Sticky Tablet', 'cms-theme-framework'),
-            'default' => false,
-            'required' => array( 0 => 'menu_sticky', 1 => '=', 2 => 1 )
-        ),
-        array(
-            'subtitle' => esc_html__('enable sticky mode for menu Mobile.', 'cms-theme-framework'),
-            'id' => 'menu_sticky_mobile',
-            'type' => 'switch',
-            'title' => esc_html__('Sticky Mobile', 'cms-theme-framework'),
-            'default' => false,
-            'required' => array( 0 => 'menu_sticky', 1 => '=', 2 => 1 )
         )
     )
 ));
