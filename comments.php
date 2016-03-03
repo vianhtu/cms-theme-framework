@@ -30,7 +30,7 @@ if ( post_password_required() ) {
 			?>
 		</h2>
 
-		<?php theme_framework_comment_nav(); ?>
+		<?php et3_theme_framework_comment_nav(); ?>
 
 		<ol class="comment-list">
 			<?php
@@ -42,7 +42,7 @@ if ( post_password_required() ) {
 			?>
 		</ol><!-- .comment-list -->
 
-		<?php theme_framework_comment_nav(); ?>
+		<?php et3_theme_framework_comment_nav(); ?>
 
 	<?php endif; // have_comments() ?>
 

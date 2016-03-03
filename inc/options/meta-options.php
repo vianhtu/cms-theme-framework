@@ -10,7 +10,7 @@ if (! class_exists('MetaFramework')) {
  * get list menu.
  * @return array
  */
-function theme_framework_get_nav_menu(){
+function et3_theme_framework_get_nav_menu(){
 
     $menus = array(
         '' => esc_html__('Default', 'cms-theme-framework')
@@ -88,7 +88,7 @@ MetaFramework::setMetabox(array(
                     'type'     => 'select',
                     'title'    => __( 'Select Menu', 'cms-theme-framework' ),
                     'subtitle' => __( 'custom menu for current page', 'cms-theme-framework' ),
-                    'options'  => theme_framework_get_nav_menu(),
+                    'options'  => et3_theme_framework_get_nav_menu(),
                     'default' => '',
                 ),
             )

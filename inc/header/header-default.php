@@ -6,18 +6,18 @@
  */
 ?>
 
-<div id="cshero-header" class="<?php theme_framework_header_class('cshero-main-header'); ?>">
+<div id="cshero-header" class="<?php et3_theme_framework_header_class('cshero-main-header'); ?>">
     <div class="container">
         <div class="row">
             <div id="cshero-header-logo" class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
 
-                <?php theme_framework_header_logo(); ?>
+                <?php et3_theme_framework_header_logo(); ?>
 
             </div><!-- #site-logo -->
             <div id="cshero-header-navigation" class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
                 <nav id="site-navigation" class="main-navigation" role="navigation">
 
-                    <?php theme_framework_header_navigation(); ?>
+                    <?php et3_theme_framework_header_navigation(); ?>
 
                 </nav><!-- #site-navigation -->
             </div>

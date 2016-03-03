@@ -332,7 +332,7 @@ function start_el( &$output, $item, $depth = 0, $args = array(), $current_object
         ?>
         <div id="<?php echo ''.$key . '-' . $item_id . '-popup'; ?>" data-item_id="<?php echo ''.$item_id;?>" class="menu_icon_wrap" style="display:none;">
             <?php
-            $icons = apply_filters('theme/menu/icons', theme_framework_font_awesome());
+            $icons = apply_filters('theme/menu/icons', et3_theme_framework_font_awesome());
             $html = '<input type="hidden" name="" class="wpb_vc_param_value" value="' . $value . '" id="trace"/> ';
             $html .= '<div class="icon-preview icon-preview-' . $item_id . '"><i class="' . $value . '"></i></div>';
             $html .= '<div id="' . $key . '-' . $item_id . '-icon-dropdown" >';

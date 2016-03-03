@@ -22,7 +22,7 @@ get_header(); ?>
                     get_template_part( 'single-templates/single/content', get_post_format() );
 
                     // Get single post nav.
-                    theme_framework_post_nav();
+                    et3_theme_framework_post_nav();
 
                     // If comments are open or we have at least one comment, load up the comment template.
                     if ( comments_open() || get_comments_number() ) :

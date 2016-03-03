@@ -11,7 +11,7 @@
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 
-	<?php theme_framework_post_quote(); ?>
+	<?php et3_theme_framework_post_quote(); ?>
 
 	<header class="entry-header">
 
@@ -19,7 +19,7 @@
 
 		<div class="entry-meta">
 
-			<?php theme_framework_post_detail(); ?>
+			<?php et3_theme_framework_post_detail(); ?>
 
 		</div><!-- .entry-meta -->
 	</header><!-- .entry-header -->

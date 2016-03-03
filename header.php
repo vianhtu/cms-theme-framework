@@ -24,7 +24,7 @@
 <body <?php body_class(); ?>>
 <div id="page" class="hfeed site">
 	<header id="masthead" class="site-header" role="banner">
-		<?php theme_framework_header(); ?>
+		<?php et3_theme_framework_header(); ?>
 	</header><!-- #masthead -->
-    <?php theme_framework_page_title(); ?><!-- #page-title -->
+    <?php et3_theme_framework_page_title(); ?><!-- #page-title -->
 	<div id="content" class="site-content">

@@ -7,7 +7,7 @@
  * @return Home page title.
  * @author FOX
  */
-function theme_framework_set_home_page(){
+function et3_theme_framework_set_home_page(){
 
     $home_page = 'Home';
 
@@ -20,7 +20,7 @@ function theme_framework_set_home_page(){
     update_option('page_on_front', $page->ID);
 }
 
-add_action('cms_import_finish', 'theme_framework_set_home_page');
+add_action('cms_import_finish', 'et3_theme_framework_set_home_page');
 
 /**
  * Set menu locations.
@@ -30,7 +30,7 @@ add_action('cms_import_finish', 'theme_framework_set_home_page');
  * @return string[]
  * @author FOX
  */
-function theme_framework_set_menu_location(){
+function et3_theme_framework_set_menu_location(){
 
     $setting = array(
         'Footer menu' => 'second',
@@ -55,4 +55,4 @@ function theme_framework_set_menu_location(){
     set_theme_mod('nav_menu_locations', $new_setting);
 }
 
-add_action('cms_import_finish', 'theme_framework_set_menu_location');
+add_action('cms_import_finish', 'et3_theme_framework_set_menu_location');

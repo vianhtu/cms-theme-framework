@@ -1,12 +1,12 @@
 <?php
-if (!function_exists('theme_framework_font_awesome')) :
+if (!function_exists('et3_theme_framework_font_awesome')) :
     /**
      * awesome class.
      * 
      * @return string[]
      * @author FOX.
      */
-    function theme_framework_font_awesome()
+    function et3_theme_framework_font_awesome()
     {
         return array(
             "fa fa-bluetooth",

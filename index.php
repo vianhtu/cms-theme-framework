@@ -30,7 +30,7 @@ get_header(); ?>
                     endwhile; // end of the loop.
 
                     /* blog nav. */
-                    theme_framework_paging_nav();
+                    et3_theme_framework_paging_nav();
 
                 else :
                     /* content none. */

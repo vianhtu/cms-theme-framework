@@ -41,7 +41,7 @@ if ( ! isset( $content_width ) )
  *
  * @since 1.0.0
  */
-function theme_framework_setup() {
+function et3_theme_framework_setup() {
 
 	// load language.
 	load_theme_textdomain( 'cms-theme-framework' , get_template_directory() . '/languages' );
@@ -81,14 +81,14 @@ function theme_framework_setup() {
 	add_editor_style( array( 'assets/css/editor-style.css' ) );
 }
 
-add_action( 'after_setup_theme', 'theme_framework_setup' );
+add_action( 'after_setup_theme', 'et3_theme_framework_setup' );
 
 /**
  * Enqueue scripts and styles for front-end.
  * @author Fox
  * @since CMS SuperHeroes 1.0
  */
-function theme_framework_front_end_scripts() {
+function et3_theme_framework_front_end_scripts() {
     
 	global $wp_styles;
 
@@ -99,10 +99,10 @@ function theme_framework_front_end_scripts() {
 	wp_enqueue_script('bootstrap', get_template_directory_uri() . '/assets/js/bootstrap.min.js', array(), '3.3.2');
 		
 	/* Add main.js */
-	wp_enqueue_script('theme_framework-main', get_template_directory_uri() . '/assets/js/main.js', array(), '1.0.0', true);
+	wp_enqueue_script('et3_theme_framework-main', get_template_directory_uri() . '/assets/js/main.js', array(), '1.0.0', true);
 	
 	/* Add menu.js */
-	wp_enqueue_script('theme_framework-menu', get_template_directory_uri() . '/assets/js/menu.js', array(), '1.0.0', true);
+	wp_enqueue_script('et3_theme_framework-menu', get_template_directory_uri() . '/assets/js/menu.js', array(), '1.0.0', true);
     
 	/* Comment */
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) )
@@ -117,26 +117,26 @@ function theme_framework_front_end_scripts() {
 	wp_enqueue_style('font-awesome', get_template_directory_uri() . '/assets/css/font-awesome.min.css', array(), '4.3.0');
 		
 	/* Loads our main stylesheet. */
-	wp_enqueue_style( 'theme_framework-style', get_stylesheet_uri(), array( 'bootstrap' ));
+	wp_enqueue_style( 'et3_theme_framework-style', get_stylesheet_uri(), array( 'bootstrap' ));
 
 	/* Loads the Internet Explorer specific stylesheet. */
-	wp_enqueue_style( 'theme_framework-ie', get_template_directory_uri() . '/assets/css/ie.css', array( 'theme_framework-style' ), '20121010' );
+	wp_enqueue_style( 'et3_theme_framework-ie', get_template_directory_uri() . '/assets/css/ie.css', array( 'et3_theme_framework-style' ), '20121010' );
 	
 	/* ie */
-	$wp_styles->add_data( 'theme_framework-ie', 'conditional', 'lt IE 9' );
+	$wp_styles->add_data( 'et3_theme_framework-ie', 'conditional', 'lt IE 9' );
 	
 	/* Load static css*/
-	wp_enqueue_style('theme_framework-static', get_template_directory_uri() . '/assets/css/static.css', array( 'theme_framework-style' ), '1.0.0');
+	wp_enqueue_style('et3_theme_framework-static', get_template_directory_uri() . '/assets/css/static.css', array( 'et3_theme_framework-style' ), '1.0.0');
 }
 
-add_action( 'wp_enqueue_scripts', 'theme_framework_front_end_scripts' );
+add_action( 'wp_enqueue_scripts', 'et3_theme_framework_front_end_scripts' );
 
 /**
  * load admin scripts.
  * 
  * @author FOX
  */
-function theme_framework_admin_scripts(){
+function et3_theme_framework_admin_scripts(){
 
 	/* Loads Bootstrap stylesheet. */
 	wp_enqueue_style('font-awesome', get_template_directory_uri() . '/assets/css/font-awesome.min.css', array(), '4.3.0');
@@ -150,7 +150,7 @@ function theme_framework_admin_scripts(){
 	}
 }
 
-add_action( 'admin_enqueue_scripts', 'theme_framework_admin_scripts' );
+add_action( 'admin_enqueue_scripts', 'et3_theme_framework_admin_scripts' );
 
 /**
  * Register sidebars.
@@ -159,7 +159,7 @@ add_action( 'admin_enqueue_scripts', 'theme_framework_admin_scripts' );
  *
  * @since Fox
  */
-function theme_framework_widgets_init() {
+function et3_theme_framework_widgets_init() {
 	register_sidebar( array(
 		'name' => esc_html__( 'Main Sidebar', 'cms-theme-framework' ),
 		'id' => 'sidebar-1',
@@ -170,7 +170,7 @@ function theme_framework_widgets_init() {
 		'after_title' => '</h3>',
 	) );
 }
-add_action( 'widgets_init', 'theme_framework_widgets_init' );
+add_action( 'widgets_init', 'et3_theme_framework_widgets_init' );
 
 /**
  * Filter the page menu arguments.
@@ -179,20 +179,20 @@ add_action( 'widgets_init', 'theme_framework_widgets_init' );
  *
  * @since 1.0.0
  */
-function theme_framework_page_menu_args( $args ) {
+function et3_theme_framework_page_menu_args( $args ) {
     if ( ! isset( $args['show_home'] ) )
         $args['show_home'] = true;
     return $args;
 }
 
-add_filter( 'wp_page_menu_args', 'theme_framework_page_menu_args' );
+add_filter( 'wp_page_menu_args', 'et3_theme_framework_page_menu_args' );
 
 /**
  * Display navigation to next/previous comments when applicable.
  *
  * @since 1.0.0
  */
-function theme_framework_comment_nav() {
+function et3_theme_framework_comment_nav() {
     // Are there comments to navigate through?
     if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) :
     ?>
@@ -219,7 +219,7 @@ function theme_framework_comment_nav() {
  *
  * @since 1.0.0
  */
-function theme_framework_paging_nav() {
+function et3_theme_framework_paging_nav() {
     // Don't print empty markup if there's only one page.
 	if ( $GLOBALS['wp_query']->max_num_pages < 2 ) {
 		return;
@@ -265,7 +265,7 @@ function theme_framework_paging_nav() {
 *
 * @since 1.0.0
 */
-function theme_framework_post_nav() {
+function et3_theme_framework_post_nav() {
     global $post;
 
     // Don't print empty markup if there's nowhere to navigate.
@@ -294,7 +294,7 @@ function theme_framework_post_nav() {
 }
 
 /* Add Custom Comment */
-function theme_framework_comment($comment, $args, $depth) {
+function et3_theme_framework_comment($comment, $args, $depth) {
 	$GLOBALS['comment'] = $comment;
 	extract($args, EXTR_SKIP);
 

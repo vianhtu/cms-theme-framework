@@ -27,7 +27,7 @@ get_header(); ?>
                     endwhile; // end of the loop.
 
                     /* blog nav. */
-                    theme_framework_paging_nav();
+                    et3_theme_framework_paging_nav();
 
                     /* reset custom postdata. */
                     wp_reset_postdata();

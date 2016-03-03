@@ -24,7 +24,7 @@ get_header(); ?>
                 endwhile;
 
                 /* get paging_nav. */
-                theme_framework_paging_nav();
+                et3_theme_framework_paging_nav();
 
             else :
 
