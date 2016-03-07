@@ -160,6 +160,9 @@ add_action( 'admin_enqueue_scripts', 'et3_theme_framework_admin_scripts' );
  * @since Fox
  */
 function et3_theme_framework_widgets_init() {
+
+	global $opt_theme_options;
+
 	register_sidebar( array(
 		'name' => esc_html__( 'Main Sidebar', 'cms-theme-framework' ),
 		'id' => 'sidebar-1',
@@ -169,6 +172,22 @@ function et3_theme_framework_widgets_init() {
 		'before_title' => '<h3 class="wg-title">',
 		'after_title' => '</h3>',
 	) );
+
+	/* footer-top */
+	if(!empty($opt_theme_options['footer-top-column'])) {
+
+		for($i = 1 ; $i <= $opt_theme_options['footer-top-column'] ; $i++){
+			register_sidebar(array(
+				'name' => sprintf(esc_html__('Footer Top %s', 'cms-theme-framework'), $i),
+				'id' => 'sidebar-footer-top-' . $i,
+				'description' => esc_html__('Appears on posts and pages except the optional Front Page template, which has its own widgets', 'cms-theme-framework'),
+				'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+				'after_widget' => '</aside>',
+				'before_title' => '<h3 class="wg-title">',
+				'after_title' => '</h3>',
+			));
+		}
+	}
 }
 add_action( 'widgets_init', 'et3_theme_framework_widgets_init' );
 

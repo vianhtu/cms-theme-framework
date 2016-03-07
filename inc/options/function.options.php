@@ -310,6 +310,38 @@ Redux::setSection($opt_name, array(
 ));
 
 /**
+ * Footer
+ *
+ * @author Fox
+ */
+Redux::setSection($opt_name, array(
+    'title' => esc_html__('Footer', 'cms-theme-framework'),
+    'icon' => 'el el-website',
+    'fields' => array(
+        array(
+            'id'       => 'footer-top-column',
+            'type'     => 'select',
+            'title'    => esc_html__( 'Column', 'cms-theme-framework' ),
+            'subtitle' => esc_html__( 'Select Footer Column', 'cms-theme-framework' ),
+            'default'    => 4,
+            'options'  => array(
+                2 => esc_html__('2', 'cms-theme-framework' ),
+                3 => esc_html__('3', 'cms-theme-framework' ),
+                4 => esc_html__('4', 'cms-theme-framework' ),
+            )
+        ),
+        array(
+            'id' => 'footer-bottom-copyright',
+            'type' => 'textarea',
+            'title' => esc_html__('Copyright', 'cms-theme-framework'),
+            'subtitle' => esc_html__('Enter copyright text for footer bottom', 'cms-theme-framework'),
+            'validate' => 'no_html',
+            'default' => '',
+        )
+    )
+));
+
+/**
  * Custom CSS
  * 
  * extra css for customer.
@@ -317,7 +349,7 @@ Redux::setSection($opt_name, array(
  */
 Redux::setSection($opt_name, array(
     'title' => esc_html__('Custom CSS', 'cms-theme-framework'),
-    'icon' => 'el-icon-bulb',
+    'icon' => 'el el-puzzle',
     'fields' => array(
         array(
             'id' => 'custom_css',

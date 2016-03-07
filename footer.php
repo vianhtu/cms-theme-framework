@@ -11,9 +11,22 @@
 ?>
     </div><!-- .site-content -->
     <footer id="colophon" class="site-footer" role="contentinfo">
-        <div class="container">
-            <a href="<?php echo esc_url( __( 'https://wordpress.org/', 'cms-theme-framework' ) ); ?>"><?php printf( __( 'Proudly powered by %s', 'cms-theme-framework' ), 'WordPress' ); ?></a>
-        </div><!-- .site-info -->
+        <div id="footer-top" class="container">
+            <div class="row">
+
+                <?php et3_theme_framework_footer_top(); ?>
+
+            </div>
+        </div><!-- #footer-top -->
+
+        <div id="footer-bottom" class="container">
+            <div class="row">
+
+                <?php et3_theme_framework_footer_bottom(); ?>
+
+            </div>
+        </div><!-- #footer-bottom -->
+
     </footer><!-- .site-footer -->
 
 </div><!-- .site -->

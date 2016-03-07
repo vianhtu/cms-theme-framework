@@ -438,3 +438,45 @@ function et3_theme_framework_post_thumbnail() {
             the_post_thumbnail();
     echo '</div>';
 }
+
+/**
+ * footer layout
+ */
+function et3_theme_framework_footer_top(){
+    global $opt_theme_options;
+
+    /* footer-top */
+    if(empty($opt_theme_options['footer-top-column']))
+        return;
+
+    $_class = "";
+
+    switch ($opt_theme_options['footer-top-column']){
+        case '2':
+            $_class = 'col-lg-6 col-md-6 col-sm-6 col-xs-12';
+            break;
+        case '3':
+            $_class = 'col-lg-4 col-md-4 col-sm-4 col-xs-12';
+            break;
+        case '4':
+            $_class = 'col-lg-3 col-md-3 col-sm-6 col-xs-12';
+            break;
+    }
+
+    for($i = 1 ; $i <= $opt_theme_options['footer-top-column'] ; $i++){
+        if ( is_active_sidebar( 'sidebar-footer-top-' . $i ) ){
+            echo '<div class="' . esc_html($_class) . ">";
+                dynamic_sidebar( 'sidebar-footer-top-' . $i );
+            echo "</div>";
+        }
+    }
+}
+
+function et3_theme_framework_footer_bottom(){
+    global $opt_theme_options;
+
+    if(empty($opt_theme_options['footer-bottom-copyright']))
+        return;
+
+    echo esc_html($opt_theme_options['footer-bottom-copyright']);
+}
