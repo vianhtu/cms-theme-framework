@@ -16,7 +16,7 @@ require_once( get_template_directory() . '/inc/demo-data.php' );
 require_once get_template_directory() . '/inc/libs/font-awesome.php';
 
 /* load mega menu. */
-require_once( get_template_directory() . '/inc/megamenu/mega-menu.php' );
+require_once( get_template_directory() . '/inc/mega-menu/mega-menu-framework.php' );
 
 /* load theme options. */
 require_once( get_template_directory() . '/inc/options/function.options.php' );
