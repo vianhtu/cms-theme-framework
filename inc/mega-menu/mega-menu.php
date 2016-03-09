@@ -7,14 +7,14 @@
  * @uses Walker_Nav_Menu
  */
 
-add_action( 'wp_nav_menu_item_custom_fields', 'ef3_add_menu_submenu_type_fields', 10, 4 );
+add_action( 'wp_nav_menu_item_custom_fields', 'et3_theme_framework_add_menu_submenu_type_fields', 10, 4 );
 
-function ef3_add_menu_submenu_type_fields( $item_id, $item, $depth, $args ) {
+function et3_theme_framework_add_menu_submenu_type_fields( $item_id, $item, $depth, $args ) {
 
     if ( $depth )
         return;
 
-    $title = 'Submenu Type'; $key = "menu-item-submenu_type"; $value = $item->submenu_type;
+    $title = esc_html__('Submenu Type', 'cms-theme-framework'); $key = "menu-item-submenu_type"; $value = $item->submenu_type;
 
     ?><p class="description description-wide description_width_100">
         <?php echo esc_html( $title ); ?><br />
@@ -30,7 +30,7 @@ function ef3_add_menu_submenu_type_fields( $item_id, $item, $depth, $args ) {
         </label>
     </p>
     <?php
-    $title = 'Sub menu column width ( Example: 200)';
+    $title = esc_html__('Sub menu column width ( Example: 200)', 'cms-theme-framework');
     $key = "menu-item-column_width";
     $value = $item->column_width;
     ?>
@@ -41,7 +41,7 @@ function ef3_add_menu_submenu_type_fields( $item_id, $item, $depth, $args ) {
         </label>
     </p>
     <?php
-    $title = 'Side of Dropdown Elements';
+    $title = esc_html__('Side of Dropdown Elements', 'cms-theme-framework');
     $key = "menu-item-dropdown";
     $value = $item->dropdown;
     ?>
@@ -60,14 +60,14 @@ function ef3_add_menu_submenu_type_fields( $item_id, $item, $depth, $args ) {
 }
 
 // widget_area.
-add_action( 'wp_nav_menu_item_custom_fields', 'ef3_add_menu_widget_area_fields', 10, 4 );
+add_action( 'wp_nav_menu_item_custom_fields', 'et3_theme_framework_add_menu_widget_area_fields', 10, 4 );
 
-function ef3_add_menu_widget_area_fields( $item_id, $item, $depth, $args ) {
+function et3_theme_framework_add_menu_widget_area_fields( $item_id, $item, $depth, $args ) {
 
     if(!$depth)
         return;
 
-    $title = 'Widget Area'; $key = "menu-item-widget_area"; $value = $item->widget_area; $sidebars = $GLOBALS['wp_registered_sidebars'];
+    $title = esc_html__('Widget Area', 'cms-theme-framework'); $key = "menu-item-widget_area"; $value = $item->widget_area; $sidebars = $GLOBALS['wp_registered_sidebars'];
 
     ?><p class="description description-wide description_width_100 el_widget_area">
         <?php echo esc_html( $title ); ?><br />
@@ -83,11 +83,11 @@ function ef3_add_menu_widget_area_fields( $item_id, $item, $depth, $args ) {
 }
 
 // item_group.
-add_action( 'wp_nav_menu_item_custom_fields', 'ef3_add_menu_item_group_fields', 10, 4 );
+add_action( 'wp_nav_menu_item_custom_fields', 'et3_theme_framework_add_menu_item_group_fields', 10, 4 );
 
-function ef3_add_menu_item_group_fields( $item_id, $item, $depth, $args ) {
+function et3_theme_framework_add_menu_item_group_fields( $item_id, $item, $depth, $args ) {
 
-    $title = 'Group';$key = "menu-item-group"; $value = $item->group;
+    $title = esc_html__('Group', 'cms-theme-framework');$key = "menu-item-group"; $value = $item->group;
 
     ?>
     <p class="description description-wide description_width_100">
@@ -103,13 +103,13 @@ function ef3_add_menu_item_group_fields( $item_id, $item, $depth, $args ) {
 }
 
 // hide_link.
-add_action( 'wp_nav_menu_item_custom_fields', 'ef3_add_menu_hide_link_fields', 10, 4 );
+add_action( 'wp_nav_menu_item_custom_fields', 'et3_theme_framework_add_menu_hide_link_fields', 10, 4 );
 
-function ef3_add_menu_hide_link_fields( $item_id, $item, $depth, $args ) {
+function et3_theme_framework_add_menu_hide_link_fields( $item_id, $item, $depth, $args ) {
     if(!$depth)
         return;
 
-    $title = 'Hide title'; $key = "menu-item-hide_link"; $value = $item->hide_link;
+    $title = esc_html__('Hide title', 'cms-theme-framework'); $key = "menu-item-hide_link"; $value = $item->hide_link;
 
     ?>
     <p class="description description-wide description_width_100">
@@ -126,9 +126,9 @@ function ef3_add_menu_hide_link_fields( $item_id, $item, $depth, $args ) {
 
 
 // menu icon.
-add_action( 'wp_nav_menu_item_custom_fields', 'ef3_add_menu_icon_fields', 10, 4 );
+add_action( 'wp_nav_menu_item_custom_fields', 'et3_theme_framework_add_menu_icon_fields', 10, 4 );
 
-function ef3_add_menu_icon_fields( $item_id, $item, $depth, $args ) {
+function et3_theme_framework_add_menu_icon_fields( $item_id, $item, $depth, $args ) {
 
     $title = esc_html__('Menu Icon', 'cms-theme-framework'); $key = "menu-item-menu_icon"; $value = $item->menu_icon;
 
@@ -165,14 +165,14 @@ function ef3_add_menu_icon_fields( $item_id, $item, $depth, $args ) {
 }
 
 // menu background.
-add_action( 'wp_nav_menu_item_custom_fields', 'ef3_add_menu_image_background_fields', 10, 4 );
+add_action( 'wp_nav_menu_item_custom_fields', 'et3_theme_framework_add_menu_image_background_fields', 10, 4 );
 
-function ef3_add_menu_image_background_fields( $item_id, $item, $depth, $args ) {
+function et3_theme_framework_add_menu_image_background_fields( $item_id, $item, $depth, $args ) {
 
     if($depth)
         return;
 
-    $title = 'DropDown Background Image'; $key = "menu-item-bg_image"; $value = $item->bg_image;
+    $title = esc_html__('DropDown Background Image', 'cms-theme-framework'); $key = "menu-item-bg_image"; $value = $item->bg_image;
 
     ?>
     <p class="description description-wide obtheme_checkbox obtheme_mega_menu obtheme_mega_menu_d2">
@@ -236,7 +236,7 @@ function ef3_add_menu_image_background_fields( $item_id, $item, $depth, $args ) 
         </label>
     </p>
 
-    <?php $title = 'Background Color'; $key = "menu-item-bg_color"; $value = $item->bg_color; ?>
+    <?php $title = esc_html__('Background Color', 'cms-theme-framework'); $key = "menu-item-bg_color"; $value = $item->bg_color; ?>
 
     <p class="description description-wide">
         <label for="edit-<?php echo ''.$key . '-' . $item_id; ?>">
@@ -245,7 +245,7 @@ function ef3_add_menu_image_background_fields( $item_id, $item, $depth, $args ) 
         </label>
     </p>
 
-    <?php $title = 'Icon Color'; $key = "menu-item-icon_color"; $value = $item->icon_color; ?>
+    <?php $title = esc_html__('Icon Color', 'cms-theme-framework'); $key = "menu-item-icon_color"; $value = $item->icon_color; ?>
 
     <p class="description description-wide">
         <label for="edit-<?php echo ''.$key . '-' . $item_id; ?>">
@@ -254,7 +254,7 @@ function ef3_add_menu_image_background_fields( $item_id, $item, $depth, $args ) 
         </label>
     </p>
 
-    <?php $title = 'Icon Font Size'; $key = "menu-item-icon_font_size"; $value = $item->icon_font_size; ?>
+    <?php $title = esc_html__('Icon Font Size', 'cms-theme-framework'); $key = "menu-item-icon_font_size"; $value = $item->icon_font_size; ?>
 
     <p class="description description-wide">
         <label for="edit-<?php echo ''.$key . '-' . $item_id; ?>">
@@ -265,11 +265,11 @@ function ef3_add_menu_image_background_fields( $item_id, $item, $depth, $args ) 
 }
 
 // menu background.
-add_action( 'wp_nav_menu_item_custom_fields', 'ef3_add_menu_el_class_fields', 10, 4 );
+add_action( 'wp_nav_menu_item_custom_fields', 'et3_theme_framework_add_menu_el_class_fields', 10, 4 );
 
-function ef3_add_menu_el_class_fields( $item_id, $item, $depth, $args ) {
+function et3_theme_framework_add_menu_el_class_fields( $item_id, $item, $depth, $args ) {
 
-    $title = 'Extra Class'; $key = "menu-item-el_class"; $value = $item->el_class;
+    $title = esc_html__('Extra Class', 'cms-theme-framework'); $key = "menu-item-el_class"; $value = $item->el_class;
 
     ?><p class="description description-wide description_width_100">
         <label for="edit-<?php echo ''.$key . '-' . $item_id; ?>">
@@ -342,11 +342,11 @@ class Walker_Nav_Menu_Edit_Custom extends Walker_Nav_Menu  {
         if ( ! empty( $item->_invalid ) ) {
             $classes[] = 'menu-item-invalid';
             /* translators: %s: title of menu item which is invalid */
-            $title = sprintf( __( '%s (Invalid)', 'Avada'), $item->title );
+            $title = sprintf( esc_html__( '%s (Invalid)', 'cms-theme-framework'), $item->title );
         } elseif ( isset( $item->post_status ) && 'draft' == $item->post_status ) {
             $classes[] = 'pending';
             /* translators: %s: title of menu item in draft status */
-            $title = sprintf( __('%s (Pending)', 'Avada'), $item->title );
+            $title = sprintf( esc_html__('%s (Pending)', 'cms-theme-framework'), $item->title );
         }
 
         $title = ( ! isset( $item->label ) || '' == $item->label ) ? $title : $item->label;
@@ -359,7 +359,7 @@ class Walker_Nav_Menu_Edit_Custom extends Walker_Nav_Menu  {
     <li id="menu-item-<?php echo $item_id; ?>" class="<?php echo implode(' ', $classes ); ?>">
         <dl class="menu-item-bar">
             <dt class="menu-item-handle">
-                <span class="item-title"><span class="menu-item-title"><?php echo esc_html( $title ); ?></span> <span class="is-submenu" <?php echo $submenu_text; ?>><?php _e( 'sub item' , 'Avada'); ?></span></span>
+                <span class="item-title"><span class="menu-item-title"><?php echo esc_html( $title ); ?></span> <span class="is-submenu" <?php echo $submenu_text; ?>><?php esc_html_e( 'sub item' , 'cms-theme-framework'); ?></span></span>
                 <span class="item-controls">
                     <span class="item-type"><?php echo esc_html( $item->type_label ); ?></span>
                     <span class="item-order hide-if-js">
@@ -374,7 +374,7 @@ class Walker_Nav_Menu_Edit_Custom extends Walker_Nav_Menu  {
                             ),
                             'move-menu_item'
                         ) );
-                        ?>" class="item-move-up"><abbr title="<?php esc_attr_e('Move up', 'Avada'); ?>">&#8593;</abbr></a>
+                        ?>" class="item-move-up"><abbr title="<?php esc_attr_e('Move up', 'cms-theme-framework'); ?>">&#8593;</abbr></a>
                         |
                         <a href="<?php
                         echo esc_url( wp_nonce_url(
@@ -387,11 +387,11 @@ class Walker_Nav_Menu_Edit_Custom extends Walker_Nav_Menu  {
                             ),
                             'move-menu_item'
                         ) );
-                        ?>" class="item-move-down"><abbr title="<?php esc_attr_e('Move down', 'Avada'); ?>">&#8595;</abbr></a>
+                        ?>" class="item-move-down"><abbr title="<?php esc_attr_e('Move down', 'cms-theme-framework'); ?>">&#8595;</abbr></a>
                     </span>
-                    <a class="item-edit" id="edit-<?php echo $item_id; ?>" title="<?php esc_attr_e('Edit Menu Item', 'Avada'); ?>" href="<?php
+                    <a class="item-edit" id="edit-<?php echo $item_id; ?>" title="<?php esc_attr_e('Edit Menu Item', 'cms-theme-framework'); ?>" href="<?php
                     echo esc_url( ( isset( $_GET['edit-menu-item'] ) && $item_id == $_GET['edit-menu-item'] ) ? admin_url( 'nav-menus.php' ) : add_query_arg( 'edit-menu-item', $item_id, remove_query_arg( $removed_args, admin_url( 'nav-menus.php#menu-item-settings-' . $item_id ) ) ) );
-                    ?>"><?php _e( 'Edit Menu Item', 'Avada' ); ?></a>
+                    ?>"><?php esc_html_e( 'Edit Menu Item', 'cms-theme-framework' ); ?></a>
                 </span>
             </dt>
         </dl>
@@ -400,46 +400,46 @@ class Walker_Nav_Menu_Edit_Custom extends Walker_Nav_Menu  {
             <?php if( 'custom' == $item->type ) : ?>
                 <p class="field-url description description-wide">
                     <label for="edit-menu-item-url-<?php echo $item_id; ?>">
-                        <?php _e( 'URL', 'Avada' ); ?><br />
+                        <?php esc_html_e( 'URL', 'cms-theme-framework' ); ?><br />
                         <input type="text" id="edit-menu-item-url-<?php echo $item_id; ?>" class="widefat code edit-menu-item-url" name="menu-item-url[<?php echo $item_id; ?>]" value="<?php echo esc_attr( $item->url ); ?>" />
                     </label>
                 </p>
             <?php endif; ?>
             <p class="description description-thin">
                 <label for="edit-menu-item-title-<?php echo $item_id; ?>">
-                    <?php _e( 'Navigation Label', 'Avada' ); ?><br />
+                    <?php esc_html_e( 'Navigation Label', 'cms-theme-framework' ); ?><br />
                     <input type="text" id="edit-menu-item-title-<?php echo $item_id; ?>" class="widefat edit-menu-item-title" name="menu-item-title[<?php echo $item_id; ?>]" value="<?php echo esc_attr( $item->title ); ?>" />
                 </label>
             </p>
             <p class="description description-thin">
                 <label for="edit-menu-item-attr-title-<?php echo $item_id; ?>">
-                    <?php _e( 'Title Attribute', 'Avada' ); ?><br />
+                    <?php esc_html_e( 'Title Attribute', 'cms-theme-framework' ); ?><br />
                     <input type="text" id="edit-menu-item-attr-title-<?php echo $item_id; ?>" class="widefat edit-menu-item-attr-title" name="menu-item-attr-title[<?php echo $item_id; ?>]" value="<?php echo esc_attr( $item->post_excerpt ); ?>" />
                 </label>
             </p>
             <p class="field-link-target description">
                 <label for="edit-menu-item-target-<?php echo $item_id; ?>">
                     <input type="checkbox" id="edit-menu-item-target-<?php echo $item_id; ?>" value="_blank" name="menu-item-target[<?php echo $item_id; ?>]"<?php checked( $item->target, '_blank' ); ?> />
-                    <?php _e( 'Open link in a new window/tab', 'Avada' ); ?>
+                    <?php esc_html_e( 'Open link in a new window/tab', 'cms-theme-framework' ); ?>
                 </label>
             </p>
             <p class="field-css-classes description description-thin">
                 <label for="edit-menu-item-classes-<?php echo $item_id; ?>">
-                    <?php _e( 'CSS Classes (optional)', 'Avada' ); ?><br />
+                    <?php esc_html_e( 'CSS Classes (optional)', 'cms-theme-framework' ); ?><br />
                     <input type="text" id="edit-menu-item-classes-<?php echo $item_id; ?>" class="widefat code edit-menu-item-classes" name="menu-item-classes[<?php echo $item_id; ?>]" value="<?php echo esc_attr( implode(' ', $item->classes ) ); ?>" />
                 </label>
             </p>
             <p class="field-xfn description description-thin">
                 <label for="edit-menu-item-xfn-<?php echo $item_id; ?>">
-                    <?php _e( 'Link Relationship (XFN)', 'Avada' ); ?><br />
+                    <?php esc_html_e( 'Link Relationship (XFN)', 'cms-theme-framework' ); ?><br />
                     <input type="text" id="edit-menu-item-xfn-<?php echo $item_id; ?>" class="widefat code edit-menu-item-xfn" name="menu-item-xfn[<?php echo $item_id; ?>]" value="<?php echo esc_attr( $item->xfn ); ?>" />
                 </label>
             </p>
             <p class="field-description description description-wide">
                 <label for="edit-menu-item-description-<?php echo $item_id; ?>">
-                    <?php _e( 'Description', 'Avada' ); ?><br />
+                    <?php esc_html_e( 'Description', 'cms-theme-framework' ); ?><br />
                     <textarea id="edit-menu-item-description-<?php echo $item_id; ?>" class="widefat edit-menu-item-description" rows="3" cols="20" name="menu-item-description[<?php echo $item_id; ?>]"><?php echo esc_html( $item->description ); // textarea_escaped ?></textarea>
-                    <span class="description"><?php _e('The description will be displayed in the menu if the current theme supports it.', 'Avada' ); ?></span>
+                    <span class="description"><?php esc_html_e('The description will be displayed in the menu if the current theme supports it.', 'cms-theme-framework' ); ?></span>
                 </label>
             </p>
 
@@ -447,19 +447,19 @@ class Walker_Nav_Menu_Edit_Custom extends Walker_Nav_Menu  {
 
             <p class="field-move hide-if-no-js description description-wide">
                 <label>
-                    <span><?php _e( 'Move', 'Avada' ); ?></span>
-                    <a href="#" class="menus-move menus-move-up" data-dir="up"><?php _e( 'Up one', 'Avada' ); ?></a>
-                    <a href="#" class="menus-move menus-move-down" data-dir="down"><?php _e( 'Down one', 'Avada' ); ?></a>
+                    <span><?php esc_html_e( 'Move', 'cms-theme-framework' ); ?></span>
+                    <a href="#" class="menus-move menus-move-up" data-dir="up"><?php esc_html_e( 'Up one', 'cms-theme-framework' ); ?></a>
+                    <a href="#" class="menus-move menus-move-down" data-dir="down"><?php esc_html_e( 'Down one', 'cms-theme-framework' ); ?></a>
                     <a href="#" class="menus-move menus-move-left" data-dir="left"></a>
                     <a href="#" class="menus-move menus-move-right" data-dir="right"></a>
-                    <a href="#" class="menus-move menus-move-top" data-dir="top"><?php _e( 'To the top', 'Avada' ); ?></a>
+                    <a href="#" class="menus-move menus-move-top" data-dir="top"><?php esc_html_e( 'To the top', 'cms-theme-framework' ); ?></a>
                 </label>
             </p>
 
             <div class="menu-item-actions description-wide submitbox">
                 <?php if( 'custom' != $item->type && $original_title !== false ) : ?>
                     <p class="link-to-original">
-                        <?php printf( __('Original: %s', 'Avada' ), '<a href="' . esc_attr( $item->url ) . '">' . esc_html( $original_title ) . '</a>' ); ?>
+                        <?php printf( esc_html__('Original: %s', 'cms-theme-framework' ), '<a href="' . esc_attr( $item->url ) . '">' . esc_html( $original_title ) . '</a>' ); ?>
                     </p>
                 <?php endif; ?>
                 <a class="item-delete submitdelete deletion" id="delete-<?php echo $item_id; ?>" href="<?php
@@ -472,8 +472,8 @@ class Walker_Nav_Menu_Edit_Custom extends Walker_Nav_Menu  {
                         admin_url( 'nav-menus.php' )
                     ),
                     'delete-menu_item_' . $item_id
-                ) ); ?>"><?php _e( 'Remove', 'Avada' ); ?></a> <span class="meta-sep hide-if-no-js"> | </span> <a class="item-cancel submitcancel hide-if-no-js" id="cancel-<?php echo $item_id; ?>" href="<?php echo esc_url( add_query_arg( array( 'edit-menu-item' => $item_id, 'cancel' => time() ), admin_url( 'nav-menus.php' ) ) );
-                ?>#menu-item-settings-<?php echo $item_id; ?>"><?php _e('Cancel', 'Avada' ); ?></a>
+                ) ); ?>"><?php esc_html_e( 'Remove', 'cms-theme-framework' ); ?></a> <span class="meta-sep hide-if-no-js"> | </span> <a class="item-cancel submitcancel hide-if-no-js" id="cancel-<?php echo $item_id; ?>" href="<?php echo esc_url( add_query_arg( array( 'edit-menu-item' => $item_id, 'cancel' => time() ), admin_url( 'nav-menus.php' ) ) );
+                ?>#menu-item-settings-<?php echo $item_id; ?>"><?php esc_html_e('Cancel', 'cms-theme-framework' ); ?></a>
             </div>
 
             <input class="menu-item-data-db-id" type="hidden" name="menu-item-db-id[<?php echo $item_id; ?>]" value="<?php echo $item_id; ?>" />
