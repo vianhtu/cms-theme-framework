@@ -6,6 +6,280 @@
  * @since 3.0.0
  * @uses Walker_Nav_Menu
  */
+
+add_action( 'wp_nav_menu_item_custom_fields', 'ef3_add_menu_submenu_type_fields', 10, 4 );
+
+function ef3_add_menu_submenu_type_fields( $item_id, $item, $depth, $args ) {
+
+    if ( $depth )
+        return;
+
+    $title = 'Submenu Type'; $key = "menu-item-submenu_type"; $value = $item->submenu_type;
+
+    ?><p class="description description-wide description_width_100">
+        <?php echo esc_html( $title ); ?><br />
+        <label for="edit-<?php echo ''.$key . '-' . $item_id; ?>">
+            <select id="edit-<?php echo ''.$key . '-' . $item_id; ?>" class=" <?php echo ''.$key; ?>" name="<?php echo ''.$key . "[" . $item_id . "]"; ?>">
+                <option value="standard" <?php echo ( $value == 'standard' ) ? ' selected="selected" ' : ''; ?>><?php esc_html_e( 'Standard Dropdown', 'cms-theme-framework' ); ?></option>
+                <option value="columns2" <?php echo ( $value == 'columns2' ) ? ' selected="selected" ' : ''; ?>><?php esc_html_e( '2 columns dropdown', 'cms-theme-framework' ); ?></option>
+                <option value="columns3" <?php echo ( $value == 'columns3' ) ? ' selected="selected" ' : ''; ?>><?php esc_html_e( '3 columns dropdown', 'cms-theme-framework' ); ?>
+                </option>
+                <option value="columns4" <?php echo ( $value == 'columns4' ) ? ' selected="selected" ' : ''; ?>><?php esc_html_e( '4 columns dropdown', 'cms-theme-framework' ); ?></option>
+                <option value="columns5" <?php echo ( $value == 'columns5' ) ? ' selected="selected" ' : ''; ?>><?php esc_html_e( '5 columns dropdown', 'cms-theme-framework' ); ?></option>
+            </select>
+        </label>
+    </p>
+    <?php
+    $title = 'Sub menu column width ( Example: 200)';
+    $key = "menu-item-column_width";
+    $value = $item->column_width;
+    ?>
+    <p class="description description-wide obtheme_checkbox obtheme_mega_menu obtheme_mega_menu_d2">
+        <label for="edit-<?php echo ''.$key . '-' . $item_id; ?>">
+            <span class='obtheme_long_desc'><?php echo esc_html( $title ); ?></span><br />
+            <input type="text" value="<?php echo ''.$value; ?>" id="edit-<?php echo ''.$key . '-' . $item_id; ?>" class=" <?php echo ''.$key; ?>" name="<?php echo ''.$key . "[" . $item_id . "]"; ?>" />
+        </label>
+    </p>
+    <?php
+    $title = 'Side of Dropdown Elements';
+    $key = "menu-item-dropdown";
+    $value = $item->dropdown;
+    ?>
+    <p class="description description-wide description_width_100">
+        <?php echo esc_html( $title ); ?><br />
+        <label for="edit-<?php echo ''.$key . '-' . $item_id; ?>">
+            <select id="edit-<?php echo ''.$key . '-' . $item_id; ?>" class=" <?php echo ''.$key; ?>" name="<?php echo ''.$key . "[" . $item_id . "]"; ?>">
+                <option value="autodrop_submenu" <?php echo ( $value == 'autodrop_submenu' ) ? ' selected="selected" ' : ''; ?>><?php esc_html_e( 'Auto drop', 'cms-theme-framework' ); ?></option>
+                <option value="drop_to_left" <?php echo ( $value == 'drop_to_left' ) ? ' selected="selected" ' : ''; ?>><?php esc_html_e( 'Drop To Left Side', 'cms-theme-framework' ); ?></option>
+                <option value="drop_to_right" <?php echo ( $value == 'drop_to_right' ) ? ' selected="selected" ' : ''; ?>><?php esc_html_e( 'Drop To Right Side', 'cms-theme-framework' ); ?></option>
+                <option value="drop_to_center" <?php echo ( $value == 'drop_to_center' ) ? ' selected="selected" ' : ''; ?>><?php esc_html_e( 'Drop To Center', 'cms-theme-framework' ); ?></option>
+                <option value="drop_full_width" <?php echo ( $value == 'drop_full_width' ) ? ' selected="selected" ' : ''; ?>><?php esc_html_e( 'Full width', 'cms-theme-framework' ); ?></option>
+            </select>
+        </label>
+    </p><?php
+}
+
+// widget_area.
+add_action( 'wp_nav_menu_item_custom_fields', 'ef3_add_menu_widget_area_fields', 10, 4 );
+
+function ef3_add_menu_widget_area_fields( $item_id, $item, $depth, $args ) {
+
+    if(!$depth)
+        return;
+
+    $title = 'Widget Area'; $key = "menu-item-widget_area"; $value = $item->widget_area; $sidebars = $GLOBALS['wp_registered_sidebars'];
+
+    ?><p class="description description-wide description_width_100 el_widget_area">
+        <?php echo esc_html( $title ); ?><br />
+        <label for="edit-<?php echo ''.$key . '-' . $item_id; ?>">
+            <select id="edit-<?php echo ''.$key . '-' . $item_id; ?>" class=" <?php echo ''.$key; ?>" name="<?php echo ''.$key . "[" . $item_id . "]"; ?>">
+                <option value="" <?php echo ( $value == '' ) ? ' selected="selected" ' : ''; ?>><?php esc_html_e( 'Select Widget Area', 'cms-theme-framework' ); ?></option>
+                <?php foreach ( $sidebars as $sidebar ) {
+                    echo '<option value="' . $sidebar['id'] . '" ' . ( ( $value == $sidebar['id'] ) ? ' selected="selected" ' : '' ) . '>[' . $sidebar['id'] . '] - ' . $sidebar['name'] . '</option>';
+                } ?>
+            </select>
+        </label>
+    </p><?php
+}
+
+// item_group.
+add_action( 'wp_nav_menu_item_custom_fields', 'ef3_add_menu_item_group_fields', 10, 4 );
+
+function ef3_add_menu_item_group_fields( $item_id, $item, $depth, $args ) {
+
+    $title = 'Group';$key = "menu-item-group"; $value = $item->group;
+
+    ?>
+    <p class="description description-wide description_width_100">
+        <?php echo esc_html( $title ); ?><br />
+        <label for="edit-<?php echo ''.$key . '-' . $item_id; ?>">
+            <select id="edit-<?php echo ''.$key . '-' . $item_id; ?>" class=" <?php echo ''.$key; ?>" name="<?php echo ''.$key . "[" . $item_id . "]"; ?>">
+                <option value="no_group" <?php echo ( $value == 'no_group' ) ? ' selected="selected" ' : ''; ?>><?php esc_html_e( 'No', 'cms-theme-framework' ); ?></option>
+                <option value="group" <?php echo ( $value == 'group' ) ? ' selected="selected" ' : ''; ?>><?php esc_html_e( 'Yes', 'cms-theme-framework' ); ?></option>
+            </select>
+        </label>
+    </p>
+    <?php
+}
+
+// hide_link.
+add_action( 'wp_nav_menu_item_custom_fields', 'ef3_add_menu_hide_link_fields', 10, 4 );
+
+function ef3_add_menu_hide_link_fields( $item_id, $item, $depth, $args ) {
+    if(!$depth)
+        return;
+
+    $title = 'Hide title'; $key = "menu-item-hide_link"; $value = $item->hide_link;
+
+    ?>
+    <p class="description description-wide description_width_100">
+        <?php echo esc_html( $title ); ?><br />
+        <label for="edit-<?php echo ''.$key . '-' . $item_id; ?>">
+            <select id="edit-<?php echo ''.$key . '-' . $item_id; ?>" class=" <?php echo ''.$key; ?>" name="<?php echo ''.$key . "[" . $item_id . "]"; ?>">
+                <option value="0" <?php echo ( $value == '0' ) ? ' selected="selected" ' : ''; ?>><?php esc_html_e( 'No', 'cms-theme-framework' ); ?></option>
+                <option value="1" <?php echo ( $value == '1' ) ? ' selected="selected" ' : ''; ?>><?php esc_html_e( 'Yes', 'cms-theme-framework' ); ?></option>
+            </select>
+        </label>
+    </p>
+    <?php
+}
+
+
+// menu icon.
+add_action( 'wp_nav_menu_item_custom_fields', 'ef3_add_menu_icon_fields', 10, 4 );
+
+function ef3_add_menu_icon_fields( $item_id, $item, $depth, $args ) {
+
+    $title = esc_html__('Menu Icon', 'cms-theme-framework'); $key = "menu-item-menu_icon"; $value = $item->menu_icon;
+
+    ?>
+    <div id="<?php echo ''.$key . '-' . $item_id . '-popup'; ?>" data-item_id="<?php echo ''.$item_id;?>" class="menu_icon_wrap" style="display:none;">
+        <?php
+        $icons = apply_filters('theme/menu/icons', et3_theme_framework_font_awesome());
+        $html = '<input type="hidden" name="" class="wpb_vc_param_value" value="' . $value . '" id="trace"/> ';
+        $html .= '<div class="icon-preview icon-preview-' . $item_id . '"><i class="' . $value . '"></i></div>';
+        $html .= '<div id="' . $key . '-' . $item_id . '-icon-dropdown" >';
+        $html .= '<ul class="icon-list">';
+        $n = 1;
+        foreach ( $icons as $icon ) {
+            $selected = ( $icon == $value ) ? 'class="selected"' : '';
+            $id       = 'icon-' . $n;
+            $html .= '<li ' . $selected . ' data-icon="' . $icon . '"><i class="icon ' . $icon . '"></i></li>';
+            $n ++;
+        }
+        $html .= '</ul>';
+        $html .= '</div>';
+        echo ''.$html;
+        ?>
+    </div>
+    <p class="description description-wide obtheme_checkbox obtheme_mega_menu obtheme_mega_menu_d1">
+        <label for="edit-<?php echo ''.$key . '-' . $item_id; ?>">
+            <?php echo esc_html( $title ); ?><br />
+            <input type="text" value="<?php echo ''.$value; ?>" id="edit-<?php echo ''.$key . '-' . $item_id; ?>" class=" <?php echo ''.$key; ?>" name="<?php echo ''.$key . "[" . $item_id . "]"; ?>" />
+            <input alt="#TB_inline?height=auto&width=auto&inlineId=<?php echo ''.$key . '-' . $item_id . '-popup'; ?>" title="<?php esc_html_e( 'Click to browse icon', 'cms-theme-framework' ) ?>" class="thickbox button-secondary submit-add-to-menu" type="button" value="<?php esc_html_e( 'Browse Icon', 'cms-theme-framework' ) ?>" />
+            <a class="button btn_clear button-primary" href="javascript: void(0);">Clear</a>
+            <span class="icon-preview  icon-preview<?php echo '-' . $item_id; ?>"><i class=" fa fa-<?php echo ''.$value; ?>"></i></span>
+        </label>
+    </p>
+    <?php
+}
+
+// menu background.
+add_action( 'wp_nav_menu_item_custom_fields', 'ef3_add_menu_image_background_fields', 10, 4 );
+
+function ef3_add_menu_image_background_fields( $item_id, $item, $depth, $args ) {
+
+    if($depth)
+        return;
+
+    $title = 'DropDown Background Image'; $key = "menu-item-bg_image"; $value = $item->bg_image;
+
+    ?>
+    <p class="description description-wide obtheme_checkbox obtheme_mega_menu obtheme_mega_menu_d2">
+        <label for="edit-<?php echo ''.$key . '-' . $item_id; ?>">
+            <span class='obtheme_long_desc'><?php echo esc_html( $title ); ?></span><br />
+            <input type="text" value="<?php echo ''.$value; ?>" id="edit-<?php echo ''.$key . '-' . $item_id; ?>" class=" <?php echo ''.$key; ?>" name="<?php echo ''.$key . "[" . $item_id . "]"; ?>" />
+            <button id="browse-edit-<?php echo ''.$key . '-' . $item_id; ?>" class="set_custom_images button button-secondary submit-add-to-menu"><?php esc_html_e( 'Browse Image', 'cms-theme-framework' ); ?></button>
+            <a class="button btn_clear button-primary" href="javascript: void(0);">Clear</a>
+        </label>
+    </p>
+    <p class="description description-wide description_width_25">
+
+        <?php $key = "menu-item-bg_image_repeat"; $value = $item->bg_image_repeat; $options = array( 'repeat', 'no-repeat', 'repeat-x', 'repeat-y' ); ?>
+
+        <label for="edit-<?php echo ''.$key . '-' . $item_id; ?>">
+            <select id="edit-<?php echo ''.$key . '-' . $item_id; ?>" class=" <?php echo ''.$key; ?>" name="<?php echo ''.$key . "[" . $item_id . "]"; ?>">
+                <?php foreach ( $options as $option ) {
+                    ?>
+                    <option value="<?php echo ''.$option; ?>" <?php echo ( $value == $option ) ? ' selected="selected" ' : ''; ?>><?php echo ''.$option; ?></option>
+                    <?php
+                } ?>
+            </select>
+        </label>
+
+        <?php $key = "menu-item-bg_image_attachment"; $value = $item->bg_image_attachment; $options = array( 'scroll', 'fixed' ); ?>
+
+        <label for="edit-<?php echo ''.$key . '-' . $item_id; ?>">
+            <select id="edit-<?php echo ''.$key . '-' . $item_id; ?>" class=" <?php echo ''.$key; ?>" name="<?php echo ''.$key . "[" . $item_id . "]"; ?>">
+                <?php
+                foreach ( $options as $option ) {
+                    ?>
+                    <option value="<?php echo ''.$option; ?>" <?php echo ( $value == $option ) ? ' selected="selected" ' : ''; ?>><?php echo ''.$option; ?></option>
+                    <?php
+                }
+                ?>
+            </select>
+        </label>
+
+        <?php $key = "menu-item-bg_image_position"; $value = $item->bg_image_position; $options = array( 'center', 'center left', 'center right', 'top left', 'top center', 'top right', 'bottom left', 'bottom center', 'bottom right' ); ?>
+
+        <label for="edit-<?php echo ''.$key . '-' . $item_id; ?>">
+            <select id="edit-<?php echo ''.$key . '-' . $item_id; ?>" class=" <?php echo ''.$key; ?>" name="<?php echo ''.$key . "[" . $item_id . "]"; ?>">
+
+                <?php foreach ( $options as $option ) {
+                    ?><option value="<?php echo ''.$option; ?>" <?php echo ( $value == $option ) ? ' selected="selected" ' : ''; ?>><?php echo ''.$option; ?></option><?php
+                } ?>
+
+            </select>
+        </label>
+
+        <?php $key = "menu-item-bg_image_size"; $value = $item->bg_image_size; $options = array( "auto" => "Keep original", "100% auto" => "Stretch to width", "auto 100%" => "Stretch to height", "cover" => "cover", "contain" => "contain" ); ?>
+
+        <label for="edit-<?php echo ''.$key . '-' . $item_id; ?>">
+            <select id="edit-<?php echo ''.$key . '-' . $item_id; ?>" class=" <?php echo ''.$key; ?>" name="<?php echo ''.$key . "[" . $item_id . "]"; ?>">
+
+                <?php foreach ( $options as $op_value => $op_text ) {
+                    ?><option value="<?php echo ''.$op_value; ?>" <?php echo ( $value == $op_value ) ? ' selected="selected" ' : ''; ?>><?php echo ''.$op_text; ?></option><?php
+                } ?>
+
+            </select>
+        </label>
+    </p>
+
+    <?php $title = 'Background Color'; $key = "menu-item-bg_color"; $value = $item->bg_color; ?>
+
+    <p class="description description-wide">
+        <label for="edit-<?php echo ''.$key . '-' . $item_id; ?>">
+            <span class='obtheme_long_desc'><?php echo esc_html( $title ); ?></span><br />
+            <input type="text" value="<?php echo ''.$value; ?>" id="edit-<?php echo ''.$key . '-' . $item_id; ?>" class=" <?php echo ''.$key; ?>" name="<?php echo ''.$key . "[" . $item_id . "]"; ?>" />
+        </label>
+    </p>
+
+    <?php $title = 'Icon Color'; $key = "menu-item-icon_color"; $value = $item->icon_color; ?>
+
+    <p class="description description-wide">
+        <label for="edit-<?php echo ''.$key . '-' . $item_id; ?>">
+            <span class='obtheme_long_desc'><?php echo esc_html( $title ); ?></span><br />
+            <input type="text" value="<?php echo ''.$value; ?>" id="edit-<?php echo ''.$key . '-' . $item_id; ?>" class=" <?php echo ''.$key; ?>" name="<?php echo ''.$key . "[" . $item_id . "]"; ?>" />
+        </label>
+    </p>
+
+    <?php $title = 'Icon Font Size'; $key = "menu-item-icon_font_size"; $value = $item->icon_font_size; ?>
+
+    <p class="description description-wide">
+        <label for="edit-<?php echo ''.$key . '-' . $item_id; ?>">
+            <span class='obtheme_long_desc'><?php echo esc_html( $title ); ?></span><br />
+            <input type="text" value="<?php echo ''.$value; ?>" id="edit-<?php echo ''.$key . '-' . $item_id; ?>" class=" <?php echo ''.$key; ?>" name="<?php echo ''.$key . "[" . $item_id . "]"; ?>" />
+        </label>
+    </p><?php
+}
+
+// menu background.
+add_action( 'wp_nav_menu_item_custom_fields', 'ef3_add_menu_el_class_fields', 10, 4 );
+
+function ef3_add_menu_el_class_fields( $item_id, $item, $depth, $args ) {
+
+    $title = 'Extra Class'; $key = "menu-item-el_class"; $value = $item->el_class;
+
+    ?><p class="description description-wide description_width_100">
+        <label for="edit-<?php echo ''.$key . '-' . $item_id; ?>">
+            <span class='obtheme_long_desc'><?php echo esc_html( $title ); ?></span><br />
+            <input type="text" value="<?php echo ''.$value; ?>" id="edit-<?php echo ''.$key . '-' . $item_id; ?>" class=" <?php echo ''.$key; ?>" name="<?php echo ''.$key . "[" . $item_id . "]"; ?>" />
+        </label>
+    </p><?php
+}
+
+
 class Walker_Nav_Menu_Edit_Custom extends Walker_Nav_Menu  {
     /**
      * @see Walker_Nav_Menu::start_lvl()
@@ -32,11 +306,9 @@ class Walker_Nav_Menu_Edit_Custom extends Walker_Nav_Menu  {
      * @param int $depth Depth of menu item. Used for padding.
      * @param object $args
      */
-    function start_el( &$output, $item, $depth = 0, $args = array(), $current_object_id = 0 ) {
-        global $_wp_nav_menu_max_depth;
+    function start_el( &$output, $item, $depth = 0, $args = array(), $id = 0 ) {
+        global $_wp_nav_menu_max_depth, $wp_registered_sidebars;
         $_wp_nav_menu_max_depth = $depth > $_wp_nav_menu_max_depth ? $depth : $_wp_nav_menu_max_depth;
-
-        $indent = ( $depth ) ? str_repeat( "\t", $depth ) : '';
 
         ob_start();
         $item_id = esc_attr( $item->ID );
@@ -56,7 +328,7 @@ class Walker_Nav_Menu_Edit_Custom extends Walker_Nav_Menu  {
                 $original_title = false;
         } elseif ( 'post_type' == $item->type ) {
             $original_object = get_post( $item->object_id );
-            $original_title = $original_object->post_title;
+            $original_title = get_the_title( $original_object->ID );
         }
 
         $classes = array(
@@ -70,25 +342,29 @@ class Walker_Nav_Menu_Edit_Custom extends Walker_Nav_Menu  {
         if ( ! empty( $item->_invalid ) ) {
             $classes[] = 'menu-item-invalid';
             /* translators: %s: title of menu item which is invalid */
-            $title = sprintf( esc_html__( '%s (Invalid)', 'cms-theme-framework'), $item->title );
+            $title = sprintf( __( '%s (Invalid)', 'Avada'), $item->title );
         } elseif ( isset( $item->post_status ) && 'draft' == $item->post_status ) {
             $classes[] = 'pending';
             /* translators: %s: title of menu item in draft status */
-            $title = sprintf( esc_html__('%s (Pending)', 'cms-theme-framework'), $item->title );
+            $title = sprintf( __('%s (Pending)', 'Avada'), $item->title );
         }
 
-        $title = empty( $item->label ) ? $title : $item->label;
+        $title = ( ! isset( $item->label ) || '' == $item->label ) ? $title : $item->label;
+
+        $submenu_text = '';
+        if ( 0 == $depth )
+            $submenu_text = 'style="display: none;"';
 
         ?>
-        <li data-menuanchor="" id="menu-item-<?php echo ''.$item_id; ?>" class="<?php echo implode(' ', $classes ); ?>">
+    <li id="menu-item-<?php echo $item_id; ?>" class="<?php echo implode(' ', $classes ); ?>">
         <dl class="menu-item-bar">
             <dt class="menu-item-handle">
-                <span class="item-title"><?php echo esc_html( $title ); ?></span>
+                <span class="item-title"><span class="menu-item-title"><?php echo esc_html( $title ); ?></span> <span class="is-submenu" <?php echo $submenu_text; ?>><?php _e( 'sub item' , 'Avada'); ?></span></span>
                 <span class="item-controls">
                     <span class="item-type"><?php echo esc_html( $item->type_label ); ?></span>
                     <span class="item-order hide-if-js">
                         <a href="<?php
-                        echo wp_nonce_url(
+                        echo esc_url( wp_nonce_url(
                             add_query_arg(
                                 array(
                                     'action' => 'move-up-menu-item',
@@ -97,11 +373,11 @@ class Walker_Nav_Menu_Edit_Custom extends Walker_Nav_Menu  {
                                 remove_query_arg($removed_args, admin_url( 'nav-menus.php' ) )
                             ),
                             'move-menu_item'
-                        );
-                        ?>" class="item-move-up"><abbr title="<?php esc_html_e('Move up','cms-theme-framework'); ?>">&#8593;</abbr></a>
+                        ) );
+                        ?>" class="item-move-up"><abbr title="<?php esc_attr_e('Move up', 'Avada'); ?>">&#8593;</abbr></a>
                         |
                         <a href="<?php
-                        echo wp_nonce_url(
+                        echo esc_url( wp_nonce_url(
                             add_query_arg(
                                 array(
                                     'action' => 'move-down-menu-item',
@@ -110,358 +386,102 @@ class Walker_Nav_Menu_Edit_Custom extends Walker_Nav_Menu  {
                                 remove_query_arg($removed_args, admin_url( 'nav-menus.php' ) )
                             ),
                             'move-menu_item'
-                        );
-                        ?>" class="item-move-down"><abbr title="<?php esc_html_e('Move down','cms-theme-framework'); ?>">&#8595;</abbr></a>
+                        ) );
+                        ?>" class="item-move-down"><abbr title="<?php esc_attr_e('Move down', 'Avada'); ?>">&#8595;</abbr></a>
                     </span>
-                    <a class="item-edit" id="edit-<?php echo ''.$item_id; ?>" title="<?php esc_html_e('Edit Menu Item','cms-theme-framework'); ?>" href="<?php
-                    echo ( isset( $_GET['edit-menu-item'] ) && $item_id == $_GET['edit-menu-item'] ) ? admin_url( 'nav-menus.php' ) : add_query_arg( 'edit-menu-item', $item_id, remove_query_arg( $removed_args, admin_url( 'nav-menus.php#menu-item-settings-' . $item_id ) ) );
-                    ?>"><?php esc_html_e( 'Edit Menu Item' ,'cms-theme-framework'); ?></a>
+                    <a class="item-edit" id="edit-<?php echo $item_id; ?>" title="<?php esc_attr_e('Edit Menu Item', 'Avada'); ?>" href="<?php
+                    echo esc_url( ( isset( $_GET['edit-menu-item'] ) && $item_id == $_GET['edit-menu-item'] ) ? admin_url( 'nav-menus.php' ) : add_query_arg( 'edit-menu-item', $item_id, remove_query_arg( $removed_args, admin_url( 'nav-menus.php#menu-item-settings-' . $item_id ) ) ) );
+                    ?>"><?php _e( 'Edit Menu Item', 'Avada' ); ?></a>
                 </span>
             </dt>
         </dl>
 
-        <div class="menu-item-settings" id="menu-item-settings-<?php echo ''.$item_id; ?>">
+        <div class="menu-item-settings" id="menu-item-settings-<?php echo $item_id; ?>">
             <?php if( 'custom' == $item->type ) : ?>
                 <p class="field-url description description-wide">
-                    <label for="edit-menu-item-url-<?php echo ''.$item_id; ?>">
-                        <?php esc_html_e( 'URL' ,'cms-theme-framework'); ?><br />
-                        <input type="text" id="edit-menu-item-url-<?php echo ''.$item_id; ?>" class="widefat code edit-menu-item-url" name="menu-item-url[<?php echo ''.$item_id; ?>]" value="<?php echo esc_attr( $item->url ); ?>" />
+                    <label for="edit-menu-item-url-<?php echo $item_id; ?>">
+                        <?php _e( 'URL', 'Avada' ); ?><br />
+                        <input type="text" id="edit-menu-item-url-<?php echo $item_id; ?>" class="widefat code edit-menu-item-url" name="menu-item-url[<?php echo $item_id; ?>]" value="<?php echo esc_attr( $item->url ); ?>" />
                     </label>
                 </p>
             <?php endif; ?>
             <p class="description description-thin">
-                <label for="edit-menu-item-title-<?php echo ''.$item_id; ?>">
-                    <?php esc_html_e( 'Navigation Label' ,'cms-theme-framework'); ?><br />
-                    <input type="text" id="edit-menu-item-title-<?php echo ''.$item_id; ?>" class="widefat edit-menu-item-title" name="menu-item-title[<?php echo ''.$item_id; ?>]" value="<?php echo esc_attr( $item->title ); ?>" />
+                <label for="edit-menu-item-title-<?php echo $item_id; ?>">
+                    <?php _e( 'Navigation Label', 'Avada' ); ?><br />
+                    <input type="text" id="edit-menu-item-title-<?php echo $item_id; ?>" class="widefat edit-menu-item-title" name="menu-item-title[<?php echo $item_id; ?>]" value="<?php echo esc_attr( $item->title ); ?>" />
                 </label>
             </p>
             <p class="description description-thin">
-                <label for="edit-menu-item-attr-title-<?php echo ''.$item_id; ?>">
-                    <?php esc_html_e( 'Title Attribute','cms-theme-framework' ); ?><br />
-                    <input type="text" id="edit-menu-item-attr-title-<?php echo ''.$item_id; ?>" class="widefat edit-menu-item-attr-title" name="menu-item-attr-title[<?php echo ''.$item_id; ?>]" value="<?php echo esc_attr( $item->post_excerpt ); ?>" />
+                <label for="edit-menu-item-attr-title-<?php echo $item_id; ?>">
+                    <?php _e( 'Title Attribute', 'Avada' ); ?><br />
+                    <input type="text" id="edit-menu-item-attr-title-<?php echo $item_id; ?>" class="widefat edit-menu-item-attr-title" name="menu-item-attr-title[<?php echo $item_id; ?>]" value="<?php echo esc_attr( $item->post_excerpt ); ?>" />
                 </label>
             </p>
             <p class="field-link-target description">
-                <label for="edit-menu-item-target-<?php echo ''.$item_id; ?>">
-                    <input type="checkbox" id="edit-menu-item-target-<?php echo ''.$item_id; ?>" value="_blank" name="menu-item-target[<?php echo ''.$item_id; ?>]"<?php checked( $item->target, '_blank' ); ?> />
-                    <?php esc_html_e( 'Open link in a new window/tab' ,'cms-theme-framework'); ?>
+                <label for="edit-menu-item-target-<?php echo $item_id; ?>">
+                    <input type="checkbox" id="edit-menu-item-target-<?php echo $item_id; ?>" value="_blank" name="menu-item-target[<?php echo $item_id; ?>]"<?php checked( $item->target, '_blank' ); ?> />
+                    <?php _e( 'Open link in a new window/tab', 'Avada' ); ?>
                 </label>
             </p>
             <p class="field-css-classes description description-thin">
-                <label for="edit-menu-item-classes-<?php echo ''.$item_id; ?>">
-                    <?php esc_html_e( 'CSS Classes (optional)' ,'cms-theme-framework'); ?><br />
-                    <input type="text" id="edit-menu-item-classes-<?php echo ''.$item_id; ?>" class="widefat code edit-menu-item-classes" name="menu-item-classes[<?php echo ''.$item_id; ?>]" value="<?php echo esc_attr( implode(' ', $item->classes ) ); ?>" />
+                <label for="edit-menu-item-classes-<?php echo $item_id; ?>">
+                    <?php _e( 'CSS Classes (optional)', 'Avada' ); ?><br />
+                    <input type="text" id="edit-menu-item-classes-<?php echo $item_id; ?>" class="widefat code edit-menu-item-classes" name="menu-item-classes[<?php echo $item_id; ?>]" value="<?php echo esc_attr( implode(' ', $item->classes ) ); ?>" />
                 </label>
             </p>
             <p class="field-xfn description description-thin">
-                <label for="edit-menu-item-xfn-<?php echo ''.$item_id; ?>">
-                    <?php esc_html_e( 'Link Relationship (XFN)' ,'cms-theme-framework'); ?><br />
-                    <input type="text" id="edit-menu-item-xfn-<?php echo ''.$item_id; ?>" class="widefat code edit-menu-item-xfn" name="menu-item-xfn[<?php echo ''.$item_id; ?>]" value="<?php echo esc_attr( $item->xfn ); ?>" />
+                <label for="edit-menu-item-xfn-<?php echo $item_id; ?>">
+                    <?php _e( 'Link Relationship (XFN)', 'Avada' ); ?><br />
+                    <input type="text" id="edit-menu-item-xfn-<?php echo $item_id; ?>" class="widefat code edit-menu-item-xfn" name="menu-item-xfn[<?php echo $item_id; ?>]" value="<?php echo esc_attr( $item->xfn ); ?>" />
                 </label>
             </p>
             <p class="field-description description description-wide">
-                <label for="edit-menu-item-description-<?php echo ''.$item_id; ?>">
-                    <?php esc_html_e( 'Description' ,'cms-theme-framework'); ?><br />
-                    <textarea id="edit-menu-item-description-<?php echo ''.$item_id; ?>" class="widefat edit-menu-item-description" rows="3" cols="20" name="menu-item-description[<?php echo ''.$item_id; ?>]"><?php echo esc_html( $item->description ); ?></textarea>
-                    <span class="description"><?php esc_html_e('The description will be displayed in the menu if the current theme supports it.','cms-theme-framework'); ?></span>
+                <label for="edit-menu-item-description-<?php echo $item_id; ?>">
+                    <?php _e( 'Description', 'Avada' ); ?><br />
+                    <textarea id="edit-menu-item-description-<?php echo $item_id; ?>" class="widefat edit-menu-item-description" rows="3" cols="20" name="menu-item-description[<?php echo $item_id; ?>]"><?php echo esc_html( $item->description ); // textarea_escaped ?></textarea>
+                    <span class="description"><?php _e('The description will be displayed in the menu if the current theme supports it.', 'Avada' ); ?></span>
                 </label>
             </p>
-            <?php
-            /*
-             * This is the added field
-             */
-            $title              = 'Extra Class';
-            $key = "menu-item-el_class";
-            $value = $item->el_class;
-            ?>
-            <p class="description description-wide description_width_100">
-                <label for="edit-<?php echo ''.$key . '-' . $item_id; ?>">
-                    <span class='obtheme_long_desc'><?php echo esc_html( $title ); ?></span><br />
-                    <input type="text" value="<?php echo ''.$value; ?>" id="edit-<?php echo ''.$key . '-' . $item_id; ?>" class=" <?php echo ''.$key; ?>" name="<?php echo ''.$key . "[" . $item_id . "]"; ?>" />
-                </label>
-            </p>
-            <?php
-            /*
-             * This is the added field
-             */
-            if ( ! $depth ) {
-                $title              = 'Submenu Type';
-                $key = "menu-item-submenu_type";
-                $value = $item->submenu_type;
-                ?>
-                <p class="description description-wide description_width_100">
-                    <?php echo esc_html( $title ); ?><br />
-                    <label for="edit-<?php echo ''.$key . '-' . $item_id; ?>">
-                        <select id="edit-<?php echo ''.$key . '-' . $item_id; ?>" class=" <?php echo ''.$key; ?>" name="<?php echo ''.$key . "[" . $item_id . "]"; ?>">
-                            <option value="standard" <?php echo ( $value == 'standard' ) ? ' selected="selected" ' : ''; ?>><?php esc_html_e( 'Standard Dropdown', 'cms-theme-framework' ); ?></option>
-                            <option value="columns2" <?php echo ( $value == 'columns2' ) ? ' selected="selected" ' : ''; ?>><?php esc_html_e( '2 columns dropdown', 'cms-theme-framework' ); ?></option>
-                            <option value="columns3" <?php echo ( $value == 'columns3' ) ? ' selected="selected" ' : ''; ?>><?php esc_html_e( '3 columns dropdown', 'cms-theme-framework' ); ?>
-                            </option>
-                            <option value="columns4" <?php echo ( $value == 'columns4' ) ? ' selected="selected" ' : ''; ?>><?php esc_html_e( '4 columns dropdown', 'cms-theme-framework' ); ?></option>
-                            <option value="columns5" <?php echo ( $value == 'columns5' ) ? ' selected="selected" ' : ''; ?>><?php esc_html_e( '5 columns dropdown', 'cms-theme-framework' ); ?></option>
-                        </select>
-                    </label>
-                </p>
-                <?php
-                $title = 'Sub menu column width ( Example: 200)';
-                $key = "menu-item-column_width";
-                $value = $item->column_width;
-                ?>
-                <p class="description description-wide obtheme_checkbox obtheme_mega_menu obtheme_mega_menu_d2">
-                    <label for="edit-<?php echo ''.$key . '-' . $item_id; ?>">
-                        <span class='obtheme_long_desc'><?php echo esc_html( $title ); ?></span><br />
-                        <input type="text" value="<?php echo ''.$value; ?>" id="edit-<?php echo ''.$key . '-' . $item_id; ?>" class=" <?php echo ''.$key; ?>" name="<?php echo ''.$key . "[" . $item_id . "]"; ?>" />
-                    </label>
-                </p>
-                <?php
-                $title = 'Side of Dropdown Elements';
-                $key = "menu-item-dropdown";
-                $value = $item->dropdown;
-                ?>
-                <p class="description description-wide description_width_100">
-                    <?php echo esc_html( $title ); ?><br />
-                    <label for="edit-<?php echo ''.$key . '-' . $item_id; ?>">
-                        <select id="edit-<?php echo ''.$key . '-' . $item_id; ?>" class=" <?php echo ''.$key; ?>" name="<?php echo ''.$key . "[" . $item_id . "]"; ?>">
-                            <option value="autodrop_submenu" <?php echo ( $value == 'autodrop_submenu' ) ? ' selected="selected" ' : ''; ?>><?php esc_html_e( 'Auto drop', 'cms-theme-framework' ); ?></option>
-                            <option value="drop_to_left" <?php echo ( $value == 'drop_to_left' ) ? ' selected="selected" ' : ''; ?>><?php esc_html_e( 'Drop To Left Side', 'cms-theme-framework' ); ?></option>
-                            <option value="drop_to_right" <?php echo ( $value == 'drop_to_right' ) ? ' selected="selected" ' : ''; ?>><?php esc_html_e( 'Drop To Right Side', 'cms-theme-framework' ); ?></option>
-                            <option value="drop_to_center" <?php echo ( $value == 'drop_to_center' ) ? ' selected="selected" ' : ''; ?>><?php esc_html_e( 'Drop To Center', 'cms-theme-framework' ); ?></option>
-                            <option value="drop_full_width" <?php echo ( $value == 'drop_full_width' ) ? ' selected="selected" ' : ''; ?>><?php esc_html_e( 'Full width', 'cms-theme-framework' ); ?></option>
-                        </select>
-                    </label>
-                </p>
-                <?php
-            }
-            if($depth){
-                $title = 'Widget Area';
-                $key = "menu-item-widget_area";
-                $value = $item->widget_area;
-                $sidebars = $GLOBALS['wp_registered_sidebars'];
-                ?>
-                <p class="description description-wide description_width_100 el_widget_area">
-                    <?php echo esc_html( $title ); ?><br />
-                    <label for="edit-<?php echo ''.$key . '-' . $item_id; ?>">
-                        <select id="edit-<?php echo ''.$key . '-' . $item_id; ?>" class=" <?php echo ''.$key; ?>" name="<?php echo ''.$key . "[" . $item_id . "]"; ?>">
-                            <option value="" <?php echo ( $value == '' ) ? ' selected="selected" ' : ''; ?>><?php esc_html_e( 'Select Widget Area', 'cms-theme-framework' ); ?></option>
-                            <?php
-                            foreach ( $sidebars as $sidebar ) {
-                                echo '<option value="' . $sidebar['id'] . '" ' . ( ( $value == $sidebar['id'] ) ? ' selected="selected" ' : '' ) . '>[' . $sidebar['id'] . '] - ' . $sidebar['name'] . '</option>';
-                            }
-                            ?>
-                        </select>
-                    </label>
-                </p>
-            <?php }
-            $title = 'Group';
-            $key = "menu-item-group";
-            $value = $item->group;
-            ?>
-            <p class="description description-wide description_width_100">
-                <?php echo esc_html( $title ); ?><br />
-                <label for="edit-<?php echo ''.$key . '-' . $item_id; ?>">
-                    <select id="edit-<?php echo ''.$key . '-' . $item_id; ?>" class=" <?php echo ''.$key; ?>" name="<?php echo ''.$key . "[" . $item_id . "]"; ?>">
-                        <option value="no_group" <?php echo ( $value == 'no_group' ) ? ' selected="selected" ' : ''; ?>><?php esc_html_e( 'No', 'cms-theme-framework' ); ?></option>
-                        <option value="group" <?php echo ( $value == 'group' ) ? ' selected="selected" ' : ''; ?>><?php esc_html_e( 'Yes', 'cms-theme-framework' ); ?></option>
-                    </select>
-                </label>
-            </p>
-            <?php
-            if($depth){
-                $title = 'Hide title';
-                $key = "menu-item-hide_link";
-                $value = $item->hide_link;
-                ?>
-                <p class="description description-wide description_width_100">
-                    <?php echo esc_html( $title ); ?><br />
-                    <label for="edit-<?php echo ''.$key . '-' . $item_id; ?>">
-                        <select id="edit-<?php echo ''.$key . '-' . $item_id; ?>" class=" <?php echo ''.$key; ?>" name="<?php echo ''.$key . "[" . $item_id . "]"; ?>">
-                            <option value="0" <?php echo ( $value == '0' ) ? ' selected="selected" ' : ''; ?>><?php esc_html_e( 'No', 'cms-theme-framework' ); ?></option>
-                            <option value="1" <?php echo ( $value == '1' ) ? ' selected="selected" ' : ''; ?>><?php esc_html_e( 'Yes', 'cms-theme-framework' ); ?></option>
-                        </select>
-                    </label>
-                </p>
-            <?php }
-            $title = 'Menu Icon';
-            $key = "menu-item-menu_icon";
-            $value = $item->menu_icon;
-            ?>
-            <div id="<?php echo ''.$key . '-' . $item_id . '-popup'; ?>" data-item_id="<?php echo ''.$item_id;?>" class="menu_icon_wrap" style="display:none;">
-                <?php
-                $icons = apply_filters('theme/menu/icons', et3_theme_framework_font_awesome());
-                $html = '<input type="hidden" name="" class="wpb_vc_param_value" value="' . $value . '" id="trace"/> ';
-                $html .= '<div class="icon-preview icon-preview-' . $item_id . '"><i class="' . $value . '"></i></div>';
-                $html .= '<div id="' . $key . '-' . $item_id . '-icon-dropdown" >';
-                $html .= '<ul class="icon-list">';
-                $n = 1;
-                foreach ( $icons as $icon ) {
-                    $selected = ( $icon == $value ) ? 'class="selected"' : '';
-                    $id       = 'icon-' . $n;
-                    $html .= '<li ' . $selected . ' data-icon="' . $icon . '"><i class="icon ' . $icon . '"></i></li>';
-                    $n ++;
-                }
-                $html .= '</ul>';
-                $html .= '</div>';
-                echo ''.$html;
-                ?>
-            </div>
-            <p class="description description-wide obtheme_checkbox obtheme_mega_menu obtheme_mega_menu_d1">
-                <label for="edit-<?php echo ''.$key . '-' . $item_id; ?>">
-                    <?php echo esc_html( $title ); ?><br />
-                    <input type="text" value="<?php echo ''.$value; ?>" id="edit-<?php echo ''.$key . '-' . $item_id; ?>" class=" <?php echo ''.$key; ?>" name="<?php echo ''.$key . "[" . $item_id . "]"; ?>" />
-                    <input alt="#TB_inline?height=auto&width=auto&inlineId=<?php echo ''.$key . '-' . $item_id . '-popup'; ?>" title="<?php esc_html_e( 'Click to browse icon', 'cms-theme-framework' ) ?>" class="thickbox button-secondary submit-add-to-menu" type="button" value="<?php esc_html_e( 'Browse Icon', 'cms-theme-framework' ) ?>" />
-                    <a class="button btn_clear button-primary" href="javascript: void(0);">Clear</a>
-                    <span class="icon-preview  icon-preview<?php echo '-' . $item_id; ?>"><i class=" fa fa-<?php echo ''.$value; ?>"></i></span>
-                </label>
-            </p>
-            <!-- Start background menu -->
-            <?php
-            if ( ! $depth ) {
-                $title = 'DropDown Background Image';
-                $key = "menu-item-bg_image";
-                $value = $item->bg_image;
-                ?>
 
-                <p class="description description-wide obtheme_checkbox obtheme_mega_menu obtheme_mega_menu_d2">
-                    <label for="edit-<?php echo ''.$key . '-' . $item_id; ?>">
-                        <span class='obtheme_long_desc'><?php echo esc_html( $title ); ?></span><br />
-                        <input type="text" value="<?php echo ''.$value; ?>" id="edit-<?php echo ''.$key . '-' . $item_id; ?>" class=" <?php echo ''.$key; ?>" name="<?php echo ''.$key . "[" . $item_id . "]"; ?>" />
-                        <button id="browse-edit-<?php echo ''.$key . '-' . $item_id; ?>" class="set_custom_images button button-secondary submit-add-to-menu"><?php esc_html_e( 'Browse Image', 'cms-theme-framework' ); ?></button>
-                        <a class="button btn_clear button-primary" href="javascript: void(0);">Clear</a>
-                    </label>
-                </p>
-                <p class="description description-wide description_width_25">
-                    <?php
-                    $key = "menu-item-bg_image_repeat";
-                    $value = $item->bg_image_repeat;
-                    $options = array( 'repeat', 'no-repeat', 'repeat-x', 'repeat-y' );
-                    ?>
-                    <label for="edit-<?php echo ''.$key . '-' . $item_id; ?>">
-                        <select id="edit-<?php echo ''.$key . '-' . $item_id; ?>" class=" <?php echo ''.$key; ?>" name="<?php echo ''.$key . "[" . $item_id . "]"; ?>">
-                            <?php
-                            foreach ( $options as $option ) {
-                                ?>
-                                <option value="<?php echo ''.$option; ?>" <?php echo ( $value == $option ) ? ' selected="selected" ' : ''; ?>><?php echo ''.$option; ?></option>
-                                <?php
-                            }
-                            ?>
-                        </select>
-                    </label>
-                    <?php
-                    $key = "menu-item-bg_image_attachment";
-                    $value = $item->bg_image_attachment;
-                    $options = array( 'scroll', 'fixed' );
-                    ?>
-                    <label for="edit-<?php echo ''.$key . '-' . $item_id; ?>">
-                        <select id="edit-<?php echo ''.$key . '-' . $item_id; ?>" class=" <?php echo ''.$key; ?>" name="<?php echo ''.$key . "[" . $item_id . "]"; ?>">
-                            <?php
-                            foreach ( $options as $option ) {
-                                ?>
-                                <option value="<?php echo ''.$option; ?>" <?php echo ( $value == $option ) ? ' selected="selected" ' : ''; ?>><?php echo ''.$option; ?></option>
-                                <?php
-                            }
-                            ?>
-                        </select>
-                    </label>
+            <?php do_action( 'wp_nav_menu_item_custom_fields', $item_id, $item, $depth, $args ); ?>
 
-                    <?php
-                    $key = "menu-item-bg_image_position";
-                    $value = $item->bg_image_position;
-                    $options = array( 'center', 'center left', 'center right', 'top left', 'top center', 'top right', 'bottom left', 'bottom center', 'bottom right' );
-                    ?>
-                    <label for="edit-<?php echo ''.$key . '-' . $item_id; ?>">
-                        <select id="edit-<?php echo ''.$key . '-' . $item_id; ?>" class=" <?php echo ''.$key; ?>" name="<?php echo ''.$key . "[" . $item_id . "]"; ?>">
-                            <?php
-                            foreach ( $options as $option ) {
-                                ?>
-                                <option value="<?php echo ''.$option; ?>" <?php echo ( $value == $option ) ? ' selected="selected" ' : ''; ?>><?php echo ''.$option; ?></option>
-                                <?php
-                            }
-                            ?>
-                        </select>
-                    </label>
+            <p class="field-move hide-if-no-js description description-wide">
+                <label>
+                    <span><?php _e( 'Move', 'Avada' ); ?></span>
+                    <a href="#" class="menus-move menus-move-up" data-dir="up"><?php _e( 'Up one', 'Avada' ); ?></a>
+                    <a href="#" class="menus-move menus-move-down" data-dir="down"><?php _e( 'Down one', 'Avada' ); ?></a>
+                    <a href="#" class="menus-move menus-move-left" data-dir="left"></a>
+                    <a href="#" class="menus-move menus-move-right" data-dir="right"></a>
+                    <a href="#" class="menus-move menus-move-top" data-dir="top"><?php _e( 'To the top', 'Avada' ); ?></a>
+                </label>
+            </p>
 
-                    <?php
-                    $key = "menu-item-bg_image_size";
-                    $value = $item->bg_image_size;
-                    $options = array( "auto"      => "Keep original",
-                        "100% auto" => "Stretch to width",
-                        "auto 100%" => "Stretch to height",
-                        "cover"     => "cover",
-                        "contain"   => "contain" );
-                    ?>
-                    <label for="edit-<?php echo ''.$key . '-' . $item_id; ?>">
-                        <select id="edit-<?php echo ''.$key . '-' . $item_id; ?>" class=" <?php echo ''.$key; ?>" name="<?php echo ''.$key . "[" . $item_id . "]"; ?>">
-                            <?php
-                            foreach ( $options as $op_value => $op_text ) {
-                                ?>
-                                <option value="<?php echo ''.$op_value; ?>" <?php echo ( $value == $op_value ) ? ' selected="selected" ' : ''; ?>><?php echo ''.$op_text; ?></option>
-                                <?php
-                            }
-                            ?>
-                        </select>
-                    </label>
-                </p>
-                <?php
-                $title = 'Background Color';
-                $key = "menu-item-bg_color";
-                $value = $item->bg_color;
-                ?>
-                <p class="description description-wide">
-                    <label for="edit-<?php echo ''.$key . '-' . $item_id; ?>">
-                        <span class='obtheme_long_desc'><?php echo esc_html( $title ); ?></span><br />
-                        <input type="text" value="<?php echo ''.$value; ?>" id="edit-<?php echo ''.$key . '-' . $item_id; ?>" class=" <?php echo ''.$key; ?>" name="<?php echo ''.$key . "[" . $item_id . "]"; ?>" />
-                    </label>
-                </p>
-                <?php
-                $title = 'Icon Color';
-                $key = "menu-item-icon_color";
-                $value = $item->icon_color;
-                ?>
-                <p class="description description-wide">
-                    <label for="edit-<?php echo ''.$key . '-' . $item_id; ?>">
-                        <span class='obtheme_long_desc'><?php echo esc_html( $title ); ?></span><br />
-                        <input type="text" value="<?php echo ''.$value; ?>" id="edit-<?php echo ''.$key . '-' . $item_id; ?>" class=" <?php echo ''.$key; ?>" name="<?php echo ''.$key . "[" . $item_id . "]"; ?>" />
-                    </label>
-                </p>
-                <?php
-                $title = 'Icon Font Size';
-                $key = "menu-item-icon_font_size";
-                $value = $item->icon_font_size;
-                ?>
-                <p class="description description-wide">
-                    <label for="edit-<?php echo ''.$key . '-' . $item_id; ?>">
-                        <span class='obtheme_long_desc'><?php echo esc_html( $title ); ?></span><br />
-                        <input type="text" value="<?php echo ''.$value; ?>" id="edit-<?php echo ''.$key . '-' . $item_id; ?>" class=" <?php echo ''.$key; ?>" name="<?php echo ''.$key . "[" . $item_id . "]"; ?>" />
-                    </label>
-                </p>
-            <?php } ?>
-            <!-- End background menu -->
             <div class="menu-item-actions description-wide submitbox">
                 <?php if( 'custom' != $item->type && $original_title !== false ) : ?>
                     <p class="link-to-original">
-                        <?php printf( esc_html__('Original: %s', 'cms-theme-framework'), '<a href="' . esc_attr( $item->url ) . '">' . esc_html( $original_title ) . '</a>' ); ?>
+                        <?php printf( __('Original: %s', 'Avada' ), '<a href="' . esc_attr( $item->url ) . '">' . esc_html( $original_title ) . '</a>' ); ?>
                     </p>
                 <?php endif; ?>
-                <a class="item-delete submitdelete deletion" id="delete-<?php echo ''.$item_id; ?>" href="<?php
-                echo wp_nonce_url(
+                <a class="item-delete submitdelete deletion" id="delete-<?php echo $item_id; ?>" href="<?php
+                echo esc_url( wp_nonce_url(
                     add_query_arg(
                         array(
                             'action' => 'delete-menu-item',
                             'menu-item' => $item_id,
                         ),
-                        remove_query_arg($removed_args, admin_url( 'nav-menus.php' ) )
+                        admin_url( 'nav-menus.php' )
                     ),
                     'delete-menu_item_' . $item_id
-                ); ?>"><?php esc_html_e('Remove','cms-theme-framework'); ?></a> <span class="meta-sep"> | </span> <a class="item-cancel submitcancel" id="cancel-<?php echo ''.$item_id; ?>" href="<?php echo esc_url( add_query_arg( array('edit-menu-item' => $item_id, 'cancel' => time()), remove_query_arg( $removed_args, admin_url( 'nav-menus.php' ) ) ) );
-                ?>#menu-item-settings-<?php echo ''.$item_id; ?>"><?php esc_html_e('Cancel','cms-theme-framework'); ?></a>
+                ) ); ?>"><?php _e( 'Remove', 'Avada' ); ?></a> <span class="meta-sep hide-if-no-js"> | </span> <a class="item-cancel submitcancel hide-if-no-js" id="cancel-<?php echo $item_id; ?>" href="<?php echo esc_url( add_query_arg( array( 'edit-menu-item' => $item_id, 'cancel' => time() ), admin_url( 'nav-menus.php' ) ) );
+                ?>#menu-item-settings-<?php echo $item_id; ?>"><?php _e('Cancel', 'Avada' ); ?></a>
             </div>
 
-            <input class="menu-item-data-db-id" type="hidden" name="menu-item-db-id[<?php echo ''.$item_id; ?>]" value="<?php echo ''.$item_id; ?>" />
-            <input class="menu-item-data-object-id" type="hidden" name="menu-item-object-id[<?php echo ''.$item_id; ?>]" value="<?php echo esc_attr( $item->object_id ); ?>" />
-            <input class="menu-item-data-object" type="hidden" name="menu-item-object[<?php echo ''.$item_id; ?>]" value="<?php echo esc_attr( $item->object ); ?>" />
-            <input class="menu-item-data-parent-id" type="hidden" name="menu-item-parent-id[<?php echo ''.$item_id; ?>]" value="<?php echo esc_attr( $item->menu_item_parent ); ?>" />
-            <input class="menu-item-data-position" type="hidden" name="menu-item-position[<?php echo ''.$item_id; ?>]" value="<?php echo esc_attr( $item->menu_order ); ?>" />
-            <input class="menu-item-data-type" type="hidden" name="menu-item-type[<?php echo ''.$item_id; ?>]" value="<?php echo esc_attr( $item->type ); ?>" />
+            <input class="menu-item-data-db-id" type="hidden" name="menu-item-db-id[<?php echo $item_id; ?>]" value="<?php echo $item_id; ?>" />
+            <input class="menu-item-data-object-id" type="hidden" name="menu-item-object-id[<?php echo $item_id; ?>]" value="<?php echo esc_attr( $item->object_id ); ?>" />
+            <input class="menu-item-data-object" type="hidden" name="menu-item-object[<?php echo $item_id; ?>]" value="<?php echo esc_attr( $item->object ); ?>" />
+            <input class="menu-item-data-parent-id" type="hidden" name="menu-item-parent-id[<?php echo $item_id; ?>]" value="<?php echo esc_attr( $item->menu_item_parent ); ?>" />
+            <input class="menu-item-data-position" type="hidden" name="menu-item-position[<?php echo $item_id; ?>]" value="<?php echo esc_attr( $item->menu_order ); ?>" />
+            <input class="menu-item-data-type" type="hidden" name="menu-item-type[<?php echo $item_id; ?>]" value="<?php echo esc_attr( $item->type ); ?>" />
         </div><!-- .menu-item-settings-->
         <ul class="menu-item-transport"></ul>
         <?php
