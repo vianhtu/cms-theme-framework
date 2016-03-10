@@ -465,7 +465,7 @@ function et3_theme_framework_footer_top(){
 
     for($i = 1 ; $i <= $opt_theme_options['footer-top-column'] ; $i++){
         if ( is_active_sidebar( 'sidebar-footer-top-' . $i ) ){
-            echo '<div class="' . esc_html($_class) . ">";
+            echo '<div class="' . esc_html($_class) . '">';
                 dynamic_sidebar( 'sidebar-footer-top-' . $i );
             echo "</div>";
         }
