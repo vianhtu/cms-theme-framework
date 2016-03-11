@@ -340,27 +340,6 @@ Redux::setSection($opt_name, array(
         )
     )
 ));
-
-/**
- * Custom CSS
- * 
- * extra css for customer.
- * @author Fox
- */
-Redux::setSection($opt_name, array(
-    'title' => esc_html__('Custom CSS', 'cms-theme-framework'),
-    'icon' => 'el el-puzzle',
-    'fields' => array(
-        array(
-            'id' => 'custom_css',
-            'type' => 'ace_editor',
-            'title' => esc_html__('CSS Code', 'cms-theme-framework'),
-            'subtitle' => esc_html__('create your css code here.', 'cms-theme-framework'),
-            'mode' => 'css',
-            'theme' => 'monokai',
-        )
-    )
-));
 /**
  * Optimal Core
  * 
