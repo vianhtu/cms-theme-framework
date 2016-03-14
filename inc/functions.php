@@ -24,6 +24,9 @@ require_once( get_template_directory() . '/inc/options/function.options.php' );
 /* load mata options */
 require_once( get_template_directory() . '/inc/options/meta-options.php' );
 
+/* load taxonomy options */
+require_once( get_template_directory() . '/inc/options/meta-taxonomy.php' );
+
 /* load template functions */
 require_once( get_template_directory() . '/inc/template.functions.php' );
 
