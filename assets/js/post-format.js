@@ -9,11 +9,13 @@ jQuery(document).ready(function($) {
     });
 
     $(window).on('load', function(){
-        $('.post-format').each(function(){
-            if($(this).prop( "checked" )){
-                get_post_fields($(this).val());
-            }
-        });
+        setTimeout(function(){
+            $('.post-format').each(function(){
+                if($(this).prop( "checked" )){
+                    get_post_fields($(this).val());
+                }
+            });
+        }, 1000);
     });
 
     function get_post_fields(_formart){
