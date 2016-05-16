@@ -51,7 +51,9 @@ $args = array(
     // What to print by the field's title if the value shown is default. Suggested: *
     'show_import_export' => false,
     // possible: options, theme_mods, theme_mods_expanded, transient. Not fully functional, warning!
-    'use_cdn' => false
+    'use_cdn' => false,
+    // save meta to multiple keys.
+    'meta_mode' => 'multiple'
 );
 
 // -> Set Option To Panel.
