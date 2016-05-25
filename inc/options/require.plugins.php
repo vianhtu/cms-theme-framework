@@ -2,7 +2,7 @@
 /**
  * Include the TGM_Plugin_Activation class.
  */
-require( get_template_directory() . '/inc/libs/class-tgm-plugin-activation.php' );
+require_once ( get_template_directory() . '/inc/libs/class-tgm-plugin-activation.php' );
 
 add_action( 'tgmpa_register', 'cms_theme_register_required_plugins' );
 /**

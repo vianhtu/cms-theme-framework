@@ -25,7 +25,7 @@ class CMSSuperHeroes_StaticCss
 		add_action('wp', array($this, 'generate_over_time'));
         
         /* save option generate css */
-       	add_action("redux/options/smof_data/saved", array($this,'generate_file'));
+       	add_action("redux/options/opt_theme_options/saved", array($this,'generate_file'));
     }
 	
     public function generate_over_time(){

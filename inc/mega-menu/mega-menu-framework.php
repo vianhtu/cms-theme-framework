@@ -46,7 +46,7 @@ if( ! class_exists( 'EF3MegaMenuFramework' ) ) {
 		 */
 		public function include_functions() {
 			// Load functions
-			require_once( get_template_directory() . '/inc/mega-menu/mega-menu.php' );
+			require_once( get_template_directory() . '/inc/mega-menu/mega-menu.php');
 		}
 
 		/**
