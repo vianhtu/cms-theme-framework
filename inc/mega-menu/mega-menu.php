@@ -279,6 +279,27 @@ function et3_theme_framework_add_menu_el_class_fields( $item_id, $item, $depth, 
     </p><?php
 }
 
+/* one page */
+add_action( 'wp_nav_menu_item_custom_fields', 'et3_theme_framework_add_menu_is_onepage_fields', 10, 4 );
+
+function et3_theme_framework_add_menu_is_onepage_fields($item_id, $item, $depth, $args){
+
+    $title = esc_html__('Is OnePage', 'cms-theme-framework'); $key = "menu-item-is_onepage";
+    ?>
+    <p class="description description-wide description_width_100">
+        <span><?php echo esc_html( $title ); ?></span><br />
+        <div>
+            <label><?php esc_html_e('No', ''); ?>
+                <input type="radio" class="<?php echo esc_attr($key); ?>" name="<?php echo sprintf("%1s[%2s]", $key , $item_id); ?>" value="0"<?php if(!$item->is_onepage) { echo ' checked="checked"';} ?>>
+            </label>
+            <label><?php esc_html_e('Yes', ''); ?>
+                <input type="radio" class="<?php echo esc_attr($key); ?>" name="<?php echo sprintf("%1s[%2s]", $key , $item_id); ?>" value="1"<?php if($item->is_onepage) { echo ' checked="checked"';} ?>>
+            </label>
+        </div>
+    </p>
+    <?php
+}
+
 
 class Walker_Nav_Menu_Edit_Custom extends Walker_Nav_Menu  {
     /**

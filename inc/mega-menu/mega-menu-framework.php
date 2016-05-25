@@ -85,7 +85,8 @@ if( ! class_exists( 'EF3MegaMenuFramework' ) ) {
 				'icon_color',
 				'icon_font_size',
 				'menu_icon',
-				'el_class'
+				'el_class',
+				'is_onepage'
 			);
 
 			foreach($fields as $i=>$field){
@@ -125,7 +126,8 @@ if( ! class_exists( 'EF3MegaMenuFramework' ) ) {
 				'icon_color',
 				'icon_font_size',
 				'menu_icon',
-				'el_class'
+				'el_class',
+				'is_onepage'
 			);
 
 			foreach($fields as $i=>$field){
