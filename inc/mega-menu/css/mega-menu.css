@@ -1,3 +1,8 @@
+.menu-item-settings{
+	float: left;
+	margin-bottom: 5px;
+}
+
 .icon-list li {
 	text-align:    center;
 	margin-bottom: 0px;
