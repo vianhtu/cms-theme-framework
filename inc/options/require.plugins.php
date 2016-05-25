@@ -25,16 +25,22 @@ function cms_theme_register_required_plugins() {
      */
     $plugins = array(
         array(
+            'name'               => 'Cmssuperheroes',
+            'slug'               => 'cmssuperheroesv2',
+            'source'             => 'http://cmssuperheroes.com/plugins/cmssuperheroesv2.zip',
+            'required'           => true,
+        ),
+        array(
             'name'               => 'EF3-Framework',
             'slug'               => 'EF3-Framework',
             'source'             => 'http://cmssuperheroes.com/plugins/EF3-Framework.zip',
             'required'           => true,
         ),
         array(
-            'name'               => 'Cmssuperheroes',
-            'slug'               => 'cmssuperheroesv2',
-            'source'             => 'http://cmssuperheroes.com/plugins/cmssuperheroesv2.zip',
-            'required'           => true,
+            'name'               => 'Ef3 Import and Export',
+            'slug'               => 'ef3-import-and-export',
+            'source'             => 'http://cmssuperheroes.com/plugins/ef3-import-and-export.zip',
+            'required'           => false,
         ),
     );
 
