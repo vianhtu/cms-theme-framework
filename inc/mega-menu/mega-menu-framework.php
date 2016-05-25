@@ -25,6 +25,10 @@ if( ! class_exists( 'EF3MegaMenuFramework' ) ) {
 	class EF3MegaMenuFramework {
 
 		function __construct() {
+			global $opt_theme_options;
+
+			if(!isset($opt_theme_options['mege_menu']) || !$opt_theme_options['mege_menu'])
+				return;
 
 			/* include. */
 			$this->include_functions();
@@ -166,6 +170,10 @@ if( ! class_exists( 'EF3MegaMenuFramework' ) ) {
 			}
 		}
 	}
-	
-	$mega_menu_framework = new EF3MegaMenuFramework();
+}
+
+add_action('init', 'et3_theme_framework_mega_menu', 5);
+
+function et3_theme_framework_mega_menu(){
+	new EF3MegaMenuFramework();
 }

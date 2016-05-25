@@ -155,8 +155,8 @@ Redux::setSection($opt_name, array(
 
 /* Logo */
 Redux::setSection($opt_name, array(
-    'title' => esc_html__('Logo', 'cms-theme-framework'),
-    'icon' => 'el-icon-picture',
+    'title' => esc_html__('Site Logo', 'cms-theme-framework'),
+    'icon' => 'el-icon-record',
     'subsection' => true,
     'fields' => array(
         array(
@@ -168,6 +168,22 @@ Redux::setSection($opt_name, array(
             'default' => array(
                 'url'=>get_template_directory_uri().'/assets/images/logo.png'
             )
+        )
+    )
+));
+
+/* Menu */
+Redux::setSection($opt_name, array(
+    'title' => esc_html__('Main Menu', 'cms-theme-framework'),
+    'icon' => 'el-icon-tasks',
+    'subsection' => true,
+    'fields' => array(
+        array(
+            'subtitle' => esc_html__('Enable mega menu.', 'cms-theme-framework'),
+            'id' => 'mege_menu',
+            'type' => 'switch',
+            'title' => esc_html__('Mega Menu', 'cms-theme-framework'),
+            'default' => false,
         )
     )
 ));
