@@ -176,9 +176,9 @@ function et3_theme_framework_get_page_title(){
         elseif ( is_day() ) :
             printf( esc_html__( 'Day: %s', 'cms-theme-framework' ), '<span>' . get_the_date() . '</span>' );
         elseif ( is_month() ) :
-            printf( esc_html__( 'Month: %s', 'cms-theme-framework' ), '<span>' . get_the_date( _x( 'F Y', 'monthly archives date format', 'cms-theme-framework' ) ) . '</span>' );
+            printf( esc_html__( 'Month: %s', 'cms-theme-framework' ), '<span>' . get_the_date() . '</span>' );
         elseif ( is_year() ) :
-            printf( esc_html__( 'Year: %s', 'cms-theme-framework' ), '<span>' . get_the_date( _x( 'Y', 'yearly archives date format', 'cms-theme-framework' ) ) . '</span>' );
+            printf( esc_html__( 'Year: %s', 'cms-theme-framework' ), '<span>' . get_the_date() . '</span>' );
         /* post format */
         elseif ( is_tax( 'post_format', 'post-format-aside' ) ) :
             esc_html_e( 'Asides', 'cms-theme-framework' );
@@ -291,7 +291,7 @@ function et3_theme_framework_get_bread_crumb($separator = '') {
     /* search */
     if( is_search() ){ echo '<li>'.esc_html__("Search", 'cms-theme-framework').'</li>'; }
     /* date */
-    if( is_year() ){ echo '<li>'.get_the_time('Y').'</li>'; }
+    if( is_year() ){ echo '<li>'.get_the_time().'</li>'; }
     /* 404 */
     if( is_404() ) {
         echo '<li>'.esc_html__("404 - Page not Found", 'cms-theme-framework').'</li>';

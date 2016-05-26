@@ -11,7 +11,7 @@ class CMSSuperHeroes_DynamicCss
 
     function __construct()
     {
-        add_action('wp_head', array($this, 'generate_css'));
+        add_action('wp_enqueue_scripts', array($this, 'generate_css'));
     }
 
     /**
@@ -21,7 +21,12 @@ class CMSSuperHeroes_DynamicCss
      */
     public function generate_css()
     {
-        echo '<style type="text/css" data-type="custom-css">'.$this->css_render().'</style>';
+
+        wp_enqueue_style('custom-dynamic',get_template_directory_uri() . '/assets/css/custom-dynamic.css');
+
+        $_dynamic_css = $this->css_render();
+
+        wp_add_inline_style('custom-dynamic', $_dynamic_css);
     }
 
     /**
@@ -37,8 +42,9 @@ class CMSSuperHeroes_DynamicCss
         ob_start();
 
         /* custom css. */
-        if(!empty($opt_theme_options['custom_css']))
-            echo esc_html($opt_theme_options['custom_css']);
+        ?>
+
+        <?php
         
         return ob_get_clean();
     }
