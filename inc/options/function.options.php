@@ -180,7 +180,7 @@ Redux::setSection($opt_name, array(
     'fields' => array(
         array(
             'subtitle' => esc_html__('Enable mega menu.', 'cms-theme-framework'),
-            'id' => 'mege_menu',
+            'id' => 'mega_menu',
             'type' => 'switch',
             'title' => esc_html__('Mega Menu', 'cms-theme-framework'),
             'default' => false,
