@@ -23,12 +23,17 @@ function et3_theme_framework_header(){
 function et3_theme_framework_header_logo(){
     global $opt_theme_options;
 
-    if(isset($opt_theme_options)) {
-        echo '<a href="' . esc_url(home_url('/')) . '"><img alt="' . esc_html__('Logo', 'cms-theme-framework') . '" src="' . esc_url($opt_theme_options['main_logo']['url']) . '"></a>';
+    if(isset($opt_theme_options['logo_type']) && $opt_theme_options['logo_type'] && !empty($opt_theme_options['main_logo']['url'])) {
+        echo '<a href="' . esc_url(home_url('/')) . '"><img alt="' .  get_bloginfo( "name" ) . '" src="' . esc_url($opt_theme_options['main_logo']['url']) . '"></a>';
+    } elseif (isset($opt_theme_options['logo_type']) && !$opt_theme_options['logo_type'] && !empty($opt_theme_options['logo_text'])){
+        echo '<h1 class="site-title"><a href="' . esc_url( home_url( '/' )) . '" rel="home">' . esc_html($opt_theme_options['logo_text']) . '</a></h1>';
+
+        if(!empty($opt_theme_options['logo_text_sologan']))
+            echo '<p class="site-description">'.esc_html($opt_theme_options['logo_text_sologan']).'</p>';
+
     } else {
-        echo '<a href="' . esc_url( home_url( '/' )) . '" rel="home">';
-            bloginfo( 'name' );
-        echo '</a>';
+        echo '<h1 class="site-title"><a href="' . esc_url( home_url( '/' )) . '" rel="home">' . get_bloginfo( "name" ) . '</a></h1>';
+        echo '<p class="site-description">' . get_bloginfo( "description" ) . '</p>';
     }
 }
 
@@ -479,4 +484,16 @@ function et3_theme_framework_footer_bottom(){
         return;
 
     echo esc_html($opt_theme_options['footer-bottom-copyright']);
+}
+
+function et3_theme_framework_footer_back_to_top(){
+    global $opt_theme_options;
+
+    $_back_to_top = true;
+
+    if(isset($opt_theme_options['general_back_to_top']))
+        $_back_to_top = $opt_theme_options['general_back_to_top'];
+
+    if($_back_to_top)
+        echo '<div class="ef3-back-to-top"><i class="fa fa-arrow-circle-up"></i></div>';
 }

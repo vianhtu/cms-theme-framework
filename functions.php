@@ -189,6 +189,7 @@ function et3_theme_framework_widgets_init() {
 		}
 	}
 }
+
 add_action( 'widgets_init', 'et3_theme_framework_widgets_init' );
 
 /**
@@ -359,3 +360,10 @@ function et3_theme_framework_comment($comment, $args, $depth) {
 
 /* core functions. */
 require_once( get_template_directory() . '/inc/functions.php' );
+
+/**
+ * theme actions.
+ */
+
+/* add footer back to top. */
+add_action('wp_footer', 'et3_theme_framework_footer_back_to_top');

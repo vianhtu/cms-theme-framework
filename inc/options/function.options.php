@@ -124,6 +124,42 @@ $args = array(
 Redux::setArgs($opt_name, $args);
 
 /**
+ * General Options.
+ */
+Redux::setSection($opt_name, array(
+    'title' => esc_html__('General', 'cms-theme-framework'),
+    'icon' => 'el-icon-adjust-alt',
+    'fields' => array(
+        array(
+            'title' => esc_html__('Layout', 'cms-theme-framework'),
+            'subtitle' => esc_html__('Full width / Boxed.', 'cms-theme-framework'),
+            'id' => 'general_layout',
+            'type' => 'button_set',
+            'options'  => array(
+                1 => esc_html__('Full width', 'cms-theme-framework'),
+                0 => esc_html__('Boxed', 'cms-theme-framework')
+            ),
+            'default'  => 1
+        ),
+        array(
+            'title' => esc_html__('Background', 'cms-theme-framework'),
+            'subtitle' => esc_html__('Body background.', 'cms-theme-framework'),
+            'id' => 'general_background',
+            'type' => 'background',
+            'output'   => array( 'body' ),
+            'required' => array( 'general_layout', '=', 0 )
+        ),
+        array(
+            'subtitle' => esc_html__('Enable back to top button.', 'cms-theme-framework'),
+            'id' => 'general_back_to_top',
+            'type' => 'switch',
+            'title' => esc_html__('Back To Top', 'cms-theme-framework'),
+            'default' => true,
+        )
+    )
+));
+
+/**
  * Header Options
  * 
  * @author Fox
@@ -133,21 +169,61 @@ Redux::setSection($opt_name, array(
     'icon' => 'el-icon-credit-card',
     'fields' => array(
         array(
-            'id' => 'header_layout',
-            'title' => esc_html__('Layouts', 'cms-theme-framework'),
-            'subtitle' => esc_html__('select a layout for header', 'cms-theme-framework'),
-            'default' => 'default',
-            'type' => 'image_select',
-            'options' => array(
-                'default' => get_template_directory_uri().'/assets/images/header/h-style-1.png',
-                'top' => get_template_directory_uri().'/assets/images/header/h-style-2.png'
-            )
+            'id'                => 'header_layout',
+            'title'             => esc_html__('Layouts', 'cms-theme-framework'),
+            'subtitle'          => esc_html__('select a layout for header', 'cms-theme-framework'),
+            'default'           => 'default',
+            'type'              => 'image_select',
+            'options'           => array(
+                                        'default' => get_template_directory_uri().'/assets/images/header/h-style-1.png',
+                                        'top' => get_template_directory_uri().'/assets/images/header/h-style-2.png'
+                                    )
         ),
         array(
-            'subtitle' => esc_html__('enable sticky mode for menu.', 'cms-theme-framework'),
-            'id' => 'menu_sticky',
+            'id'       => 'header_background_color',
+            'type'     => 'color_rgba',
+            'title'    => __( 'Background Color', 'cms-theme-framework' ),
+            'subtitle' => __( 'Header background color', 'cms-theme-framework' ),
+        ),
+        array(
+            'title'             => esc_html__('Background Image', 'cms-theme-framework'),
+            'subtitle'          => esc_html__('Header background image.', 'cms-theme-framework'),
+            'id'                => 'header_background_image',
+            'type'              => 'background',
+            'preview'           => false,
+            'background-color'  => false,
+            'output'            => array( '#cshero-header' )
+        ),
+        array(
+            'id'       => 'header_text_color',
+            'type'     => 'color',
+            'title'    => __( 'Text Color', 'cms-theme-framework' ),
+            'subtitle' => __( 'Select text color in header', 'cms-theme-framework' ),
+            'output'   => array( '#cshero-header' ),
+        ),
+        array(
+            'id'       => 'header_link_color',
+            'type'     => 'link_color',
+            'title'    => __( 'Links Color', 'cms-theme-framework' ),
+            'subtitle' => __( 'Select links color in header', 'cms-theme-framework' ),
+            'regular'   => true,
+            'hover'     => true,
+            'active'    => true,
+            'visited'   => true,
+            'output'   => array( '#cshero-header a' ),
+        ),
+        array(
+            'subtitle'          => esc_html__('enable sticky mode for menu.', 'cms-theme-framework'),
+            'id'                => 'menu_sticky',
+            'type'              => 'switch',
+            'title'             => esc_html__('Sticky Header', 'cms-theme-framework'),
+            'default'           => false,
+        ),
+        array(
+            'subtitle' => esc_html__('Enable mega menu.', 'cms-theme-framework'),
+            'id' => 'mega_menu',
             'type' => 'switch',
-            'title' => esc_html__('Sticky Header', 'cms-theme-framework'),
+            'title' => esc_html__('Mega Menu', 'cms-theme-framework'),
             'default' => false,
         )
     )
@@ -160,30 +236,49 @@ Redux::setSection($opt_name, array(
     'subsection' => true,
     'fields' => array(
         array(
-            'title' => esc_html__('Select Logo', 'cms-theme-framework'),
-            'subtitle' => esc_html__('Select an image file for your logo.', 'cms-theme-framework'),
-            'id' => 'main_logo',
-            'type' => 'media',
-            'url' => true,
-            'default' => array(
-                'url'=>get_template_directory_uri().'/assets/images/logo.png'
-            )
-        )
-    )
-));
-
-/* Menu */
-Redux::setSection($opt_name, array(
-    'title' => esc_html__('Main Menu', 'cms-theme-framework'),
-    'icon' => 'el-icon-tasks',
-    'subsection' => true,
-    'fields' => array(
+            'title'             => esc_html__('Logo Type', 'cms-theme-framework'),
+            'subtitle'          => esc_html__('Image / Text.', 'cms-theme-framework'),
+            'id'                => 'logo_type',
+            'type'              => 'button_set',
+            'options'           => array(
+                                            1 => esc_html__('Image', 'cms-theme-framework'),
+                                            0 => esc_html__('Text', 'cms-theme-framework')
+                                        ),
+            'default'           => 1
+        ),
         array(
-            'subtitle' => esc_html__('Enable mega menu.', 'cms-theme-framework'),
-            'id' => 'mega_menu',
-            'type' => 'switch',
-            'title' => esc_html__('Mega Menu', 'cms-theme-framework'),
-            'default' => false,
+            'title'             => esc_html__('Select Logo', 'cms-theme-framework'),
+            'subtitle'          => esc_html__('Select an image file for your logo.', 'cms-theme-framework'),
+            'id'                => 'main_logo',
+            'type'              => 'media',
+            'url'               => true,
+            'default'           => array(
+                                    'url'=>get_template_directory_uri().'/assets/images/logo.png'
+                                ),
+            'required'          => array( 'logo_type', '=', 1 )
+        ),
+        array(
+            'subtitle'          => esc_html__('Set max height for logo.', 'cms-theme-framework'),
+            'id'                => 'logo_max_height',
+            'type'              => 'dimensions',
+            'units'             => array('px'),
+            'width'             => false,
+            'title'             => esc_html__('Logo Height', 'cms-theme-framework'),
+            'required'          => array( 'logo_type', '=', 1 )
+        ),
+        array(
+            'subtitle'          => esc_html__('Add custom logo text.', 'cms-theme-framework'),
+            'id'                => 'logo_text',
+            'type'              => 'text',
+            'title'             => esc_html__('Logo Text', 'cms-theme-framework'),
+            'required'          => array( 'logo_type', '=', 0 )
+        ),
+        array(
+            'subtitle'          => esc_html__('Add custom sologan Text.', 'cms-theme-framework'),
+            'id'                => 'logo_text_sologan',
+            'type'              => 'text',
+            'title'             => esc_html__('Sologan Text', 'cms-theme-framework'),
+            'required'          => array( 'logo_type', '=', 0 )
         )
     )
 ));
@@ -242,12 +337,23 @@ Redux::setSection($opt_name, array(
     'icon' => 'el-icon-adjust',
     'fields' => array(
         array(
-            'subtitle' => esc_html__('set color main color.', 'cms-theme-framework'),
+            'subtitle' => esc_html__('Set color main color.', 'cms-theme-framework'),
             'id' => 'primary_color',
             'type' => 'color',
             'title' => esc_html__('Primary Color', 'cms-theme-framework'),
             'default' => '#6e4692'
-        )
+        ),
+        array(
+            'id'       => 'link_color',
+            'type'     => 'link_color',
+            'title'    => __( 'Links Color', 'cms-theme-framework' ),
+            'subtitle' => __( 'Select Links Color Option', 'cms-theme-framework' ),
+            'regular'   => true,
+            'hover'     => true,
+            'active'    => true,
+            'visited'   => true,
+            'output'   => array( 'a' ),
+        ),
     )
 ));
 

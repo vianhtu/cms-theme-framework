@@ -97,9 +97,17 @@ class CMSSuperHeroes_StaticCss
         
         ob_start();
 
-        /* forward options to scss. */
+        /* primary_color */
         if(!empty($opt_theme_options['primary_color']))
             echo '$primary_color:'.esc_attr($opt_theme_options['primary_color']).';';
+
+        /* logo_max_height */
+        if(!empty($opt_theme_options['logo_max_height']['height']))
+            echo '$logo_max_height:'.esc_attr($opt_theme_options['logo_max_height']['height']).';';
+
+        /* header_background_color */
+        if(!empty($opt_theme_options['header_background_color']['rgba']))
+            echo '$header_background_color:'.esc_attr($opt_theme_options['header_background_color']['rgba']).';';
         
         return ob_get_clean();
     }

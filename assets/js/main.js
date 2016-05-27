@@ -116,4 +116,11 @@ jQuery(document).ready(function($) {
 			navigation.removeClass('collapse');
 		}
 	});
+
+	/**
+	 * Back to top
+	 */
+	$('body').on('click', '.ef3-back-to-top', function () {
+		$('body').animate({scrollTop:0}, '1000');
+	})
 });

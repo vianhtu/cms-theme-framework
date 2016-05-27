@@ -9,7 +9,7 @@
 <div id="cshero-header" class="<?php et3_theme_framework_header_class('cshero-main-header'); ?>">
     <div class="container">
         <div class="row">
-            <div id="cshero-header-logo" class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+            <div id="cshero-header-logo" class="site-branding col-xs-12 col-sm-3 col-md-3 col-lg-3">
 
                 <?php et3_theme_framework_header_logo(); ?>
 
