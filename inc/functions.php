@@ -20,9 +20,9 @@ function et3_theme_framework_get_terms($taxonomy = 'category', $slug = true, $op
 
     $terms = array();
 
-    if(empty( $terms ) || ! is_wp_error( $terms ))
+    if(empty( $_terms ) || is_wp_error( $_terms ))
         return $terms;
-    
+
     foreach ($_terms as $_term){
         if($slug){
             $terms[$_term->slug] = $_term->name;
@@ -30,8 +30,27 @@ function et3_theme_framework_get_terms($taxonomy = 'category', $slug = true, $op
             $terms[$_term->term_id] = $_term->name;
         }
     }
-
+    
     return $terms;
+}
+
+/**
+ * get list menu.
+ * @return array
+ */
+function et3_theme_framework_get_nav_menu(){
+
+    $menus = array(
+        '' => esc_html__('Default', 'cms-theme-framework')
+    );
+
+    $obj_menus = wp_get_nav_menus();
+
+    foreach ($obj_menus as $obj_menu){
+        $menus[$obj_menu->term_id] = $obj_menu->name;
+    }
+
+    return $menus;
 }
 
 /* load list plugins */
@@ -50,7 +69,7 @@ require_once( get_template_directory() . '/inc/mega-menu/mega-menu-framework.php
 require_once( get_template_directory() . '/inc/options/function.options.php' );
 
 /* load mata options */
-require_once( get_template_directory() . '/inc/options/meta-options.php' );
+require_once(get_template_directory() . '/inc/options/meta-options.php');
 
 /* load taxonomy options */
 require_once( get_template_directory() . '/inc/options/meta-taxonomy.php' );
