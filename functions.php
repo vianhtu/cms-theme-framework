@@ -188,6 +188,22 @@ function et3_theme_framework_widgets_init() {
 			));
 		}
 	}
+
+	/* footer-top */
+	if(!empty($opt_theme_options['footer-bottom-column'])) {
+
+		for($i = 1 ; $i <= $opt_theme_options['footer-bottom-column'] ; $i++){
+			register_sidebar(array(
+				'name' => sprintf(esc_html__('Footer Bottom %s', 'cms-theme-framework'), $i),
+				'id' => 'sidebar-footer-bottom-' . $i,
+				'description' => esc_html__('Appears on posts and pages except the optional Front Page template, which has its own widgets', 'cms-theme-framework'),
+				'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+				'after_widget' => '</aside>',
+				'before_title' => '<h3 class="wg-title">',
+				'after_title' => '</h3>',
+			));
+		}
+	}
 }
 
 add_action( 'widgets_init', 'et3_theme_framework_widgets_init' );

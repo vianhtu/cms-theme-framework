@@ -569,6 +569,9 @@ function et3_theme_framework_footer_top(){
     $_class = "";
 
     switch ($opt_theme_options['footer-top-column']){
+        case '1':
+            $_class = 'col-lg-12 col-md-12 col-sm-12 col-xs-12';
+            break;
         case '2':
             $_class = 'col-lg-6 col-md-6 col-sm-6 col-xs-12';
             break;
@@ -592,10 +595,34 @@ function et3_theme_framework_footer_top(){
 function et3_theme_framework_footer_bottom(){
     global $opt_theme_options;
 
-    if(empty($opt_theme_options['footer-bottom-copyright']))
+    /* footer-top */
+    if(empty($opt_theme_options['footer-bottom-column']))
         return;
 
-    echo esc_html($opt_theme_options['footer-bottom-copyright']);
+    $_class = "";
+
+    switch ($opt_theme_options['footer-bottom-column']){
+        case '1':
+            $_class = 'col-lg-12 col-md-12 col-sm-12 col-xs-12';
+            break;
+        case '2':
+            $_class = 'col-lg-6 col-md-6 col-sm-6 col-xs-12';
+            break;
+        case '3':
+            $_class = 'col-lg-4 col-md-4 col-sm-4 col-xs-12';
+            break;
+        case '4':
+            $_class = 'col-lg-3 col-md-3 col-sm-6 col-xs-12';
+            break;
+    }
+
+    for($i = 1 ; $i <= $opt_theme_options['footer-bottom-column'] ; $i++){
+        if ( is_active_sidebar( 'sidebar-footer-bottom-' . $i ) ){
+            echo '<div class="' . esc_html($_class) . '">';
+            dynamic_sidebar( 'sidebar-footer-bottom-' . $i );
+            echo "</div>";
+        }
+    }
 }
 
 function et3_theme_framework_footer_back_to_top(){

@@ -142,11 +142,19 @@ Redux::setSection($opt_name, array(
             'default'           => 1
         ),
         array(
-            'title'             => esc_html__('Background', 'cms-theme-framework'),
+            'title'             => esc_html__('Body Background', 'cms-theme-framework'),
             'subtitle'          => esc_html__('Body background.', 'cms-theme-framework'),
             'id'                => 'general_background',
             'type'              => 'background',
             'output'            => array( 'body' ),
+            'required'          => array( 'general_layout', '=', 0 )
+        ),
+        array(
+            'title'             => esc_html__('Content Background', 'cms-theme-framework'),
+            'subtitle'          => esc_html__('Content background.', 'cms-theme-framework'),
+            'id'                => 'general_content_background',
+            'type'              => 'background',
+            'output'            => array( '#content' ),
             'required'          => array( 'general_layout', '=', 0 )
         ),
         array(
@@ -178,6 +186,51 @@ Redux::setSection($opt_name, array(
                                         'default' => get_template_directory_uri().'/assets/images/header/h-style-1.png',
                                         'top' => get_template_directory_uri().'/assets/images/header/h-style-2.png'
                                     )
+        ),
+        array(
+            'title'             => esc_html__('Logo Type', 'cms-theme-framework'),
+            'subtitle'          => esc_html__('Image / Text.', 'cms-theme-framework'),
+            'id'                => 'logo_type',
+            'type'              => 'button_set',
+            'options'           => array(
+                1 => esc_html__('Image', 'cms-theme-framework'),
+                0 => esc_html__('Text', 'cms-theme-framework')
+            ),
+            'default'           => 1
+        ),
+        array(
+            'title'             => esc_html__('Select Logo', 'cms-theme-framework'),
+            'subtitle'          => esc_html__('Select an image file for your logo.', 'cms-theme-framework'),
+            'id'                => 'main_logo',
+            'type'              => 'media',
+            'url'               => true,
+            'default'           => array(
+                'url'=>get_template_directory_uri().'/assets/images/logo.png'
+            ),
+            'required'          => array( 'logo_type', '=', 1 )
+        ),
+        array(
+            'subtitle'          => esc_html__('Set max height for logo.', 'cms-theme-framework'),
+            'id'                => 'logo_max_height',
+            'type'              => 'dimensions',
+            'units'             => array('px'),
+            'width'             => false,
+            'title'             => esc_html__('Logo Height', 'cms-theme-framework'),
+            'required'          => array( 'logo_type', '=', 1 )
+        ),
+        array(
+            'subtitle'          => esc_html__('Add custom logo text.', 'cms-theme-framework'),
+            'id'                => 'logo_text',
+            'type'              => 'text',
+            'title'             => esc_html__('Logo Text', 'cms-theme-framework'),
+            'required'          => array( 'logo_type', '=', 0 )
+        ),
+        array(
+            'subtitle'          => esc_html__('Add custom sologan Text.', 'cms-theme-framework'),
+            'id'                => 'logo_text_sologan',
+            'type'              => 'text',
+            'title'             => esc_html__('Sologan Text', 'cms-theme-framework'),
+            'required'          => array( 'logo_type', '=', 0 )
         ),
         array(
             'id'                => 'header_background_color',
@@ -213,73 +266,28 @@ Redux::setSection($opt_name, array(
             'output'            => array( '#cshero-header a' ),
         ),
         array(
+            'subtitle'          => esc_html__('Enable mega menu.', 'cms-theme-framework'),
+            'id'                => 'mega_menu',
+            'type'              => 'switch',
+            'title'             => esc_html__('Mega Menu', 'cms-theme-framework'),
+            'default'           => false,
+        ),
+    )
+));
+
+/* Breadcrumb */
+Redux::setSection($opt_name, array(
+    'icon' => 'el-icon-random',
+    'title' => esc_html__('Menu Sticky', 'cms-theme-framework'),
+    'subsection' => true,
+    'fields' => array(
+        array(
             'subtitle'          => esc_html__('enable sticky mode for menu.', 'cms-theme-framework'),
             'id'                => 'menu_sticky',
             'type'              => 'switch',
             'title'             => esc_html__('Sticky Header', 'cms-theme-framework'),
             'default'           => false,
         ),
-        array(
-            'subtitle'          => esc_html__('Enable mega menu.', 'cms-theme-framework'),
-            'id'                => 'mega_menu',
-            'type'              => 'switch',
-            'title'             => esc_html__('Mega Menu', 'cms-theme-framework'),
-            'default'           => false,
-        )
-    )
-));
-
-/* Logo */
-Redux::setSection($opt_name, array(
-    'title' => esc_html__('Site Logo', 'cms-theme-framework'),
-    'icon' => 'el-icon-record',
-    'subsection' => true,
-    'fields' => array(
-        array(
-            'title'             => esc_html__('Logo Type', 'cms-theme-framework'),
-            'subtitle'          => esc_html__('Image / Text.', 'cms-theme-framework'),
-            'id'                => 'logo_type',
-            'type'              => 'button_set',
-            'options'           => array(
-                                            1 => esc_html__('Image', 'cms-theme-framework'),
-                                            0 => esc_html__('Text', 'cms-theme-framework')
-                                        ),
-            'default'           => 1
-        ),
-        array(
-            'title'             => esc_html__('Select Logo', 'cms-theme-framework'),
-            'subtitle'          => esc_html__('Select an image file for your logo.', 'cms-theme-framework'),
-            'id'                => 'main_logo',
-            'type'              => 'media',
-            'url'               => true,
-            'default'           => array(
-                                    'url'=>get_template_directory_uri().'/assets/images/logo.png'
-                                ),
-            'required'          => array( 'logo_type', '=', 1 )
-        ),
-        array(
-            'subtitle'          => esc_html__('Set max height for logo.', 'cms-theme-framework'),
-            'id'                => 'logo_max_height',
-            'type'              => 'dimensions',
-            'units'             => array('px'),
-            'width'             => false,
-            'title'             => esc_html__('Logo Height', 'cms-theme-framework'),
-            'required'          => array( 'logo_type', '=', 1 )
-        ),
-        array(
-            'subtitle'          => esc_html__('Add custom logo text.', 'cms-theme-framework'),
-            'id'                => 'logo_text',
-            'type'              => 'text',
-            'title'             => esc_html__('Logo Text', 'cms-theme-framework'),
-            'required'          => array( 'logo_type', '=', 0 )
-        ),
-        array(
-            'subtitle'          => esc_html__('Add custom sologan Text.', 'cms-theme-framework'),
-            'id'                => 'logo_text_sologan',
-            'type'              => 'text',
-            'title'             => esc_html__('Sologan Text', 'cms-theme-framework'),
-            'required'          => array( 'logo_type', '=', 0 )
-        )
     )
 ));
 
@@ -663,26 +671,27 @@ Redux::setSection($opt_name, array(
 Redux::setSection($opt_name, array(
     'title' => esc_html__('Footer', 'cms-theme-framework'),
     'icon' => 'el el-website',
+    'fields' => array()
+));
+
+/* footer top. */
+Redux::setSection($opt_name, array(
+    'title' => esc_html__('Footer Top', 'cms-theme-framework'),
+    'icon' => 'el el-fontsize',
+    'subsection' => true,
     'fields' => array(
         array(
             'id'       => 'footer-top-column',
             'type'     => 'select',
             'title'    => esc_html__( 'Column', 'cms-theme-framework' ),
             'subtitle' => esc_html__( 'Select Footer Column', 'cms-theme-framework' ),
-            'default'    => 4,
+            'default'    => 2,
             'options'  => array(
+                1 => esc_html__('1', 'cms-theme-framework' ),
                 2 => esc_html__('2', 'cms-theme-framework' ),
                 3 => esc_html__('3', 'cms-theme-framework' ),
                 4 => esc_html__('4', 'cms-theme-framework' ),
             )
-        ),
-        array(
-            'id' => 'footer-bottom-copyright',
-            'type' => 'textarea',
-            'title' => esc_html__('Copyright', 'cms-theme-framework'),
-            'subtitle' => esc_html__('Enter copyright text for footer bottom', 'cms-theme-framework'),
-            'validate' => 'no_html',
-            'default' => '',
         ),
         array(
             'title'             => esc_html__('Background', 'cms-theme-framework'),
@@ -701,9 +710,50 @@ Redux::setSection($opt_name, array(
             'right'             => false,
             'left'              => false,
             'output'            => array( 'footer #footer-top' )
-        ),
+        )
     )
 ));
+
+/* footer bottom. */
+Redux::setSection($opt_name, array(
+    'title' => esc_html__('Footer Bottom', 'cms-theme-framework'),
+    'icon' => 'el el-fontsize',
+    'subsection' => true,
+    'fields' => array(
+        array(
+            'id'       => 'footer-bottom-column',
+            'type'     => 'select',
+            'title'    => esc_html__( 'Column', 'cms-theme-framework' ),
+            'subtitle' => esc_html__( 'Select Footer Column', 'cms-theme-framework' ),
+            'default'    => 4,
+            'options'  => array(
+                1 => esc_html__('1', 'cms-theme-framework' ),
+                2 => esc_html__('2', 'cms-theme-framework' ),
+                3 => esc_html__('3', 'cms-theme-framework' ),
+                4 => esc_html__('4', 'cms-theme-framework' ),
+            )
+        ),
+        array(
+            'title'             => esc_html__('Background', 'cms-theme-framework'),
+            'subtitle'          => esc_html__('Footer top background.', 'cms-theme-framework'),
+            'id'                => 'footer_bottom_background',
+            'type'              => 'background',
+            'output'            => array( 'footer #footer-bottom' )
+        ),
+        array(
+            'title'             => esc_html__('Padding', 'cms-theme-framework'),
+            'subtitle'          => esc_html__('Footer top padding (top/bottom).', 'cms-theme-framework'),
+            'id'                => 'footer_bottom_padding',
+            'type'              => 'spacing',
+            'mode'              => 'padding',
+            'units'             => array('px'),
+            'right'             => false,
+            'left'              => false,
+            'output'            => array( 'footer #footer-bottom' )
+        )
+    )
+));
+
 /**
  * Optimal Core
  * 

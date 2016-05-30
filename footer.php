@@ -11,19 +11,23 @@
 ?>
     </div><!-- .site-content -->
     <footer id="colophon" class="site-footer" role="contentinfo">
-        <div id="footer-top" class="container">
-            <div class="row">
+        <div id="footer-top">
+            <div class="container">
+                <div class="row">
 
-                <?php et3_theme_framework_footer_top(); ?>
+                    <?php et3_theme_framework_footer_top(); ?>
 
+                </div>
             </div>
         </div><!-- #footer-top -->
 
-        <div id="footer-bottom" class="container">
-            <div class="row">
+        <div id="footer-bottom">
+            <div class="container">
+                <div class="row">
 
-                <?php et3_theme_framework_footer_bottom(); ?>
+                    <?php et3_theme_framework_footer_bottom(); ?>
 
+                </div>
             </div>
         </div><!-- #footer-bottom -->
 

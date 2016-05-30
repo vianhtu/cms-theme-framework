@@ -49,7 +49,7 @@
     Style Main Menu
 ========================================================================== *//*
 -----> Minimum width of 992 pixels.
-*/#cshero-header{background-color:#000;}#cshero-header-logo img{max-height:;}@media screen and (min-width:992px){/*
+*/body{width:1170px;margin:auto;}#cshero-header{background-color:#000;}#cshero-header-logo img{max-height:;}@media screen and (min-width:992px){/*
 -----> Minimum width of 992 pixels.
 *//*
 -----> Max width of 992 pixels.

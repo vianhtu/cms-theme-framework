@@ -97,6 +97,10 @@ class CMSSuperHeroes_StaticCss
         
         ob_start();
 
+        /* boxed layout. */
+        if(isset($opt_theme_options['general_layout']) && !$opt_theme_options['general_layout'])
+            echo 'body{width: 1170px;margin: auto;}';
+
         /* primary_color */
         if(!empty($opt_theme_options['primary_color']))
             echo '$primary_color:'.esc_attr($opt_theme_options['primary_color']).';';
