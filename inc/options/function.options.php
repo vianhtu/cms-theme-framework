@@ -543,17 +543,73 @@ Redux::setSection($opt_name, array(
             'all_styles' => true,
             'output'  => array('body'),
             'units' => 'px',
-            'subtitle' => esc_html__('Typography option with each property can be called individually.', 'cms-theme-framework'),
-            'default' => array(
-                'color' => '',
-                'font-style' => '',
-                'font-weight' => '',
-                'font-family' => '',
-                'google' => true,
-                'font-size' => '',
-                'line-height' => '',
-                'text-align' => ''
-            )
+            'subtitle' => esc_html__('Typography option with each property can be called individually.', 'cms-theme-framework')
+        ),
+        array(
+            'id' => 'font_h1',
+            'type' => 'typography',
+            'title' => esc_html__('H1', 'cms-theme-framework'),
+            'google' => true,
+            'font-backup' => true,
+            'all_styles' => true,
+            'output'  => array('h1'),
+            'units' => 'px',
+            'subtitle' => esc_html__('Typography option with each property can be called individually.', 'cms-theme-framework')
+        ),
+        array(
+            'id' => 'font_h2',
+            'type' => 'typography',
+            'title' => esc_html__('H2', 'cms-theme-framework'),
+            'google' => true,
+            'font-backup' => true,
+            'all_styles' => true,
+            'output'  => array('h2'),
+            'units' => 'px',
+            'subtitle' => esc_html__('Typography option with each property can be called individually.', 'cms-theme-framework')
+        ),
+        array(
+            'id' => 'font_h3',
+            'type' => 'typography',
+            'title' => esc_html__('H3', 'cms-theme-framework'),
+            'google' => true,
+            'font-backup' => true,
+            'all_styles' => true,
+            'output'  => array('h3'),
+            'units' => 'px',
+            'subtitle' => esc_html__('Typography option with each property can be called individually.', 'cms-theme-framework')
+        ),
+        array(
+            'id' => 'font_h4',
+            'type' => 'typography',
+            'title' => esc_html__('H4', 'cms-theme-framework'),
+            'google' => true,
+            'font-backup' => true,
+            'all_styles' => true,
+            'output'  => array('h4'),
+            'units' => 'px',
+            'subtitle' => esc_html__('Typography option with each property can be called individually.', 'cms-theme-framework')
+        ),
+        array(
+            'id' => 'font_h5',
+            'type' => 'typography',
+            'title' => esc_html__('H5', 'cms-theme-framework'),
+            'google' => true,
+            'font-backup' => true,
+            'all_styles' => true,
+            'output'  => array('h5'),
+            'units' => 'px',
+            'subtitle' => esc_html__('Typography option with each property can be called individually.', 'cms-theme-framework')
+        ),
+        array(
+            'id' => 'font_h6',
+            'type' => 'typography',
+            'title' => esc_html__('H6', 'cms-theme-framework'),
+            'google' => true,
+            'font-backup' => true,
+            'all_styles' => true,
+            'output'  => array('h6'),
+            'units' => 'px',
+            'subtitle' => esc_html__('Typography option with each property can be called individually.', 'cms-theme-framework')
         )
     )
 ));
@@ -627,7 +683,25 @@ Redux::setSection($opt_name, array(
             'subtitle' => esc_html__('Enter copyright text for footer bottom', 'cms-theme-framework'),
             'validate' => 'no_html',
             'default' => '',
-        )
+        ),
+        array(
+            'title'             => esc_html__('Background', 'cms-theme-framework'),
+            'subtitle'          => esc_html__('Footer top background.', 'cms-theme-framework'),
+            'id'                => 'footer_top_background',
+            'type'              => 'background',
+            'output'            => array( 'footer #footer-top' )
+        ),
+        array(
+            'title'             => esc_html__('Padding', 'cms-theme-framework'),
+            'subtitle'          => esc_html__('Footer top padding (top/bottom).', 'cms-theme-framework'),
+            'id'                => 'footer_top_padding',
+            'type'              => 'spacing',
+            'mode'              => 'padding',
+            'units'             => array('px'),
+            'right'             => false,
+            'left'              => false,
+            'output'            => array( 'footer #footer-top' )
+        ),
     )
 ));
 /**
