@@ -131,30 +131,30 @@ Redux::setSection($opt_name, array(
     'icon' => 'el-icon-adjust-alt',
     'fields' => array(
         array(
-            'title' => esc_html__('Layout', 'cms-theme-framework'),
-            'subtitle' => esc_html__('Full width / Boxed.', 'cms-theme-framework'),
-            'id' => 'general_layout',
-            'type' => 'button_set',
-            'options'  => array(
-                1 => esc_html__('Full width', 'cms-theme-framework'),
-                0 => esc_html__('Boxed', 'cms-theme-framework')
-            ),
-            'default'  => 1
+            'title'             => esc_html__('Layout', 'cms-theme-framework'),
+            'subtitle'          => esc_html__('Full width / Boxed.', 'cms-theme-framework'),
+            'id'                => 'general_layout',
+            'type'              => 'button_set',
+            'options'           => array(
+                                        1 => esc_html__('Full width', 'cms-theme-framework'),
+                                        0 => esc_html__('Boxed', 'cms-theme-framework')
+                                    ),
+            'default'           => 1
         ),
         array(
-            'title' => esc_html__('Background', 'cms-theme-framework'),
-            'subtitle' => esc_html__('Body background.', 'cms-theme-framework'),
-            'id' => 'general_background',
-            'type' => 'background',
-            'output'   => array( 'body' ),
-            'required' => array( 'general_layout', '=', 0 )
+            'title'             => esc_html__('Background', 'cms-theme-framework'),
+            'subtitle'          => esc_html__('Body background.', 'cms-theme-framework'),
+            'id'                => 'general_background',
+            'type'              => 'background',
+            'output'            => array( 'body' ),
+            'required'          => array( 'general_layout', '=', 0 )
         ),
         array(
-            'subtitle' => esc_html__('Enable back to top button.', 'cms-theme-framework'),
-            'id' => 'general_back_to_top',
-            'type' => 'switch',
-            'title' => esc_html__('Back To Top', 'cms-theme-framework'),
-            'default' => true,
+            'subtitle'          => esc_html__('Enable back to top button.', 'cms-theme-framework'),
+            'id'                => 'general_back_to_top',
+            'type'              => 'switch',
+            'title'             => esc_html__('Back To Top', 'cms-theme-framework'),
+            'default'           => true,
         )
     )
 ));
@@ -180,10 +180,10 @@ Redux::setSection($opt_name, array(
                                     )
         ),
         array(
-            'id'       => 'header_background_color',
-            'type'     => 'color_rgba',
-            'title'    => __( 'Background Color', 'cms-theme-framework' ),
-            'subtitle' => __( 'Header background color', 'cms-theme-framework' ),
+            'id'                => 'header_background_color',
+            'type'              => 'color_rgba',
+            'title'             => __( 'Background Color', 'cms-theme-framework' ),
+            'subtitle'          => __( 'Header background color', 'cms-theme-framework' ),
         ),
         array(
             'title'             => esc_html__('Background Image', 'cms-theme-framework'),
@@ -195,22 +195,22 @@ Redux::setSection($opt_name, array(
             'output'            => array( '#cshero-header' )
         ),
         array(
-            'id'       => 'header_text_color',
-            'type'     => 'color',
-            'title'    => __( 'Text Color', 'cms-theme-framework' ),
-            'subtitle' => __( 'Select text color in header', 'cms-theme-framework' ),
-            'output'   => array( '#cshero-header' ),
+            'id'                => 'header_text_color',
+            'type'              => 'color',
+            'title'             => __( 'Text Color', 'cms-theme-framework' ),
+            'subtitle'          => __( 'Select text color in header', 'cms-theme-framework' ),
+            'output'            => array( '#cshero-header' ),
         ),
         array(
-            'id'       => 'header_link_color',
-            'type'     => 'link_color',
-            'title'    => __( 'Links Color', 'cms-theme-framework' ),
-            'subtitle' => __( 'Select links color in header', 'cms-theme-framework' ),
-            'regular'   => true,
-            'hover'     => true,
-            'active'    => true,
-            'visited'   => true,
-            'output'   => array( '#cshero-header a' ),
+            'id'                => 'header_link_color',
+            'type'              => 'link_color',
+            'title'             => __( 'Links Color', 'cms-theme-framework' ),
+            'subtitle'          => __( 'Select links color in header', 'cms-theme-framework' ),
+            'regular'           => true,
+            'hover'             => true,
+            'active'            => true,
+            'visited'           => true,
+            'output'            => array( '#cshero-header a' ),
         ),
         array(
             'subtitle'          => esc_html__('enable sticky mode for menu.', 'cms-theme-framework'),
@@ -220,11 +220,11 @@ Redux::setSection($opt_name, array(
             'default'           => false,
         ),
         array(
-            'subtitle' => esc_html__('Enable mega menu.', 'cms-theme-framework'),
-            'id' => 'mega_menu',
-            'type' => 'switch',
-            'title' => esc_html__('Mega Menu', 'cms-theme-framework'),
-            'default' => false,
+            'subtitle'          => esc_html__('Enable mega menu.', 'cms-theme-framework'),
+            'id'                => 'mega_menu',
+            'type'              => 'switch',
+            'title'             => esc_html__('Mega Menu', 'cms-theme-framework'),
+            'default'           => false,
         )
     )
 ));
@@ -293,20 +293,48 @@ Redux::setSection($opt_name, array(
     'icon' => 'el-icon-map-marker',
     'fields' => array(
         array(
-            'id' => 'page_title_layout',
-            'title' => esc_html__('Layouts', 'cms-theme-framework'),
-            'subtitle' => esc_html__('select a layout for page title', 'cms-theme-framework'),
-            'default' => '5',
-            'type' => 'image_select',
-            'options' => array(
-                '2' => get_template_directory_uri().'/assets/images/pagetitle/pt-s-1.png',
-                '3' => get_template_directory_uri().'/assets/images/pagetitle/pt-s-2.png',
-                '4' => get_template_directory_uri().'/assets/images/pagetitle/pt-s-3.png',
-                '5' => get_template_directory_uri().'/assets/images/pagetitle/pt-s-4.png',
-                '6' => get_template_directory_uri().'/assets/images/pagetitle/pt-s-5.png',
-                '7' => get_template_directory_uri().'/assets/images/pagetitle/pt-s-6.png',
-            )
-        )
+            'id'                => 'page_title_layout',
+            'title'             => esc_html__('Layouts', 'cms-theme-framework'),
+            'subtitle'          => esc_html__('select a layout for page title', 'cms-theme-framework'),
+            'default'           => '5',
+            'type'              => 'image_select',
+            'options'           => array(
+                                    '2' => get_template_directory_uri().'/assets/images/pagetitle/pt-s-1.png',
+                                    '3' => get_template_directory_uri().'/assets/images/pagetitle/pt-s-2.png',
+                                    '4' => get_template_directory_uri().'/assets/images/pagetitle/pt-s-3.png',
+                                    '5' => get_template_directory_uri().'/assets/images/pagetitle/pt-s-4.png',
+                                    '6' => get_template_directory_uri().'/assets/images/pagetitle/pt-s-5.png',
+                                    '7' => get_template_directory_uri().'/assets/images/pagetitle/pt-s-6.png',
+                                )
+        ),
+        array(
+            'title'             => esc_html__('Background', 'cms-theme-framework'),
+            'subtitle'          => esc_html__('Page title background.', 'cms-theme-framework'),
+            'id'                => 'page_title_background',
+            'type'              => 'background',
+            'output'            => array( '#page-title' )
+        ),
+        array(
+            'title'             => esc_html__('Typography', 'cms-theme-framework'),
+            'subtitle'          => esc_html__('Page title typography.', 'cms-theme-framework'),
+            'id'                => 'page_title_typography',
+            'type'              => 'typography',
+            'google'            => true,
+            'output'            => array( '#page-title #page-title-text h1' )
+        ),
+        array(
+            'title'             => esc_html__('Padding', 'cms-theme-framework'),
+            'subtitle'          => esc_html__('Page title padding (top/bottom).', 'cms-theme-framework'),
+            'id'                => 'page_title_padding',
+            'type'              => 'spacing',
+            'mode'              => 'padding',
+            'units'             => array( 'em', 'px', '%' ),
+            'top'               => true,
+            'right'             => false,
+            'bottom'            => true,
+            'left'              => false,
+            'output'            => array( '#page-title' )
+        ),
     )
 ));
 
@@ -317,11 +345,151 @@ Redux::setSection($opt_name, array(
     'subsection' => true,
     'fields' => array(
         array(
-            'subtitle' => esc_html__('The text before the breadcrumb home.', 'cms-theme-framework'),
-            'id' => 'breacrumb_home_prefix',
-            'type' => 'text',
-            'title' => esc_html__('Breadcrumb Home Prefix', 'cms-theme-framework'),
-            'default' => esc_html__('Home', 'cms-theme-framework')
+            'subtitle'          => esc_html__('The text before the breadcrumb home.', 'cms-theme-framework'),
+            'id'                => 'breacrumb_home_prefix',
+            'type'              => 'text',
+            'title'             => esc_html__('Breadcrumb Home Prefix', 'cms-theme-framework'),
+            'default'           => esc_html__('Home', 'cms-theme-framework')
+        ),
+        array(
+            'title'             => esc_html__('Typography', 'cms-theme-framework'),
+            'subtitle'          => esc_html__('Breadcrumb typography.', 'cms-theme-framework'),
+            'id'                => 'breadcrumb_typography',
+            'type'              => 'typography',
+            'google'            => true,
+            'output'            => array( '#page-title #breadcrumb-text' )
+        ),
+        array(
+            'id'                => 'breadcrumb_link_color',
+            'type'              => 'link_color',
+            'title'             => __( 'Link Color', 'cms-theme-framework' ),
+            'subtitle'          => __( 'Select link color in breadcrumb', 'cms-theme-framework' ),
+            'output'            => array( '#page-title #breadcrumb-text ul li a' ),
+        ),
+    )
+));
+
+/**
+ * Content
+ *
+ * css color.
+ * @author Fox
+ */
+Redux::setSection($opt_name, array(
+    'title' => esc_html__('Content', 'cms-theme-framework'),
+    'icon' => 'el-icon-pencil',
+    'fields' => array(
+    )
+));
+
+/* archive */
+Redux::setSection($opt_name, array(
+    'title' => esc_html__('Archive', 'cms-theme-framework'),
+    'icon' => 'el-icon-list',
+    'subsection' => true,
+    'fields' => array(
+        array(
+            'id'                => 'archive_layout',
+            'title'             => esc_html__('Layouts', 'cms-theme-framework'),
+            'subtitle'          => esc_html__('select a layout for archive, search, index...', 'cms-theme-framework'),
+            'default'           => 'right',
+            'type'              => 'image_select',
+            'options'           => array(
+                                        'left' => get_template_directory_uri().'/assets/images/content/right.png',
+                                        'full' => get_template_directory_uri().'/assets/images/content/full.png',
+                                        'right' => get_template_directory_uri().'/assets/images/content/left.png',
+                                    )
+        ),
+        array(
+            'subtitle'          => esc_html__('Show author.', 'cms-theme-framework'),
+            'id'                => 'archive_author',
+            'type'              => 'switch',
+            'title'             => esc_html__('Author', 'cms-theme-framework'),
+            'default'           => true,
+        ),
+        array(
+            'subtitle'          => esc_html__('Show categories.', 'cms-theme-framework'),
+            'id'                => 'archive_categories',
+            'type'              => 'switch',
+            'title'             => esc_html__('Categories', 'cms-theme-framework'),
+            'default'           => true,
+        ),
+        array(
+            'subtitle'          => esc_html__('Show tags.', 'cms-theme-framework'),
+            'id'                => 'archive_tag',
+            'type'              => 'switch',
+            'title'             => esc_html__('Tags', 'cms-theme-framework'),
+            'default'           => true,
+        ),
+        array(
+            'subtitle'          => esc_html__('Show comment count.', 'cms-theme-framework'),
+            'id'                => 'archive_comment',
+            'type'              => 'switch',
+            'title'             => esc_html__('Comment', 'cms-theme-framework'),
+            'default'           => true,
+        ),
+        array(
+            'subtitle'          => esc_html__('Show date time.', 'cms-theme-framework'),
+            'id'                => 'archive_date',
+            'type'              => 'switch',
+            'title'             => esc_html__('Date', 'cms-theme-framework'),
+            'default'           => true,
+        )
+    )
+));
+
+/* Single */
+Redux::setSection($opt_name, array(
+    'title' => esc_html__('Single', 'cms-theme-framework'),
+    'icon' => 'el-icon-file-edit',
+    'subsection' => true,
+    'fields' => array(
+        array(
+            'id'                => 'single_layout',
+            'title'             => esc_html__('Layouts', 'cms-theme-framework'),
+            'subtitle'          => esc_html__('select a layout for single...', 'cms-theme-framework'),
+            'default'           => 'right',
+            'type'              => 'image_select',
+            'options'           => array(
+                                        'left' => get_template_directory_uri().'/assets/images/content/right.png',
+                                        'full' => get_template_directory_uri().'/assets/images/content/full.png',
+                                        'right' => get_template_directory_uri().'/assets/images/content/left.png',
+                                    )
+        ),
+        array(
+            'subtitle'          => esc_html__('Show author.', 'cms-theme-framework'),
+            'id'                => 'single_author',
+            'type'              => 'switch',
+            'title'             => esc_html__('Author', 'cms-theme-framework'),
+            'default'           => true,
+        ),
+        array(
+            'subtitle'          => esc_html__('Show categories.', 'cms-theme-framework'),
+            'id'                => 'single_categories',
+            'type'              => 'switch',
+            'title'             => esc_html__('Categories', 'cms-theme-framework'),
+            'default'           => true,
+        ),
+        array(
+            'subtitle'          => esc_html__('Show tags.', 'cms-theme-framework'),
+            'id'                => 'single_tag',
+            'type'              => 'switch',
+            'title'             => esc_html__('Tags', 'cms-theme-framework'),
+            'default'           => true,
+        ),
+        array(
+            'subtitle'          => esc_html__('Show comment count.', 'cms-theme-framework'),
+            'id'                => 'single_comment',
+            'type'              => 'switch',
+            'title'             => esc_html__('Comment', 'cms-theme-framework'),
+            'default'           => true,
+        ),
+        array(
+            'subtitle'          => esc_html__('Show date time.', 'cms-theme-framework'),
+            'id'                => 'single_date',
+            'type'              => 'switch',
+            'title'             => esc_html__('Date', 'cms-theme-framework'),
+            'default'           => true,
         )
     )
 ));

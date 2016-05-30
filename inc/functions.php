@@ -6,6 +6,34 @@
  * Time: 3:48 PM
  */
 
+/**
+ * get terms
+ *
+ * @param string $taxonomy
+ * @param bool $slug
+ * @param array $options
+ * @return array
+ */
+function et3_theme_framework_get_terms($taxonomy = 'category', $slug = true, $options = array()){
+
+    $_terms = get_terms($taxonomy, $options);
+
+    $terms = array();
+
+    if(empty( $terms ) || ! is_wp_error( $terms ))
+        return $terms;
+    
+    foreach ($_terms as $_term){
+        if($slug){
+            $terms[$_term->slug] = $_term->name;
+        } else {
+            $terms[$_term->term_id] = $_term->name;
+        }
+    }
+
+    return $terms;
+}
+
 /* load list plugins */
 require_once( get_template_directory() . '/inc/options/require.plugins.php' );
 

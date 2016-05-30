@@ -20,8 +20,8 @@
 get_header(); ?>
 
 <section id="primary" class="container">
-    <div class="row">
-        <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
+    <div class="row<?php et3_theme_framework_archive_sidebar(); ?>">
+        <div class="<?php et3_theme_framework_archive_class(); ?>">
             <main id="main" class="site-main" role="main">
 
                 <?php

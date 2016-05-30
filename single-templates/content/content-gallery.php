@@ -20,7 +20,7 @@
 
 		<div class="entry-meta">
 
-			<?php et3_theme_framework_post_detail(); ?>
+			<?php et3_theme_framework_archive_detail(); ?>
 
 		</div><!-- .entry-meta -->
 	</header><!-- .entry-header -->

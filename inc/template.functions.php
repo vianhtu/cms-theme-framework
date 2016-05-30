@@ -313,16 +313,41 @@ function et3_theme_framework_get_bread_crumb($separator = '') {
  * Display an optional post detail.
  */
 function et3_theme_framework_post_detail(){
+    global $opt_theme_options;
+
     ?>
-    <ul>
-        <li class="detail-author"><?php esc_html_e('By', 'cms-theme-framework'); ?> <?php the_author_posts_link(); ?></li>
-        <?php if(has_category()): ?>
-        <li class="detail-terms"><?php the_terms( get_the_ID(), 'category', '<i class="fa fa-sitemap"></i>', ' / ' ); ?></li>
+    <ul class="single_detail">
+
+        <?php if(!isset($opt_theme_options['single_author']) || (isset($opt_theme_options['single_author']) && $opt_theme_options['single_author'])): ?>
+
+            <li class="detail-author"><?php esc_html_e('By', 'cms-theme-framework'); ?> <?php the_author_posts_link(); ?></li>
+
         <?php endif; ?>
-        <li class="detail-comment"><i class="fa fa-comments-o"></i><a href="<?php the_permalink(); ?>"><?php echo esc_html(comments_number('0','1','%')); ?> <?php esc_html_e('Comments', 'cms-theme-framework'); ?></a></li>
-        <?php if(has_tag()): ?>
-        <li class="detail-tags"><?php the_tags('<i class="fa fa-tags"></i>', ', ' ); ?></li>
+
+        <?php if(has_category() && (!isset($opt_theme_options['single_categories']) || (isset($opt_theme_options['single_categories']) && $opt_theme_options['single_categories']))): ?>
+
+            <li class="detail-terms"><?php the_terms( get_the_ID(), 'category', '<i class="fa fa-sitemap"></i>', ' / ' ); ?></li>
+
         <?php endif; ?>
+
+        <?php if(!isset($opt_theme_options['single_comment']) || (isset($opt_theme_options['single_comment']) && $opt_theme_options['single_comment'])): ?>
+
+            <li class="detail-comment"><i class="fa fa-comments-o"></i><a href="<?php the_permalink(); ?>"><?php echo esc_html(comments_number('0','1','%')); ?> <?php esc_html_e('Comments', 'cms-theme-framework'); ?></a></li>
+
+        <?php endif; ?>
+
+        <?php if(has_tag() && (!isset($opt_theme_options['single_tag']) || (isset($opt_theme_options['single_tag']) && $opt_theme_options['single_tag']))): ?>
+
+            <li class="detail-tags"><?php the_tags('<i class="fa fa-tags"></i>', ', ' ); ?></li>
+
+        <?php endif; ?>
+
+        <?php if(!isset($opt_theme_options['single_date']) || (isset($opt_theme_options['single_date']) && $opt_theme_options['single_date'])): ?>
+
+            <li class="detail-date"><i class="fa fa-calendar-o"></i><a href="<?php echo get_day_link(false, false, false); ?>"><?php the_date(); ?></a></li>
+
+        <?php endif; ?>
+
     </ul>
     <?php
 }
@@ -442,6 +467,71 @@ function et3_theme_framework_post_thumbnail() {
     echo '<div class="post-thumbnail">';
             the_post_thumbnail();
     echo '</div>';
+}
+
+/**
+ * Display an optional archive detail.
+ */
+function et3_theme_framework_archive_detail(){
+    global $opt_theme_options;
+
+    ?>
+    <ul class="archive_detail">
+
+        <?php if(!isset($opt_theme_options['archive_author']) || (isset($opt_theme_options['archive_author']) && $opt_theme_options['archive_author'])): ?>
+
+            <li class="detail-author"><?php esc_html_e('By', 'cms-theme-framework'); ?> <?php the_author_posts_link(); ?></li>
+
+        <?php endif; ?>
+
+        <?php if(has_category() && (!isset($opt_theme_options['archive_categories']) || (isset($opt_theme_options['archive_categories']) && $opt_theme_options['archive_categories']))): ?>
+
+            <li class="detail-terms"><?php the_terms( get_the_ID(), 'category', '<i class="fa fa-sitemap"></i>', ' / ' ); ?></li>
+
+        <?php endif; ?>
+
+        <?php if(!isset($opt_theme_options['archive_comment']) || (isset($opt_theme_options['archive_comment']) && $opt_theme_options['archive_comment'])): ?>
+
+            <li class="detail-comment"><i class="fa fa-comments-o"></i><a href="<?php the_permalink(); ?>"><?php echo esc_html(comments_number('0','1','%')); ?> <?php esc_html_e('Comments', 'cms-theme-framework'); ?></a></li>
+
+        <?php endif; ?>
+
+        <?php if(has_tag() && (!isset($opt_theme_options['archive_tag']) || (isset($opt_theme_options['archive_tag']) && $opt_theme_options['archive_tag']))): ?>
+
+            <li class="detail-tags"><?php the_tags('<i class="fa fa-tags"></i>', ', ' ); ?></li>
+
+        <?php endif; ?>
+
+        <?php if(!isset($opt_theme_options['archive_date']) || (isset($opt_theme_options['archive_date']) && $opt_theme_options['archive_date'])): ?>
+
+            <li class="detail-date"><i class="fa fa-calendar-o"></i><a href="<?php echo get_day_link(false, false, false); ?>"><?php the_date(); ?></a></li>
+
+        <?php endif; ?>
+
+    </ul>
+    <?php
+}
+
+function et3_theme_framework_archive_sidebar(){
+    global $opt_theme_options;
+
+    $_sidebar = 'right';
+
+    if(isset($opt_theme_options['archive_layout']))
+        $_sidebar = $opt_theme_options['archive_layout'];
+
+    echo ' is-sidebar-' . esc_attr($_sidebar);
+}
+
+function et3_theme_framework_archive_class(){
+    global $opt_theme_options;
+
+    $_class = "col-xs-12 col-sm-9 col-md-9 col-lg-9";
+
+    if(isset($opt_theme_options['archive_layout']) && $opt_theme_options['archive_layout'] == 'full')
+        $_class = "col-xs-12 col-sm-12 col-md-12 col-lg-12";
+
+    echo esc_attr($_class);
 }
 
 /**
