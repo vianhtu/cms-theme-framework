@@ -10,9 +10,11 @@
  */
 ?>
 <?php if ( is_active_sidebar( 'sidebar-1' ) ) : ?>
-	<div id="widget-area" class="widget-area" role="complementary">
+	<div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+		<div id="widget-area" class="widget-area" role="complementary">
 
-		<?php dynamic_sidebar( 'sidebar-1' ); ?>
+			<?php dynamic_sidebar( 'sidebar-1' ); ?>
 
-	</div><!-- .widget-area -->
+		</div><!-- .widget-area -->
+	</div><!-- #sidebar -->
 <?php endif; ?>

@@ -35,11 +35,9 @@ get_header(); ?>
 
             </main>
         </div><!-- #main -->
-        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
 
-            <?php get_sidebar(); ?>
+        <?php get_sidebar(); ?>
 
-        </div><!-- #sidebar -->
     </div>
 </div><!-- #primary -->
 

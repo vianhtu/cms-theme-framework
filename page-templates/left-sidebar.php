@@ -12,11 +12,9 @@ get_header(); ?>
 
 <div id="primary" class="container">
     <div class="row">
-        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
 
-            <?php get_sidebar(); ?>
+        <?php get_sidebar(); ?>
 
-        </div><!-- #sidebar -->
         <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
             <main id="main" class="site-main" role="main">
 
