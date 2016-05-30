@@ -469,6 +469,28 @@ function et3_theme_framework_post_thumbnail() {
     echo '</div>';
 }
 
+function et3_theme_framework_post_sidebar(){
+    global $opt_theme_options;
+
+    $_sidebar = 'right';
+
+    if(isset($opt_theme_options['single_layout']))
+        $_sidebar = $opt_theme_options['single_layout'];
+
+    return 'is-sidebar-' . esc_attr($_sidebar);
+}
+
+function et3_theme_framework_post_class(){
+    global $opt_theme_options;
+
+    $_class = "col-xs-12 col-sm-9 col-md-9 col-lg-9";
+
+    if(isset($opt_theme_options['single_layout']) && $opt_theme_options['single_layout'] == 'full')
+        $_class = "col-xs-12 col-sm-12 col-md-12 col-lg-12";
+
+    echo esc_attr($_class);
+}
+
 /**
  * Display an optional archive detail.
  */
@@ -520,7 +542,7 @@ function et3_theme_framework_archive_sidebar(){
     if(isset($opt_theme_options['archive_layout']))
         $_sidebar = $opt_theme_options['archive_layout'];
 
-    echo ' is-sidebar-' . esc_attr($_sidebar);
+    return 'is-sidebar-' . esc_attr($_sidebar);
 }
 
 function et3_theme_framework_archive_class(){

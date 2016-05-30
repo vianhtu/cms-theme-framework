@@ -7,11 +7,14 @@
  * @since 1.0.0
  */
 
+/* get side-bar position. */
+$_get_sidebar = et3_theme_framework_archive_sidebar();
+
 get_header(); ?>
 
 <section id="primary" class="container">
-    <div class="row">
-        <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
+    <div class="row <?php echo esc_attr($_get_sidebar); ?>">
+        <div class="<?php et3_theme_framework_archive_class(); ?>">
             <main id="main" class="site-main" role="main">
 
             <?php if ( have_posts() ) :
@@ -35,7 +38,10 @@ get_header(); ?>
             </main><!-- #content -->
         </div><!-- #primary -->
 
-        <?php get_sidebar(); ?>
+        <?php
+        if($_get_sidebar != 'is-sidebar-full'):
+            get_sidebar();
+        endif; ?>
 
     </div>
 </section>
