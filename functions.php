@@ -91,18 +91,15 @@ add_action( 'after_setup_theme', 'et3_theme_framework_setup' );
 function et3_theme_framework_front_end_scripts() {
     
 	global $wp_styles;
-
-	/* jquery */
-	wp_enqueue_script('jquery');
 	
 	/* Adds JavaScript Bootstrap. */
-	wp_enqueue_script('bootstrap', get_template_directory_uri() . '/assets/js/bootstrap.min.js', array(), '3.3.2');
+	wp_enqueue_script('bootstrap', get_template_directory_uri() . '/assets/js/bootstrap.min.js', array('jquery'), '3.3.2');
 		
 	/* Add main.js */
-	wp_enqueue_script('et3_theme_framework-main', get_template_directory_uri() . '/assets/js/main.js', array(), '1.0.0', true);
+	wp_enqueue_script('et3_theme_framework-main', get_template_directory_uri() . '/assets/js/main.js', array('jquery'), '1.0.0', true);
 	
 	/* Add menu.js */
-	wp_enqueue_script('et3_theme_framework-menu', get_template_directory_uri() . '/assets/js/menu.js', array(), '1.0.0', true);
+	wp_enqueue_script('et3_theme_framework-menu', get_template_directory_uri() . '/assets/js/menu.js', array('jquery'), '1.0.0', true);
     
 	/* Comment */
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) )

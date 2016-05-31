@@ -275,9 +275,9 @@ Redux::setSection($opt_name, array(
     )
 ));
 
-/* Breadcrumb */
+/* Menu Sticky */
 Redux::setSection($opt_name, array(
-    'icon' => 'el-icon-random',
+    'icon' => 'el-icon-minus',
     'title' => esc_html__('Menu Sticky', 'cms-theme-framework'),
     'subsection' => true,
     'fields' => array(
@@ -288,6 +288,61 @@ Redux::setSection($opt_name, array(
             'title'             => esc_html__('Sticky Header', 'cms-theme-framework'),
             'default'           => false,
         ),
+        array(
+            'title'             => esc_html__('Logo Type', 'cms-theme-framework'),
+            'subtitle'          => esc_html__('From Main / Image / Text.', 'cms-theme-framework'),
+            'id'                => 'sticky_logo_type',
+            'type'              => 'button_set',
+            'options'           => array(
+                'default' => esc_html__('Main', 'cms-theme-framework'),
+                'img' => esc_html__('Image', 'cms-theme-framework'),
+                'text' => esc_html__('Text', 'cms-theme-framework')
+            ),
+            'default'           => null,
+            'required'          => array( 'menu_sticky', '=', 1 )
+        ),
+        array(
+            'title'             => esc_html__('Select Logo', 'cms-theme-framework'),
+            'subtitle'          => esc_html__('Select an image file for your logo.', 'cms-theme-framework'),
+            'id'                => 'sticky_logo',
+            'type'              => 'media',
+            'url'               => true,
+            'default'           => array(
+                'url'=>get_template_directory_uri().'/assets/images/logo.png'
+            ),
+            'required'          => array( 'sticky_logo_type', '=', 'img' )
+        ),
+        array(
+            'subtitle'          => esc_html__('Add custom logo text.', 'cms-theme-framework'),
+            'id'                => 'sticky_logo_text',
+            'type'              => 'text',
+            'title'             => esc_html__('Logo Text', 'cms-theme-framework'),
+            'required'          => array( 'sticky_logo_type', '=', 'text' )
+        ),
+        array(
+            'subtitle'          => esc_html__('Add custom sologan Text.', 'cms-theme-framework'),
+            'id'                => 'sticky_logo_text_sologan',
+            'type'              => 'text',
+            'title'             => esc_html__('Sologan Text', 'cms-theme-framework'),
+            'required'          => array( 'sticky_logo_type', '=', 'text' )
+        ),
+        array(
+            'id'                => 'sticky_background_color',
+            'type'              => 'color_rgba',
+            'title'             => __( 'Background Color', 'cms-theme-framework' ),
+            'subtitle'          => __( 'Header background color', 'cms-theme-framework' ),
+            'required'          => array( 'menu_sticky', '=', 1 )
+        ),
+        array(
+            'title'             => esc_html__('Background Image', 'cms-theme-framework'),
+            'subtitle'          => esc_html__('Header background image.', 'cms-theme-framework'),
+            'id'                => 'sticky_background_image',
+            'type'              => 'background',
+            'preview'           => false,
+            'background-color'  => false,
+            'output'            => array('#cshero-header.sticky-desktop.header-fixed'),
+            'required'          => array( 'menu_sticky', '=', 1 )
+        )
     )
 ));
 
@@ -677,7 +732,7 @@ Redux::setSection($opt_name, array(
 /* footer top. */
 Redux::setSection($opt_name, array(
     'title' => esc_html__('Footer Top', 'cms-theme-framework'),
-    'icon' => 'el el-fontsize',
+    'icon' => 'el el-minus',
     'subsection' => true,
     'fields' => array(
         array(
@@ -717,7 +772,7 @@ Redux::setSection($opt_name, array(
 /* footer bottom. */
 Redux::setSection($opt_name, array(
     'title' => esc_html__('Footer Bottom', 'cms-theme-framework'),
-    'icon' => 'el el-fontsize',
+    'icon' => 'el el-minus',
     'subsection' => true,
     'fields' => array(
         array(

@@ -98,7 +98,7 @@ class CMSSuperHeroes_StaticCss
         ob_start();
 
         /* boxed layout. */
-        if(isset($opt_theme_options['general_layout']) && !$opt_theme_options['general_layout'])
+        if(isset($opt_theme_options['general_layout']) && $opt_theme_options['general_layout'] == '0')
             echo 'body{width: 1170px;margin: auto;}';
 
         /* primary_color */
@@ -107,11 +107,20 @@ class CMSSuperHeroes_StaticCss
 
         /* logo_max_height */
         if(!empty($opt_theme_options['logo_max_height']['height']))
-            echo '$logo_max_height:'.esc_attr($opt_theme_options['logo_max_height']['height']).';';
+            echo '#cshero-header-logo img{max-height:'.esc_attr($opt_theme_options['logo_max_height']['height']).';}';
 
         /* header_background_color */
         if(!empty($opt_theme_options['header_background_color']['rgba']))
-            echo '$header_background_color:'.esc_attr($opt_theme_options['header_background_color']['rgba']).';';
+            echo '#cshero-header{background-color:'.esc_attr($opt_theme_options['header_background_color']['rgba']).'}';
+
+        /* sticky menu. */
+        if(isset($opt_theme_options['menu_sticky']) && $opt_theme_options['menu_sticky']){
+            echo '.sticky-desktop.header-fixed{position:fixed;}';
+
+            /* sticky_background_color */
+            if(!empty($opt_theme_options['sticky_background_color']['rgba']))
+                echo '#cshero-header.sticky-desktop.header-fixed{background-color:'.esc_attr($opt_theme_options['sticky_background_color']['rgba']).'}';
+        }
         
         return ob_get_clean();
     }

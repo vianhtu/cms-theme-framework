@@ -94,9 +94,20 @@ jQuery(document).ready(function($) {
 		if (header.hasClass('sticky-desktop') && header_top < scroll_top && window_width > 991) {
 			header.addClass('header-fixed');
 			$('body').addClass('hd-fixed');
+
+			if($('.sticky_logo').length > 0) {
+				$('.sticky_logo').removeClass('hide');
+				$('.main_logo').addClass('hide');
+			}
+
 		} else {
 			header.removeClass('header-fixed');
 			$('body').removeClass('hd-fixed');
+
+			if($('.sticky_logo').length > 0) {
+				$('.sticky_logo').addClass('hide');
+				$('.main_logo').removeClass('hide');
+			}
 		}
 	}
 
