@@ -87,15 +87,19 @@ add_action( 'wp_nav_menu_item_custom_fields', 'et3_theme_framework_add_menu_item
 
 function et3_theme_framework_add_menu_item_group_fields( $item_id, $item, $depth, $args ) {
     $title = esc_html__('Group', 'cms-theme-framework'); $key = "menu-item-group";
+
+    if(!$item->group)
+        $item->group = 'no_group';
+
     ?>
     <p class="description description-wide description_width_100">
         <span><?php echo esc_html( $title ); ?></span><br />
     <div>
         <label><?php esc_html_e('No', ''); ?>
-            <input type="radio" class="<?php echo esc_attr($key); ?>" name="<?php echo sprintf("%1s[%2s]", $key , $item_id); ?>" value="no_group"<?php if($item->group == 'no_group') { echo ' checked="checked"';} ?>>
+            <input type="radio" class="<?php echo esc_attr($key); ?>" name="<?php echo $key . '['.$item_id.']';?>" value="no_group"<?php if($item->group == 'no_group') { echo ' checked="checked"';} ?>>
         </label>
         <label><?php esc_html_e('Yes', ''); ?>
-            <input type="radio" class="<?php echo esc_attr($key); ?>" name="<?php echo sprintf("%1s[%2s]", $key , $item_id); ?>" value="group"<?php if($item->group == 'group') { echo ' checked="checked"';} ?>>
+            <input type="radio" class="<?php echo esc_attr($key); ?>" name="<?php echo $key . '['.$item_id.']';?>" value="group"<?php if($item->group == 'group') { echo ' checked="checked"';} ?>>
         </label>
     </div>
     </p>
@@ -113,10 +117,10 @@ function et3_theme_framework_add_menu_is_onepage_fields($item_id, $item, $depth,
         <span><?php echo esc_html( $title ); ?></span><br />
     <div>
         <label><?php esc_html_e('No', ''); ?>
-            <input type="radio" class="<?php echo esc_attr($key); ?>" name="<?php echo sprintf("%1s[%2s]", $key , $item_id); ?>" value="0"<?php if(!$item->is_onepage) { echo ' checked="checked"';} ?>>
+            <input type="radio" class="<?php echo esc_attr($key); ?>" name="<?php echo $key . '['.$item_id.']';?>" value="0"<?php if(!$item->is_onepage) { echo ' checked="checked"';} ?>>
         </label>
         <label><?php esc_html_e('Yes', ''); ?>
-            <input type="radio" class="<?php echo esc_attr($key); ?>" name="<?php echo sprintf("%1s[%2s]", $key , $item_id); ?>" value="1"<?php if($item->is_onepage) { echo ' checked="checked"';} ?>>
+            <input type="radio" class="<?php echo esc_attr($key); ?>" name="<?php echo $key . '['.$item_id.']';?>" value="1"<?php if($item->is_onepage) { echo ' checked="checked"';} ?>>
         </label>
     </div>
     </p>
@@ -641,8 +645,9 @@ class HeroMenuWalker extends Walker_Nav_Menu {
         $link_before = isset($args->link_before)?$args->link_before:'';
         $link_after = isset($args->link_after)?$args->link_after:'';
         $after = isset($args->after)?$args->after:'';
+        $one_page = isset($item->is_onepage) && $item->is_onepage ? 'is-one-page' : '';
         if(!$hide_link || $hide_link=="0"){
-            $item_output .= '<a'. $attributes .'>';
+            $item_output .= '<a'. $attributes .' class="'.$one_page.'">';
             if ( $menu_icon ) {
                 $item_output .= '<i style="color: '.$icon_color.'; font-size: '.$icon_font_size.'" class="' . $menu_icon . '"></i> ';
             }
