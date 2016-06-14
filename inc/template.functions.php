@@ -110,6 +110,11 @@ function et3_theme_framework_header_navigation(){
     /* enable mega menu. */
     if(class_exists('HeroMenuWalker')){ $attr['walker'] = new HeroMenuWalker(); }
 
+    $locations = get_nav_menu_locations();
+
+    if(empty($locations[ 'primary' ]))
+        return;
+
     /* main nav. */
     wp_nav_menu( $attr );
 }

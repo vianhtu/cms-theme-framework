@@ -206,21 +206,6 @@ function et3_theme_framework_widgets_init() {
 add_action( 'widgets_init', 'et3_theme_framework_widgets_init' );
 
 /**
- * Filter the page menu arguments.
- *
- * Makes our wp_nav_menu() fallback -- wp_page_menu() -- show a home link.
- *
- * @since 1.0.0
- */
-function et3_theme_framework_page_menu_args( $args ) {
-    if ( ! isset( $args['show_home'] ) )
-        $args['show_home'] = true;
-    return $args;
-}
-
-add_filter( 'wp_page_menu_args', 'et3_theme_framework_page_menu_args' );
-
-/**
  * Display navigation to next/previous comments when applicable.
  *
  * @since 1.0.0
