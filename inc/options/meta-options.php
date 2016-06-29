@@ -133,7 +133,8 @@ function et3_theme_framework_meta_boxs()
                         'min'           => 500,
                         'step'          => 100,
                         'max'           => 5000,
-                        'display_value' => 'text'
+                        'display_value' => 'text',
+                        'required' => array('page_one_page', '=', 1)
                     ),
                 )
             )
