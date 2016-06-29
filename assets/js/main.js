@@ -140,7 +140,7 @@ jQuery(document).ready(function($) {
 	 *
 	 * @author Fox
 	 */
-	if($('#site-navigation .is-one-page').length > 0){
+	if(typeof(one_page_options) != "undefined"){
 		one_page_options.speed = parseInt(one_page_options.speed);
 		$('#site-navigation').singlePageNav(one_page_options);
 	}
