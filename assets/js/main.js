@@ -134,4 +134,14 @@ jQuery(document).ready(function($) {
 	$('body').on('click', '.ef3-back-to-top', function () {
 		$('body').animate({scrollTop:0}, '1000');
 	})
+
+	/**
+	 * One page
+	 *
+	 * @author Fox
+	 */
+	if($('#site-navigation .is-one-page').length > 0){
+		one_page_options.speed = parseInt(one_page_options.speed);
+		$('#site-navigation').singlePageNav(one_page_options);
+	}
 });

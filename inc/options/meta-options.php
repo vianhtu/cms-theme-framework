@@ -124,7 +124,17 @@ function et3_theme_framework_meta_boxs()
                         'type' => 'switch',
                         'title' => esc_html__('Enable', 'cms-theme-framework'),
                         'default' => false,
-                    )
+                    ),
+                    array(
+                        'id'            => 'page_one_page_speed',
+                        'type'          => 'slider',
+                        'title'         => esc_attr__( 'Speed', 'cms-theme-framework' ),
+                        'default'       => 1000,
+                        'min'           => 500,
+                        'step'          => 100,
+                        'max'           => 5000,
+                        'display_value' => 'text'
+                    ),
                 )
             )
         )

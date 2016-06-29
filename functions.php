@@ -90,8 +90,15 @@ add_action( 'after_setup_theme', 'et3_theme_framework_setup' );
  */
 function et3_theme_framework_front_end_scripts() {
     
-	global $wp_styles;
-	
+	global $wp_styles, $opt_meta_options;
+
+	/* one page. */
+	if(is_page() && isset($opt_meta_options['page_one_page']) && $opt_meta_options['page_one_page']) {
+		wp_register_script('jquery.singlePageNav', get_template_directory_uri() . '/assets/js/jquery.singlePageNav.js', array('jquery'), '1.2.0');
+		wp_localize_script('jquery.singlePageNav', 'one_page_options', array('filter' => '.is-one-page', 'speed' => $opt_meta_options['page_one_page_speed']));
+		wp_enqueue_script('jquery.singlePageNav');
+	}
+
 	/* Adds JavaScript Bootstrap. */
 	wp_enqueue_script('bootstrap', get_template_directory_uri() . '/assets/js/bootstrap.min.js', array('jquery'), '3.3.2');
 		
