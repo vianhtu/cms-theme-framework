@@ -372,3 +372,19 @@ require_once( get_template_directory() . '/inc/functions.php' );
 
 /* add footer back to top. */
 add_action('wp_footer', 'et3_theme_framework_footer_back_to_top');
+
+
+add_filter('cms-shorcode-list', 'et3_theme_framework_shortcodes');
+/**
+ * support shortcodes
+ * @return array
+ */
+function et3_theme_framework_shortcodes(){
+	return array(
+		'cms_carousel',
+		'cms_grid',
+		'cms_fancybox_single',
+		'cms_counter_single',
+		'cms_progressbar',
+	);
+}
