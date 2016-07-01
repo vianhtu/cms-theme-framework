@@ -132,7 +132,7 @@ jQuery(document).ready(function($) {
 	 * Back to top
 	 */
 	$('body').on('click', '.ef3-back-to-top', function () {
-		$('body').animate({scrollTop:0}, '1000');
+		$('body, html').animate({scrollTop:0}, '1000');
 	})
 
 	/**
