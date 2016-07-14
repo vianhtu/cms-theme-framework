@@ -1,5 +1,15 @@
 <?php
 /**
+ * shortcut icon
+ */
+function et3_theme_framework_site_icon(){
+    global $opt_theme_options;
+
+    $icon = get_template_directory_uri() . '/favicon.ico';
+
+    echo esc_url($icon);
+}
+/**
  * get header layout.
  */
 function et3_theme_framework_header(){
