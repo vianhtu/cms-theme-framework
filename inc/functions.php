@@ -53,6 +53,9 @@ function et3_theme_framework_get_nav_menu(){
     return $menus;
 }
 
+/* Include the TGM_Plugin_Activation class.*/
+require_once ( get_template_directory() . '/inc/libs/class-tgm-plugin-activation.php' );
+
 /* load list plugins */
 require_once( get_template_directory() . '/inc/options/require.plugins.php' );
 
