@@ -95,10 +95,10 @@ function et3_theme_framework_add_menu_item_group_fields( $item_id, $item, $depth
     <p class="description description-wide description_width_100">
         <span><?php echo esc_html( $title ); ?></span><br />
     <div>
-        <label><?php esc_html_e('No', ''); ?>
+        <label><?php esc_html_e('No', 'cms-theme-framework'); ?>
             <input type="radio" class="<?php echo esc_attr($key); ?>" name="<?php echo $key . '['.$item_id.']';?>" value="no_group"<?php if($item->group == 'no_group') { echo ' checked="checked"';} ?>>
         </label>
-        <label><?php esc_html_e('Yes', ''); ?>
+        <label><?php esc_html_e('Yes', 'cms-theme-framework'); ?>
             <input type="radio" class="<?php echo esc_attr($key); ?>" name="<?php echo $key . '['.$item_id.']';?>" value="group"<?php if($item->group == 'group') { echo ' checked="checked"';} ?>>
         </label>
     </div>
@@ -116,10 +116,10 @@ function et3_theme_framework_add_menu_is_onepage_fields($item_id, $item, $depth,
     <p class="description description-wide description_width_100">
         <span><?php echo esc_html( $title ); ?></span><br />
     <div>
-        <label><?php esc_html_e('No', ''); ?>
+        <label><?php esc_html_e('No', 'cms-theme-framework'); ?>
             <input type="radio" class="<?php echo esc_attr($key); ?>" name="<?php echo $key . '['.$item_id.']';?>" value="0"<?php if(!$item->is_onepage) { echo ' checked="checked"';} ?>>
         </label>
-        <label><?php esc_html_e('Yes', ''); ?>
+        <label><?php esc_html_e('Yes', 'cms-theme-framework'); ?>
             <input type="radio" class="<?php echo esc_attr($key); ?>" name="<?php echo $key . '['.$item_id.']';?>" value="1"<?php if($item->is_onepage) { echo ' checked="checked"';} ?>>
         </label>
     </div>
