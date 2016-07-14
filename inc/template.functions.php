@@ -7,6 +7,9 @@ function et3_theme_framework_site_icon(){
 
     $icon = get_template_directory_uri() . '/favicon.ico';
 
+    if(!empty($opt_theme_options['general_site_icon']['url']))
+        $icon = $opt_theme_options['general_site_icon']['url'];
+
     echo esc_url($icon);
 }
 /**
