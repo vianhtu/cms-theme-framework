@@ -37,6 +37,11 @@ function cms_theme_register_required_plugins() {
             'required'           => true,
         ),
         array(
+            'name'               => 'Breadcrumb NavXT',
+            'slug'               => 'breadcrumb-navxt',
+            'required'           => true,
+        ),
+        array(
             'name'               => 'Ef3 Import and Export',
             'slug'               => 'ef3-import-and-export',
             'source'             => 'http://cmssuperheroes.com/plugins/ef3-import-and-export.zip',

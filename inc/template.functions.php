@@ -270,99 +270,15 @@ function et3_theme_framework_get_page_title(){
 }
 
 /**
- * Breadcrumb
+ * Breadcrumb NavXT
  *
  * @since 1.0.0
  */
-function et3_theme_framework_get_bread_crumb($separator = '') {
-    global $opt_theme_options, $post;
+function et3_theme_framework_get_bread_crumb() {
 
-    echo '<ul class="breadcrumbs">';
-    /* not front_page */
-    if ( !is_front_page() ) {
-        echo '<li><a href="';
-        echo esc_url(home_url('/'));
-        echo '">';
-        echo isset($opt_theme_options['breacrumb_home_prefix']) ? esc_html($opt_theme_options['breacrumb_home_prefix']) : esc_html__('Home', 'cms-theme-framework');
-        echo "</a></li>";
-    }
+    if(!function_exists('bcn_display')) return;
 
-    $params['link_none'] = '';
-
-    /* category */
-    if (is_category()) {
-        $category = get_the_category();
-        $ID = $category[0]->cat_ID;
-        echo is_wp_error( $cat_parents = get_category_parents($ID, TRUE, '', FALSE ) ) ? '' : '<li>'.wp_kses_post($cat_parents).'</li>';
-    }
-    /* tax */
-    if (is_tax()) {
-        $term = get_term_by( 'slug', get_query_var( 'term' ), get_query_var( 'taxonomy' ) );
-        $link = get_term_link( $term );
-
-        if ( is_wp_error( $link ) ) {
-            echo sprintf('<li>%s</li>', $term->name );
-        } else {
-            echo sprintf('<li><a href="%s" title="%s">%s</a></li>', $link, $term->name, $term->name );
-        }
-    }
-    /* home */
-
-    /* page not front_page */
-    if(is_page() && !is_front_page()) {
-        $parents = array();
-        $parent_id = $post->post_parent;
-        while ( $parent_id ) :
-            $page = get_page( $parent_id );
-            if ( $params["link_none"] )
-                $parents[]  = get_the_title( $page->ID );
-            else
-                $parents[]  = '<li><a href="' . esc_url(get_permalink( $page->ID )) . '" title="' . esc_attr(get_the_title( $page->ID )) . '">' . esc_html(get_the_title( $page->ID )) . '</a></li>' . $separator;
-            $parent_id  = $page->post_parent;
-        endwhile;
-        $parents = array_reverse( $parents );
-        echo join( '', $parents );
-        echo '<li>'.esc_html(get_the_title()).'</li>';
-    }
-    /* single */
-    if(is_single()) {
-        $categories_1 = get_the_category($post->ID);
-        if($categories_1):
-            foreach($categories_1 as $cat_1):
-                $cat_1_ids[] = $cat_1->term_id;
-            endforeach;
-            $cat_1_line = implode(',', $cat_1_ids);
-        endif;
-        if( isset( $cat_1_line ) && $cat_1_line ) {
-            $categories = get_categories(array(
-                'include' => $cat_1_line,
-                'orderby' => 'id'
-            ));
-            if ( $categories ) :
-                foreach ( $categories as $cat ) :
-                    $cats[] = '<li><a href="' . esc_url(get_category_link( $cat->term_id )) . '" title="' . esc_attr($cat->name) . '">' . esc_html($cat->name) . '</a></li>';
-                endforeach;
-                echo join( '', $cats );
-            endif;
-        }
-        echo '<li>'.get_the_title().'</li>';
-    }
-    /* tag */
-    if( is_tag() ){ echo '<li>'."Tag: ".single_tag_title('',FALSE).'</li>'; }
-    /* search */
-    if( is_search() ){ echo '<li>'.esc_html__("Search", 'cms-theme-framework').'</li>'; }
-    /* date */
-    if( is_year() ){ echo '<li>'.get_the_time().'</li>'; }
-    /* 404 */
-    if( is_404() ) {
-        echo '<li>'.esc_html__("404 - Page not Found", 'cms-theme-framework').'</li>';
-    }
-    /* archive */
-    if( is_archive() && is_post_type_archive() ) {
-        $title = post_type_archive_title( '', false );
-        echo '<li>'. esc_html($title) .'</li>';
-    }
-    echo "</ul>";
+    bcn_display();
 }
 
 /**

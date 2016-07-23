@@ -415,13 +415,6 @@ Redux::setSection($opt_name, array(
     'subsection' => true,
     'fields' => array(
         array(
-            'subtitle'          => esc_html__('The text before the breadcrumb home.', 'cms-theme-framework'),
-            'id'                => 'breacrumb_home_prefix',
-            'type'              => 'text',
-            'title'             => esc_html__('Breadcrumb Home Prefix', 'cms-theme-framework'),
-            'default'           => esc_html__('Home', 'cms-theme-framework')
-        ),
-        array(
             'title'             => esc_html__('Typography', 'cms-theme-framework'),
             'subtitle'          => esc_html__('Breadcrumb typography.', 'cms-theme-framework'),
             'id'                => 'breadcrumb_typography',
