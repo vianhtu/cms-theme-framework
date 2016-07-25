@@ -1,24 +1,11 @@
 <?php
 /**
- * shortcut icon
- */
-function et3_theme_framework_site_icon(){
-    global $opt_theme_options;
-
-    $icon = get_template_directory_uri() . '/favicon.ico';
-
-    if(!empty($opt_theme_options['general_site_icon']['url']))
-        $icon = $opt_theme_options['general_site_icon']['url'];
-
-    echo esc_url($icon);
-}
-/**
  * get header layout.
  */
 function et3_theme_framework_header(){
     global $opt_theme_options, $opt_meta_options;
 
-    if(!isset($opt_theme_options)){
+    if(empty($opt_theme_options)){
         get_template_part('inc/header/header', 'default');
         return;
     }
@@ -94,7 +81,7 @@ function et3_theme_framework_header_sticky_logo(){
 function et3_theme_framework_header_class($class = ''){
     global $opt_theme_options;
 
-    if(!isset($opt_theme_options)){
+    if(empty($opt_theme_options)){
         echo esc_attr($class);
         return;
     }

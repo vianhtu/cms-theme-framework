@@ -32,7 +32,7 @@ class CMSSuperHeroes_StaticCss
     	
     	global $opt_theme_options;
 
-    	if (isset($opt_theme_options) && $opt_theme_options['dev_mode']){
+    	if (!empty($opt_theme_options) && $opt_theme_options['dev_mode']){
     	    $this->generate_file();
     	}
     }

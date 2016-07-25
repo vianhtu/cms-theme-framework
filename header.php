@@ -17,7 +17,7 @@
 <link rel="profile" href="http://gmpg.org/xfn/11" />
 <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
 <?php if ( ! function_exists( 'has_site_icon' ) || ! has_site_icon() ): ?>
-<link rel="shortcut icon" type="image/x-icon" href="<?php et3_theme_framework_site_icon(); ?>" />
+<link rel="shortcut icon" type="image/x-icon" href="<?php echo esc_url(get_template_directory_uri() . '/favicon.ico'); ?>" />
 <?php endif; ?>
 <?php wp_head(); ?>
 </head>

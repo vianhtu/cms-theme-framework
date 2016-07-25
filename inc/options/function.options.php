@@ -158,13 +158,6 @@ Redux::setSection($opt_name, array(
             'required'          => array( 'general_layout', '=', 0 )
         ),
         array(
-            'title'             => esc_html__('Favicon Icon', 'cms-theme-framework'),
-            'subtitle'          => esc_html__('Select an image .png/.icon file for your site icon.', 'cms-theme-framework'),
-            'id'                => 'general_site_icon',
-            'type'              => 'media',
-            'url'               => true,
-        ),
-        array(
             'subtitle'          => esc_html__('Enable back to top button.', 'cms-theme-framework'),
             'id'                => 'general_back_to_top',
             'type'              => 'switch',
