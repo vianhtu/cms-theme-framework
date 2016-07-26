@@ -42,6 +42,11 @@ function cms_theme_register_required_plugins() {
             'required'           => true,
         ),
         array(
+            'name'               => 'Regenerate Thumbnails',
+            'slug'               => 'regenerate-thumbnails',
+            'required'           => false,
+        ),
+        array(
             'name'               => 'Ef3 Import and Export',
             'slug'               => 'ef3-import-and-export',
             'source'             => 'http://cmssuperheroes.com/plugins/ef3-import-and-export.zip',
