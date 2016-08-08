@@ -131,8 +131,6 @@ function et3_theme_framework_front_end_scripts() {
 	
 	/* Load static css*/
 	wp_enqueue_style('et3_theme_framework-static', get_template_directory_uri() . '/assets/css/static.css');
-
-	if(is_rtl()) wp_enqueue_style('et3_theme_framework-rtl', get_template_directory_uri() . '/assets/css/rtl.css');
 }
 
 add_action( 'wp_enqueue_scripts', 'et3_theme_framework_front_end_scripts' );
