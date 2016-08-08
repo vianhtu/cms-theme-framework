@@ -115,22 +115,24 @@ function et3_theme_framework_front_end_scripts() {
 	/** ----------------------------------------------------------------------------------- */
 	
 	/* Loads Bootstrap stylesheet. */
-	wp_enqueue_style('bootstrap', get_template_directory_uri() . '/assets/css/bootstrap.min.css', array(), '3.3.2');
+	wp_enqueue_style('bootstrap', get_template_directory_uri() . '/assets/css/bootstrap.min.css');
 	
 	/* Loads Bootstrap stylesheet. */
-	wp_enqueue_style('font-awesome', get_template_directory_uri() . '/assets/css/font-awesome.min.css', array(), '4.3.0');
+	wp_enqueue_style('font-awesome', get_template_directory_uri() . '/assets/css/font-awesome.min.css');
 		
 	/* Loads our main stylesheet. */
-	wp_enqueue_style( 'et3_theme_framework-style', get_stylesheet_uri(), array( 'bootstrap' ));
+	wp_enqueue_style( 'et3_theme_framework-style', get_stylesheet_uri());
 
 	/* Loads the Internet Explorer specific stylesheet. */
-	wp_enqueue_style( 'et3_theme_framework-ie', get_template_directory_uri() . '/assets/css/ie.css', array( 'et3_theme_framework-style' ), '20121010' );
+	wp_enqueue_style( 'et3_theme_framework-ie', get_template_directory_uri() . '/assets/css/ie.css');
 	
 	/* ie */
 	$wp_styles->add_data( 'et3_theme_framework-ie', 'conditional', 'lt IE 9' );
 	
 	/* Load static css*/
-	wp_enqueue_style('et3_theme_framework-static', get_template_directory_uri() . '/assets/css/static.css', array( 'et3_theme_framework-style' ), '1.0.0');
+	wp_enqueue_style('et3_theme_framework-static', get_template_directory_uri() . '/assets/css/static.css');
+
+	if(is_rtl()) wp_enqueue_style('et3_theme_framework-rtl', get_template_directory_uri() . '/assets/css/rtl.css');
 }
 
 add_action( 'wp_enqueue_scripts', 'et3_theme_framework_front_end_scripts' );
