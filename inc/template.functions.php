@@ -277,7 +277,7 @@ function et3_theme_framework_post_detail(){
     ?>
     <ul class="single_detail">
 
-        <?php if(!isset($opt_theme_options['single_author']) || (isset($opt_theme_options['single_author']) && $opt_theme_options['single_author'])): ?>
+        <?php if(isset($opt_theme_options['single_author']) && $opt_theme_options['single_author']): ?>
 
             <li class="detail-author"><?php esc_html_e('By', 'cms-theme-framework'); ?> <?php the_author_posts_link(); ?></li>
 
@@ -402,14 +402,14 @@ function et3_theme_framework_post_gallery(){
 function et3_theme_framework_post_quote() {
     global $opt_meta_options;
 
-    if(empty($opt_meta_options_options['opt-quote-content'])){
+    if(empty($opt_meta_options['opt-quote-content'])){
         et3_theme_framework_post_thumbnail();
         return;
     }
 
-    $opt_meta_options_options['opt-quote-title'] = !empty($opt_meta_options_options['opt-quote-title']) ? '<span>'.esc_html($opt_meta_options_options['opt-quote-title']).'</span>' : '' ;
+    $opt_meta_options['opt-quote-title'] = !empty($opt_meta_options['opt-quote-title']) ? '<span>'.esc_html($opt_meta_options['opt-quote-title']).'</span>' : '' ;
 
-    echo '<blockquote>'.esc_html($opt_meta_options_options['opt-quote-content']).wp_kses_post($opt_meta_options_options['opt-quote-title']).'</blockquote>';
+    echo '<blockquote>'.esc_html($opt_meta_options['opt-quote-content']).wp_kses_post($opt_meta_options['opt-quote-title']).'</blockquote>';
 }
 
 /**
